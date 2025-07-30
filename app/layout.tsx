@@ -4,7 +4,7 @@ import "./globals.css";
 import "katex/dist/katex.min.css";
 import { ThemeProvider } from "./context/theme-context";
 import CopyScript from "./ui/copy-script";
-import FloatingMenu from "./ui/FloatingMenu";
+import FloatingMenu from "./ui/floatingmenu";
 
 const inter = Inter({ subsets: ["latin"] });
 

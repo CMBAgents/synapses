@@ -1,0 +1,11 @@
+{
+    "astronomy": [
+      { "rank": 1, "name": "Astropy", "stars": 3500 },
+      { "rank": 2, "name": "SunPy", "stars": 1200 }
+    ],
+    "finance": [
+      { "rank": 1, "name": "Pandas", "stars": 35000 },
+      { "rank": 2, "name": "QuantLib", "stars": 1800 }
+    ]
+  }
+  
