@@ -300,3 +300,14 @@ pre:hover .copy-code-button {
 .prose p {
   white-space: pre-line;
 }
+
+.bg-fadein {
+  opacity: 0;
+  animation: fadeInBackground 1.5s forwards;
+}
+
+@keyframes fadeInBackground {
+  to {
+    opacity: 1;
+  }
+}
