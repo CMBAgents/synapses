@@ -8,7 +8,6 @@ export default function FloatingMenu() {
   const router = useRouter();
   const pathname = usePathname();
 
-  // On change la destination selon la page actuelle
   const isOnHomePage = pathname === "/";
   const destination = isOnHomePage ? "/page2" : "/";
 
@@ -20,20 +19,24 @@ export default function FloatingMenu() {
     >
       <button
         className={`
-          relative rounded-full bg-blue-600 text-white w-14 h-14 flex items-center justify-center
-          shadow-md transition-colors duration-300 focus:outline-none focus:ring-4 focus:ring-blue-400
-          ${hovered ? "bg-blue-700" : "bg-blue-600"}
+          relative rounded-full w-14 h-14 flex items-center justify-center
+          transition-colors duration-300 shadow-md focus:outline-none focus:ring-4
+          ${hovered
+            ? "bg-white dark:bg-neutral-800"
+            : "bg-white dark:bg-black"}
+          text-black dark:text-white
+          focus:ring-neutral-400 dark:focus:ring-white
         `}
         aria-label="Ouvrir le menu"
         onClick={() => router.push(destination)}
       >
-        {/* Cercle fin au centre */}
+        {/* Cercle au centre */}
         <span
-          className="absolute w-10 h-10 rounded-full border-2 border-white pointer-events-none"
+          className="absolute w-10 h-10 rounded-full border-2 border-current pointer-events-none"
           aria-hidden="true"
         ></span>
 
-        {/* Icône ☰ qui disparaît au survol */}
+        {/* Icône ☰ */}
         <span
           className={`relative text-2xl select-none transition-opacity duration-300 ${
             hovered ? "opacity-0" : "opacity-100"
@@ -43,15 +46,15 @@ export default function FloatingMenu() {
         </span>
       </button>
 
-      {/* Boîte texte centrée au-dessus */}
+      {/* Texte au survol */}
       {hovered && (
         <div
           className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2
-                     bg-white dark:bg-gray-900 shadow-lg rounded-lg px-5 py-2
-                     text-gray-800 dark:text-gray-200 whitespace-nowrap
+                     bg-white dark:bg-black shadow-lg rounded-lg px-5 py-2
+                     text-black dark:text-white whitespace-nowrap
                      text-center text-lg font-semibold z-60"
         >
-          Leaderboard
+          {isOnHomePage ? "Leaderboard" : "Select a Library"}
         </div>
       )}
     </div>

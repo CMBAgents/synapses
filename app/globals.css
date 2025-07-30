@@ -302,8 +302,8 @@ pre:hover .copy-code-button {
 }
 
 .bg-fadein {
-  opacity: 0;
-  animation: fadeInBackground 1.5s forwards;
+  opacity: 0.5;
+  animation: fadeInBackground 0.5s forwards;
 }
 
 @keyframes fadeInBackground {

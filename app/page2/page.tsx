@@ -9,7 +9,7 @@ export default function Page2() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat bg-fadein"
-      style={{ backgroundImage: "url('image.png')" }}
+      style={{ backgroundImage: "url('image_page2.png')" }}
     >
       <div className="w-full max-w-4xl bg-white/80 dark:bg-gray-900/80 rounded-lg p-6 shadow-lg">
         <FadeIn>
