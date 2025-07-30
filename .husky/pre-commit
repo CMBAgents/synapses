@@ -1,0 +1,2 @@
+# Run type checking and linting before commit
+npm run pre-commit
