@@ -1,0 +1,22 @@
+# YFinance Library Context
+
+YFinance is a popular Python library for downloading financial market data from Yahoo Finance. It provides:
+
+- Real-time and historical stock price data
+- Financial statements and company information
+- Options and futures data
+- Cryptocurrency price data
+- Market indices and ETFs
+
+## Key Features:
+- Easy-to-use API for financial data retrieval
+- Support for multiple data sources
+- Historical data with customizable timeframes
+- Integration with pandas for data analysis
+
+## Common Use Cases:
+- Stock price analysis and backtesting
+- Portfolio tracking and management
+- Financial research and analysis
+- Algorithmic trading strategies
+- Market data visualization 

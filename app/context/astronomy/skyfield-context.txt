@@ -1,0 +1,20 @@
+# Skyfield Library Context
+
+Skyfield is a Python library for astronomical calculations. It provides tools for:
+
+- Computing positions of planets, stars, and other celestial objects
+- Converting between different coordinate systems
+- Calculating astronomical events like eclipses and transits
+- Working with astronomical catalogs and ephemerides
+
+## Key Features:
+- High precision astronomical calculations
+- Support for various astronomical catalogs
+- Easy-to-use API for common astronomical tasks
+- Integration with NASA's SPICE toolkit
+
+## Common Use Cases:
+- Planetarium software development
+- Astronomical research and analysis
+- Educational astronomy applications
+- Satellite tracking and orbital calculations 

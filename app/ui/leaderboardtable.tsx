@@ -5,6 +5,8 @@ type LibraryEntry = {
   name: string;
   github_url: string;
   stars: number;
+  hasContextFile?: boolean;
+  contextFileName?: string;
 };
 
 type LeaderboardTableProps = {
@@ -29,10 +31,26 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
           </tr>
         </thead>
         <tbody>
-          {libraries.map(({ rank, name, github_url, stars }) => (
+          {libraries.map(({ rank, name, github_url, stars, hasContextFile, contextFileName }) => (
             <tr key={name} className="hover:bg-white/10">
               <td className="border border-white/30 px-2 py-1">{rank}</td>
-              <td className="border border-white/30 px-2 py-1">{name}</td>
+              <td className="border border-white/30 px-2 py-1">
+                <div className="flex flex-col">
+                  <span className="font-medium">{name}</span>
+                  {hasContextFile && (
+                    <div className="flex items-center mt-1">
+                      <div className="w-2 h-2 bg-green-400 rounded-full mr-1"></div>
+                      <span className="text-xs text-green-200">Context available</span>
+                    </div>
+                  )}
+                  {!hasContextFile && (
+                    <div className="flex items-center mt-1">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full mr-1"></div>
+                      <span className="text-xs text-gray-300">No context</span>
+                    </div>
+                  )}
+                </div>
+              </td>
               <td className="border border-white/30 px-2 py-1 break-all">
                 <a
                   href={github_url}

@@ -6,6 +6,8 @@ export type LibraryEntry = {
   name: string;
   github_url: string;
   stars: number;
+  hasContextFile?: boolean;
+  contextFileName?: string;
 };
 
 export type DomainData = {

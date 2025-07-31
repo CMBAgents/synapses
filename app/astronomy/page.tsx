@@ -2,14 +2,16 @@ import ChatContainer from "@/app/ui/chat-container";
 import { loadAstronomyData } from "@/app/utils/domain-loader";
 import FloatingMenu from "@/app/ui/floatingmenu";
 import ThemeToggle from "@/app/ui/theme-toggle";
+import ContextUpdater from "@/app/ui/context-updater";
 
 export default async function AstronomyPage() {
   const astronomyData = loadAstronomyData();
 
   return (
-    <main className="min-h-screen bg-almond-beige flex flex-col">
-      {/* Content */}
-      <div className="mx-auto pt-4 pb-4 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-black dark:text-white">
+    <ContextUpdater domain="astronomy">
+      <main className="min-h-screen bg-almond-beige flex flex-col">
+        {/* Content */}
+        <div className="mx-auto pt-4 pb-4 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-black dark:text-white">
         {/* Header */}
         <div className="flex items-center mb-6 pt-8">
           <div className="flex items-center gap-4 flex-1">
@@ -44,5 +46,6 @@ export default async function AstronomyPage() {
         </div>
       </div>
     </main>
+    </ContextUpdater>
   );
 } 

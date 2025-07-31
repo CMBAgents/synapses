@@ -4,64 +4,83 @@
       "name": "quantopian/zipline",
       "github_url": "https://github.com/quantopian/zipline",
       "stars": 15800,
-      "rank": 1
+      "rank": 1,
+      "hasContextFile": false
     },
     {
       "name": "mlfinlab/mlfinlab",
       "github_url": "https://github.com/mlfinlab/mlfinlab",
       "stars": 4200,
-      "rank": 2
+      "rank": 2,
+      "hasContextFile": false
     },
     {
       "name": "ranaroussi/yfinance",
       "github_url": "https://github.com/ranaroussi/yfinance",
       "stars": 8500,
-      "rank": 3
+      "rank": 3,
+      "hasContextFile": true,
+      "contextFileName": "yfinance-context.txt"
     },
     {
       "name": "pmorissette/ffn",
       "github_url": "https://github.com/pmorissette/ffn",
       "stars": 1200,
-      "rank": 4
+      "rank": 4,
+      "hasContextFile": false
     },
     {
       "name": "quantopian/pyfolio",
       "github_url": "https://github.com/quantopian/pyfolio",
       "stars": 4800,
-      "rank": 5
+      "rank": 5,
+      "hasContextFile": false
     },
     {
       "name": "fmilthaler/finquant",
       "github_url": "https://github.com/fmilthaler/finquant",
       "stars": 800,
-      "rank": 6
+      "rank": 6,
+      "hasContextFile": false
     },
     {
       "name": "jamesmawm/High-Frequency-Trading-Model-with-IB",
       "github_url": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
       "stars": 1200,
-      "rank": 7
+      "rank": 7,
+      "hasContextFile": false
     },
     {
       "name": "quantopian/empyrical",
       "github_url": "https://github.com/quantopian/empyrical",
       "stars": 1200,
-      "rank": 8
+      "rank": 8,
+      "hasContextFile": false
     },
     {
       "name": "quantopian/alphalens",
       "github_url": "https://github.com/quantopian/alphalens",
       "stars": 2400,
-      "rank": 9
+      "rank": 9,
+      "hasContextFile": false
     },
     {
       "name": "quantopian/qgrid",
       "github_url": "https://github.com/quantopian/qgrid",
       "stars": 1000,
-      "rank": 10
+      "rank": 10,
+      "hasContextFile": false
     }
   ],
   "domain": "finance",
   "description": "Top finance and trading libraries for portfolio optimization, algorithmic trading, and financial analysis",
-  "keywords": ["finance", "trading", "portfolio", "quantitative", "zipline", "yfinance", "pyfolio"]
-} 
+  "keywords": [
+    "finance",
+    "trading",
+    "portfolio",
+    "quantitative",
+    "zipline",
+    "yfinance",
+    "pyfolio"
+  ]
+}

@@ -22,7 +22,12 @@ export default function ChatSimple({
   programId: string;
   greeting: string;
   selectedModelId?: string;
-  libraries?: Array<{ name: string; description?: string }>;
+  libraries?: Array<{ 
+    name: string; 
+    description?: string;
+    hasContextFile?: boolean;
+    contextFileName?: string;
+  }>;
 }) {
   // Use a ref to store messages for each program ID
   const messagesMapRef = useRef<Record<string, Message[]>>({});
@@ -398,6 +403,18 @@ export default function ChatSimple({
                     {selectedLibrary}
                   </div>
                 </div>
+                {libraries.find(lib => lib.name === selectedLibrary)?.hasContextFile && (
+                  <div className="flex items-center mb-2">
+                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                    <span className="text-xs text-green-200">Context available</span>
+                  </div>
+                )}
+                {!libraries.find(lib => lib.name === selectedLibrary)?.hasContextFile && (
+                  <div className="flex items-center mb-2">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
+                    <span className="text-xs text-gray-300">No context</span>
+                  </div>
+                )}
                 {libraries.find(lib => lib.name === selectedLibrary)?.description && (
                   <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
                     {libraries.find(lib => lib.name === selectedLibrary)?.description}

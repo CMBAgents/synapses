@@ -4,601 +4,703 @@
       "name": "skyfielders/python-skyfield",
       "github_url": "https://github.com/skyfielders/python-skyfield",
       "stars": 1570,
-      "rank": 1
+      "rank": 1,
+      "hasContextFile": true,
+      "contextFileName": "skyfield-context.txt"
     },
     {
       "name": "dstndstn/astrometry.net",
       "github_url": "https://github.com/dstndstn/astrometry.net",
       "stars": 750,
-      "rank": 2
+      "rank": 2,
+      "hasContextFile": false
     },
     {
       "name": "astropy/astroquery",
       "github_url": "https://github.com/astropy/astroquery",
       "stars": 739,
-      "rank": 3
+      "rank": 3,
+      "hasContextFile": false
     },
     {
       "name": "einsteinpy/einsteinpy",
       "github_url": "https://github.com/einsteinpy/einsteinpy",
       "stars": 650,
-      "rank": 4
+      "rank": 4,
+      "hasContextFile": false
     },
     {
       "name": "lightkurve/lightkurve",
       "github_url": "https://github.com/lightkurve/lightkurve",
       "stars": 459,
-      "rank": 5
+      "rank": 5,
+      "hasContextFile": false
     },
     {
       "name": "gwpy/gwpy",
       "github_url": "https://github.com/gwpy/gwpy",
       "stars": 378,
-      "rank": 6
+      "rank": 6,
+      "hasContextFile": false
     },
     {
       "name": "gwastro/pycbc",
       "github_url": "https://github.com/gwastro/pycbc",
       "stars": 346,
-      "rank": 7
+      "rank": 7,
+      "hasContextFile": false
     },
     {
       "name": "amrex-astro/castro",
       "github_url": "https://github.com/amrex-astro/castro",
       "stars": 322,
-      "rank": 8
+      "rank": 8,
+      "hasContextFile": false
     },
     {
       "name": "healpy/healpy",
       "github_url": "https://github.com/healpy/healpy",
       "stars": 285,
-      "rank": 9
+      "rank": 9,
+      "hasContextFile": false
     },
     {
       "name": "astropy/photutils",
       "github_url": "https://github.com/astropy/photutils",
       "stars": 276,
-      "rank": 10
+      "rank": 10,
+      "hasContextFile": false
     },
     {
       "name": "lesgourg/class_public",
       "github_url": "https://github.com/lesgourg/class_public",
       "stars": 267,
-      "rank": 11
+      "rank": 11,
+      "hasContextFile": false
     },
     {
       "name": "spacepy/spacepy",
       "github_url": "https://github.com/spacepy/spacepy",
       "stars": 253,
-      "rank": 12
+      "rank": 12,
+      "hasContextFile": false
     },
     {
       "name": "scottransom/presto",
       "github_url": "https://github.com/scottransom/presto",
       "stars": 250,
-      "rank": 13
+      "rank": 13,
+      "hasContextFile": false
     },
     {
       "name": "galsim-developers/galsim",
       "github_url": "https://github.com/galsim-developers/galsim",
       "stars": 247,
-      "rank": 14
+      "rank": 14,
+      "hasContextFile": false
     },
     {
       "name": "jobovy/galpy",
       "github_url": "https://github.com/jobovy/galpy",
       "stars": 246,
-      "rank": 15
+      "rank": 15,
+      "hasContextFile": false
     },
     {
       "name": "radis/radis",
       "github_url": "https://github.com/radis/radis",
       "stars": 245,
-      "rank": 16
+      "rank": 16,
+      "hasContextFile": false
     },
     {
       "name": "spacetelescope/poppy",
       "github_url": "https://github.com/spacetelescope/poppy",
       "stars": 243,
-      "rank": 17
+      "rank": 17,
+      "hasContextFile": false
     },
     {
       "name": "minaskar/zeus",
       "github_url": "https://github.com/minaskar/zeus",
       "stars": 237,
-      "rank": 18
+      "rank": 18,
+      "hasContextFile": false
     },
     {
       "name": "tardis-sn/tardis",
       "github_url": "https://github.com/tardis-sn/tardis",
       "stars": 220,
-      "rank": 19
+      "rank": 19,
+      "hasContextFile": false
     },
     {
       "name": "astropy/astroplan",
       "github_url": "https://github.com/astropy/astroplan",
       "stars": 209,
-      "rank": 20
+      "rank": 20,
+      "hasContextFile": false
     },
     {
       "name": "johannesbuchner/pymultinest",
       "github_url": "https://github.com/johannesbuchner/pymultinest",
       "stars": 205,
-      "rank": 21
+      "rank": 21,
+      "hasContextFile": false
     },
     {
       "name": "henrysky/astronn",
       "github_url": "https://github.com/henrysky/astronn",
       "stars": 201,
-      "rank": 22
+      "rank": 22,
+      "hasContextFile": false
     },
     {
       "name": "sep-developers/sep",
       "github_url": "https://github.com/sep-developers/sep",
       "stars": 201,
-      "rank": 23
+      "rank": 23,
+      "hasContextFile": false
     },
     {
       "name": "astro-informatics/s2fft",
       "github_url": "https://github.com/astro-informatics/s2fft",
       "stars": 198,
-      "rank": 24
+      "rank": 24,
+      "hasContextFile": false
     },
     {
       "name": "stingraysoftware/stingray",
       "github_url": "https://github.com/stingraysoftware/stingray",
       "stars": 198,
-      "rank": 25
+      "rank": 25,
+      "hasContextFile": false
     },
     {
       "name": "johannesbuchner/ultranest",
       "github_url": "https://github.com/johannesbuchner/ultranest",
       "stars": 187,
-      "rank": 26
+      "rank": 26,
+      "hasContextFile": false
     },
     {
       "name": "astropy/specutils",
       "github_url": "https://github.com/astropy/specutils",
       "stars": 186,
-      "rank": 27
+      "rank": 27,
+      "hasContextFile": false
     },
     {
       "name": "mperrin/poppy",
       "github_url": "https://github.com/mperrin/poppy",
       "stars": 184,
-      "rank": 28
+      "rank": 28,
+      "hasContextFile": false
     },
     {
       "name": "pypeit/pypeit",
       "github_url": "https://github.com/pypeit/pypeit",
       "stars": 183,
-      "rank": 29
+      "rank": 29,
+      "hasContextFile": false
     },
     {
       "name": "sczesla/pyastronomy",
       "github_url": "https://github.com/sczesla/pyastronomy",
       "stars": 166,
-      "rank": 30
+      "rank": 30,
+      "hasContextFile": false
     },
     {
       "name": "cmbant/getdist",
       "github_url": "https://github.com/cmbant/getdist",
       "stars": 165,
-      "rank": 31
+      "rank": 31,
+      "hasContextFile": false
     },
     {
       "name": "quatrope/astroalign",
       "github_url": "https://github.com/quatrope/astroalign",
       "stars": 151,
-      "rank": 32
+      "rank": 32,
+      "hasContextFile": false
     },
     {
       "name": "polymathicai/astroclip",
       "github_url": "https://github.com/polymathicai/astroclip",
       "stars": 146,
-      "rank": 33
+      "rank": 33,
+      "hasContextFile": false
     },
     {
       "name": "adrn/gala",
       "github_url": "https://github.com/adrn/gala",
       "stars": 141,
-      "rank": 34
+      "rank": 34,
+      "hasContextFile": false
     },
     {
       "name": "deepsphere/deepsphere-cosmo-tf1",
       "github_url": "https://github.com/deepsphere/deepsphere-cosmo-tf1",
       "stars": 133,
-      "rank": 35
+      "rank": 35,
+      "hasContextFile": false
     },
     {
       "name": "skypyproject/skypy",
       "github_url": "https://github.com/skypyproject/skypy",
       "stars": 125,
-      "rank": 36
+      "rank": 36,
+      "hasContextFile": false
     },
     {
       "name": "astropy/reproject",
       "github_url": "https://github.com/astropy/reproject",
       "stars": 116,
-      "rank": 37
+      "rank": 37,
+      "hasContextFile": false
     },
     {
       "name": "astropy/halotools",
       "github_url": "https://github.com/astropy/halotools",
       "stars": 115,
-      "rank": 38
+      "rank": 38,
+      "hasContextFile": false
     },
     {
       "name": "galacticdynamics-oxford/agama",
       "github_url": "https://github.com/galacticdynamics-oxford/agama",
       "stars": 103,
-      "rank": 39
+      "rank": 39,
+      "hasContextFile": false
     },
     {
       "name": "lwang-astro/petar",
       "github_url": "https://github.com/lwang-astro/petar",
       "stars": 101,
-      "rank": 40
+      "rank": 40,
+      "hasContextFile": false
     },
     {
       "name": "michellelochner/astronomaly",
       "github_url": "https://github.com/michellelochner/astronomaly",
       "stars": 100,
-      "rank": 41
+      "rank": 41,
+      "hasContextFile": false
     },
     {
       "name": "radio-astro-tools/spectral-cube",
       "github_url": "https://github.com/radio-astro-tools/spectral-cube",
       "stars": 99,
-      "rank": 42
+      "rank": 42,
+      "hasContextFile": false
     },
     {
       "name": "amrex-astro/nyx",
       "github_url": "https://github.com/amrex-astro/nyx",
       "stars": 96,
-      "rank": 43
+      "rank": 43,
+      "hasContextFile": false
     },
     {
       "name": "autostronomy/astrophot",
       "github_url": "https://github.com/autostronomy/astrophot",
       "stars": 94,
-      "rank": 44
+      "rank": 44,
+      "hasContextFile": false
     },
     {
       "name": "radioastronomysoftwaregroup/pyuvdata",
       "github_url": "https://github.com/radioastronomysoftwaregroup/pyuvdata",
       "stars": 92,
-      "rank": 45
+      "rank": 45,
+      "hasContextFile": false
     },
     {
       "name": "astropy/ccdproc",
       "github_url": "https://github.com/astropy/ccdproc",
       "stars": 90,
-      "rank": 46
+      "rank": 46,
+      "hasContextFile": false
     },
     {
       "name": "astroml/gatspy",
       "github_url": "https://github.com/astroml/gatspy",
       "stars": 87,
-      "rank": 47
+      "rank": 47,
+      "hasContextFile": false
     },
     {
       "name": "astrocv/astrocv",
       "github_url": "https://github.com/astrocv/astrocv",
       "stars": 85,
-      "rank": 48
+      "rank": 48,
+      "hasContextFile": false
     },
     {
       "name": "spacetelescope/astronify",
       "github_url": "https://github.com/spacetelescope/astronify",
       "stars": 82,
-      "rank": 49
+      "rank": 49,
+      "hasContextFile": false
     },
     {
       "name": "astrorama/sourcextractorplusplus",
       "github_url": "https://github.com/astrorama/sourcextractorplusplus",
       "stars": 81,
-      "rank": 50
+      "rank": 50,
+      "hasContextFile": false
     },
     {
       "name": "astropy/pyvo",
       "github_url": "https://github.com/astropy/pyvo",
       "stars": 79,
-      "rank": 51
+      "rank": 51,
+      "hasContextFile": false
     },
     {
       "name": "astropy/astroscrappy",
       "github_url": "https://github.com/astropy/astroscrappy",
       "stars": 77,
-      "rank": 52
+      "rank": 52,
+      "hasContextFile": false
     },
     {
       "name": "sncosmo/sncosmo",
       "github_url": "https://github.com/sncosmo/sncosmo",
       "stars": 77,
-      "rank": 53
+      "rank": 53,
+      "hasContextFile": false
     },
     {
       "name": "alessiospuriomancini/cosmopower",
       "github_url": "https://github.com/alessiospuriomancini/cosmopower",
       "stars": 72,
-      "rank": 54
+      "rank": 54,
+      "hasContextFile": false
     },
     {
       "name": "astro-informatics/harmonic",
       "github_url": "https://github.com/astro-informatics/harmonic",
       "stars": 69,
-      "rank": 55
+      "rank": 55,
+      "hasContextFile": false
     },
     {
       "name": "astropy/spisea",
       "github_url": "https://github.com/astropy/spisea",
       "stars": 66,
-      "rank": 56
+      "rank": 56,
+      "hasContextFile": false
     },
     {
       "name": "astroua/turbustat",
       "github_url": "https://github.com/astroua/turbustat",
       "stars": 66,
-      "rank": 57
+      "rank": 57,
+      "hasContextFile": false
     },
     {
       "name": "pynucastro/pynucastro",
       "github_url": "https://github.com/pynucastro/pynucastro",
       "stars": 63,
-      "rank": 58
+      "rank": 58,
+      "hasContextFile": false
     },
     {
       "name": "artificialstellarpopulations/artpop",
       "github_url": "https://github.com/artificialstellarpopulations/artpop",
       "stars": 61,
-      "rank": 59
+      "rank": 59,
+      "hasContextFile": false
     },
     {
       "name": "cmateu/galstreams",
       "github_url": "https://github.com/cmateu/galstreams",
       "stars": 58,
-      "rank": 60
+      "rank": 60,
+      "hasContextFile": false
     },
     {
       "name": "smith42/astroddpm",
       "github_url": "https://github.com/smith42/astroddpm",
       "stars": 57,
-      "rank": 61
+      "rank": 61,
+      "hasContextFile": false
     },
     {
       "name": "astrosmili/smili",
       "github_url": "https://github.com/astrosmili/smili",
       "stars": 52,
-      "rank": 62
+      "rank": 62,
+      "hasContextFile": false
     },
     {
       "name": "lofar-astron/pybdsf",
       "github_url": "https://github.com/lofar-astron/pybdsf",
       "stars": 52,
-      "rank": 63
+      "rank": 63,
+      "hasContextFile": false
     },
     {
       "name": "stellar-group/octotiger",
       "github_url": "https://github.com/stellar-group/octotiger",
       "stars": 52,
-      "rank": 64
+      "rank": 64,
+      "hasContextFile": false
     },
     {
       "name": "simonsobs/pixell",
       "github_url": "https://github.com/simonsobs/pixell",
       "stars": 51,
-      "rank": 65
+      "rank": 65,
+      "hasContextFile": true,
+      "contextFileName": "pixell-context.txt"
     },
     {
       "name": "quokka-astro/quokka",
       "github_url": "https://github.com/quokka-astro/quokka",
       "stars": 50,
-      "rank": 66
+      "rank": 66,
+      "hasContextFile": false
     },
     {
       "name": "dartoon/galight",
       "github_url": "https://github.com/dartoon/galight",
       "stars": 49,
-      "rank": 67
+      "rank": 67,
+      "hasContextFile": false
     },
     {
       "name": "threeml/astromodels",
       "github_url": "https://github.com/threeml/astromodels",
       "stars": 49,
-      "rank": 68
+      "rank": 68,
+      "hasContextFile": false
     },
     {
       "name": "pmelchior/skymapper",
       "github_url": "https://github.com/pmelchior/skymapper",
       "stars": 48,
-      "rank": 69
+      "rank": 69,
+      "hasContextFile": false
     },
     {
       "name": "astroaccelerateorg/astro-accelerate",
       "github_url": "https://github.com/astroaccelerateorg/astro-accelerate",
       "stars": 47,
-      "rank": 70
+      "rank": 70,
+      "hasContextFile": false
     },
     {
       "name": "roban/cosmolopy",
       "github_url": "https://github.com/roban/cosmolopy",
       "stars": 46,
-      "rank": 71
+      "rank": 71,
+      "hasContextFile": false
     },
     {
       "name": "sncosmo/extinction",
       "github_url": "https://github.com/sncosmo/extinction",
       "stars": 46,
-      "rank": 72
+      "rank": 72,
+      "hasContextFile": false
     },
     {
       "name": "cosmostatgw/gwfast",
       "github_url": "https://github.com/cosmostatgw/gwfast",
       "stars": 45,
-      "rank": 73
+      "rank": 73,
+      "hasContextFile": false
     },
     {
       "name": "zoglauer/megalib",
       "github_url": "https://github.com/zoglauer/megalib",
       "stars": 45,
-      "rank": 74
+      "rank": 74,
+      "hasContextFile": false
     },
     {
       "name": "cosmolattice/cosmolattice",
       "github_url": "https://github.com/cosmolattice/cosmolattice",
       "stars": 44,
-      "rank": 75
+      "rank": 75,
+      "hasContextFile": false
     },
     {
       "name": "dendrograms/astrodendro",
       "github_url": "https://github.com/dendrograms/astrodendro",
       "stars": 44,
-      "rank": 76
+      "rank": 76,
+      "hasContextFile": false
     },
     {
       "name": "hpc4cmb/toast",
       "github_url": "https://github.com/hpc4cmb/toast",
       "stars": 44,
-      "rank": 77
+      "rank": 77,
+      "hasContextFile": false
     },
     {
       "name": "numcosmo/numcosmo",
       "github_url": "https://github.com/numcosmo/numcosmo",
       "stars": 44,
-      "rank": 78
+      "rank": 78,
+      "hasContextFile": false
     },
     {
       "name": "amrex-astro/maestroex",
       "github_url": "https://github.com/amrex-astro/maestroex",
       "stars": 43,
-      "rank": 79
+      "rank": 79,
+      "hasContextFile": false
     },
     {
       "name": "punzo/slicerastro",
       "github_url": "https://github.com/punzo/slicerastro",
       "stars": 42,
-      "rank": 80
+      "rank": 80,
+      "hasContextFile": false
     },
     {
       "name": "astrocatalogs/astrocats",
       "github_url": "https://github.com/astrocatalogs/astrocats",
       "stars": 40,
-      "rank": 81
+      "rank": 81,
+      "hasContextFile": false
     },
     {
       "name": "astromatic/swarp",
       "github_url": "https://github.com/astromatic/swarp",
       "stars": 40,
-      "rank": 82
+      "rank": 82,
+      "hasContextFile": false
     },
     {
       "name": "astromatic/visiomatic",
       "github_url": "https://github.com/astromatic/visiomatic",
       "stars": 40,
-      "rank": 83
+      "rank": 83,
+      "hasContextFile": false
     },
     {
       "name": "elisej/astroabc",
       "github_url": "https://github.com/elisej/astroabc",
       "stars": 40,
-      "rank": 84
+      "rank": 84,
+      "hasContextFile": false
     },
     {
       "name": "daniel-muthukrishna/astrodash",
       "github_url": "https://github.com/daniel-muthukrishna/astrodash",
       "stars": 39,
-      "rank": 85
+      "rank": 85,
+      "hasContextFile": false
     },
     {
       "name": "nuclear-multimessenger-astronomy/nmma",
       "github_url": "https://github.com/nuclear-multimessenger-astronomy/nmma",
       "stars": 38,
-      "rank": 86
+      "rank": 86,
+      "hasContextFile": false
     },
     {
       "name": "clwainwright/cosmotransitions",
       "github_url": "https://github.com/clwainwright/cosmotransitions",
       "stars": 36,
-      "rank": 87
+      "rank": 87,
+      "hasContextFile": false
     },
     {
       "name": "galacticusorg/galacticus",
       "github_url": "https://github.com/galacticusorg/galacticus",
       "stars": 36,
-      "rank": 88
+      "rank": 88,
+      "hasContextFile": false
     },
     {
       "name": "yuliang419/astronet-triage",
       "github_url": "https://github.com/yuliang419/astronet-triage",
       "stars": 36,
-      "rank": 89
+      "rank": 89,
+      "hasContextFile": false
     },
     {
       "name": "dsavransky/exosims",
       "github_url": "https://github.com/dsavransky/exosims",
       "stars": 34,
-      "rank": 90
+      "rank": 90,
+      "hasContextFile": false
     },
     {
       "name": "smith42/astropt",
       "github_url": "https://github.com/smith42/astropt",
       "stars": 34,
-      "rank": 91
+      "rank": 91,
+      "hasContextFile": false
     },
     {
       "name": "amrex-astro/maestro",
       "github_url": "https://github.com/amrex-astro/maestro",
       "stars": 33,
-      "rank": 92
+      "rank": 92,
+      "hasContextFile": false
     },
     {
       "name": "dalya/weirdestgalaxies",
       "github_url": "https://github.com/dalya/weirdestgalaxies",
       "stars": 32,
-      "rank": 93
+      "rank": 93,
+      "hasContextFile": false
     },
     {
       "name": "mtazzari/galario",
       "github_url": "https://github.com/mtazzari/galario",
       "stars": 32,
-      "rank": 94
+      "rank": 94,
+      "hasContextFile": false
     },
     {
       "name": "cosmodesi/pycorr",
       "github_url": "https://github.com/cosmodesi/pycorr",
       "stars": 31,
-      "rank": 95
+      "rank": 95,
+      "hasContextFile": false
     },
     {
       "name": "lofar-astron/rmextract",
       "github_url": "https://github.com/lofar-astron/rmextract",
       "stars": 31,
-      "rank": 96
+      "rank": 96,
+      "hasContextFile": false
     },
     {
       "name": "trasal/frbpoppy",
       "github_url": "https://github.com/trasal/frbpoppy",
       "stars": 30,
-      "rank": 97
+      "rank": 97,
+      "hasContextFile": false
     },
     {
       "name": "astro-group-bristol/gradus.jl",
       "github_url": "https://github.com/astro-group-bristol/gradus.jl",
       "stars": 28,
-      "rank": 98
+      "rank": 98,
+      "hasContextFile": false
     },
     {
       "name": "astro-sean/autophot",
       "github_url": "https://github.com/astro-sean/autophot",
       "stars": 28,
-      "rank": 99
+      "rank": 99,
+      "hasContextFile": false
     },
     {
       "name": "spacetelescope/astrocut",
       "github_url": "https://github.com/spacetelescope/astrocut",
       "stars": 28,
-      "rank": 100
+      "rank": 100,
+      "hasContextFile": false
     }
   ],
   "domain": "astronomy",

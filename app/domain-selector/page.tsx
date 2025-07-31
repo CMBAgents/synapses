@@ -11,9 +11,11 @@ export default function DomainSelector() {
   const router = useRouter();
   const domains = getAllDomains();
 
-  const handleDomainSelect = (domainId: string) => {
+  const handleDomainSelect = async (domainId: string) => {
     setSelectedDomain(domainId);
     setIsAnimating(true);
+    
+    // Navigate immediately - context update will happen on page load
     setTimeout(() => {
       router.push(`/${domainId}`);
     }, 800);
