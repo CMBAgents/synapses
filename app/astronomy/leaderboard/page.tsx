@@ -2,6 +2,7 @@ import FadeIn from "../../ui/fadein";
 import LeaderboardTable from "../../ui/leaderboardtable";
 import { loadAstronomyData } from "../../utils/domain-loader";
 import FloatingMenu from "../../ui/floatingmenu";
+import ThemeToggle from "../../ui/theme-toggle";
 import styles from "../../../styles/background.module.css";
 
 export default function AstronomyLeaderboard() {
@@ -21,12 +22,13 @@ export default function AstronomyLeaderboard() {
               <div className="flex items-center gap-4">
                 <div className="text-4xl">🔭</div>
                 <div>
-                  <h1 className="text-3xl font-heading text-main">Astronomy & Cosmology Libraries</h1>
-                  <p className="text-muted font-inter">Top GitHub repositories for celestial research</p>
+                  <h1 className="text-3xl font-heading text-white">Astronomy & Cosmology Libraries</h1>
+                  <p className="text-white/80 font-inter">Top GitHub repositories for celestial research</p>
                 </div>
               </div>
-              <div className="flex gap-4 relative">
+              <div className="flex gap-48">
                 <FloatingMenu />
+                <ThemeToggle />
               </div>
             </div>
 
