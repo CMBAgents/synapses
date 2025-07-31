@@ -117,7 +117,7 @@ def main():
     print(f"\nSaved {len(results)} repositories to ascl_repos_with_stars.csv")
     
     # Get top 100 repositories
-    get100()
+    # get100()  # Commented out - function not defined
 
     # Show statistics
     valid_stars = [stars for _, stars in results if stars >= 0]

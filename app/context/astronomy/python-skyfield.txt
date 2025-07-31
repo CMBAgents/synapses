@@ -1,0 +1,4444 @@
+# - Complete Documentation | python-skyfield -
+
+
+
+---
+
+# __init__.md
+
+# Module docstring
+
+A subpackage of third-party data that gets bundled with Skyfield.
+
+
+---
+
+# almanac.md
+
+# Module docstring
+
+Routines to solve for circumstances like sunrise, sunset, and moon phase.
+
+### Function `phase_angle`
+
+.. deprecated:: 1.42
+   Use the :meth:`~skyfield.positionlib.ICRF.phase_angle()` position
+   method instead.
+
+### Function `fraction_illuminated`
+
+.. deprecated:: 1.42
+   Use the :meth:`~skyfield.positionlib.ICRF.fraction_illuminated()`
+   position method instead.
+
+### Function `seasons`
+
+Build a function of time that returns the quarter of the year.
+
+The function that this returns will expect a single argument that is
+a :class:`~skyfield.timelib.Time` and will return 0 through 3 for
+the seasons Spring, Summer, Autumn, and Winter.
+
+### Function `moon_phase`
+
+Return the Moon phase 0°–360° at time ``t``, where 180° is Full Moon.
+
+More precisely: this returns an :class:`~skyfield.units.Angle`
+giving the difference between the geocentric apparent ecliptic
+longitudes of the Moon and Sun, constrained to the interval 0°–360°
+(0–𝜏 radians) where 0° is New Moon and 180° is Full Moon.
+
+### Function `moon_phases`
+
+Build a function of time that returns the moon phase 0 through 3.
+
+The function that this returns will expect a single argument that is
+a :class:`~skyfield.timelib.Time` and will return the phase of the
+moon as an integer.  See the accompanying array ``MOON_PHASES`` if
+you want to give string names to each phase.
+
+### Function `moon_nodes`
+
+Build a function of time that identifies lunar nodes.
+
+This returns a function taking a :class:`~skyfield.timelib.Time` and
+returning ``True`` if the Moon is above the ecliptic else ``False``.
+See :ref:`lunar-nodes` for how to use this routine.
+
+### Function `oppositions_conjunctions`
+
+Build a function to find oppositions and conjunctions with the Sun.
+
+See :ref:`oppositions-conjunctions` for how to call this routine and
+interpret the results.
+
+### Function `meridian_transits`
+
+Build a function of time for finding when a body transits the meridian.
+
+The returned function accepts a :class:`~skyfield.timelib.Time`
+argument and returns ``True`` if the ``target`` body is west of the
+observer’s meridian at that time, and otherwise returns ``False.``
+See :ref:`transits` for how to use this to search for a body’s
+meridian transits and antimeridian transits.
+
+### Function `sunrise_sunset`
+
+Build a function of time that returns whether the Sun is up.
+
+The function that is returned will expect a single argument that is
+a :class:`~skyfield.timelib.Time`, and will return ``True`` if the
+sun is up, else ``False``.
+
+Skyfield uses the same definition as the United States Naval
+Observatory: the Sun is up when its center is 0.8333 degrees below
+the horizon, which accounts for both its apparent radius of around
+16 arcminutes and also for the 34 arcminutes by which atmospheric
+refraction on average lifts the image of the Sun.
+
+If you need to provide a custom value for refraction, adjust the
+estimate of the Sun’s radius, or account for a vantage point above
+the Earth’s surface, see :ref:`risings-and-settings` to learn about
+the more versatile :func:`~skyfield.almanac.risings_and_settings()`
+routine.
+
+### Function `dark_twilight_day`
+
+Build a function of time returning whether it is dark, twilight, or day.
+
+The function that this returns will expect a single argument that is
+a :class:`~skyfield.timelib.Time` and will return:
+
+| 0 — Dark of night.
+| 1 — Astronomical twilight.
+| 2 — Nautical twilight.
+| 3 — Civil twilight.
+| 4 — Sun is up.
+
+### Function `risings_and_settings`
+
+Build a function of time that returns whether a body is up.
+
+This returns a function taking a :class:`~skyfield.timelib.Time`
+argument returning ``True`` if the body’s altazimuth altitude angle
+plus ``radius_degrees`` is greater than ``horizon_degrees``, else
+``False``.  See :ref:`risings-and-settings` to learn about how to
+search for risings and settings, and to see more about using the
+parameters ``horizon_degrees`` and ``radius_degrees``.
+
+### Function `_setting_hour_angle`
+
+Return the hour angle, in radians, when a body reaches the horizon.
+
+Given the latitude of an observer, and the declination of a target,
+return the positive hour angle at which the body will set below the
+horizon, where the horizon is specified as `altitude_radians` above
+(positive) or below (negative) the great circle of zero altitude.
+
+### Function `build_horizon_function`
+
+Build and return a horizon function `h()` for the given `target`.
+
+The returned function takes a Distance argument giving the distance
+from the observer to the target, and returns a negative angle in
+radians giving the altitude which, when reached by the target's
+center, places it at the moment of rising.
+
+### Function `find_risings`
+
+Return the times at which a target rises above the eastern horizon.
+
+Given an observer on the Earth’s surface, a target like the Sun or
+Moon or a planet, and start and stop :class:`~skyfield.timelib.Time`
+objects, this returns two arrays that have the same length.  The
+first is a :class:`~skyfield.timelib.Time` listing the moments at
+which the target rises.  The second array has ``True`` for each time
+the target really crosses the horizon, and ``False`` when the target
+merely transits without actually touching the horizon.
+
+See `risings-and-settings` for examples, and `horizon_degrees` for
+how to use the ``horizon_degrees`` argument.
+
+.. versionadded:: 1.47
+
+### Function `find_settings`
+
+Return the times at which a target sets below the western horizon.
+
+Given an observer on the Earth’s surface, a target like the Sun or
+Moon or a planet, and start and stop :class:`~skyfield.timelib.Time`
+objects, this returns two arrays that have the same length.  The
+first is a :class:`~skyfield.timelib.Time` listing the moments at
+which the target sets.  The second array has ``True`` for each time
+the target really crosses the horizon, and ``False`` when the target
+merely transits without actually touching the horizon.
+
+See `risings-and-settings` for examples, and `horizon_degrees` for
+how to use the ``horizon_degrees`` argument.
+
+.. versionadded:: 1.47
+
+### Function `find_transits`
+
+Return the times at which a target transits across the meridian.
+
+Given an observer on the Earth’s surface, a target like the Sun or
+Moon or a planet, and start and stop :class:`~skyfield.timelib.Time`
+objects, this returns a :class:`~skyfield.timelib.Time` array
+listing the moments at which the target transits across the
+meridian.
+
+See `transits` for example code.
+
+.. versionadded:: 1.47
+
+### Function `season_at`
+
+Return season 0 (Spring) through 3 (Winter) at time `t`.
+
+### Function `moon_phase_at`
+
+Return the phase of the moon 0 through 3 at time `t`.
+
+### Function `moon_node_at`
+
+Return the phase of the moon 0 through 3 at time `t`.
+
+### Function `leading_or_trailing`
+
+Return whether the target is east or west of the Sun.
+
+### Function `west_of_meridian_at`
+
+Return `True` if the target is west of the observer’s meridian.
+
+### Function `is_sun_up_at`
+
+Return `True` if the sun has risen by time `t`.
+
+The Sun has risen if its altitude above the horizon is greater
+than -0.8333 degrees.
+
+### Function `is_it_dark_twilight_day_at`
+
+Return whether the Sun is up, down, or whether there is twilight.
+
+### Function `is_body_up_at`
+
+Return `True` if the target has risen by time `t`.
+
+
+---
+
+# almanac2.md
+
+# Module docstring
+
+Rough outline of how this module finds times of phenomena:
+
+    * Split the time interval evenly into partitions. The partitions 
+    should be small enough that no partitions contain multiple target values.
+    * Evaluate the objective function at the partition edges to determine which 
+    partitions contain the points of interest.
+    * Pass the partitions that contain points of interest to the vectorized 
+    optimization routines.
+    
+Some other things to be aware of are:
+    
+    * The variable ``f`` is the plain objective function that returns numbers 
+    directly from skyfield.
+    * The variable ``g`` is ``f`` transformed such that either all the target 
+    values appear to the secant method as roots, or such that all of the 
+    extremes appear to Brent's method as minima.
+    
+
+### Function `_find_value`
+
+Evaluates ``f`` at ``partition_edges`` and returns the left and right 
+edges of those partitions that contain ``values``.
+
+Arguments
+---------
+f : function
+    Objective function. Must accept and return ndarrays.
+values : list
+    List of values of ``f`` that are to be found
+partition_edges : ndarray
+    Array of partition edges
+slope : str
+    'positive' to find ``values`` when the slope is positive
+    'negative' to find ``values`` when the slope is negative
+    'any' to find ``values`` at any slope
+    
+Returns
+-------
+jd0 : ndarray
+    Left edges of those partitions found to contain ``values``
+jd1 : ndarray
+    Right edges of those partitions found to contain ``values``
+targets : ndarray
+    target from ``values`` that each partition is found to contain
+f0 : ndarray
+    ``f(jd0)``
+f1 : ndarray
+    ``f(jd1)``
+is_positive : ndarray, dtype=bool
+    whether or not the slope of ``f`` in the partition is positive
+
+### Function `_find_extremes`
+
+Evaluates the derivative of ``f`` at ``partition_edges`` and returns 
+the left and right edges of the partitions that contain extrema.
+
+Arguments
+---------
+f : function
+    Objective function. Must accept and return ndarrays.
+partition_edges : ndarray
+    Array of partition edges
+find : str
+    'min' to find minima
+    'max' to find maxima
+    'any' to find all extrema
+    
+Returns
+-------
+jd0 : ndarray
+    Left edges of those partitions found to contain ``values``
+jd1 : ndarray
+    Right edges of those partitions found to contain ``values``
+targets : ndarray
+    target from ``values`` that each partition is found to contain
+f0 : ndarray
+    ``f(jd0)``
+f1 : ndarray
+    ``f(jd1)``
+minimum : ndarray, dtype=bool
+    whether or not each partition contains a minima (False means the 
+    partition contains a maxima)
+
+### Function `_divide_evenly`
+
+Evenly divides the interval between ``start`` and ``end`` into 
+intervals that are at most ``max_width`` wide.
+
+Arguments
+---------
+start : float
+    Start of the interval
+end : float
+    End of the interval
+max_width : float
+    Maximum width of the divisions
+    
+Returns
+-------
+divisions : ndarray
+    Resulting array
+
+### Function `_ra`
+
+Returns the right ascension of 'body' in degrees at terrestrial time 't' 
+when seen from 'observer'.
+
+### Function `_ecliptic_lon`
+
+Returns the ecliptic latitude of body in degrees at terrestrial time t.
+    
+
+### Function `_ecliptic_lon_diff`
+
+Returns the ecliptic longitudes of body1 minus that of body2
+in degrees at terrestrial time t.
+
+### Function `_local_sidereal`
+
+Returns observer's local apparent sidereal time at t in degrees
+
+### Function `_lha`
+
+Returns the local hour angle of `body` in degrees when seen from 
+`observer` at terrestrial time `t`.
+
+### Function `_alt`
+
+Returns the altitude of `body` in degrees when seen from `observer` at 
+terrestrial time `t`.
+
+### Function `_moon_ul_alt`
+
+Returns the altitude of the moon's upper limb in degrees when seen from
+observer at terrestrial time t.
+
+Calculates the moon's apparent semidiameter from the location of 
+``observer``
+
+### Function `_satellite_alt`
+
+Returns the altitude of `satellite` in degrees when seen from `observer` 
+at terrestrial time `t`.
+
+### Function `_linear_dist`
+
+Returns the geometric distance between observer and body in au at 
+terrestrial time t.
+
+### Function `_ecliptic_lat`
+
+Returns geometric ecliptic latitude in degrees at terrestrial time `t`.
+    
+
+### Function `meridian_transits`
+
+Calculates times of upper and lower transits of the local meridian.
+
+This function searches between ``t0`` and ``t1`` for times when ``body``'s 
+local hour angle is 0h for an upper transit or 12h for a lower transit.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> sun = ephem['sun']
+>>> earth = ephem['earth']
+>>> greenwich = earth + Topos('51.5 N', '0 W')
+>>> t0 = ts.utc(2017, 1, 1)
+>>> t1 = ts.utc(2017, 1, 8)
+>>> times, hour_angles = meridian_transits(greenwich, mars, t0, t1)
+>>>
+>>> upper_transits = times[hour_angles.hours==0]
+>>> lower_transits = times[hour_angles.hours==12]
+
+Parameters
+----------
+observer : VectorSum
+    VectorSum of earth + Topos
+body : Segment or VectorSum
+    Vector representing the object whose transits are being found.
+t0 : Time
+    Time object of length 1 representing the start of the search interval
+t1 : Time
+    Time object of length 1 representing the end of the search interval
+    
+Returns
+-------
+times : Time
+    Times of transits
+hour_angles : Angle
+    Local Hour Angle of ``body`` at ``times``
+
+### Function `culminations`
+
+Calculates times of upper and lower culminations.
+
+This function searches between ``t0`` and ``t1`` for times when `body`'s 
+altitude reaches a local maximum or minimum.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> sun = ephem['sun']
+>>> earth = planets['earth']
+>>> greenwich = earth + Topos('51.5 N', '0 W')
+>>> t0 = ts.utc(2017, 1, 1)
+>>> t1 = ts.utc(2017, 1, 8)
+>>> times, kinds = culminations(greenwich, sun, t0, t1)
+>>>
+>>> upper_culminations = times[kinds=='upper']
+>>> lower_culminations = times[kinds=='lower']
+
+Parameters
+----------
+observer : VectorSum or Topos
+    VectorSum of earth + Topos. If ``body`` is an EarthSatellite, 
+    ``observer`` can be either a VectorSum or a plain Topos object.
+body : Segment, VectorSum, or EarthSatellite
+    Vector representing the object whose culminations are being found. For 
+    EarthSatellites use a plain Earthsatellite and not a VectorSum.
+t0 : Time
+    Time object of length 1 representing the start of the search interval
+t1 : Time
+    Time object of length 1 representing the end of the search interval
+    
+Returns
+-------
+times : Time
+    Times of altitude maximums or minimums
+kinds : ndarray, dtype=str
+    array containing 'upper' for upper culminations, or 'lower' for lower 
+    culminations
+
+### Function `risings_settings`
+
+Calculates times when an object rises and sets.
+
+This function searches between ``t0`` and ``t1`` for times when `body`'s 
+altitude (uncorrected for refraction) is -34 arcminutes. The sun's and 
+moon's upper limb is used rather than their center.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> sun = ephem['sun']
+>>> earth = ephem['earth']
+>>> greenwich = earth + Topos('51.5 N', '0 W')
+>>> t0 = ts.utc(2017, 1, 1)
+>>> t1 = ts.utc(2017, 1, 8)
+>>> times, kinds = risings_settings(greenwich, sun, t0, t1)
+>>>
+>>> risings = times[kinds=='rise']
+>>> settings = times[kinds=='set']
+
+Parameters
+----------
+observer : VectorSum or Topos
+    VectorSum of earth + Topos. If ``body`` is an EarthSatellite, 
+    ``observer`` can be either a VectorSum or a plain Topos object.
+body : Segment, VectorSum, or EarthSatellite
+    Vector representing the object whose rise/set times are being found. 
+    For EarthSatellite objects use a plain EarthSatellite and not a 
+    VectorSum.
+t0 : Time
+    Time object of length 1 representing the start of the search interval
+t1 : Time
+    Time object of length 1 representing the end of the search interval
+    
+Returns
+-------
+times : Time
+    Times that `body` rises or sets
+kinds : ndarray, dtype=str
+    array containing 'rise' for risings, or 'set' for settings
+
+### Function `twilights`
+
+Calculates times when twilight starts or ends in the morning or evening.
+
+This function searches between ``t0`` and ``t1`` for times when the sun's 
+altitude is -6, -12, or -18 degrees for civil, nautical, or astronomical 
+twilights, respectively.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> earth = ephem['earth']
+>>> greenwich = earth + Topos('51.5 N', '0 W')
+>>> t0 = ts.utc(2017, 1, 1)
+>>> t1 = ts.utc(2017, 1, 8)
+>>> times, am_pm = twilights(greenwich, sun, t0, t1, kind='nautical')
+>>>
+>>> am_twilights = times[am_pm=='am']
+>>> pm_twilights = times[am_pm=='pm']
+
+Parameters
+----------
+observer : VectorSum
+    VectorSum of earth + Topos
+sun : Segment
+    Segment representing the sun
+t0 : Time
+    Time object of length 1 representing the start of the search interval
+t1 : Time
+    Time object of length 1 representing the end of the search interval
+kind : str
+    ``'civil'`` for civil twilight
+    ``'nautical'`` for nautical twilight
+    ``'astronomical'`` for astronomical twilight
+    
+Returns
+-------
+times : Time
+    Times that twilight starts in the morning and/ or ends in the evening
+am_pm : ndarray, dtype=str
+    array containing 'am' for morning twilight, or 'pm' for evening twilight
+    
+
+### Function `seasons`
+
+Calculates times of equinoxes and solstices.
+
+This function searches between ``t0`` and ``t1`` for times when the sun's 
+ecliptic longitude is:
+    
+    * 0 degrees for march equinoxes
+    * 90 degrees for june solstices
+    * 180 degrees for september equinoxes
+    * 270 degrees for december solstices
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> earth = ephem['earth']
+>>> t0 = ts.utc(2017)
+>>> t1 = ts.utc(2018)
+>>> times, lons = seasons(earth, t0, t1)
+>>>
+>>> march_equinoxes = times[lons.degrees==0]
+>>> june_solstices = times[lons.degrees==90]
+>>> sept_equinoxes = times[lons.degrees==180]
+>>> dec_solstices = times[lons.degrees==270]
+
+Parameters
+----------
+earth : Segment
+    Vector representing earth
+t0 : Time
+    Time object of length 1 representing the start of the search interval
+t1 : Time
+    Time object of length 1 representing the end of the search interval
+    
+Returns
+-------
+times : Time
+    Times of solstices
+longitudes : Angle
+    sun's ecliptic longitude at ``times``
+
+### Function `moon_phases`
+
+Calculates times of the phases of the moon.
+
+This function searches between ``t0`` and ``t1`` for times when the moon's 
+geocentric ecliptic longitude minus that of the sun is:
+    
+    * 0 degrees for new moon
+    * 90 degrees for first quarter
+    * 180 degrees for full moon
+    * 270 degrees for last quarter 
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> moon = ephem['moon']
+>>> t0 = ts.utc(2017, 1)
+>>> t1 = ts.utc(2017, 2)
+>>> times, lon_diffs = moon_phases(moon, t0, t1)
+>>>
+>>> new_moons = times[lon_diffs.degrees==0]
+>>> first_quarters = times[lon_diffs.degrees==90]
+>>> full_moons = times[lon_diffs.degrees==180]
+>>> last_quarters = times[lon_diffs.degrees==270]
+
+Parameters
+----------
+moon : Segment
+    Vector representing the moon
+t0 : Time
+    Time object of length 1 representing the start of the search interval
+t1 : Time
+    Time object of length 1 representing the end of the search interval
+    
+Returns
+-------
+times : Time
+    Times of moon quarters
+longitude_diffs: Angle
+    moon's ecliptic longitude - sun's ecliptic longitude at ``times``
+    
+
+### Function `apsides`
+
+Calculates times of periapsides and apoapsides.
+
+This function searches between ``t0`` and ``t1`` for times when 
+`secondary`'s distance from `primary` is a maximum or minimum.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> earth = ephem['earth']
+>>> sun = ephem['sun']
+>>> t0 = ts.utc(2017)
+>>> t1 = ts.utc(2018)
+>>> apsides(earth, sun, t0, t1)
+
+Parameters
+----------
+secondary : Segment or VectorSum
+    Vector representing the object whose apsides are being found
+primary : Segment or VectorSum
+    Vector representing the primary of the object whose apsides are being 
+    found
+t0 : Time
+    The start of the time range to search
+t1 : Time
+    The end of the time range to search
+    
+Returns
+-------
+times : Time
+    Times of apsides
+kinds : ndarray, dtype=str
+    array containing 'apo' for apoapsides, or 'peri' for periapsides
+
+### Function `nodes`
+
+Calculates times of ascending and descending nodes.
+
+This function searches between ``t0`` and ``t1``
+for times when `secondary`'s ecliptic latitude is 0 degrees.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> sun = ephem['sun']
+>>> mars = planets['mars']
+>>> t0 = ts.utc(2017)
+>>> t1 = ts.utc(2018)
+>>> times, kinds = nodes(mars, sun, t0, t1)
+
+Parameters
+----------
+secondary : Segment or VectorSum
+    Vector representing the object whose nodes are being found
+primary : Segment or VectorSum
+    Vector representing the object orbited by `secondary`
+t0 : Time
+    The start of the time range to search
+t1 : Time
+    The end of the time range to search
+
+Returns
+-------
+times : Time
+    Times of nodes
+kinds : ndarray, dtype=str
+    array containing 'ascending' for apoapsides, or 'descending' for periapsides
+
+### Function `max_ecliptic_latitudes`
+
+Calculates data about extreme max and min ecliptic latitudes.
+
+This function searches between ``t0`` and ``t1``
+for times when `secondary`'s ecliptic latitude centered at ``primary`` is at a 
+local maximum, e.g., if ``primary`` is the sun, the ecliptic latitudes will 
+be heliocentric.
+
+Example
+-------
+>>> ephem = load('de430t.bsp')
+>>> venus = ephem['venus']
+>>> sun = ephem['sun']
+>>> t0 = ts.utc(2017)
+>>> t1 = ts.utc(2020)
+>>> times, lats = extreme_ecliptic_latitudes(venus, sun, t0, t1)
+>>> north_times = times[lats>0]
+>>> south_times = times[lats<0]
+
+Parameters
+----------
+secondary : Segment or VectorSum
+    Vector representing the object whose maximum ecliptic latitudes are 
+    being found
+primary : Segment or VectorSum
+    Vector representing the object orbited by `secondary`
+t0 : Time
+    The start of the time range to search
+t1 : Time
+    The end of the time range to search
+
+Returns
+-------
+times : Time
+    Times of extreme ecliptic latitudes
+lats : Angle
+    Ecliptic latitudes that correspond to `times`
+
+
+---
+
+# almanac_east_asia.md
+
+# Module docstring
+
+Routines specific to some calculation related with cultures in East Asia.
+
+### Function `solar_terms`
+
+Build a function of time that returns the solar terms of the year.
+
+The function that this returns will expect a single argument that is
+a :class:`~skyfield.timelib.Time` and will return 0 through 23 for
+the solar terms.
+
+The name of the solar terms may vary in different cultures, so we
+have table of names in Simplified Chinese, Traditional Chinese,
+Japanese and Vietnamese
+
+Reference:
+
+https://en.wikipedia.org/wiki/Solar_term
+
+### Function `solar_term_at`
+
+Return season 0 through 23 at time `t`.
+
+
+---
+
+# api.md
+
+# Module docstring
+
+Top-level objects and functions offered by the Skyfield library.
+
+Importing this library is not always the fastest way to use a Skyfield
+feature, since importing this module involves importing almost the
+entirety of Skyfield and its dependencies, but is the most convenient
+way for most users to use Skyfield's main features.
+
+
+---
+
+# broadcasting.md
+
+### Function `_correct_for_light_travel_time`
+
+Return a light-time corrected astrometric position and velocity.
+
+Given an `observer` that is a `Barycentric` position somewhere in
+the solar system, compute where in the sky they will see the body
+`target`, by computing the light-time between them and figuring out
+where `target` was back when the light was leaving it that is now
+reaching the eyes or instruments of the `observer`.
+
+### Function `_correct_for_light_travel_time4`
+
+Return a light-time corrected astrometric position and velocity.
+
+Given an `observer` that is a `Barycentric` position somewhere in
+the solar system, compute where in the sky they will see the body
+`target`, by computing the light-time between them and figuring out
+where `target` was back when the light was leaving it that is now
+reaching the eyes or instruments of the `observer`.
+
+
+---
+
+# build_constellations.md
+
+# Module docstring
+
+Build Skyfield's internal table of constellation boundaries.
+
+See:
+
+https://iopscience.iop.org/article/10.1086/132034/pdf
+http://cdsarc.u-strasbg.fr/viz-bin/Cat?VI/42
+
+### Function `extend`
+
+Return a float for `s` extended to machine precision.
+
+Takes a string like '13.6667', passes it to `float()`,
+and snaps it to the nearest whole second.
+
+
+---
+
+# build_novas_tests.md
+
+# Module docstring
+
+Rebuild the test data that compares Skyfield to the NOVAS library.
+
+### Function `altaz_maneuver`
+
+Wrapper that simplifies a complicated USNO call.
+
+### Function `call`
+
+Call function as many times as any array arguments dictate.
+
+### Function `slugify`
+
+Turn 'jupiter barycenter' into 'jupiter_barycenter'.
+
+
+---
+
+# build_spice.md
+
+# Module docstring
+
+Print the code for the skyfield/data/spice.py file.
+
+
+---
+
+# charting.md
+
+# Module docstring
+
+Routines to help draw star charts.
+
+### Function `_plot_stars`
+
+Experiment in progress, hence the underscore; expect changes.
+
+
+---
+
+# constants.md
+
+# Module docstring
+
+Various constants required by Skyfield.
+
+
+---
+
+# constellationlib.md
+
+# Module docstring
+
+Constellation identification.
+
+Constellation identification is tradionally performed with:
+
+http://cdsarc.u-strasbg.fr/viz-bin/Cat?VI/42
+https://iopscience.iop.org/article/10.1086/132034/pdf
+
+Given a position, a binary search can be used to index into its roughly
+12k data table for a matching declination, but the table then needs to
+be scanned linearly for the first subsequent segment that contains the
+target right ascension within its bounds.  The big problem for Skyfield:
+that algorithm can't be constructed from vectorized NumPy primitives.
+
+So we here take an approach that requires no linear search.  The sky is
+divided into a grid, with a grid line at every right ascension and
+declination that is mentioned in a constellation boundary.  This is a
+bit wasteful, as many values are only ever used for one boundary, but
+makes the search easy: do a binary search for right ascension, then for
+declination, then look up the indexes in the grid.  Memory requirement:
+
+  1.8k  right ascension table
+  1.6k  declination table
+ 46.6k  grid table
+    1k  constellation name abbreviations
+
+### Function `load_constellation_map`
+
+Load Skyfield's constellation boundaries and return a lookup function.
+
+Skyfield carries an internal map of constellation boundaries that is
+optimized for quick position lookup.  Call this function to load the
+map and return a function mapping position to constellation name.
+
+>>> from skyfield.api import position_of_radec, load_constellation_map
+>>> constellation_at = load_constellation_map()
+>>> north_pole = position_of_radec(0, 90)
+>>> constellation_at(north_pole)
+'UMi'
+
+If you pass an array of positions, you'll receive an array of names.
+
+### Function `load_constellation_names`
+
+Return a list of abbreviation-name tuples, like ``('Aql', 'Aquila')``.
+
+You can pass the list to Python’s ``dict()`` to build a dictionary
+that turns a constellation abbreviation into a full name:
+
+>>> from skyfield.api import load_constellation_names
+>>> d = dict(load_constellation_names())
+>>> d['UMa']
+'Ursa Major'
+
+By swapping the order of the two items, you can map the other way,
+from a full name back to an abbreviation:
+
+>>> f = dict(reversed(item) for item in load_constellation_names())
+>>> f['Ursa Major']
+'UMa'
+
+
+---
+
+# curvelib.md
+
+# Module docstring
+
+Various curves.
+
+
+---
+
+# delta_t.md
+
+# Module docstring
+
+Various routines useful when designing and tuning Skyfield’s ∆T curve.
+
+1. `ftp://ftp.iers.org/products/eop/rapid/standard/`_
+2. `ftp://ftp.iers.org/products/eop/rapid/standard/csv/`_
+
+* For the position of an object at the celestial equator,
+  1 second of time = 15 arcseconds.
+  1 millisecond of time = 15 mas.
+
+### Function `plot_delta_t_functions`
+
+Display one or more ∆T curves across timescales short to long.
+
+
+---
+
+# descriptorlib.md
+
+## Class `reify`
+
+Adapted from Pyramid's `reify()` memoizing decorator.
+
+
+---
+
+# earth_orientation.md
+
+# Module docstring
+
+Routines to download Earth orientation data.
+
+### Function `morrison_and_stephenson_2004_table`
+
+Table of smoothed Delta T values from Morrison and Stephenson, 2004.
+
+### Function `parse_S15_table`
+
+Parse polynomial coefficients from Table S15.
+
+The table is available at the website of Her Majesty's Nautical
+Almanac Office, from the paper “Measurement of the Earth's Rotation:
+720 BC to AD 2015” by L.V. Morrison, F.R. Stephenson, C.Y. Hohenkerk
+and M. Zawilski 2021.
+
+
+---
+
+# earthlib.md
+
+# Module docstring
+
+Formulae for specific earth behaviors and effects.
+
+### Function `terra`
+
+Deprecated conversion from lat,lon,t -> GCRS; neglects polar motion.
+
+### Function `reverse_terra`
+
+Deprecated conversion from GCRS -> lat,lon,t; neglects polar motion.
+
+### Function `compute_limb_angle`
+
+Determine the angle of an object above or below the Earth's limb.
+
+Given an object's GCRS `position_au` |xyz| vector and the position
+of an `observer_au` as a vector in the same coordinate system,
+return a tuple that provides `(limb_ang, nadir_ang)`:
+
+limb_angle
+    Angle of observed object above (+) or below (-) limb in degrees.
+nadir_angle
+    Nadir angle of observed object as a fraction of apparent radius
+    of limb: <1.0 means below the limb, =1.0 means on the limb, and
+    >1.0 means above the limb.
+
+### Function `sidereal_time`
+
+Compute Greenwich Mean Sidereal Time (GMST) in hours at time ``t``.
+
+### Function `earth_rotation_angle`
+
+Return the value of the Earth Rotation Angle (theta) for a UT1 date.
+
+Uses the expression from the note to IAU Resolution B1.8 of 2000.
+Returns a fraction between 0.0 and 1.0 whole rotations.
+
+### Function `refraction`
+
+Given an observed altitude, estimate atmospheric refraction, in degrees.
+
+Zero refraction is returned both for objects very near the zenith,
+as well as for objects more than one degree below the horizon.
+
+### Function `refract`
+
+Given an unrefracted `alt` determine where it will appear in the sky.
+
+
+---
+
+# eclipselib.md
+
+# Module docstring
+
+Search for eclipses.
+
+### Function `lunar_eclipses`
+
+Return the lunar eclipses between ``start_time`` and ``end_time``.
+
+Returns a three-item tuple:
+
+* A :class:`~skyfield.timelib.Time` giving the dates of each eclipse.
+* An integer array of codes identifying how complete each eclipse is.
+* A dictionary of further supplementary details about each eclipse.
+
+This routine is adapted from the Explanatory Supplement to the
+Astronomical Almanac 11.2.3.  See `lunar-eclipses` for the details
+of how to call this function.
+
+
+---
+
+# eclipses_lunar.md
+
+# Module docstring
+
+Check Skyfield lunar eclipses against the huge NASA table of eclipses.
+
+
+---
+
+# elementslib.md
+
+# Module docstring
+
+Computation of osculating elements that matches NASA HORIZONS.
+
+### Function `osculating_elements_of`
+
+Produce the osculating orbital elements for a position.
+
+`position` is an instance of :class:`~skyfield.positionlib.ICRF`.
+These are commonly returned by the ``at()`` method of any
+Solar System body. ``reference_frame`` is an optional argument
+and is a 3x3 numpy array. The reference frame by default
+is the ICRF. Commonly used reference frames are found in
+skyfield.data.spice.inertial_frames. ``gm_km3_s2`` is an optional
+float argument representing the gravitational parameter (G*M) in
+units of km^3/s^2, which is the sum of the masses of the orbiting
+object and the object being orbited. If not specified, this is
+calculated for you.
+
+This function returns an instance of :class:`~skyfield.elementslib.OsculatingElements`
+
+## Class `OsculatingElements`
+
+One or more sets of osculating orbital elements.
+
+An ``OsculatingElements`` object can be initialized with the
+following parameters:
+
+position : Distance object
+    Position vector with shape (3,) or (3, n)
+velocity : Velocity object
+    Velocity vector with shape (3,) or (3, n)
+time: Time object
+    The times of the position and velocity vectors
+mu_km_s: float
+    Gravitational parameter (G*M) in units of km^3/s^2
+
+
+---
+
+# errors.md
+
+# Module docstring
+
+Exceptions specific to the Skyfield library.
+
+## Class `DeprecationError`
+
+Explain that a Skyfield feature has been removed.
+
+## Class `EphemerisRangeError`
+
+An ephemeris has been asked about positions outside its time range.
+
+Attributes:
+
+- `start_time`, `end_time`: the range of times supported by the segment
+- `time_mask`: Boolean array where ``True`` marks out-of-range times
+- `segment`: the ephemeris segment that was asked for positions
+
+
+---
+
+# fixes.md
+
+# Module docstring
+
+Helpers for making Skyfield tests stable.
+
+## Class `low_precision_ERA`
+
+Compute the Earth rotation angle with only a single float for UT1.
+
+Skyfield now uses two floats ``t.whole`` and ``t.ut1_fraction`` to
+represent the UT1 Julian date, supplying an additional 16 digits of
+precision.  For the Earth rotation angle, which moves very quickly
+per unit time compared to most other astronomical quantities, this
+knocks Skyfield out of agreement with other libraries like NOVAS and
+SOFA that round UT1 to a single float.  Various tests use this
+context manager to make Skyfield match the lower-precision output.
+
+
+---
+
+# framelib.md
+
+# Module docstring
+
+Raw transforms between coordinate frames, as NumPy matrices.
+
+## Class `ICRS`
+
+The International Celestial Reference System (ICRS).
+
+The ICRS is a permanent reference frame which has replaced J2000,
+with which its axes agree to within 0.02 arcseconds (closer than the
+precision of J2000 itself).  The ICRS also supersedes older
+equinox-based systems like B1900 and B1950.
+
+## Class `mean_equator_and_equinox_of_date`
+
+The coordinate frame of Earth’s mean equator and equinox.
+
+This frame is used for measuring right ascension and declination.
+It tracks the Earth’s ‘mean’ equator and equinox which shift slowly
+across the sky due to precession, but ignores the smaller effects of
+nutation.
+
+## Class `true_equator_and_equinox_of_date`
+
+The dynamical frame of Earth’s true equator and true equinox of date.
+
+This frame is used for measuring right ascension and declination.
+Unlike the fixed reference frames J2000 and the ICRS, this ‘TETE’
+frame rotates slowly as the Earth’s precession and nutation shift
+the equinox point.  Unlike the :class:`~skyfield.sgp4lib.TEME`
+frame, this frame doesn’t ignore nutation.
+
+This is supplied as an explicit reference frame in case you want
+|xyz| coordinates; if you want angles, it’s better to use the
+standard position method ``radec(epoch='date')`` since that will
+return the conventional units of hours-of-right-ascension instead of
+the degrees-of-longitude that ``frame_latlon()`` would return.
+
+This reference frame combines current theories of the Earth’s
+precession and nutation with a small offset between the ITRS and
+J2000 systems to produce right ascension and declination for a given
+date relative to the Earth’s axis and equator of rotation.
+
+## Class `tirs`
+
+The Terrestrial Intermediate Reference System (TIRS).
+
+Coordinates in this Earth-centered Earth-fixed (ECEF) system are
+measured from the axis and equator of the Earth’s rotation, ignoring
+the few tenths of an arcsecond by which the Earth’s actual crust and
+continents might be askance from the axis.  (More precisely: like
+the ITRS this frame accounts for precession and nutation, but
+neglects polar motion and the TIO locator.)
+
+## Class `itrs`
+
+The International Terrestrial Reference System (ITRS).
+
+This is the IAU standard for an Earth-centered Earth-fixed (ECEF)
+coordinate system, anchored to the Earth’s crust and continents.
+This reference frame combines three other reference frames: the
+Earth’s true equator and equinox of date, the Earth’s rotation with
+respect to the stars, and (if your ``Timescale`` has polar offsets
+loaded) the polar wobble of the crust with respect to the Earth’s
+pole of rotation.
+
+.. versionadded:: 1.34
+
+## Class `ecliptic_frame`
+
+Reference frame of the true ecliptic and equinox of date.
+
+
+---
+
+# functions.md
+
+# Module docstring
+
+Basic operations that are needed repeatedly throughout Skyfield.
+
+## Class `A`
+
+Allow literal NumPy arrays to be spelled ``A[1, 2, 3]``.
+
+### Function `sqrt_nan`
+
+Return the square root of ``n``, or ``nan`` if ``n < 0``.
+
+### Function `dots`
+
+Given one or more vectors in `v` and `u`, return their dot products.
+
+This works whether `v` and `u` each have the shape ``(3,)``, or
+whether they are each whole arrays of corresponding x, y, and z
+coordinates and have shape ``(3, N)``.
+
+### Function `T`
+
+Swap the first two dimensions of an array.
+
+### Function `mxv`
+
+Matrix times vector: multiply an NxN matrix by a vector.
+
+### Function `mxm`
+
+Matrix times matrix: multiply two NxN matrices.
+
+### Function `mxmxm`
+
+Matrix times matrix times matrix: multiply 3 NxN matrices together.
+
+### Function `length_of`
+
+Given a 3-element array |xyz|, return its length.
+
+The three elements can be simple scalars, or the array can be two
+dimensions and offer three whole series of x, y, and z coordinates.
+
+### Function `angle_between`
+
+Given two vectors `v` and `u`, return the radian angle separating them.
+
+This works whether `v` and `u` each have the shape ``(3,)``, or
+whether they are each whole arrays of corresponding x, y, and z
+coordinates with shape ``(3, N)``. The returned angle will be
+between 0 and tau/2.
+
+This formula is from Section 12 of:
+https://people.eecs.berkeley.edu/~wkahan/Mindless.pdf
+
+### Function `to_spherical`
+
+Convert |xyz| to spherical coordinates (r,theta,phi).
+
+``r`` - vector length
+``theta`` - angle above (+) or below (-) the xy-plane
+``phi`` - angle around the z-axis
+
+Note that ``theta`` is an elevation angle measured up and down from
+the xy-plane, not a polar angle measured from the z-axis, to match
+the convention for both latitude and declination.
+
+### Function `from_spherical`
+
+Convert (r,theta,phi) to Cartesian coordinates |xyz|.
+
+``r`` - vector length
+``theta`` - angle in radians above (+) or below (-) the xy-plane
+``phi`` - angle in radians around the z-axis
+
+Note that ``theta`` is an elevation angle measured up and down from
+the xy-plane, not a polar angle measured from the z-axis, to match
+the convention for both latitude and declination.
+
+### Function `_to_array`
+
+Convert plain Python sequences into NumPy arrays.
+
+This lets users pass plain old Python lists and tuples to Skyfield,
+instead of always having to remember to build NumPy arrays.  We pass
+any kind of generic sequence to the NumPy ``array()`` constructor
+and wrap any other kind of value in a NumPy ``float64`` object.
+
+### Function `_reconcile`
+
+Coerce two NumPy generics-or-arrays to the same number of dimensions.
+
+### Function `load_bundled_npy`
+
+Load a binary NumPy array file that is bundled with Skyfield.
+
+
+---
+
+# geometry.md
+
+# Module docstring
+
+Routines solving basic geometric problems in astronomy.
+
+### Function `intersect_line_and_sphere`
+
+Compute distance to intersections of a line and a sphere.
+
+Given a line through the origin (0,0,0) and an |xyz| ``endpoint``,
+and a sphere with the |xyz| ``center`` and scalar ``radius``,
+return the distance from the origin to their two intersections.
+
+If the line is tangent to the sphere, the two intersections will be
+at the same distance.  If the line does not intersect the sphere,
+two ``nan`` values will be returned.
+
+### Function `line_and_ellipsoid_intersection`
+
+Return the |xyz| position where a line intersects an ellipsoid.
+
+All three arguments are |xyz| arrays.  The line is specified by a
+``line_start`` endpoint and a ``line_direction`` vector.  The
+ellipsoid is centered at the origin and is specified by its three
+``radii`` that point along the three coordinate axes.
+
+Returns the |xyz| point of intersection, or ``[nan nan nan]`` if the
+line does not intersect the sphere.
+
+
+---
+
+# hipparcos.md
+
+### Function `load_dataframe`
+
+Given an open file for ``hip_main.dat``, return a parsed dataframe.
+
+If the file is gzipped, it will be automatically uncompressed.
+
+
+---
+
+# horizons.md
+
+# Module docstring
+
+Physical data for the planets from the JPL HORIZONS system.
+
+To rebuild this data, consult the following IPython Notebook:
+
+https://github.com/brandon-rhodes/astronomy-notebooks/blob/master/Utils-HORIZONS-data.ipynb
+
+
+---
+
+# iers.md
+
+# Module docstring
+
+Parse data files from the International Earth Rotation Service.
+
+See:
+https://datacenter.iers.org/eop.php
+ftp://cddis.gsfc.nasa.gov/pub/products/iers/readme.finals2000A
+
+
+---
+
+# io_timescale.md
+
+### Function `parse_deltat_data`
+
+Parse the United States Naval Observatory ``deltat.data`` file.
+
+Each line file gives the date and the value of Delta T::
+
+2016  2  1  68.1577
+
+This function returns a 2xN array of raw Julian dates and matching
+Delta T values.
+
+### Function `parse_deltat_preds`
+
+Parse the United States Naval Observatory ``deltat.preds`` file.
+
+The old format supplies a floating point year, the value of Delta T,
+and one or two other fields::
+
+2015.75      67.97               0.210         0.02
+
+The new format adds a modified Julian day as the first field:
+
+58484.000  2019.00   69.34      -0.152       0.117
+
+This function returns a 2xN array of raw Julian dates and matching
+Delta T values.
+
+### Function `parse_leap_seconds`
+
+Parse the IERS file ``Leap_Second.dat``.
+
+The leap dates array can be searched with::
+
+    index = np.searchsorted(leap_dates, jd, 'right')
+
+The resulting index allows (TAI - UTC) to be fetched with::
+
+    offset = leap_offsets[index]
+
+
+---
+
+# iokit.md
+
+### Function `_filename_of`
+
+Return the last path component of a url.
+
+## Class `Loader`
+
+A tool for downloading and opening astronomical data files.
+
+A default `Loader` that saves data files to the current working
+directory can be imported directly from the Skyfield API::
+
+    from skyfield.api import load
+
+But users can also create a `Loader` of their own, if there is
+another directory they want data files saved to, or if they want to
+specify different options.  The directory is created automatically
+if it does not yet exist::
+
+    from skyfield.api import Loader
+    load = Loader('~/skyfield-data')
+
+The options are:
+
+``verbose``
+  If set to ``False``, then the loader will not print a progress bar
+  to the screen each time it downloads a file.  (If the standard
+  output is not a TTY, then no progress bar is printed anyway.)
+
+``expire``
+  (This option is no longer supported.)
+
+Once a `Loader` is created, it can be called like a function to
+open, or else to download and open, a file whose name it recognizes::
+
+    planets = load('de405.bsp')
+
+Each loader also supports an attribute and a few methods.
+
+### Function `_search`
+
+Search a Loader data structure for a filename.
+
+### Function `load_file`
+
+Open a file on your local drive, using its extension to guess its type.
+
+This routine only works on ``.bsp`` ephemeris files right now, but
+will gain support for additional file types in the future. ::
+
+    from skyfield.api import load_file
+    planets = load_file('~/Downloads/de421.bsp')
+
+### Function `parse_tle`
+
+DEPRECATED: call the simpler `parse_tle_file()` routine instead.
+
+### Function `parse_tle_file`
+
+Parse lines of TLE satellite data, yielding a sequence of satellites.
+
+Given a sequence ``lines`` of byte strings (which can be an open
+binary file, which acts like a sequence of lines in Python), this
+routine yields an :class:`~skyfield.sgp4lib.EarthSatellite` for each
+pair of adjacent lines that start with ``"1 "`` and ``"2 "`` and
+have 69 or more characters each.  If the line preceding a TLE is not
+part of another TLE, it is used as the satellite’s ``.name``.
+
+If you pass a ``ts`` timescale, Skyfield will use it to build the
+``.epoch`` date attribute on each satellite; otherwise a timescale
+derived from Skyfield’s built-in leap second files will be used.
+
+If for a particular file you see random lines of text being
+interpreted as satellite names, set ``skip_names`` to ``True`` and
+Skyfield will not try to store satellite names.
+
+See :doc:`earth-satellites` for details.  An exception is raised if
+the attempt to parse a pair of candidate lines as TLE lines fails.
+
+### Function `download`
+
+Download a file from a URL, possibly displaying a progress bar.
+
+Saves the output to the file named by `path`.  If the URL cannot be
+downloaded or the file cannot be written, an ``IOError`` is raised.
+
+Normally, if the standard error output is a terminal, then a
+progress bar is displayed to keep the user entertained.  Specify
+`verbose=True` or `verbose=False` to override this behavior.
+
+### Function `path_to`
+
+Return the path to ``filename`` in this loader's directory.
+
+### Function `days_old`
+
+Return how recently ``filename`` was modified, measured in days.
+
+### Function `__call__`
+
+Open the given file, downloading it first if necessary.
+
+### Function `build_url`
+
+Return the URL Skyfield will try downloading for a given filename.
+
+Raises ``ValueError`` if Skyfield doesn't know where to get the
+file based on its name.
+
+### Function `tle`
+
+Load and parse a satellite TLE file.
+
+DEPRECATED: in a misguided attempt to be overly convenient, this
+routine builds an unweildy dictionary of satellites with keys of
+two different Python types: integer keys for satellite numbers,
+and string keys for satellite names. It even lists satellites
+like ``ISS (ZARYA)`` twice, in case the user wants to look them
+up by a single name like ``ZARYA``.  What a mess.  Users should
+instead call the simple ``tle_file()`` method, and themselves
+build any dictionaries they need.
+
+See the :meth:`~skyfield.iokit.Loader.open()` documentation for
+the meaning of the ``reload`` and ``filename`` parameters.
+
+### Function `tle_file`
+
+Load and parse a TLE file, returning a list of Earth satellites.
+
+Given a URL or local path to an ASCII text file, this loads a
+series of TLE “Two-Line Element” sets and returns a list of
+:class:`~skyfield.sgp4lib.EarthSatellite` objects for them.
+See :doc:`earth-satellites`.
+
+See the :meth:`~skyfield.iokit.Loader.open()` method for the
+meaning of the ``reload`` and ``filename`` parameters.
+
+See the :meth:`parse_tle_file()` function for the meaning of the
+``ts`` and ``skip_names`` parameters.
+
+### Function `download`
+
+Download a file, even if it’s already on disk; return its path.
+
+You can specify the local ``filename`` to which the file will be
+saved; the default is to use the final component of ``url``.
+Set ``backup`` to ``True`` if you want an already-existing file
+moved out of the way instead of overwritten.
+
+Your operating system may raise any of several errors during a
+download: hostname lookup failure (this is the usual symptom if
+you are disconnected from the Internet); the server refusing the
+connection; and the connection closing mid-download.  Skyfield
+makes no attempt to intercept or interpret these errors — which
+vary by operating system — so your application itself should
+catch network errors if it needs to avoid printing raw Python
+exceptions, or if you want to retry failed downloads.
+
+### Function `open`
+
+Open a file, downloading it first if it does not yet exist.
+
+Unlike when you call a loader directly like ``my_loader()``,
+this ``my_loader.open()`` method does not attempt to parse or
+interpret the file; it simply returns an open file object.
+
+The ``url`` can be either an external URL, or else the path to a
+file on the current filesystem.  A relative path will be assumed
+to be relative to the base directory of this loader object.
+
+If a URL was provided and the ``reload`` parameter is true, then
+any existing file will be removed before the download starts.
+
+The ``filename`` parameter lets you specify an alternative local
+filename instead of having the filename extracted from the final
+component of the URL.
+
+### Function `timescale`
+
+Return a `Timescale` built using official Earth rotation data.
+
+``delta_t`` — Lets you override the standard ∆T tables by
+providing your own ∆T offset in seconds.  For details, see
+:ref:`custom-delta-t`.
+
+``builtin`` — By default, Skyfield uses ∆T and leap second
+tables that it carries internally; to instead load this data
+from files, set this option to ``False``.  For compatibility
+with Skyfield ≤ 1.30, if you have on disk the three files
+``deltat.data``, ``deltat.preds``, and ``Leap_Second.dat``, then
+Skyfield will load them.  Otherwise, Skyfield will download and
+use ``finals2000A.all`` from the International Earth Rotation
+Service.  For details, see :ref:`downloading-timescale-files`.
+
+
+---
+
+# jpllib.md
+
+# Module docstring
+
+An interface between JPL ephemerides and Skyfield.
+
+## Class `SpiceKernel`
+
+Ephemeris file in NASA .bsp format.
+
+A "Spacecraft and Planet Kernel" (SPK) file from NASA provides
+|xyz| coordinates for bodies in the Solar System like the Sun,
+planets, moons, and spacecraft.
+
+You can download a .bsp file yourself and use this class to open it,
+or use the Skyfield ``load()`` function to automatically download a
+popular ephemeris.  Once loaded, you can print this object to the
+screen to see a report on the segments that it includes:
+
+>>> planets = load('de421.bsp')
+>>> print(planets)
+Segments from kernel file 'de421.bsp':
+  JD 2414864.50 - JD 2471184.50  (1899-07-28 through 2053-10-08)
+      0 -> 1    SOLAR SYSTEM BARYCENTER -> MERCURY BARYCENTER
+      0 -> 2    SOLAR SYSTEM BARYCENTER -> VENUS BARYCENTER
+      0 -> 3    SOLAR SYSTEM BARYCENTER -> EARTH BARYCENTER
+      0 -> 4    SOLAR SYSTEM BARYCENTER -> MARS BARYCENTER
+      0 -> 5    SOLAR SYSTEM BARYCENTER -> JUPITER BARYCENTER
+      0 -> 6    SOLAR SYSTEM BARYCENTER -> SATURN BARYCENTER
+      0 -> 7    SOLAR SYSTEM BARYCENTER -> URANUS BARYCENTER
+      0 -> 8    SOLAR SYSTEM BARYCENTER -> NEPTUNE BARYCENTER
+      0 -> 9    SOLAR SYSTEM BARYCENTER -> PLUTO BARYCENTER
+      0 -> 10   SOLAR SYSTEM BARYCENTER -> SUN
+      3 -> 301  EARTH BARYCENTER -> MOON
+      3 -> 399  EARTH BARYCENTER -> EARTH
+      1 -> 199  MERCURY BARYCENTER -> MERCURY
+      2 -> 299  VENUS BARYCENTER -> VENUS
+      4 -> 499  MARS BARYCENTER -> MARS
+
+To retrieve the one or more vectors necessary to compute the
+position of a body relative to the Solar System barycenter, look up
+the body by its name or official SPICE identifying integer:
+
+>>> planets['earth']
+<VectorSum of 2 vectors:
+ 'de421.bsp' segment 0 SOLAR SYSTEM BARYCENTER -> 3 EARTH BARYCENTER
+ 'de421.bsp' segment 3 EARTH BARYCENTER -> 399 EARTH>
+>>> planets[499]
+<VectorSum of 2 vectors:
+ 'de421.bsp' segment 0 SOLAR SYSTEM BARYCENTER -> 4 MARS BARYCENTER
+ 'de421.bsp' segment 4 MARS BARYCENTER -> 499 MARS>
+
+The result will be a :class:`~skyfield.vectorlib.VectorFunction`
+instance that you can ask for a position at a given input time.
+
+## Class `Stack`
+
+Several segments for one target, that might cover different dates.
+
+### Function `close`
+
+Close this ephemeris file.
+
+### Function `names`
+
+Return all target names that are valid with this kernel.
+
+>>> pprint(planets.names())
+{0: ['SOLAR_SYSTEM_BARYCENTER', 'SSB', 'SOLAR SYSTEM BARYCENTER'],
+ 1: ['MERCURY_BARYCENTER', 'MERCURY BARYCENTER'],
+ 2: ['VENUS_BARYCENTER', 'VENUS BARYCENTER'],
+ 3: ['EARTH_BARYCENTER',
+     'EMB',
+ ...
+
+The result is a dictionary with target code keys and name lists
+as values.  The last name in each list is the one that Skyfield
+uses when printing information about a body.
+
+### Function `decode`
+
+Translate a target name into its integer code.
+
+>>> planets.decode('Venus')
+299
+
+Raises ``ValueError`` if you supply an unknown name, or
+``KeyError`` if the target is missing from this kernel.  You can
+supply an integer code if you already have one and just want to
+check whether it is present in this kernel.
+
+### Function `__getitem__`
+
+Return a vector function for computing the location of `target`.
+
+
+---
+
+# keplerlib.md
+
+### Function `eccentric_anomaly`
+
+Iterate to solve Kepler's equation to find the eccentric anomaly.
+
+See arXiv:2108.03215.
+
+### Function `true_anomaly_hyperbolic`
+
+Calculates true anomaly from eccentricity and eccentric anomaly.
+
+Valid for hyperbolic orbits. Equations from the relevant Wikipedia entries.
+
+### Function `true_anomaly_closed`
+
+Calculates true anomaly from eccentricity and eccentric anomaly.
+
+Valid for closed orbits. Equations from the relevant Wikipedia entries.
+
+### Function `true_anomaly_parabolic`
+
+Calculates true anomaly from semi-latus rectum, gm, and mean anomaly.
+
+Valid for parabolic orbits. Equations from
+https://en.wikipedia.org/wiki/Parabolic_trajectory.
+
+### Function `ele_to_vec`
+
+Calculates state vectors from orbital elements. Also checks for invalid
+sets of elements.
+
+Based on equations from this document:
+
+https://web.archive.org/web/*/http://ccar.colorado.edu/asen5070/handouts/kep2cart_2002.doc
+
+### Function `stumpff`
+
+Calculates Stumpff functions
+
+Based on the function toolkit/src/spicelib/stmp03.f from the SPICE toolkit,
+which can be downloaded from naif.jpl.nasa.gov/naif/toolkit_FORTRAN.html
+
+### Function `propagate`
+
+Propagates a position and velocity vector with an array of times.
+
+Based on the function toolkit/src/spicelib/prop2b.f from the SPICE toolkit,
+which can be downloaded from naif.jpl.nasa.gov/naif/toolkit_FORTRAN.html
+
+Parameters
+----------
+position : ndarray
+   Position vector with shape (3,)
+velocity : ndarray
+    Velocity vector with shape (3,)
+t0 : float
+    Time corresponding to `position` and `velocity`
+t1 : float or ndarray
+    Time or times to propagate to
+gm : float
+    Gravitational parameter in units that match the other arguments
+
+### Function `__init__`
+
+Calculates the position of an object using 2 body propagation
+
+Parameters
+----------
+position : Distance
+    Position vector at epoch with shape (3,)
+velocity : Velocity
+    Velocity vector at epoch with shape (3,)
+epoch : Time
+    Time corresponding to `position` and `velocity`
+mu_au_d : float
+    Value of mu (G * M) in au^3/d^2
+center : int
+    NAIF ID of the primary body, 399 for geocentric orbits, 10 for
+    heliocentric orbits
+target : int
+    NAIF ID of the secondary body
+
+### Function `_from_periapsis`
+
+Build a `KeplerOrbit` given its parameters and date of periapsis.
+
+### Function `_from_true_anomaly`
+
+Creates a `KeplerOrbit` object from elements using true anomaly
+
+Parameters
+----------
+p : Distance
+    Semi-Latus Rectum
+e : float
+     Eccentricity
+i : Angle
+    Inclination
+Om : Angle
+    Longitude of Ascending Node
+w : Angle
+    Argument of periapsis
+v : Angle
+    True anomaly
+epoch : Time
+    Time corresponding to `position` and `velocity`
+mu_km_s : float
+    Value of mu (G * M) in km^3/s^2
+mu_au3_d2 : float
+    Value of mu (G * M) in au^3/d^2
+center : int
+    NAIF ID of the primary body, 399 for geocentric orbits, 10 for
+    heliocentric orbits
+target : int
+    NAIF ID of the secondary body
+
+### Function `_from_mean_anomaly`
+
+Creates a `KeplerOrbit` object from elements using mean anomaly
+
+Parameters
+----------
+p : Distance
+    Semi-Latus Rectum
+e : float
+     Eccentricity
+i : Angle
+    Inclination
+Om : Angle
+    Longitude of Ascending Node
+w : Angle
+    Argument of periapsis
+M : Angle
+    Mean anomaly
+epoch : Time
+    Time corresponding to `position` and `velocity`
+mu_km_s : float
+    Value of mu (G * M) in km^3/s^2
+mu_au3_d2 : float
+    Value of mu (G * M) in au^3/d^2
+center : int
+    NAIF ID of the primary body, 399 for geocentric orbits, 10 for
+    heliocentric orbits
+target : int
+    NAIF ID of the secondary body
+
+### Function `_at`
+
+Propagate the KeplerOrbit to the given Time object
+
+The Time object can contain one time, or an array of times
+
+
+---
+
+# logo.md
+
+# Module docstring
+
+Build the Skyfield logo.
+
+
+---
+
+# magnitudelib.md
+
+# Module docstring
+
+Routines for computing magnitudes.
+
+Planetary routines adapted from:
+
+https://arxiv.org/pdf/1808.01973.pdf
+
+Which links to:
+
+https://sourceforge.net/projects/planetary-magnitudes/
+
+Which has directories with three successive versions of their magnitude
+computation, the most recent of which provides the files on which this
+Python code is based:
+
+Ap_Mag_V3.f90
+Ap_Mag_Output_V3.txt
+Ap_Mag_Input_V3.txt
+
+* ``r`` planet’s distance from the Sun.
+* ``delta`` from Earth?
+* ``ph_ang`` illumination phase angle (degrees)
+
+### Function `planetary_magnitude`
+
+Given the position of a planet, return its visual magnitude.
+
+>>> from skyfield.api import load
+>>> from skyfield.magnitudelib import planetary_magnitude
+>>> ts = load.timescale()
+>>> t = ts.utc(2020, 7, 31)
+>>> eph = load('de421.bsp')
+>>> astrometric = eph['earth'].at(t).observe(eph['jupiter barycenter'])
+>>> print('%.2f' % planetary_magnitude(astrometric))
+-2.73
+
+The formulae are from `Mallama and Hilton “Computing Apparent
+Planetary Magnitude for the Astronomical Almanac” (2018)
+<https://arxiv.org/pdf/1808.01973.pdf>`_.  Two of the formulae have
+inherent limits:
+
+* Saturn’s magnitude is unknown and the function will return ``nan``
+  (the floating-point value “Not a Number”) if the “illumination
+  phase angle” — the angle of the vertex observer-Saturn-Sun —
+  exceeds 6.5°.
+
+* Neptune’s magnitude is unknown and will return ``nan`` if the
+  illumination phase angle exceeds 1.9° and the position's date is
+  before the year 2000.
+
+And one formula is not fully implemented (though contributions are
+welcome!):
+
+* Skyfield does not compute which features on Mars are facing the
+  observer, which can introduce an error of ±0.06 magnitude.
+
+
+---
+
+# mpc.md
+
+# Module docstring
+
+Routines for interpreting data from the IAU Minor Planet Center.
+
+### Function `load_mpcorb_dataframe`
+
+Parse a Minor Planet Center orbits file into a Pandas dataframe.
+
+See :doc:`kepler-orbits`.  The MPCORB file format is documented at:
+https://minorplanetcenter.net/iau/info/MPOrbitFormat.html
+
+### Function `load_comets_dataframe`
+
+Parse a Minor Planet Center comets file into a Pandas dataframe.
+
+This imports only the fields essential for computing comet orbits.
+See :func:`~skyfield.data.mpc.load_comets_dataframe_slow()` for a
+slower routine that includes every comet data field.
+
+See :doc:`kepler-orbits`.  The comet file format is documented at:
+https://www.minorplanetcenter.net/iau/info/CometOrbitFormat.html
+
+### Function `load_comets_dataframe_slow`
+
+Parse a Minor Planet Center comets file into a Pandas dataframe.
+
+This routine reads in every single field from the comets data file.
+See :func:`~skyfield.data.mpc.load_comets_dataframe()` for a faster
+routine that omits some of the more expensive comet fields.
+
+See :doc:`kepler-orbits`.  The comet file format is documented at:
+https://www.minorplanetcenter.net/iau/info/CometOrbitFormat.html
+
+
+---
+
+# mpc_make_excerpt.md
+
+# Module docstring
+
+Search the MPCORB file for minor planets, given their packed designations.
+
+
+---
+
+# naifcodes.md
+
+### Function `numbered_name_of`
+
+Given a code, return a string giving both the code and name.
+
+>>> numbered_name_of(301)
+'301 Moon'
+
+### Function `_target_name`
+
+Return `target` annotated for display to the user.
+
+* A string target is quoted to make clear that it's a string, like 'comet'.
+* A numeric target has its NAIF name appended, like 399 EARTH.
+
+
+---
+
+# nutation_table.md
+
+# Module docstring
+
+Print a table of how accurate IAU 2000B is with fewer coefficients.
+
+
+---
+
+# nutationlib.md
+
+# Module docstring
+
+Routines that compute Earth nutation.
+
+### Function `iau2000a_radians`
+
+Return the IAU 2000A angles delta-psi and delta-epsilon in radians.
+
+### Function `iau2000b_radians`
+
+Return the IAU 2000B angles delta-psi and delta-epsilon in radians.
+
+### Function `build_nutation_matrix`
+
+Generate the nutation rotation matrix, given three nutation parameters.
+
+The input angles can be simple floats.  Or, they can be arrays of
+the same length, in which case the output matrix will have an extra
+dimension of that same length providing *n* rotation matrices.
+
+### Function `mean_obliquity`
+
+Return the mean obliquity of the ecliptic in arcseconds.
+
+The caller need only supply a single argument:
+
+`jd_tdb` - TDB time as a Julian date float, or NumPy array of floats
+
+The formulae used to compute the mean obliquity are based on
+equations 37 and 39 from:
+
+Capitaine et al. (2003), _Astronomy and Astrophysics_ 412, 567-586.
+
+### Function `equation_of_the_equinoxes_complimentary_terms`
+
+Compute the complementary terms of the equation of the equinoxes.
+
+This routine takes a single argument:
+
+`jd_tt` - Terrestrial Time: Julian date float, or NumPy array of floats
+
+The formulae used are from:
+
+Capitaine, N., Wallace, P.T., and McCarthy, D.D. (2003). _Astron. &
+Astrophys._ 406, p. 1135-1149. Table 3.
+
+_IERS Conventions (2010)_, Chapter 5, p. 60, Table 5.2e.  (Table
+5.2e presented in the printed publication is a truncated series. The
+full series, which is used here, is available on the IERS
+Conventions Center website in file tab5.2e.txt.)
+ftp://tai.bipm.org/iers/conv2010/chapter5/
+
+### Function `iau2000a`
+
+Compute Earth nutation based on the IAU 2000A nutation model.
+
+``jd_tt`` - Terrestrial Time: Julian date float, or NumPy array of floats
+
+Returns a tuple ``(delta_psi, delta_epsilon)`` measured in tenths of
+a micro-arcsecond.  Each value is either a float, or a NumPy array
+with the same dimensions as the input argument.
+
+Supply smaller integer values for ``fundamental_argument_terms``,
+``lunisolar_terms``, and ``planetary_terms`` to trade off accuraccy
+for speed.
+
+### Function `iau2000b`
+
+Compute Earth nutation based on the faster IAU 2000B nutation model.
+
+`jd_tt` - Terrestrial Time: Julian date float, or NumPy array of floats
+
+Returns a tuple ``(delta_psi, delta_epsilon)`` measured in tenths of
+a micro-arcsecond.  Each is either a float, or a NumPy array with
+the same dimensions as the input argument.  The result will not take
+as long to compute as the full IAU 2000A series, but should still
+agree with ``iau2000a()`` to within a milliarcsecond between the
+years 1995 and 2020.
+
+### Function `fundamental_arguments`
+
+Compute the fundamental arguments (mean elements) of Sun and Moon.
+
+``t`` - TDB time in Julian centuries since J2000.0, as float or NumPy array
+
+Outputs fundamental arguments, in radians:
+      a[0] = l (mean anomaly of the Moon)
+      a[1] = l' (mean anomaly of the Sun)
+      a[2] = F (mean argument of the latitude of the Moon)
+      a[3] = D (mean elongation of the Moon from the Sun)
+      a[4] = Omega (mean longitude of the Moon's ascending node);
+             from Simon section 3.4(b.3),
+             precession = 5028.8200 arcsec/cy)
+
+Pass a smaller value for the number of polynomial ``terms`` if you
+want to trade accuracy for speed.
+
+### Function `compute_nutation`
+
+Deprecated: this is now a method on the Time object.
+
+### Function `earth_tilt`
+
+Deprecated: these are now computed separately on the Time object.
+
+
+---
+
+# optimizelib.md
+
+# Module docstring
+
+The variable ``f`` is the plain objective function that returns numbers 
+directly from skyfield.
+
+The variable ``g`` is ``f`` transformed such that either all the target 
+values appear to the secant method as roots, or such that all of the 
+extremes appear to Brent's method as minima.
+
+### Function `secant`
+
+Performs secant search to find target values in f.
+
+This is a vectorized version of the function newton from pyephem:
+https://github.com/brandon-rhodes/pyephem/blob/f96daf12d4f815be92e0caa52611b444517b9e0d/ephem/__init__.py#L91
+
+``f`` is the plain objective function, and ``g`` is the objective function 
+translated vertically such that all of the target values appear to the 
+algorithm as roots, and renormalized to -180 to 180 degrees so that the 
+partitions won't contain any discontinuities.
+
+Arguments
+---------
+f : function
+    Objective function. Must accept and return ndarrays.
+jd0 : ndarray
+    Left sides of partitions known to contain the ``targets``
+jd1 : ndarray
+    Right sides of partitions known to contain the ``target``
+targets : float or ndarray
+    Target values corresponding to the partitions defined by jd0 and jd1
+f0 : ndarray
+    ``f(jd0)``. Providing this saves an extra function call
+f1 : ndarray
+    ``f(jd1)``. Providing this saves an extra function call
+tol : float
+    Tolerance used to determine when convergence is complete.
+    
+Returns
+-------
+jd : ndarray
+    the jd values at which ``f(jd) == targets``
+
+### Function `_bracket`
+
+This function is only meant to be used by brent_min
+    
+
+### Function `brent_min`
+
+Vectorized version of Brent's method for finding maxima and minima.
+
+This is a vectorized version of scipy.optimize.optimize.Brent.optimize:
+https://github.com/scipy/scipy/blob/de9e0d6022be0319c1ba73c07a0946be46e02a24/scipy/optimize/optimize.py#L1896
+
+``f`` is the plain objective function, and ``g`` is the objective function 
+optionally mirrored over the horizontal axis such that all of the extrema 
+appear to the algorithm as minima.
+
+Arguments
+---------
+f : function
+    Objective function. Must accept and return ndarrays.
+jd0 : ndarray
+    Left sides of partitions known to contain maxima or minima
+jd1 : ndarray
+    Right sides of partitions known to contain the target value
+minimum : bool or ndarray
+    Whether or not the corresponding partitions contain minima. True means 
+    the corresponding partition contains a minimum, False means it 
+    contains a maximum.
+f0 : ndarray
+    f(jd0). Providing this saves an extra function call
+f1 : ndarray
+    f(jd1). Providing this saves an extra function call
+tol : float
+    Tolerance used to determine when convergence is complete.
+    
+Returns
+-------
+jd : ndarray
+    the jd values at which f(jd) is a maximum or minimum.
+
+
+---
+
+# planet_tilts.md
+
+# Module docstring
+
+Compute the tilt of Saturn, for planetary_magnitude().
+
+
+---
+
+# planetarylib.md
+
+# Module docstring
+
+Open a BPC file, read its angles, and produce rotation matrices.
+
+## Class `PlanetaryConstants`
+
+Planetary constants manager.
+
+You can use this class to build working models of Solar System
+bodies by loading text planetary constant files and binary
+orientation kernels.  For a full description of how to use this, see
+:doc:`planetary`.
+
+## Class `Frame`
+
+Planetary constants frame, for building rotation matrices.
+
+## Class `PlanetTopos`
+
+Location that rotates with the surface of another Solar System body.
+
+The location can either be on the surface of the body, or in some
+other fixed position that rotates with the body's surface.
+
+### Function `read_text`
+
+Read frame variables from a KPL/FK file.
+
+Appropriate files will typically have the extension ``.tf`` or
+``.tpc`` and will define a series of names and values that will
+be loaded into this object's ``.variables`` dictionary.
+
+>>> from skyfield.api import load
+>>> pc = PlanetaryConstants()
+>>> pc.read_text(load('moon_080317.tf'))
+>>> pc.variables['FRAME_31006_NAME']
+'MOON_PA_DE421'
+
+### Function `read_binary`
+
+Read binary segments descriptions from a DAF/PCK file.
+
+Binary segments live in ``.bpc`` files and predict how a body
+like a planet or moon will be oriented on a given date.
+
+### Function `_get_assignment`
+
+Do .variables[key] but with a pretty exception on failure.
+
+### Function `build_frame_named`
+
+Given a frame name, return a :class:`Frame` object.
+
+### Function `build_frame`
+
+Given a frame integer code, return a :class:`Frame` object.
+
+### Function `build_latlon_degrees`
+
+Build an object representing a location on a body's surface.
+
+### Function `rotation_at`
+
+Return the rotation matrix for this frame at time ``t``.
+
+### Function `rotation_and_rate_at`
+
+Return rotation and rate matrices for this frame at time ``t``.
+
+The rate matrix returned is in units of angular motion per day.
+
+### Function `rotation_at`
+
+Compute the altazimuth rotation matrix for this location’s sky.
+
+
+---
+
+# plot_search_for_rising.md
+
+# Module docstring
+
+Plot a diagram of a difficult search for Moonrise.
+
+The `design/test_sunrise_moonrise.py` finishes with a search for high
+latitude (70°N) moonrises, and prints out the worst miss with a negative
+elevation versus the horizon, and the worst positive:
+
+Compute time: 0.163 seconds
+Altitude vs horizon: min -5.176029 arcseconds,  max 2.819515 arcseconds
+Worst undershot is at index 112:
+  2023-08-16 00:47:55.324736  -00deg 48' 46.517584"  -5.176933 arcseconds
+  2023-08-16 00:47:55.325735  -00deg 48' 46.516681"  -5.176029 arcseconds
+  2023-08-16 00:47:55.326735  -00deg 48' 46.515778"  -5.175126 arcseconds
+Worst overshot is at index 70:
+  2023-05-26 06:09:37.877960  -00deg 48' 42.952997"   2.818692 arcseconds
+  2023-05-26 06:09:37.878960  -00deg 48' 42.952173"   2.819516 arcseconds
+  2023-05-26 06:09:37.879960  -00deg 48' 42.951349"   2.820339 arcseconds
+
+Each line is one millisecond apart.  In each case we really wanted the
+search to find the millisecond where the arcseconds flip from negative
+to positive, but missed.
+
+Why?
+
+This script takes the 2023-08-16 case shown above, instruments the .at()
+function to record the calls made by the search for moonrise, and plots
+the result so we can see what's happening.  I'm planning to keep this
+script around in the repository, so that if any future users find fault
+with the new risings routine, I can quickly adapt this script to their
+case to see what's going on.
+
+
+---
+
+# positionlib.md
+
+# Module docstring
+
+Classes representing different kinds of astronomical position.
+
+### Function `position_of_radec`
+
+Build a position object from a right ascension and declination.
+
+If a specific ``distance_au`` is not provided, Skyfield returns a
+position vector a gigaparsec in length.  This puts the position at a
+great enough distance that it will stand at the same right ascension
+and declination from any viewing position in the Solar System, to
+very high precision (within a few hundredths of a microarcsecond).
+
+If an ``epoch`` is specified, the input coordinates are understood
+to be in the dynamical system of that particular date.  Otherwise,
+they will be assumed to be ICRS (the modern replacement for J2000).
+
+.. versionadded:: 1.21
+   This replaces a deprecated function ``position_from_radec()``
+   whose ``distance`` argument was not as well designed.
+
+### Function `position_from_radec`
+
+DEPRECATED version of ``position_of_radec()``.
+
+## Class `SSB`
+
+The Solar System Barycenter.
+
+## Class `ICRF`
+
+An |xyz| position and velocity oriented to the ICRF axes.
+
+The International Celestial Reference Frame (ICRF) is a permanent
+reference frame that is the replacement for J2000.  Their axes agree
+to within 0.02 arcseconds.  It also supersedes older equinox-based
+systems like B1900 and B1950.
+
+Each instance of this class provides a ``.xyz`` vector and a
+``.velocity`` vector that specify |xyz| coordinates along the axes
+of the ICRF.  A specific time ``.t`` might be specified or might be
+``None``.
+
+## Class `Barycentric`
+
+An |xyz| position measured from the Solar System barycenter.
+
+Skyfield generates a `Barycentric` position measured from the
+gravitational center of the Solar System whenever you ask a body for
+its location at a particular time:
+
+>>> t = ts.utc(2003, 8, 29)
+>>> mars.at(t)
+<Barycentric BCRS position and velocity at date t center=0 target=499>
+
+This class’s ``.xyz`` and ``.velocity`` are |xyz| vectors in
+the Barycentric Celestial Reference System (BCRS), the modern
+replacement for J2000 coordinates measured from the Solar System
+Barycenter.
+
+## Class `Astrometric`
+
+An astrometric |xyz| position relative to a particular observer.
+
+The astrometric position of a body is its position relative to an
+observer, adjusted for light-time delay.  It is the position of the
+body back when it emitted (or reflected) the light that is now
+reaching the observer's eye or telescope.  Astrometric positions are
+usually generated in Skyfield by calling the `Barycentric` method
+`observe()`, which performs the light-time correction.
+
+Both the ``.xyz`` and ``.velocity`` are |xyz| vectors
+oriented along the axes of the ICRF, the modern replacement for the
+J2000 reference frame.
+
+It is common to either call ``.radec()`` (with no argument) on an
+astrometric position to generate an *astrometric place* right
+ascension and declination with respect to the ICRF axes, or else to
+call ``.apparent()`` to generate an :class:`Apparent` position.
+
+## Class `Apparent`
+
+An apparent |xyz| position relative to a particular observer.
+
+This class’s vectors provide the position and velocity of a body
+relative to an observer, adjusted to predict where the body’s image
+will really appear (hence "apparent") in the sky:
+
+* Light-time delay, as already present in an `Astrometric` position.
+
+* Deflection: gravity bends light, and thus the image of a distant
+  object, as the light passes massive objects like Jupiter, Saturn,
+  and the Sun.  For an observer on the Earth’s surface or in Earth
+  orbit, the slight deflection by the gravity of the Earth itself is
+  also included.
+
+* Aberration: incoming light arrives slanted because of the
+  observer's motion through space.
+
+These positions are usually produced in Skyfield by calling the
+`apparent()` method of an `Astrometric` object.
+
+Both the ``.xyz`` and ``.velocity`` are |xyz| vectors
+oriented along the axes of the ICRF, the modern replacement for the
+J2000 reference frame.  If the observer is at the geocenter, they
+are more specifically GCRS coordinates.  Two common coordinates that
+this vector can generate are:
+
+* *Proper place:* call ``.radec()`` without arguments to compute
+  right ascension and declination with respect to the fixed axes of
+  the ICRF.
+
+* *Apparent place,* the most popular option: call ``.radec('date')``
+  to generate right ascension and declination with respect to the
+  equator and equinox of date.
+
+## Class `Geocentric`
+
+An |xyz| position measured from the center of the Earth.
+
+A geocentric position is the difference between the position of the
+Earth at a given instant and the position of a target body at the
+same instant, without accounting for light-travel time or the effect
+of relativity on the light itself.
+
+Its ``.xyz`` and ``.velocity`` vectors have |xyz| axes that
+are those of the Geocentric Celestial Reference System (GCRS), an
+inertial system that is an update to J2000 and that does not rotate
+with the Earth itself.
+
+### Function `_to_altaz`
+
+Compute (alt, az, distance) relative to the observer's horizon.
+
+### Function `at`
+
+Return the position of the Solar System Barycenter at time ``t``.
+
+### Function `from_time_and_frame_vectors`
+
+Constructor: build a position from two vectors in a reference frame.
+
+* ``t`` — The :class:`~skyfield.timelib.Time` of the position.
+* ``frame`` — A reference frame listed at `reference_frames`.
+* ``distance`` — A `Distance` |xyz| vector in the given frame.
+* ``velocity`` — A `Velocity` ẋ,ẏ,ż vector in the given frame.
+
+### Function `__sub__`
+
+Subtract two ICRF vectors to produce a third.
+
+### Function `distance`
+
+Compute the distance from the origin to this position.
+
+The return value is a :class:`~skyfield.units.Distance` that
+prints itself out in astronomical units (au) but that also
+offers attributes ``au``, ``km``, and ``m`` if you want to
+access its magnitude as a number.
+
+>>> v = ICRF([1, 1, 0])
+>>> print(v.distance())
+1.41421 au
+
+### Function `speed`
+
+Compute the magnitude of the velocity vector.
+
+>>> v = ICRF([0, 0, 0], [1, 2, 3])
+>>> print(v.speed())
+3.74166 au/day
+
+### Function `light_time`
+
+Length of this vector in days of light travel time.
+
+### Function `radec`
+
+Compute equatorial RA, declination, and distance.
+
+When called without a parameter, this returns standard ICRF
+right ascension and declination:
+
+>>> from skyfield.api import load
+>>> ts = load.timescale()
+>>> t = ts.utc(2020, 5, 13, 10, 32)
+>>> eph = load('de421.bsp')
+>>> astrometric = eph['earth'].at(t).observe(eph['sun'])
+>>> ra, dec, distance = astrometric.radec()
+>>> print(ra, dec, sep='\n')
+03h 21m 47.67s
++18deg 28' 55.3"
+
+If you instead want the coordinates referenced to the dynamical
+system defined by the Earth's true equator and equinox, provide
+a specific epoch time.
+
+>>> ra, dec, distance = astrometric.apparent().radec(epoch='date')
+>>> print(ra, dec, sep='\n')
+03h 22m 54.73s
++18deg 33' 04.5"
+
+### Function `hadec`
+
+Compute hour angle, declination, and distance.
+
+Returns a tuple of two :class:`~skyfield.units.Angle` objects
+plus the :class:`~skyfield.units.Distance` to the target.  The
+angles are the hour angle (±12 hours) east or west of your
+meridian along the ITRS celestial equator, and the declination
+(±90 degees) above or below it.  This only works for positions
+whose center is a geographic location; otherwise, there is no
+local meridian from which to measure the hour angle.
+
+Because this declination is measured from the plane of the
+Earth’s physical geographic equator, it will be slightly
+different than the declination returned by ``radec()`` if you
+have loaded a :ref:`polar-motion` file.
+
+The coordinates are not adjusted for atmospheric refraction near
+the horizon.
+
+### Function `altaz`
+
+Compute (alt, az, distance) relative to the observer's horizon
+
+The altitude returned is an :class:`~skyfield.units.Angle`
+measured in degrees above the horizon, while the azimuth
+:class:`~skyfield.units.Angle` measures east along the horizon
+from geographic north (so 0 degrees means north, 90 is east, 180
+is south, and 270 is west).
+
+By default, Skyfield does not adjust the altitude for
+atmospheric refraction.  If you want Skyfield to estimate how
+high the atmosphere might lift the body's image, give the
+argument ``temperature_C`` either the temperature in degrees
+centigrade, or the string ``'standard'`` (in which case 10°C is
+used).
+
+When calculating refraction, Skyfield uses the observer’s
+elevation above sea level to estimate the atmospheric pressure.
+If you want to override that value, simply provide a number
+through the ``pressure_mbar`` parameter.
+
+### Function `separation_from`
+
+Return the angle between this position and another.
+
+>>> from skyfield.api import load
+>>> ts = load.timescale()
+>>> t = ts.utc(2020, 4, 18)
+>>> eph = load('de421.bsp')
+>>> sun, venus, earth = eph['sun'], eph['venus'], eph['earth']
+>>> e = earth.at(t)
+>>> s = e.observe(sun)
+>>> v = e.observe(venus)
+>>> print(s.separation_from(v))
+43deg 23' 23.1"
+
+You can also compute separations across an array of positions.
+
+>>> t = ts.utc(2020, 4, [18, 19, 20])
+>>> e = earth.at(t)
+>>> print(e.observe(sun).separation_from(e.observe(venus)))
+3 values from 43deg 23' 23.1" to 42deg 49' 46.6"
+
+### Function `cirs_xyz`
+
+Compute cartesian CIRS coordinates at a given epoch |xyz|.
+
+Calculate coordinates in the Celestial Intermediate Reference System
+(CIRS), a dynamical coordinate system referenced to the Celestial
+Intermediate Origin (CIO). As this is a dynamical system it must be
+calculated at a specific epoch.
+
+### Function `cirs_radec`
+
+Get spherical CIRS coordinates at a given epoch (ra, dec, distance).
+
+Calculate coordinates in the Celestial Intermediate Reference System
+(CIRS), a dynamical coordinate system referenced to the Celestial
+Intermediate Origin (CIO). As this is a dynamical system it must be
+calculated at a specific epoch.
+
+### Function `frame_xyz`
+
+Return this position as an |xyz| vector in a reference frame.
+
+Returns a :class:`~skyfield.units.Distance` object giving the
+|xyz| of this position in the given ``frame``.  See
+`reference_frames`.
+
+### Function `frame_xyz_and_velocity`
+
+Return |xyz| position and velocity vectors in a reference frame.
+
+Returns two vectors in the given coordinate ``frame``: a
+:class:`~skyfield.units.Distance` providing an |xyz| position
+and a :class:`~skyfield.units.Velocity` giving (xdot,ydot,zdot)
+velocity.  See `reference_frames`.
+
+### Function `frame_latlon`
+
+Return latitude, longitude, and distance in the given frame.
+
+Returns a 3-element tuple giving the latitude and longitude as
+:class:`~skyfield.units.Angle` objects and the range to the
+target as a :class:`~skyfield.units.Distance`.  See
+`reference_frames`.
+
+### Function `frame_latlon_and_rates`
+
+Return a reference frame latitude, longitude, range, and rates.
+
+Return a 6-element tuple of 3 coordinates and 3 rates-of-change
+for this position in the given reference ``frame``:
+
+* Latitude :class:`~skyfield.units.Angle` from +90° north to −90° south
+* Longitude :class:`~skyfield.units.Angle` 0°–360° east
+* Radial :class:`~skyfield.units.Distance`
+* Latitude :class:`~skyfield.units.AngleRate`
+* Longitude :class:`~skyfield.units.AngleRate`
+* Radial :class:`~skyfield.units.Velocity`
+
+If the reference frame is the ICRS, or is J2000, or otherwise
+involves the celestial equator and pole, then the latitude and
+longitude returned will measure what are more commonly called
+“declination” and “right ascension”.  Note that right ascension
+is usually expressed as hours (24 in a circle), rather than in
+the degrees that this routine will return.
+
+### Function `to_skycoord`
+
+Convert this distance to an AstroPy ``SkyCoord`` object.
+
+Currently, this will only work with Skyfield positions whose
+center is the Solar System barycenter or else the geocenter.
+
+### Function `phase_angle`
+
+Return this position’s phase angle: the angle Sun-target-observer.
+
+Given a Sun object (which you can build by loading an ephemeris
+and looking up ``eph['Sun']``), return the `Angle` from the
+body's point of view between light arriving from the Sun and the
+light departing toward the observer.  This angle is 0° if the
+observer is in the same direction as the Sun and sees the body
+as fully illuminated, and 180° if the observer is behind the
+body and sees only its dark side.
+
+.. versionadded:: 1.42
+
+### Function `fraction_illuminated`
+
+Return the fraction of the target’s disc that is illuminated.
+
+Given a Sun object (which you can build by loading an ephemeris
+and looking up ``eph['Sun']``), compute what fraction from 0.0
+to 1.0 of this target’s disc is illuminated, under the
+assumption that the target is a sphere.
+
+.. versionadded:: 1.42
+
+### Function `is_sunlit`
+
+Return whether a position in Earth orbit is in sunlight.
+
+Returns ``True`` or ``False``, or an array of such values, to
+indicate whether this position is in sunlight or is blocked by
+the Earth’s shadow.  It should work with positions produced
+either by calling ``at()`` on a satellite object, or by calling
+``at()`` on the relative position ``sat - topos`` of a satellite
+with respect to an Earth observer’s position.  See
+:ref:`satellite-is-sunlit`.
+
+### Function `is_behind_earth`
+
+Return whether the Earth blocks the view of this object.
+
+For a position centered on an Earth-orbiting satellite, return
+whether the target is in eclipse behind the disc of the Earth.
+See :ref:`is-behind-earth`.
+
+### Function `from_altaz`
+
+Generate an Apparent position from an altitude and azimuth.
+
+The altitude and azimuth can each be provided as an `Angle`
+object, or else as a number of degrees provided as either a
+float or a tuple of degrees, arcminutes, and arcseconds::
+
+    alt=Angle(...), az=Angle(...)
+    alt_degrees=23.2289, az_degrees=142.1161
+    alt_degrees=(23, 13, 44.1), az_degrees=(142, 6, 58.1)
+
+The distance should be a :class:`~skyfield.units.Distance`
+object, if provided; otherwise a default of 0.1 au is used.
+
+### Function `observe`
+
+Compute the `Astrometric` position of a body from this location.
+
+To compute the body's astrometric position, it is first asked
+for its position at the time `t` of this position itself.  The
+distance to the body is then divided by the speed of light to
+find how long it takes its light to arrive.  Finally, the light
+travel time is subtracted from `t` and the body is asked for a
+series of increasingly exact positions to learn where it was
+when it emitted the light that is now reaching this position.
+
+>>> earth.at(t).observe(mars)
+<Astrometric ICRS position and velocity at date t center=399 target=499>
+
+### Function `apparent`
+
+Compute an :class:`Apparent` position for this body.
+
+This applies two effects to an astrometric position that arise
+from relativity and that shift the position slightly: deflection
+as light passes massive bodies on its way to the observer, and
+the aberration of light caused by the observer's own velocity.
+
+These two transforms convert the position from the BCRS
+reference frame of the Solar System barycenter to the reference
+frame of the observer.  In the specific case where the observer
+is the Earth, the output reference frame is the GCRS.
+
+The default value of the ``deflectors`` argument selects the
+three largest Solar System masses for deflection: the Sun 10,
+Jupiter 599, and Saturn 699.  The caller can override this by
+providing their own tuple of codes, or an empty tuple.
+
+If the observer is on the Earth's surface or in Earth orbit,
+then Skyfield also applies the deflection caused by the Earth's
+own mass.
+
+### Function `itrf_xyz`
+
+Deprecated; instead, call ``.frame_xyz(itrs)``.         See `reference_frames`.
+
+### Function `subpoint`
+
+Deprecated; instead, call either ``iers2010.subpoint(pos)`` or         ``wgs84.subpoint(pos)``.
+
+
+---
+
+# precessionlib.md
+
+### Function `compute_precession`
+
+Return the rotation matrices for precessing to an array of epochs.
+
+`jd_tdb` - array of TDB Julian dates
+
+The array returned has the shape `(3, 3, n)` where `n` is the number
+of dates that have been provided as input.
+
+
+---
+
+# projections.md
+
+### Function `_derive_stereographic`
+
+Compute the formulae to cut-and-paste into the routine below.
+
+### Function `build_stereographic_projection`
+
+Compute *x* and *y* coordinates at which to plot the positions.
+
+
+---
+
+# relativity.md
+
+### Function `add_deflection`
+
+Update `position` for how solar system masses will deflect its light.
+
+Given the ICRS `position` |xyz| of an object (au) that is being
+viewed from the `observer` also expressed as |xyz|, and given an
+ephemeris that can be used to determine solar system body positions,
+and given the time `t` and Boolean `apply_earth` indicating whether
+to worry about the effect of Earth's mass, and a `count` of how many
+major solar system bodies to worry about, this function updates
+`position` in-place to show how the masses in the solar system will
+deflect its image.
+
+### Function `_compute_deflector_position`
+
+Compute where a deflector was when closest to a light beam.
+
+### Function `light_time_difference`
+
+When did the light from ``position`` pass closest to a given deflector?
+
+Given an observer at the origin and a ``position`` |xyz| in AU, how
+recently did the light from the position pass closest to the object
+whose |xyz| is given as ``deflector_position``?  The answer is
+returned as a floating point number of days.
+
+### Function `_compute_deflection`
+
+Compute how much a mass will deflect a position.
+
+The ``position`` is relative to the observer in AU; ``pe`` is the
+position of the observer relative to the deflector in AU; and
+``rmass`` is the deflector's reciprocal mass.
+
+### Function `add_aberration`
+
+Correct a relative position vector for aberration of light.
+
+Given the relative `position` |xyz| of an object (AU) from a
+particular observer, the `velocity` [dx,dy,dz] at which the observer
+is traveling (AU/day), and the light propagation delay `light_time`
+to the object (days), this function updates `position` in-place to
+give the object's apparent position due to the aberration of light.
+
+
+---
+
+# satellite_is_sunlit.md
+
+# Module docstring
+
+Verdict: light-time delay from the Sun can be neglected in is_sunlit()!
+
+For the Sun's position from Earth, does calling observe() really make
+enough difference to justify the expense?  Here we take two approaches
+to answering the question: we compare the difference every day over 40
+years, and then we do a back-of-the-envelope estimate of how big we
+might have expected the effect to be.  The two approaches agree!  The
+maximum difference is around 10 mas.
+
+What difference does that make for a satellite?  Let's take the ISS.
+With its orbital period of 92 minutes, it sees the Earth swing in a full
+circle around the sky in that amount of time.  That's 360/90 = 4 degrees
+per minute (!) = 240 arcseconds per second.  At that speed, a difference
+of 10 mas in the Sun's position would at most hasten or delay the moment
+of sunrise for the ISS by 40 microseconds, which is far below the
+accuracy of TLE position predictions and can thus be safely incurred.
+
+
+---
+
+# satellite_passes.md
+
+# Module docstring
+
+On my laptop, this script shows that simply computing the positions and
+the sunlit-ness of the ISS for each of the 381 seconds of this pass
+takes roughly the same amount of time as mounting a full search for the
+moment it passes into shadow.  But the benefit is far greater, because
+with almost no additional expense all altitudes and azimuths can also
+be computed.
+
+
+---
+
+# searchlib.md
+
+# Module docstring
+
+Routines to search for maxima and zero crossings.
+
+### Function `find_discrete`
+
+Find the times at which a discrete function of time changes value.
+
+This routine is used to find instantaneous events like sunrise,
+transits, and the seasons.  See :doc:`searches` for how to use it
+yourself.
+
+### Function `_find_discrete`
+
+Algorithm core, for callers that already have a `jd` vector.
+
+### Function `find_minima`
+
+Find the local minima in the values returned by a function of time.
+
+This routine is used to find events like minimum elongation.  See
+:doc:`searches` for how to use it yourself.
+
+### Function `find_maxima`
+
+Find the local maxima in the values returned by a function of time.
+
+This routine is used to find events like highest altitude and
+maximum elongation.  See :doc:`searches` for how to use it yourself.
+
+### Function `_choose_brackets`
+
+Return the indices between which we should search for maxima of `y`.
+
+### Function `_identify_maxima`
+
+Return the maxima we can see in the series y as simple points.
+
+
+---
+
+# sgp4_parallel.md
+
+# Module docstring
+
+The SGP4 library has the ability to process an array of satellites across an
+array of times. What could support for this look like in Skyfield, combining
+optimized parallel calculation (in the C++ version of SGP4) with coordinate
+conversions from TEME?
+
+
+---
+
+# sgp4lib.md
+
+# Module docstring
+
+An interface between Skyfield and the Python ``sgp4`` library.
+
+## Class `EarthSatellite`
+
+An Earth satellite loaded from a TLE file and propagated with SGP4.
+
+An earth satellite object is a Skyfield vector function, so you can
+either call its ``at()`` method to generate its position in the sky
+or else use addition and subtraction to combine it with other
+vectors.
+
+Satellite parameters are generally only accurate for a week or two
+around the *epoch* of the parameters, the date for which they were
+generated, which is available as an attribute:
+
+``epoch``
+    A Skyfield :class:`~skyfield.timelib.Time` giving the exact
+    epoch moment for these satellite orbit parameters.
+``name``
+    Satellite name
+
+When building a satellite, use the arguments ``line1`` and ``line2``
+to provide the two data lines from a TLE file as separate strings.
+Optional ``name`` lets you give a name to the satellite, accessible
+later through the ``name`` attribute.  ``ts`` is a
+:class:`~skyfield.timelib.Timescale` object, used to generate the
+``epoch`` value; if it is not provided, the satellite will use a
+built in ``Timescale`` object.
+
+If you are interested in the catalog entry details, the SGP4 model
+parameters for a particular satellite can be accessed through its
+``model`` attribute:
+
+``model.satnum``
+    The unique satellite NORAD catalog number given in the TLE file.
+``model.classification``
+    Satellite classification, or else ``'U'`` for “Unknown”
+``model.intldesg``
+    International designator
+``model.epochyr``
+    Full four-digit year of this element set's epoch moment.
+``model.epochdays``
+    Fractional days into the year of the epoch moment.
+``model.jdsatepoch``
+    Julian date of the epoch (computed from ``epochyr`` and ``epochdays``).
+``model.ndot``
+    First time derivative of the mean motion (ignored by SGP4).
+``model.nddot``
+    Second time derivative of the mean motion (ignored by SGP4).
+``model.bstar``
+    Ballistic drag coefficient B* in inverse earth radii.
+``model.ephtype``
+    Ephemeris type (ignored by SGP4 as determination now automatic)
+``model.elnum``
+    Element number
+``model.inclo``
+    Inclination in radians.
+``model.nodeo``
+    Right ascension of ascending node in radians.
+``model.ecco``
+    Eccentricity.
+``model.argpo``
+    Argument of perigee in radians.
+``model.mo``
+    Mean anomaly in radians.
+``model.no_kozai``
+    Mean motion in radians per minute.
+``model.revnum``
+    Revolution number at epoch [Revs]
+
+## Class `TEME`
+
+The satellite-specific True Equator Mean Equinox frame of reference.
+
+This TEME frame is used to measure right ascension and declination,
+and is the reference frame of the SGP4 Earth satellite orbit model.
+It is a bit quirky.  Instead measuring right ascension from the true
+vernal equinox point, it uses the ‘mean’ equniox that considers only
+precession but not nutation (the same equinox used for Greenwich
+Mean Sidereal Time).  This made the reference frame more tractable
+for the 1970s computers that first implemented SGP4.
+
+Defined in AIAA 2006-6753 Appendix C.  See :ref:`reference_frames`
+for a guide to using Skyfield reference frames like this one.
+
+### Function `theta_GMST1982`
+
+Return the angle of Greenwich Mean Standard Time 1982 given the JD.
+
+This angle defines the difference between the idiosyncratic True
+Equator Mean Equinox (TEME) frame of reference used by SGP4 and the
+more standard Pseudo Earth Fixed (PEF) frame of reference.  The UT1
+time should be provided as a Julian date.  Theta is returned in
+radians, and its velocity in radians per day of UT1 time.
+
+From AIAA 2006-6753 Appendix C.
+
+### Function `TEME_to_ITRF`
+
+Deprecated: use the TEME and ITRS frame objects instead.
+
+### Function `from_satrec`
+
+Build an EarthSatellite from a raw sgp4 Satrec object.
+
+This lets you provide raw numeric orbital elements instead of
+the text of a TLE set.  See :ref:`from-satrec` for detais.
+
+### Function `from_omm`
+
+Build an EarthSatellite from OMM text fields.
+
+Provide a ``ts`` timescale object, and a Python dict of OMM
+field names and values.  The timescale is used to build the
+satellite's ``.epoch`` time.
+
+### Function `_position_and_velocity_TEME_km`
+
+Return the raw true equator mean equinox (TEME) vectors from SGP4.
+
+Returns a tuple of NumPy arrays ``([x y z], [xdot ydot zdot])``
+expressed in kilometers and kilometers per second.  Note that we
+assume the TLE epoch to be a UTC date, per AIAA 2006-6753.
+
+### Function `ITRF_position_velocity_error`
+
+Deprecated: use the TEME and ITRS frame objects instead.
+
+### Function `_at`
+
+Compute this satellite's GCRS position and velocity at time `t`.
+
+### Function `find_events`
+
+Return the times at which the satellite rises, culminates, and sets.
+
+Searches between ``t0`` and ``t1``, which should each be a
+Skyfield :class:`~skyfield.timelib.Time` object, for passes of
+this satellite above the location ``topos`` that reach at least
+``altitude_degrees`` above the horizon.
+
+Returns a tuple ``(t, events)`` whose first element is a
+:class:`~skyfield.timelib.Time` array and whose second element
+is an array of events:
+
+* 0 — Satellite rose above ``altitude_degrees``.
+* 1 — Satellite culminated and started to descend again.
+* 2 — Satellite fell below ``altitude_degrees``.
+
+Note that multiple culminations in a row are possible when,
+without setting, the satellite reaches a second peak altitude
+after descending partway down the sky from the first one.
+
+### Function `cheat`
+
+Avoid computing expensive values that cancel out anyway.
+
+
+---
+
+# starlib.md
+
+# Module docstring
+
+Python class for a distant object with, at most, proper motion.
+
+## Class `Star`
+
+The position in the sky of a star or other fixed object.
+
+Each `Star` object specifies the position of a distant object.  You
+should provide as a right ascension and declination relative to the
+ICRS (the recent improvement upon J2000).  You can specify the
+coordinates using either floating point hours and degrees, or tuples
+that specify hour and degree fractions as minutes and seconds, or
+even full Skyfield :class:`~skyfield.units.Angle` objects (which can
+themselves be initialized using hours, degrees, or radians):
+
+>>> barnard = Star(ra_hours=17.963471675, dec_degrees=4.69339088889)
+>>> barnard = Star(ra_hours=(17, 57, 48.49), dec_degrees=(4, 41, 36.20))
+>>> barnard = Star(ra=Angle(hours=17.963471675),
+...                dec=Angle(degrees=4.69339088889))
+
+For objects whose proper motion across the sky has been detected,
+you can supply velocities in milliarcseconds (mas) per year, and
+even a parallax and radial velocity if those are known:
+
+>>> barnard = Star(ra_hours=(17, 57, 48.49803),
+...                dec_degrees=(4, 41, 36.2072),
+...                ra_mas_per_year=-798.71,
+...                dec_mas_per_year=+10337.77,
+...                parallax_mas=545.4,
+...                radial_km_per_s=-110.6)
+
+See `stars` for a guide to using a `Star` once you have created it.
+
+### Function `_unwrap`
+
+Return floats untouched, but ask Series for their NumPy arrays.
+
+### Function `_compute_vectors`
+
+Compute the star's position as an ICRF position and velocity.
+
+
+---
+
+# stellarium.md
+
+# Module docstring
+
+Parse Stellarium data files.
+
+### Function `parse_constellations`
+
+Return a list of constellation outlines.
+
+Each constellation outline is a list of edges, each of which is
+drawn between a pair of specific stars::
+
+    [
+        (name, [(star1, star2), (star3, star4), ...]),
+        (name, [(star1, star2), (star3, star4), ...]),
+        ...
+    ]
+
+Each name is a 3-letter constellation abbreviation; each star is an
+integer Hipparcos catalog number.  See :ref:`neowise-chart` for an
+example of how to combine this data with the Hipparcos star catalog
+to draw constellation lines on a chart.
+
+### Function `parse_star_names`
+
+Return the names in a Stellarium ``star_names.fab`` file.
+
+Returns a list of named tuples, each of which offers a ``.hip``
+attribute with a Hipparcos catalog number and a ``.name`` attribute
+with the star name.  Do not depend on the tuple having only length
+two; additional fields may be added in the future.
+
+
+---
+
+# subpoint_accuracy.md
+
+# Module docstring
+
+How accurate is Skyfield's subpoint computation routine?
+
+Let's call it with a varying number of iterations, and see how
+accurately it can turn a Topos-generated position back into a latitude,
+longitude, and elevation.
+
+
+---
+
+# sunrise.md
+
+### Function `_sunrise_hour_angle_radians`
+
+Return the hour angle at which a body will reach a given altitude.
+
+Given the latitude of an observer, and the declination of a target,
+return the positive hour angle at which the body will set below the
+horizon, where the horizon is specified as `altitude_radians` above
+(positive) or below (negative) the great circle of zero altitude.
+
+
+---
+
+# test_against_horizons.md
+
+# Module docstring
+
+Accuracy tests against data pulled from HORIZONS.
+
+
+---
+
+# test_against_novas.md
+
+# Module docstring
+
+Auto-generated accuracy tests vs NOVAS (see build_novas_tests.py).
+
+
+---
+
+# test_almanac_searches.md
+
+# Module docstring
+
+Low-level tests of the almanac search routines.
+
+### Function `make_stairstep_f`
+
+Return a function that increases by one at each of several `steps`.
+
+### Function `make_mountain_range_f`
+
+Return a function with local maxima at each of a series of `peaks`.
+
+
+---
+
+# test_api.md
+
+# Module docstring
+
+Tests of the Skyfield `api` module and user-facing exceptions.
+
+
+---
+
+# test_deflection.md
+
+# Module docstring
+
+Test that Skyfield implements NOVAS-compatible Earth deflection.
+
+Run `design/measure_earth_deflection.py` to draw a quick graph.
+
+### Function `trial`
+
+Compare apparent() lat/lon with a given deflector turned on and off.
+
+
+---
+
+# test_elementslib.md
+
+### Function `compare`
+
+Compares value to expected value, and works if one or both are arrays.
+
+Also allows epsilon to be an array.
+
+If mod==True, then compare(0, tau, 0) is True.
+
+### Function `check_types`
+
+Raise an assertion error for any problems with orbital `elements`.
+
+Checks that all of the attributes in the OsculatingElements object
+`elements` are present, have the correct type, and have the expected
+size.
+
+### Function `horizons_dict`
+
+Return a dictionary with keys that match labels used by Horizons.
+
+The data from this method is exactly the same as the data in the
+elements object and differs from it only in units.
+
+Returns an dictionary whose keys match the labels from Horizons:
+    EC = eccentricity
+    QR = periapsis distance
+    IN = inclination
+    OM = longitude of ascending node
+    W  = argument of periapsis
+    Tp = time of closest periapsis
+    N  = mean motion
+    MA = mean anomaly
+    TA = true anomaly
+    A  = semi-major axis
+    AD = apoapsis distance
+    PR = period
+
+Just like in Horizons, all angle values are in degrees, but the
+distance and time units can be specified with the `units` keyword,
+and must be one of the following:
+    'km_s' for kilometers and seconds
+    'km_d' for kilometers and days
+    'au_d' for au and days
+
+### Function `horizons_array`
+
+Return a numpy array containing data in the same order as horizons.
+
+The data from this method is exactly the same as the data in the
+elements object and differs from it only in units.
+
+Just like in Horizons, all angle values are in degrees, but the
+distance and time units can be specified with the `units` keyword,
+and must be one of the following:
+    'km_s' for kilometers and seconds
+    'km_d' for kilometers and days
+    'au_d' for au and days
+
+The shape of the array is ``(12,)`` if the time used to construct
+the position is a float, and ``(12, n)`` if the time is an array of
+length n.
+
+### Function `test_single_time`
+
+Tests creation of an OsculatingElements object with a single set of elements
+    
+
+### Function `test_multiple_times`
+
+Tests creation of an OsculatingElements object with multiple sets of elements
+    
+
+### Function `test_equatorial_km_d`
+
+Tests against data from Horizons in km and days, with equatorial reference plane
+    
+
+### Function `test_equatorial_km_s`
+
+Tests against data from Horizons in km and seconds, with equatorial reference plane
+    
+
+### Function `test_equatorial_au_d`
+
+Tests against data from Horizons in au and days, with equatorial reference plane
+    
+
+### Function `test_ecliptic_km_d`
+
+Tests against data from Horizons in km and days, with ecliptic reference plane
+    
+
+### Function `test_ecliptic_km_s`
+
+Tests against data from Horizons in km and seconds, with ecliptic reference plane
+    
+
+### Function `test_ecliptic_au_d`
+
+Tests against data from Horizons in au and days, with ecliptic reference plane
+    
+
+### Function `test_extreme_ellipse`
+
+Tests against data from Horizons for an orbit with eccentricity just less than 1
+    
+
+### Function `test_slightly_hyperbolic`
+
+Tests against data from Horizons for an orbit with eccentricity just over 1
+    
+
+### Function `test_periapsis_time`
+
+This tests the moment when the eccentricity of Io orbiting the sun
+transitions from just below 1 to just above 1. Periapsis time is
+calculated using M/n, and both M and n go to 0 as e goes to 1.
+Periapsis time of Io around the sun should change linearly over a very
+small time interval interval (a fraction of one second) during this
+transition, but instead periapsis time deviated from linear within .005s
+of e=1.
+
+One source of the deviation was the fact that M was being remapped to
+-pi to pi when e>1. Using M without remapping reduced the deviation when
+e>1. The second thing that reduced the deviation was widening the
+tolerance for the use of the parabolic periapsis time equation.
+
+This test makes sure these fixes don't regress by checking that the
+periapsis times don't deviate from linear by more than 1e-5 days within
+.005s of e=1.
+
+### Function `check_orbit`
+
+Checks that the given set of elements are calculated properly by
+elementslib.py
+
+Converts the given elements to state vectors using ele_to_vec, then uses
+those state vectors to create an OsculatingElements object, and then
+checks that the data in the OsculatingElements object matches the input
+elements.
+
+
+---
+
+# test_functions.md
+
+# Module docstring
+
+Tests for routines from the functions module.
+
+
+---
+
+# test_io.md
+
+# Module docstring
+
+Test whether Skyfield handles file download and file age correctly.
+
+
+---
+
+# test_io_parsing.md
+
+# Module docstring
+
+Tests of how well we parse various file formats.
+
+
+---
+
+# test_units.md
+
+# Module docstring
+
+Tests of whether units behave.
+
+### Function `needs_astropy`
+
+Skip `test` if AstroPy is not available.
+
+
+---
+
+# text_pck.md
+
+# Module docstring
+
+Parsing routines for JPL text PCK files.
+
+For an (incomplete) summary of the file format, look for the heading
+“NAIF Text Kernel Format” in the “PCK Required Reading”:
+
+https://naif.jpl.nasa.gov/pub/naif/toolkit_docs/C/req/pck.html
+
+### Function `load`
+
+Load PCK text kernel names and values into a ``variables`` dict.
+
+### Function `parse`
+
+Yield ``(name, equals, values)`` bytestrings from a PCK text kernel.
+
+This merely reads raw assignment statements; it doesn’t combine
+multiple ``+=`` assignments to create single values.  The byte
+string ``equals`` will be either ``b'='`` or ``b'+='``.  Scalars are
+returned as a ``values`` list one item long.
+
+### Function `_evaluate`
+
+Return a string, integer, or float parsed from a PCK text kernel.
+
+### Function `_parse_tokens`
+
+Yield all the tokens inside the data segments of a PCK text file.
+
+
+---
+
+# timelib.md
+
+## Class `Timescale`
+
+The data necessary to express dates in different timescales.
+
+A `Timescale` provides time objects with the data tables they need
+to translate between different time scales: the schedule of UTC leap
+seconds, and the value of ∆T over time.  Most programs create a
+single `Timescale` which they use to build their `Time` objects:
+
+>>> from skyfield.api import load
+>>> ts = load.timescale()
+>>> t = ts.utc(1980, 3, 1, 9, 30)
+>>> t
+<Time tt=2444299.896425741>
+
+See :ref:`downloading-timescale-files` if you are interested in
+checking how recent the data is in the files loaded by the
+timescale.
+
+## Class `Time`
+
+A single moment in history, or an array of several moments.
+
+Skyfield programs don’t usually instantiate this class directly, but
+instead build time objects using one of the timescale methods listed
+at `timescale-summary`.  If you do attempt the low-level operation
+of building a time object yourself, either leave ``tt_fraction`` at
+its default value of ``None`` — in which case Skyfield will assume
+the fraction is zero — or provide a ``tt_fraction`` array that has
+exactly the same dimensions as your ``tt`` array.
+
+### Function `julian_day`
+
+Given a calendar date, return a Julian day integer.
+
+Uses the proleptic Gregorian calendar unless ``julian_before`` is
+set to a specific Julian day, in which case the Julian calendar is
+used for dates older than that.
+
+### Function `julian_date`
+
+Given a proleptic Gregorian calendar date and time, build a Julian date.
+
+The difference between a “Julian day” and a “Julian date” is that
+the “day” is the integer part, while the “date” includes a fraction
+indicating the time.
+
+### Function `compute_calendar_date`
+
+Convert Julian day ``jd_integer`` into a calendar (year, month, day).
+
+Uses the proleptic Gregorian calendar unless ``julian_before`` is
+set to a specific Julian day, in which case the Julian calendar is
+used for dates older than that.
+
+### Function `calendar_tuple`
+
+Return a (year, month, day, hour, minute, second.fraction) tuple.
+
+### Function `tdb_minus_tt`
+
+Computes how far TDB is in advance of TT, given TDB.
+
+Given that the two time scales never diverge by more than 2ms, TT
+can also be given as the argument to perform the conversion in the
+other direction.
+
+### Function `build_delta_t`
+
+Return a function t→∆T, given recent real-world observations of ∆T.
+
+When asked for ∆T outside the range of the `delta_t_recent` table,
+Skyfield uses the splines for 720 BC – AD 2015 computed by Morrison,
+Stephenson, Hohenkerk, and Zawilski.  For dates that fall outside of
+the spines, we use the long-term parabola of Stephenson, Morrison,
+and Hohenkerk.
+
+### Function `build_delta_t_table`
+
+Deprecated: the Delta T interpolation table used in Skyfield <= 1.37.
+
+## Class `UTC`
+
+UTC
+
+### Function `now`
+
+Return the current date and time as a `Time` object.
+
+### Function `from_datetime`
+
+Return a `Time` for a Python ``datetime``.
+
+The ``datetime`` must be “timezone-aware”: it must have a time
+zone object as its ``tzinfo`` attribute instead of ``None``.
+
+.. versionadded:: 1.24
+
+### Function `from_datetimes`
+
+Return a `Time` for a list of Python ``datetime`` objects.
+
+The ``datetime`` objects must each be “timezone-aware”: they
+must each have a time zone object as their ``tzinfo`` attribute
+instead of ``None``.
+
+.. versionadded:: 1.24
+
+### Function `utc`
+
+Build a `Time` from a UTC `calendar date`.
+
+.. versionadded:: 1.24
+   Passing a Python ``datetime`` or a list of datetimes as the
+   first argument has been deprecated (and was never supported
+   for the other time scale methods).  Instead, use the methods
+   :meth:`~skyfield.timelib.Timescale.from_datetime()` and
+   :meth:`~skyfield.timelib.Timescale.from_datetimes()`.
+
+### Function `tai`
+
+Build a `Time` from an International Atomic Time `calendar date`.
+
+.. versionadded:: 1.6
+   Passing a Julian date with ``jd=`` has been deprecated;
+   instead, use :meth:`~skyfield.timelib.Timescale.tai_jd()`.
+
+### Function `tai_jd`
+
+Build a `Time` from an International Atomic Time Julian date.
+
+### Function `tt`
+
+Build a `Time` from a Terrestrial Time `calendar date`.
+
+.. versionadded:: 1.6
+   Passing a Julian date with ``jd=`` has been deprecated;
+   instead, use :meth:`~skyfield.timelib.Timescale.tt_jd()`.
+
+### Function `tt_jd`
+
+Build a `Time` from a Terrestrial Time Julian date.
+
+### Function `J`
+
+Build a `Time` from a Terrestrial Time Julian year or array.
+
+Julian years are convenient uniform periods of exactly 365.25
+days of Terrestrial Time, centered on 2000 January 1 12h TT =
+Julian year 2000.0.
+
+### Function `tdb`
+
+Build a `Time` from a Barycentric Dynamical Time `calendar date`.
+
+.. versionadded:: 1.6
+   Passing a Julian date with ``jd=`` has been deprecated;
+   instead, use :meth:`~skyfield.timelib.Timescale.tdb_jd()`.
+
+### Function `tdb_jd`
+
+Build a `Time` from a Barycentric Dynamical Time Julian date.
+
+### Function `ut1`
+
+Build a `Time` from a UT1 Universal Time `calendar date`.
+
+.. versionadded:: 1.6
+   Passing a Julian date with ``jd=`` has been deprecated;
+   instead, use :meth:`~skyfield.timelib.Timescale.ut1_jd()`.
+
+### Function `ut1_jd`
+
+Build a `Time` from a UT1 Universal Time Julian date.
+
+### Function `from_astropy`
+
+Build a Skyfield `Time` from an AstroPy time object.
+
+### Function `linspace`
+
+Return ``num`` times spaced uniformly between ``t0`` to ``t1``.
+
+This routine is named after, and powered by, the NumPy routine
+`linspace()`_.
+
+.. _linspace(): https://numpy.org/doc/stable/reference/generated/numpy.linspace.html
+
+### Function `astimezone`
+
+Convert to a Python ``datetime`` in a particular timezone ``tz``.
+
+If this time is an array, then an array of datetimes is returned
+instead of a single value.
+
+### Function `astimezone_and_leap_second`
+
+Convert to a Python ``datetime`` and leap second in a timezone.
+
+Convert this time to a Python ``datetime`` and a leap second::
+
+    dt, leap_second = t.astimezone_and_leap_second(tz)
+
+The argument ``tz`` should be a ``datetime`` compatible
+timezone.
+
+The leap second value is provided because a Python ``datetime``
+can only number seconds ``0`` through ``59``, but leap seconds
+have a designation of at least ``60``.  The leap second return
+value will normally be ``0``, but will instead be ``1`` if the
+date and time are a UTC leap second.  Add the leap second value
+to the ``second`` field of the ``datetime`` to learn the real
+name of the second.
+
+If this time is an array, then an array of ``datetime`` objects
+and an array of leap second integers is returned, instead of a
+single value each.
+
+### Function `toordinal`
+
+Return the proleptic Gregorian ordinal of the UTC date.
+
+This method makes Skyfield `Time` objects compatible with Python
+`datetime`_ objects, which also provide a ``toordinal()``
+method.  Thanks to this method, a `Time` can often be used
+directly as a coordinate for a plot.
+
+### Function `utc_datetime`
+
+Convert to a Python ``datetime`` in UTC.
+
+If this time is an array, then a list of datetimes is returned
+instead of a single value.
+
+### Function `utc_datetime_and_leap_second`
+
+Convert to a Python ``datetime`` in UTC, plus a leap second value.
+
+Convert this time to a `datetime`_ object and a leap second::
+
+    dt, leap_second = t.utc_datetime_and_leap_second()
+
+The leap second value is provided because a Python ``datetime``
+can only number seconds ``0`` through ``59``, but leap seconds
+have a designation of at least ``60``.  The leap second return
+value will normally be ``0``, but will instead be ``1`` if the
+date and time are a UTC leap second.  Add the leap second value
+to the ``second`` field of the ``datetime`` to learn the real
+name of the second.
+
+If this time is an array, then an array of ``datetime`` objects
+and an array of leap second integers is returned, instead of a
+single value each.
+
+### Function `utc_iso`
+
+Convert to an ISO 8601 string like ``2014-01-18T01:35:38Z`` in UTC.
+
+If this time is an array of dates, then a sequence of strings is
+returned instead of a single string.
+
+### Function `utc_jpl`
+
+Convert to a string like ``A.D. 2014-Jan-18 01:35:37.5000 UTC``.
+
+Returns a string for this date and time in UTC, in the format
+used by the JPL HORIZONS system.  If this time is an array of
+dates, then a sequence of strings is returned instead of a
+single string.
+
+### Function `utc_strftime`
+
+Format the UTC time using a Python datetime formatting string.
+
+This calls Python’s ``time.strftime()`` to format the date and
+time.  A single string is returned or else a whole array of
+strings, depending on whether this time object is an array.
+The most commonly used formats are:
+
+* ``%Y`` four-digit year, ``%y`` two-digit year
+* ``%m`` month number, ``%B`` name, ``%b`` abbreviation
+* ``%d`` day of month
+* ``%H`` hour
+* ``%M`` minute
+* ``%S`` second
+* ``%A`` day of week, ``%a`` its abbreviation
+
+The ``%Z`` and ``%z`` formats are not supported; instead, simply
+use the literal characters ``'UTC'`` in your format string.
+
+If the smallest time unit in your format is minutes or seconds,
+then the time is rounded to the nearest minute or second.
+Otherwise the value is truncated rather than rounded.
+
+### Function `_utc_tuple`
+
+Return UTC as (year, month, day, hour, minute, second.fraction).
+
+The `offset` in seconds is added to the UTC time before it is
+split into its components.  This is useful if the user is going
+to round the result before displaying it.  If the result is
+going to be displayed as seconds, for example, set `offset` to
+0.5 and then throw away the fraction; if the result is going to
+be displayed as minutes, set `offset` to 30.0 and then throw
+away the seconds; and so forth.
+
+### Function `_utc_seconds`
+
+Return integer seconds since JD 0.0, plus a 0 ≤ fraction < 1.
+
+### Function `tai_calendar`
+
+TAI as a (year, month, day, hour, minute, second) `calendar date`.
+
+### Function `tt_calendar`
+
+TT as a (year, month, day, hour, minute, second) `calendar date`.
+
+### Function `tdb_calendar`
+
+TDB as a (year, month, day, hour, minute, second) `calendar date`.
+
+### Function `ut1_calendar`
+
+UT1 as a (year, month, day, hour, minute, second) `calendar date`.
+
+### Function `tai_strftime`
+
+Format TAI with a datetime strftime() format string.
+
+### Function `tt_strftime`
+
+Format TT with a datetime strftime() format string.
+
+### Function `tdb_strftime`
+
+Format TDB with a datetime strftime() format string.
+
+### Function `ut1_strftime`
+
+Format UT1 with a datetime strftime() format string.
+
+### Function `M`
+
+3×3 rotation matrix: ICRS → equinox of this date.
+
+### Function `MT`
+
+3×3 rotation matrix: equinox of this date → ICRS.
+
+### Function `J`
+
+Return a floating point Julian year or array of years for this date.
+
+Julian years are convenient uniform periods of exactly 365.25
+days of Terrestrial Time, centered on 2000 January 1 12h TT =
+Julian year 2000.0.
+
+### Function `utc`
+
+A tuple ``(year, month, day, hour, minute, second)`` in UTC.
+
+### Function `gmst`
+
+Greenwich Mean Sidereal Time (GMST) in hours.
+
+### Function `gast`
+
+Greenwich Apparent Sidereal Time (GAST) in hours.
+
+### Function `nutation_matrix`
+
+Compute the 3×3 nutation matrix N for this date.
+
+### Function `precession_matrix`
+
+Compute the 3×3 precession matrix P for this date.
+
+### Function `to_astropy`
+
+Return an AstroPy object representing this time.
+
+
+---
+
+# toposlib.md
+
+# Module docstring
+
+Classes that represent a ‘topocentric’ position on the Earth’s surface.
+
+## Class `ITRSPosition`
+
+An |xyz| position in the Earth-centered Earth-fixed (ECEF) ITRS frame.
+
+## Class `GeographicPosition`
+
+A latitude-longitude-elevation position on Earth.
+
+Each instance of this class holds an |xyz| vector for a geographic
+position on, above, or below the Earth’s surface, in the ITRS
+reference frame: the international standard for an Earth-centered
+Earth-fixed (ECEF) reference frame.  Instead of instantiating this
+class directly, Skyfield users usually give a reference geoid the
+longitude and latitude they are interested in::
+
+    from skyfield.api import wgs84
+    topos = wgs84.latlon(37.3414, -121.6429)
+
+Once a geographic position has been created, here are its attributes
+and methods:
+
+## Class `Geoid`
+
+An Earth ellipsoid: maps latitudes and longitudes to |xyz| positions.
+
+Instead of creating their own geoid object, most Skyfield users
+simply use the `wgs84` object that comes built-in.
+
+The math for turning a position into latitude and longitude is based
+on Dr. T.S. Kelso's quite helpful article `Orbital Coordinate
+Systems, Part III <https://www.celestrak.org/columns/v02n03/>`_.
+
+## Class `Topos`
+
+Deprecated: use ``wgs84.latlon()`` or ``iers2010.latlon()`` instead.
+
+### Function `_at`
+
+Compute GCRS position and velocity at time `t`.
+
+### Function `lst_hours_at`
+
+Return the Local Apparent Sidereal Time, in hours, at time ``t``.
+
+This location’s Local Apparent Sidereal Time (LAST) is the right
+ascension of the zenith at the time ``t``, as measured against
+the “true” Earth equator and equinox (rather than the fictional
+“mean” equator and equinox, which ignore the Earth’s nutation).
+
+### Function `refract`
+
+Predict how the atmosphere will refract a position.
+
+Given a body that is standing ``altitude_degrees`` above the
+true horizon, return an ``Angle`` predicting its apparent
+altitude given the supplied temperature and pressure, either of
+which can be the string ``'standard'`` to use 10°C and a
+pressure of 1010 mbar adjusted for the elevation of this
+geographic location.
+
+### Function `rotation_at`
+
+Compute rotation from GCRS to this location’s altazimuth system.
+
+### Function `polar_radius`
+
+The Earth’s polar radius, as a :class:`~skyfield.units.Distance`.
+
+### Function `latlon`
+
+Return a `GeographicPosition` for a given latitude and longitude.
+
+The longitude and latitude should both be specified in degrees.
+If no elevation in meters is supplied, the returned position
+will lie on the surface of the ellipsoid.  Longitude is positive
+towards the east, so supply a negative number for west::
+
+    from skyfield.api import wgs84
+    observatory = wgs84.latlon(37.3414, -121.6429)  # 121.6° West
+
+You can avoid remembering which directions are negative by using
+Skyfield’s compass direction constants, which have the values +1
+and −1::
+
+    from skyfield.api import N, S, E, W
+    observatory = wgs84.latlon(37.3414 * N, 121.6429 * W)
+
+### Function `latlon_of`
+
+Return the latitude and longitude of a ``position``.
+
+The position’s ``.center`` must be 399, the center of the Earth.
+Geodetic latitude and longitude are returned as a pair of
+:class:`~skyfield.units.Angle` objects.
+
+### Function `height_of`
+
+Return the height above the Earth’s ellipsoid of a ``position``.
+
+The position’s ``.center`` must be 399, the center of the Earth.
+A :class:`~skyfield.units.Distance` is returned giving the
+position’s geodetic height above the Earth’s surface.
+
+### Function `geographic_position_of`
+
+Return the `GeographicPosition` of a ``position``.
+
+The position’s ``.center`` must be 399, the center of the Earth.
+A `GeographicPosition` is returned giving the position’s
+geodetic ``latitude`` and ``longitude``, and an ``elevation``
+above or below the surface of the ellipsoid.
+
+### Function `subpoint_of`
+
+Return the point on the ellipsoid directly below a ``position``.
+
+The position’s ``.center`` must be 399, the center of the Earth.
+Returns a `GeographicPosition` giving the geodetic ``latitude``
+and ``longitude`` that lie directly below the input position,
+and an ``elevation`` above the ellipsoid of zero.
+
+
+---
+
+# trigonometry.md
+
+# Module docstring
+
+Routines whose currency is Angle objects.
+
+### Function `position_angle_of`
+
+Return the position angle of one position with respect to another.
+
+Each argument should be a tuple whose first two items are
+:class:`~skyfield.units.Angle` objects, like the tuples returned by
+:meth:`~skyfield.positionlib.ICRF.radec()`,
+:meth:`~skyfield.positionlib.ICRF.frame_latlon()`, and
+:meth:`~skyfield.positionlib.ICRF.altaz()`.
+
+If one of the two angle items is signed (if its ``.signed``
+attribute is true), then that angle is used as the latitude and the
+other as the longitude; otherwise the first argument is assumed to
+be the latitude.
+
+If the longitude has a ``.preference`` attribute of ``'hours'``, it
+is assumed to be a right ascension which is positive towards the
+east.  The position angle returned will be 0 degrees if position #2
+is directly north of position #1 on the celestial sphere, 90 degrees
+if east, 180 if south, and 270 if west.
+
+Otherwise, the longitude is assumed to be azimuth, which measures
+north to east around the horizon.  The position angle returned will
+be 0 degrees if position #2 is directly above position #1 in the
+sky, 90 degrees to its left, 180 if below, and 270 if to the right.
+
+>>> from skyfield.trigonometry import position_angle_of
+>>> from skyfield.units import Angle
+>>> a = Angle(degrees=0), Angle(degrees=0)
+>>> b = Angle(degrees=1), Angle(degrees=1)
+>>> position_angle_of(a, b)
+<Angle 315deg 00' 15.7">
+
+
+---
+
+# tycho2.md
+
+### Function `load_dataframe`
+
+Given an open file for ``tyc_main.dat``, return a parsed dataframe.
+
+If the file is gzipped, it will be automatically uncompressed.
+
+
+---
+
+# units.md
+
+# Module docstring
+
+Simple distance, velocity, and angle support for Skyfield.
+
+## Class `UnpackingError`
+
+You cannot iterate directly over a Skyfield measurement object.
+
+## Class `Unit`
+
+A measurement that can be expressed in several choices of unit.
+
+## Class `getset`
+
+Unit name that serves as both a class constructor and instance attribute.
+
+This supports two use cases:
+
+* When called as a class method like ``Distance.km(5.0)``, we build
+  and return an instance of ``Distance`` whose ``km`` has been set
+  to 5.0 and whose base unit ``m``, using the appropriate conversion
+  factor, has been set to 5000.0.
+
+* When invoked like ``d.km`` on a particular ``Distance`` that
+  doesn't yet have a ``km`` attribute (which otherwise Python itself
+  would have returned), we apply the conversion factor to ``d.m``
+  and return the result.
+
+## Class `Distance`
+
+A distance, stored internally as au and available in other units.
+
+You can initialize a ``Distance`` by providing a single float or a
+float array as either an ``au=``, ``km=``, or ``m=`` parameter.
+
+You can access the magnitude of the distance with its three
+attributes ``.au``, ``.km``, and ``.m``.  By default a distance
+prints itself in astronomical units (au), but you can take control
+of the formatting and choice of units yourself using standard Python
+numeric formatting:
+
+>>> d = Distance(au=1)
+>>> print(d)
+1.0 au
+>>> print('{:.2f} km'.format(d.km))
+149597870.70 km
+
+## Class `Velocity`
+
+A velocity, stored internally as au/day and available in other units.
+
+You can initialize a ``Velocity`` by providing a float or float
+array to its ``au_per_d=`` parameter.
+
+## Class `AngleRate`
+
+The rate at which an angle is changing.
+
+## Class `Rate`
+
+Measurement whose denominator is time.
+
+### Function `_sexagesimalize_to_float`
+
+Decompose `value` into units, minutes, and seconds.
+
+Note that this routine is not appropriate for displaying a value,
+because rounding to the smallest digit of display is necessary
+before showing a value to the user.  Use `_sexagesimalize_to_int()`
+for data being displayed to the user.
+
+This routine simply decomposes the floating point `value` into a
+sign (+1.0 or -1.0), units, minutes, and seconds, returning the
+result in a four-element tuple.
+
+>>> _sexagesimalize_to_float(12.05125)
+(1.0, 12.0, 3.0, 4.5)
+>>> _sexagesimalize_to_float(-12.05125)
+(-1.0, 12.0, 3.0, 4.5)
+
+### Function `_sexagesimalize_to_int`
+
+Decompose `value` into units, minutes, seconds, and second fractions.
+
+This routine prepares a value for sexagesimal display, with its
+seconds fraction expressed as an integer with `places` digits.  The
+result is a tuple of five integers:
+
+``(sign [either +1 or -1], units, minutes, seconds, second_fractions)``
+
+The integers are properly rounded per astronomical convention so
+that, for example, given ``places=3`` the result tuple ``(1, 11, 22,
+33, 444)`` means that the input was closer to 11u 22' 33.444" than
+to either 33.443" or 33.445" in its value.
+
+### Function `_sfmt`
+
+Decompose floating point `value` into sexagesimal, and format.
+
+### Function `wms`
+
+Return a quantity expressed with 1/60 minutes and 1/3600 seconds.
+
+### Function `_unsexagesimalize`
+
+Return `value` after interpreting a (units, minutes, seconds) tuple.
+
+When `value` is not a tuple, it is simply returned.
+
+>>> _unsexagesimalize(3.25)
+3.25
+
+An input tuple is interpreted as units, minutes, and seconds.  Note
+that only the sign of `units` is significant!  So all of the
+following tuples convert into exactly the same value:
+
+>>> '%f' % _unsexagesimalize((-1, 2, 3))
+'-1.034167'
+>>> '%f' % _unsexagesimalize((-1, -2, 3))
+'-1.034167'
+>>> '%f' % _unsexagesimalize((-1, -2, -3))
+'-1.034167'
+
+### Function `_interpret_angle`
+
+Return an angle in radians from one of two arguments.
+
+It is common for Skyfield routines to accept both an argument like
+`alt` that takes an Angle object as well as an `alt_degrees` that
+can be given a bare float or a sexagesimal tuple.  A pair of such
+arguments can be passed to this routine for interpretation.
+
+### Function `__getitem__`
+
+Tell users to ask for a specific unit before indexing or slicing.
+
+### Function `length`
+
+Compute the length when this is an |xyz| vector.
+
+The Euclidean vector length of this vector is returned as a new
+:class:`~skyfield.units.Distance` object.
+
+>>> from skyfield.api import Distance
+>>> d = Distance(au=[1, 1, 0])
+>>> d.length()
+<Distance 1.41421 au>
+
+### Function `light_seconds`
+
+Return the length of this vector in light seconds.
+
+### Function `to`
+
+Convert this distance to the given AstroPy unit.
+
+### Function `to`
+
+Convert this velocity to the given AstroPy unit.
+
+### Function `radians`
+
+:class:`Rate` of change in radians.
+
+### Function `degrees`
+
+:class:`Rate` of change in degrees.
+
+### Function `arcminutes`
+
+:class:`Rate` of change in arcminutes.
+
+### Function `arcseconds`
+
+:class:`Rate` of change in arcseconds.
+
+### Function `mas`
+
+:class:`Rate` of change in milliarcseconds.
+
+### Function `per_day`
+
+Units per day of Terrestrial Time.
+
+### Function `per_hour`
+
+Units per hour of Terrestrial Time.
+
+### Function `per_minute`
+
+Units per minute of Terrestrial Time.
+
+### Function `per_second`
+
+Units per second of Terrestrial Time.
+
+### Function `hours`
+
+Hours (24\ |h| in a circle).
+
+### Function `degrees`
+
+Degrees (360° in a circle).
+
+### Function `arcminutes`
+
+Return the angle in arcminutes.
+
+### Function `arcseconds`
+
+Return the angle in arcseconds.
+
+### Function `mas`
+
+Return the angle in milliarcseconds.
+
+### Function `hms`
+
+Convert to a tuple (hours, minutes, seconds).
+
+All three quantities will have the same sign as the angle itself.
+
+### Function `signed_hms`
+
+Convert to a tuple (sign, hours, minutes, seconds).
+
+The ``sign`` will be either +1 or -1, and the other quantities
+will all be positive.
+
+### Function `hstr`
+
+Return a string like ``12h 07m 30.00s``; see `Formatting angles`.
+
+.. versionadded:: 1.39
+
+   Added the ``format=`` parameter.
+
+### Function `dms`
+
+Convert to a tuple (degrees, minutes, seconds).
+
+All three quantities will have the same sign as the angle itself.
+
+### Function `signed_dms`
+
+Convert to a tuple (sign, degrees, minutes, seconds).
+
+The ``sign`` will be either +1 or -1, and the other quantities
+will all be positive.
+
+### Function `dstr`
+
+Return a string like ``181deg 52' 30.0"``; see `Formatting angles`.
+
+.. versionadded:: 1.39
+
+   Added the ``format=`` parameter.
+
+### Function `to`
+
+Convert this angle to the given AstroPy unit.
+
+
+---
+
+# vectorlib.md
+
+# Module docstring
+
+Vector functions and their composition.
+
+## Class `VectorFunction`
+
+Given a time, computes a corresponding position.
+
+### Function `_correct_for_light_travel_time`
+
+Return a light-time corrected astrometric position and velocity.
+
+Given an `observer` that is a `Barycentric` position somewhere in
+the solar system, compute where in the sky they will see the body
+`target`, by computing the light-time between them and figuring out
+where `target` was back when the light was leaving it that is now
+reaching the eyes or instruments of the `observer`.
+
+### Function `at`
+
+At time ``t``, compute the target's position relative to the center.
+
+If ``t`` is an array of times, then the returned position object
+will specify as many positions as there were times.  The kind of
+position returned depends on the value of the ``center``
+attribute:
+
+* Solar System Barycenter: :class:`~skyfield.positionlib.Barycentric`
+* Center of the Earth: :class:`~skyfield.positionlib.Geocentric`
+* Anything else: :class:`~skyfield.positionlib.ICRF`
