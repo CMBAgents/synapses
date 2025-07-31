@@ -16,11 +16,13 @@ import CopyButton from './copy-button';
 export default function ChatSimple({
   programId,
   greeting,
-  selectedModelId = ''
+  selectedModelId = '',
+  libraries = []
 }: {
   programId: string;
   greeting: string;
   selectedModelId?: string;
+  libraries?: Array<{ name: string; description?: string }>;
 }) {
   // Use a ref to store messages for each program ID
   const messagesMapRef = useRef<Record<string, Message[]>>({});
@@ -28,6 +30,7 @@ export default function ChatSimple({
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
+  const [selectedLibrary, setSelectedLibrary] = useState<string>("");
   const messageId = useRef(0);
   const abortControllerRef = useRef<AbortController | null>(null);
 
@@ -356,9 +359,55 @@ export default function ChatSimple({
     <div className="flex flex-col h-full">
       {/* Chat messages area - scrollable */}
       <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
-        <ChatMessage
-          message={greetingMessageRef.current}
-        />
+        {/* Library selector takes full space */}
+        <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-lg">
+          <div className="flex items-center justify-between">
+            {/* Library selector */}
+            <div className="flex-1 mr-6">
+              <label htmlFor="library-select" className="block text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3 tracking-wide">
+                Choose Library
+              </label>
+              <div className="relative">
+                <select
+                  id="library-select"
+                  value={selectedLibrary}
+                  onChange={(e) => setSelectedLibrary(e.target.value)}
+                  className="w-full px-4 py-3 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-white/60 focus:border-white/70 transition-all duration-300 hover:bg-white/50 hover:border-white/60 appearance-none cursor-pointer"
+                >
+                  <option value="">Select a library...</option>
+                  {libraries.map((library, index) => (
+                    <option key={index} value={library.name} className="py-2">
+                      {library.name}
+                    </option>
+                  ))}
+                </select>
+                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+            </div>
+            
+            {/* Selected library display */}
+            {selectedLibrary && (
+              <div className="bg-gradient-to-r from-white/25 to-white/15 backdrop-blur-sm rounded-xl p-4 border border-white/30 shadow-inner min-w-[200px]">
+                <div className="flex items-center mb-2">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                  <div className="font-semibold text-gray-800 dark:text-gray-100 text-sm">
+                    {selectedLibrary}
+                  </div>
+                </div>
+                {libraries.find(lib => lib.name === selectedLibrary)?.description && (
+                  <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {libraries.find(lib => lib.name === selectedLibrary)?.description}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+        
         {currentMessages.map(m =>
           <ChatMessage
             key={m.id}
@@ -371,17 +420,20 @@ export default function ChatSimple({
       <div className="bg-almond-beige/80 backdrop-blur-sm border-t border-white/20 p-4">
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-center space-x-4">
-            <div className="flex-1">
+            <div className="flex-1 relative">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 z-10">
+                <AiOutlineRobot className="w-5 h-5" />
+              </div>
               <textarea
                 ref={textareaRef}
                 disabled={isLoading}
                 autoFocus
                 rows={1}
-                className="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="w-full pl-10 pr-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
                 onChange={handlePromptChange}
                 onKeyDown={handleKeyDown}
                 value={prompt}
-                placeholder={isLoading ? "Thinking..." : "Ask a question..."} />
+                placeholder={isLoading ? "Thinking..." : "How can I help you?"} />
             </div>
             {isLoading ? (
               isStreaming ? (

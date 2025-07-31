@@ -8,6 +8,7 @@ import ThemeWrapper from './theme-wrapper';
 import { Program } from '@/app/utils/types';
 import { loadConfig } from '@/app/utils/config';
 import { preloadContext } from '@/app/utils/context';
+import { loadAstronomyData, loadFinanceData } from '@/app/utils/domain-loader';
 
 interface ChatContainerProps {
   programs: Program[];
@@ -58,12 +59,23 @@ export default function ChatContainer({
   // Note: We no longer check the number of available models to allow for fallback models
   const useSimpleMode = config.simpleMode === true && programs.length === 1;
 
+  // Load libraries based on the active program
+  const getLibraries = () => {
+    if (activeProgram === 'astronomy') {
+      return loadAstronomyData().libraries;
+    } else if (activeProgram === 'finance') {
+      return loadFinanceData().libraries;
+    }
+    return [];
+  };
+
   return (
     <div className="flex flex-col w-full mx-auto h-full">
       <ChatSimple
         programId={activeProgram}
         greeting={config.greeting || "How can I help you?"}
         selectedModelId={selectedModelId}
+        libraries={getLibraries()}
       />
     </div>
   );
