@@ -17,19 +17,19 @@ export default async function MainPage() {
       <div className="relative z-10 mx-auto my-4 sm:my-8 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-white">
         {/* Header with back button */}
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold">
+          <h1 className="text-3xl font-bold font-jersey">
             CMBAgent Info
           </h1>
           <a 
             href="/landing" 
-            className="text-blue-400 hover:text-blue-300 transition-colors text-sm"
+            className="text-blue-400 hover:text-blue-300 transition-colors text-sm font-inter"
           >
             ← Back to Landing
           </a>
         </div>
 
         {/* Description */}
-        <p className="text-center text-lg mb-8 max-w-2xl mx-auto italic font-semibold">
+        <p className="text-center text-lg mb-8 max-w-2xl mx-auto italic font-semibold font-inter">
           A <strong>next-generation chatbot</strong> fluent in the language of the <strong>100 most-starred GitHub libraries</strong> in finance and astronomy. From <strong>portfolio optimization</strong> to <em>cosmic microwave background</em> analysis, it instantly bridges <strong>code and insight</strong> — no setup required, just <em>smart execution.</em>
         </p>
 

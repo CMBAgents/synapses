@@ -20,28 +20,32 @@ export default function DomainSelector() {
   };
 
   return (
-    <main className="bg-main">
-      <div className="sober-overlay fixed inset-0 z-0"></div>
+    <main 
+      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
+      style={{ backgroundImage: "url('/pexels-jean-luc-benazet-753072919-19025281.jpg')" }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
       {/* Content above overlay */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-main">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-white page-fade-in">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-6xl font-heading mb-6 text-main">
+        <div className="text-center mb-12 content-fade-in">
+          <h1 className="text-5xl md:text-7xl font-jersey mb-6 text-white">
             Choose Your Domain
           </h1>
-          <p className="text-xl md:text-2xl text-muted max-w-3xl mx-auto">
+          <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto font-inter">
             Select the domain you want to explore with our AI assistant
           </p>
         </div>
 
         {/* Domain Cards */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full content-fade-in">
           {domains.map((domain, index) => (
             <div
               key={domain.id}
               className={`
-                relative group cursor-pointer transform transition-all duration-500 ease-out card-shadow
-                bg-card border border-main
+                relative group cursor-pointer transform transition-all duration-500 ease-out
+                bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl
                 ${isAnimating && selectedDomain === domain.id 
                   ? 'scale-110 rotate-3' 
                   : 'hover:scale-105 hover:-rotate-1'
@@ -57,7 +61,7 @@ export default function DomainSelector() {
               onClick={() => handleDomainSelect(domain.id)}
             >
               {/* Card Content */}
-              <div className="relative rounded-2xl p-8 transition-all duration-500">
+              <div className="relative p-8 transition-all duration-500">
                 {/* Domain Icon */}
                 <div className={`
                   text-6xl mb-6 transition-all duration-500
@@ -70,12 +74,12 @@ export default function DomainSelector() {
                 </div>
 
                 {/* Domain Title */}
-                <h2 className="text-2xl md:text-3xl font-heading mb-4 text-main">
+                <h2 className="text-2xl md:text-3xl font-heading mb-4 text-white">
                   {domain.name}
                 </h2>
 
                 {/* Domain Description */}
-                <p className="text-muted text-lg leading-relaxed mb-6">
+                <p className="text-white text-lg leading-relaxed mb-6 font-inter">
                   {domain.description}
                 </p>
 
@@ -83,8 +87,8 @@ export default function DomainSelector() {
                 <div className={`
                   absolute top-4 right-4 w-6 h-6 rounded-full border-2 transition-all duration-300
                   ${selectedDomain === domain.id 
-                    ? 'border-blue-400 bg-blue-400' 
-                    : 'border-main group-hover:border-blue-400/60'
+                    ? 'border-black bg-black' 
+                    : 'border-white/60 group-hover:border-black/60'
                   }
                 `}>
                   {selectedDomain === domain.id && (
@@ -100,21 +104,16 @@ export default function DomainSelector() {
         <div className="mt-12">
           <button
             onClick={() => router.push('/landing')}
-            className="btn-accent px-6 py-3 text-lg font-semibold"
+            className="bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 hover:bg-white/30 hover:border-white/50 shadow-lg hover:shadow-xl font-inter nav-transition"
           >
             ← Back to Landing
           </button>
         </div>
 
-        {/* Loading Animation */}
+                {/* Loading Animation */}
         {isAnimating && (
           <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-400 mx-auto mb-4"></div>
-                              <p className="text-main text-xl font-heading">
-                Loading {selectedDomain === 'astronomy' ? 'Astronomy' : 'Finance'} domain...
-              </p>
-            </div>
+            <div className="animate-spin rounded-full h-12 w-12 border-2 border-white/30 border-t-white"></div>
           </div>
         )}
       </div>

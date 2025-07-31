@@ -217,7 +217,13 @@ export async function preloadContext(programId: string): Promise<void> {
   try {
     const program = getProgramById(programId) as Program;
 
+    // For dynamic programs (astronomy, finance) that don't exist in config.json,
+    // we don't need to preload context since they don't have contextFiles
     if (!program) {
+      // Don't log error for dynamic programs that are expected to not exist in config
+      if (programId === 'astronomy' || programId === 'finance') {
+        return;
+      }
       console.error(`Program not found for preloading: ${programId}`);
       return;
     }

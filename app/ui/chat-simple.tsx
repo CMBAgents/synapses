@@ -353,8 +353,9 @@ export default function ChatSimple({
   // No longer need handleModelChange as the model selector is moved to the container
 
   return (
-    <div className="flex flex-col bg-white dark:bg-gray-800">
-      <div className="p-2">
+    <div className="flex flex-col h-full">
+      {/* Chat messages area - scrollable */}
+      <div className="flex-1 overflow-y-auto px-4 py-6 space-y-4">
         <ChatMessage
           message={greetingMessageRef.current}
         />
@@ -365,47 +366,52 @@ export default function ChatSimple({
           />
         )}
       </div>
-      <div className="p-2 border-t border-gray-300 dark:border-gray-700">
-        {/* Chat input form */}
-        <form onSubmit={handleSubmit} className="flex">
-          <textarea
-            ref={textareaRef}
-            disabled={isLoading}
-            autoFocus
-            rows={1}
-            className="border border-gray-300 dark:border-gray-700 rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 resize-none overflow-hidden min-h-[38px]"
-            onChange={handlePromptChange}
-            onKeyDown={handleKeyDown}
-            value={prompt}
-            placeholder={isLoading ? "Thinking..." : "Ask a question..."} />
-          {isLoading ? (
-            isStreaming ? (
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleCancelStream();
-                }}
-                className="ml-2 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none"
-              >
-                <ChatSpinner color="white" />
-              </button>
+
+      {/* Input panel - fixed at bottom */}
+      <div className="bg-almond-beige/80 backdrop-blur-sm border-t border-white/20 p-4">
+        <div className="max-w-4xl mx-auto">
+          <form onSubmit={handleSubmit} className="flex items-center space-x-4">
+            <div className="flex-1">
+              <textarea
+                ref={textareaRef}
+                disabled={isLoading}
+                autoFocus
+                rows={1}
+                className="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
+                onChange={handlePromptChange}
+                onKeyDown={handleKeyDown}
+                value={prompt}
+                placeholder={isLoading ? "Thinking..." : "Ask a question..."} />
+            </div>
+            {isLoading ? (
+              isStreaming ? (
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleCancelStream();
+                  }}
+                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white hover:bg-white/30 transition-colors duration-200"
+                >
+                  <ChatSpinner color="currentColor" />
+                </button>
+              ) : (
+                <button
+                  disabled
+                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white"
+                >
+                  <ChatSpinner color="currentColor" />
+                </button>
+              )
             ) : (
               <button
-                disabled
-                className="ml-2 bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none"
+                disabled={prompt.length === 0}
+                className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white hover:bg-white/30 transition-colors duration-200 disabled:opacity-50"
               >
-                <ChatSpinner color="white" />
+                <AiOutlineSend />
               </button>
-            )
-          ) : (
-            <button
-              disabled={prompt.length === 0}
-              className="ml-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none"
-            >
-              <AiOutlineSend />
-            </button>
-          )}
-        </form>
+            )}
+          </form>
+        </div>
       </div>
     </div>
   );
@@ -432,7 +438,7 @@ function ChatMessage({ message }: { message: Message }) {
     : message.content;
 
   return (
-    <div className={`flex rounded-lg text-gray-700 dark:text-gray-200 px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-blue-50 border-blue-100 dark:bg-blue-900 dark:border-blue-800' : 'bg-white border-gray-200 dark:bg-gray-800 dark:border-gray-700'}`}>
+    <div className={`flex rounded-lg text-gray-700 dark:text-gray-200 px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-blue-50 border-blue-100 dark:bg-blue-900 dark:border-blue-800' : 'bg-white/20 backdrop-blur-sm border-white/30 dark:bg-gray-800/20 dark:border-gray-700'}`}>
       <div className="text-2xl sm:text-3xl flex-shrink-0 flex items-start pt-1">
         {displayRole(message.role)}
       </div>

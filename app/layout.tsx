@@ -4,13 +4,12 @@ import "./globals.css";
 import "katex/dist/katex.min.css";
 import { ThemeProvider } from "./context/theme-context";
 import CopyScript from "./ui/copy-script";
-import FloatingMenu from "./ui/floatingmenu";
 
-// Import JetBrains Mono font for headings (professional monospace font)
-import { JetBrains_Mono } from "next/font/google";
+// Import fonts for headings
+import { Jersey_10 } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
-const headingFont = JetBrains_Mono({ weight: "400", subsets: ["latin"], variable: "--font-heading" });
+const jerseyFont = Jersey_10({ weight: "400", subsets: ["latin"], variable: "--font-jersey" });
 
 export const metadata: Metadata = {
   title: "Cosmology Tools Help Assistant",
@@ -26,7 +25,7 @@ export default async function RootLayout({
   // No runtime context generation is needed
 
   return (
-    <html lang="en" suppressHydrationWarning className={`${inter.className} ${headingFont.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${inter.className} ${jerseyFont.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
         <script
@@ -146,7 +145,6 @@ export default async function RootLayout({
       <body className="min-h-screen" suppressHydrationWarning>
         <ThemeProvider>
           {children}
-          <FloatingMenu />
           <CopyScript />
         </ThemeProvider>
       </body>

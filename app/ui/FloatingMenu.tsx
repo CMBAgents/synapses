@@ -35,50 +35,54 @@ export default function FloatingMenu() {
 
   return (
     <div
-      className="fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50"
+      className="relative z-50"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <button
         className={`
-          relative rounded-full w-14 h-14 flex items-center justify-center
-          transition-colors duration-300 shadow-md focus:outline-none focus:ring-4
-          ${hovered
-            ? "bg-white dark:bg-neutral-800"
-            : "bg-white dark:bg-black"}
-          text-black dark:text-white
-          focus:ring-neutral-400 dark:focus:ring-white
+          relative rounded-full w-12 h-12 flex items-center justify-center
+          transition-all duration-300 shadow-lg focus:outline-none focus:ring-2
+          bg-white/20 backdrop-blur-md border border-white/30
+          text-white hover:bg-white/30 hover:border-white/50 hover:scale-110
+          focus:ring-white/50
         `}
-        aria-label="Ouvrir le menu"
-        onClick={() => router.push(destination)}
+        aria-label="Menu de navigation"
       >
-        {/* Cercle au centre */}
-        <span
-          className="absolute w-10 h-10 rounded-full border-2 border-current pointer-events-none"
-          aria-hidden="true"
-        ></span>
-
         {/* Icône ☰ */}
-        <span
-          className={`relative text-2xl select-none transition-opacity duration-300 ${
-            hovered ? "opacity-0" : "opacity-100"
-          }`}
-        >
+        <span className="text-lg select-none">
           ☰
         </span>
       </button>
 
-      {/* Texte au survol */}
-      {hovered && (
-        <div
-          className="absolute bottom-full mb-3 left-1/2 transform -translate-x-1/2
-                     bg-white dark:bg-black shadow-lg rounded-lg px-5 py-2
-                     text-black dark:text-white whitespace-nowrap
-                     text-center text-lg font-semibold z-60"
+      {/* Menu au survol avec animation */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-full ml-3 flex flex-col gap-2">
+        {/* Premier bouton - Chat/Leaderboard */}
+        <button
+          onClick={() => router.push(isOnAstronomyLeaderboard || isOnFinanceLeaderboard ? 
+            (isOnAstronomyLeaderboard ? "/astronomy" : "/finance") : 
+            (isOnAstronomyPage ? "/astronomy/leaderboard" : "/finance/leaderboard"))}
+          className={`w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg transition-all duration-200 px-4 py-3 text-white hover:bg-white/20 text-left font-inter whitespace-nowrap ${
+            hovered 
+              ? 'opacity-100 transform translate-x-0 scale-100' 
+              : 'opacity-0 transform translate-x-2 scale-95 pointer-events-none'
+          }`}
         >
           {isOnAstronomyLeaderboard || isOnFinanceLeaderboard ? "Chat" : "Leaderboard"}
-        </div>
-      )}
+        </button>
+        
+        {/* Deuxième bouton - Change Domain */}
+        <button
+          onClick={() => router.push("/domain-selector")}
+          className={`w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg transition-all duration-200 px-4 py-3 text-white hover:bg-white/20 text-left font-inter whitespace-nowrap ${
+            hovered 
+              ? 'opacity-100 transform translate-x-0 scale-100' 
+              : 'opacity-0 transform translate-x-2 scale-95 pointer-events-none'
+          }`}
+        >
+          Change Domain
+        </button>
+      </div>
     </div>
   );
 }
