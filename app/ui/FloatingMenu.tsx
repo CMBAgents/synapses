@@ -54,7 +54,7 @@ export default function FloatingMenu() {
                      text-black dark:text-white whitespace-nowrap
                      text-center text-lg font-semibold z-60"
         >
-          {isOnHomePage ? "Leaderboard" : "Select a Library"}
+          {isOnHomePage ? "Leaderboard" : "Chatbot"}
         </div>
       )}
     </div>
