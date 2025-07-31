@@ -8,8 +8,30 @@ export default function FloatingMenu() {
   const router = useRouter();
   const pathname = usePathname();
 
-  const isOnHomePage = pathname === "/";
-  const destination = isOnHomePage ? "/page2" : "/";
+  // Check if we're on a domain page
+  const isOnAstronomyPage = pathname === "/astronomy";
+  const isOnFinancePage = pathname === "/finance";
+  const isOnAstronomyLeaderboard = pathname === "/astronomy/leaderboard";
+  const isOnFinanceLeaderboard = pathname === "/finance/leaderboard";
+  
+  // Determine destination based on current page
+  let destination;
+  if (isOnAstronomyPage) {
+    destination = "/astronomy/leaderboard"; // Go to astronomy leaderboard
+  } else if (isOnFinancePage) {
+    destination = "/finance/leaderboard"; // Go to finance leaderboard
+  } else if (isOnAstronomyLeaderboard) {
+    destination = "/astronomy"; // Go back to astronomy chat
+  } else if (isOnFinanceLeaderboard) {
+    destination = "/finance"; // Go back to finance chat
+  } else {
+    destination = "/domain-selector"; // Default fallback
+  }
+
+  // Don't show the floating menu on landing page or domain selector
+  if (pathname === "/landing" || pathname === "/domain-selector") {
+    return null;
+  }
 
   return (
     <div
@@ -54,7 +76,7 @@ export default function FloatingMenu() {
                      text-black dark:text-white whitespace-nowrap
                      text-center text-lg font-semibold z-60"
         >
-          {isOnHomePage ? "Leaderboard" : "Chatbot"}
+          {isOnAstronomyLeaderboard || isOnFinanceLeaderboard ? "Chat" : "Leaderboard"}
         </div>
       )}
     </div>

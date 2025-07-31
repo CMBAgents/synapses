@@ -8,12 +8,28 @@ html {
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-  --foreground-rgb-dark: 255, 255, 255;
-  --background-rgb-dark: 30, 30, 30;
-  --chat-bg-dark: 22, 27, 34;
-  --chat-message-bg-dark: 36, 41, 47;
+  --font-heading: 'JetBrains Mono', monospace;
+  --color-bg-main: #181c20;
+  --color-bg-overlay: #23272b;
+  --color-bg-card: #23272b;
+  --color-text-main: #e5e7eb;
+  --color-text-muted: #b0b4ba;
+  --color-accent: #d4a574;
+  --color-accent-dark: #a67c52;
+  --color-border: #2d3238;
+  --color-beige-light: #f5f5dc;
+  --color-beige-dark: #8b7355;
+}
+
+/* Headings use JetBrains Mono */
+h1, .heading-font, .font-heading {
+  font-family: var(--font-heading), monospace;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+h2, h3, h4 {
+  font-family: var(--font-heading), monospace;
+  font-weight: 400;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -25,13 +41,44 @@ html {
 
 /* Apply light/dark mode to body */
 body {
-  background-color: #ffffff;
-  color: rgb(var(--foreground-rgb));
+  background: var(--color-bg-main);
+  color: var(--color-text-main);
 }
 
-.dark body {
-  background-color: rgb(var(--chat-bg-dark));
-  color: rgb(var(--foreground-rgb-dark));
+.bg-main {
+  background: var(--color-bg-main) !important;
+}
+.bg-overlay {
+  background: var(--color-bg-overlay) !important;
+}
+.bg-card {
+  background: var(--color-bg-card) !important;
+}
+.text-main {
+  color: var(--color-text-main) !important;
+}
+.text-muted {
+  color: var(--color-text-muted) !important;
+}
+.border-main {
+  border-color: var(--color-border) !important;
+}
+
+/* Beige colors */
+.bg-beige-light {
+  background-color: var(--color-beige-light) !important;
+}
+.bg-beige {
+  background-color: var(--color-accent) !important;
+}
+.bg-beige-dark {
+  background-color: var(--color-accent-dark) !important;
+}
+.text-beige-dark {
+  color: var(--color-beige-dark) !important;
+}
+.border-beige-dark {
+  border-color: var(--color-beige-dark) !important;
 }
 
 /* Dark mode overrides for common elements */
@@ -310,4 +357,27 @@ pre:hover .copy-code-button {
   to {
     opacity: 1;
   }
+}
+
+/* Buttons and accent */
+.btn-accent {
+  background: var(--color-accent);
+  color: #2d3238;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.btn-accent:hover {
+  background: var(--color-accent-dark);
+  color: #fff;
+}
+
+/* Card shadow for sobriety */
+.card-shadow {
+  box-shadow: 0 2px 16px 0 rgba(30, 41, 59, 0.12);
+}
+
+/* Overlay for darkening */
+.sober-overlay {
+  background: rgba(24, 28, 32, 0.7);
 }

@@ -54,7 +54,7 @@ def get_top_starred_repos(
             except (KeyError, ValueError):
                 continue  # ignore lignes malformées
 
-    # Trier par nombre d’étoiles (décroissant)
+    # Trier par nombre d'étoiles (décroissant)
     repos.sort(key=lambda r: r["stars"], reverse=True)
 
     # Garder les top N
@@ -69,7 +69,6 @@ def get_top_starred_repos(
             writer.writerow([repo["url"], repo["stars"]])
 
     print(f"CSV généré : {output_csv} ({len(top_repos)} dépôts)")
-
 
 def extract_repo_name(github_url):
     """
@@ -99,32 +98,75 @@ def extract_and_write_repos_with_names():
         for row in reader:
             if not row or not row[0].startswith("http"):
                 continue
-            url = row[0]
-            stars = row[1] if len(row) > 1 else ""
-            name = extract_repo_name(url)
-            if name:
-                writer.writerow([name, url, stars])
-            
+            repo_name = extract_repo_name(row[0])
+            if repo_name:
+                writer.writerow([repo_name, row[0], row[1]])
+
+    print(f"CSV généré : {output_csv}")
+
 def clean():
     """
-    Nettoyage des fichiers intermédiaires.
-    Supprime les fichiers CSV intermédiaires pour éviter l'encombrement.
+    Nettoie les fichiers temporaires.
     """
     import os
-    files_to_remove = [
+    files_to_clean = [
         "app/update_bdd/top_astronomy_cosmology_repos.csv",
         "app/update_bdd/avantdernier.csv"
     ]
-    
-    for file in files_to_remove:
+    for file in files_to_clean:
         if os.path.exists(file):
             os.remove(file)
             print(f"Fichier supprimé : {file}")
 
-import csv
-import json
+def update_astronomy_json():
+    """
+    Met à jour le fichier astronomy-libraries.json à partir du CSV généré.
+    """
+    json_path = "app/data/astronomy-libraries.json"
+    csv_path = "app/update_bdd/last.csv"
+
+    # Lire le CSV
+    new_libs = []
+    with open(csv_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            try:
+                name = row['library_name']
+                url = row['github_url']
+                stars = int(row['stars'])
+                new_libs.append({
+                    "name": name,
+                    "github_url": url,
+                    "stars": stars
+                })
+            except (KeyError, ValueError):
+                continue  # Ignore lignes incomplètes ou corrompues
+
+    # Trier par nombre d'étoiles décroissant
+    new_libs.sort(key=lambda x: -x["stars"])
+
+    # Ajouter les rangs
+    for i, lib in enumerate(new_libs, 1):
+        lib["rank"] = i
+
+    # Créer le format astronomy-libraries.json
+    astronomy_data = {
+        "libraries": new_libs,
+        "domain": "astronomy",
+        "description": "Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis",
+        "keywords": ["astronomy", "cosmology", "astrophysics", "gravitational waves", "CMB", "healpy", "astropy"]
+    }
+
+    # Sauvegarder le nouveau JSON
+    with open(json_path, 'w', encoding='utf-8') as f:
+        json.dump(astronomy_data, f, indent=2, ensure_ascii=False)
+
+    print(f"Fichier astronomy-libraries.json mis à jour avec {len(new_libs)} librairies")
 
 def update_libraries_json():
+    """
+    Met à jour le fichier libraries.json principal.
+    """
     json_path = "app/data/libraries.json"
     csv_path = "app/update_bdd/last.csv"
     category = "astronomy"
@@ -146,7 +188,7 @@ def update_libraries_json():
             except (KeyError, ValueError):
                 continue  # Ignore lignes incomplètes ou corrompues
 
-    # Trier par nombre d’étoiles décroissant
+    # Trier par nombre d'étoiles décroissant
     new_libs.sort(key=lambda x: -x["stars"])
 
     # Ajouter les rangs
@@ -166,8 +208,12 @@ def update_libraries_json():
 
     print(f"'{category}' updated with {len(new_libs)} libraries in {json_path}")
 
-
 def main():
+    """
+    Fonction principale pour mettre à jour les données astronomie.
+    """
+    print("=== Mise à jour des données astronomie ===")
+    
     # Filtrer les dépôts cosmo/astro
     filter_cosmo_astro_repos()
 
@@ -177,9 +223,14 @@ def main():
     # Extraire les noms de dépôts
     extract_and_write_repos_with_names()
 
+    # Nettoyer les fichiers temporaires
     clean()
 
+    # Mettre à jour les fichiers JSON
+    update_astronomy_json()
     update_libraries_json()
+
+    print("Mise à jour terminée !")
 
 if __name__ == "__main__":
     main()
