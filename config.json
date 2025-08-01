@@ -29,57 +29,17 @@
   ],
   "defaultProgram": "camb",
   "showContextLink": true,
-  "simpleMode": false,
+  "simpleMode": true,
   "greeting": "How can I help you?",
   "defaultModelId": "gemini/gemini-2.5-flash-preview-04-17",
-  "fallbackModelId": "openai/gpt-4.1-mini-2025-04-14",
-  "useDirectOpenAIKey": true,
+  "fallbackModelId": null,
+  "useDirectOpenAIKey": false,
   "useDirectGeminiKey": true,
   "availableModels": [
     {
       "id": "gemini/gemini-2.5-flash-preview-04-17",
-      "name": "Gemini Flash",
-      "description": "Latest Gemini Flash model",
-      "options": {
-        "temperature": 0.7,
-        "max_completion_tokens": 4096,
-        "stream": true
-      }
-    },
-    {
-      "id": "gemini/gemini-2.5-pro-exp-03-25",
-      "name": "Gemini 2.5 Pro",
-      "description": "More powerful model for complex queries",
-      "options": {
-        "temperature": 0.7,
-        "max_completion_tokens": 4096,
-        "stream": true
-      }
-    },
-    {
-      "id": "openai/gpt-4.1-mini-2025-04-14",
-      "name": "GPT-4.1 Mini",
-      "description": "OpenAI GPT-4.1 Mini model",
-      "options": {
-        "temperature": 0.7,
-        "max_completion_tokens": 4096,
-        "stream": true
-      }
-    },
-    {
-      "id": "openai/o4-mini",
-      "name": "o4 Mini",
-      "description": "OpenAI thinking model",
-      "options": {
-        "temperature": 1,
-        "max_completion_tokens": 4096,
-        "stream": true
-      }
-    },
-    {
-      "id": "deepseek/deepseek-chat-v3-0324",
-      "name": "Deepseek Chat V3",
-      "description": "Deepseek's powerful chat model via OpenRouter",
+      "name": "Gemini 2.5 Flash",
+      "description": "Latest Gemini Flash model for fast and efficient responses",
       "options": {
         "temperature": 0.7,
         "max_completion_tokens": 4096,
