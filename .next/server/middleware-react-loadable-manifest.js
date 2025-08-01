@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app/ui/chat-simple.tsx -> @/app/utils/config\":{\"id\":\"app/ui/chat-simple.tsx -> @/app/utils/config\",\"files\":[]}}"
