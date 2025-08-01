@@ -385,6 +385,34 @@ class AutoContextUpdater:
             self.state["repository_hashes"][repo_key] = current_hash
             logging.info(f"Updated hash for {repo_key}: {current_hash}")
 
+    def update_config_from_contexts(self):
+        """Updates config.json when context files are updated."""
+        try:
+            logging.info("🔄 Updating config.json from context changes...")
+            
+            # Import and run the config updater
+            config_updater_script = self.base_dir / "scripts" / "update-config-from-contexts.py"
+            
+            if config_updater_script.exists():
+                result = subprocess.run(
+                    ["python3", str(config_updater_script)],
+                    capture_output=True,
+                    text=True,
+                    cwd=self.base_dir
+                )
+                
+                if result.returncode == 0:
+                    logging.info("✅ Config.json updated successfully")
+                    if result.stdout:
+                        logging.info(f"Config update output: {result.stdout.strip()}")
+                else:
+                    logging.error(f"❌ Error updating config.json: {result.stderr}")
+            else:
+                logging.warning("⚠️ Config updater script not found")
+                
+        except Exception as e:
+            logging.error(f"❌ Error in update_config_from_contexts: {e}")
+
     def check_and_update_contexts(self):
         """Main function to check and update contexts."""
         logging.info("🔄 Starting automated context check and update")
@@ -465,6 +493,9 @@ class AutoContextUpdater:
             
             # Sync to cloud if updates were made
             self.sync_to_cloud()
+            
+            # Update config.json if contexts were updated
+            self.update_config_from_contexts()
         
         self.save_state()
         

@@ -1,0 +1,15 @@
+{
+  "last_check": "2025-08-01T15:37:45.679551",
+  "context_hashes": {
+    "astronomy/python-skyfield.txt": "a78fbe4e196c232915f3226d5ab358b5",
+    "astronomy/pixell-context.txt": "73056fdbb528eb302952bdd18b4436e9",
+    "finance/yfinance-context.txt": "d4795d2bf868bfe94e3ff212513a43a9"
+  },
+  "data_hashes": {
+    "finance-libraries.json": "3449d7729e73b346b88247f3d3860009",
+    "astronomy-libraries.json": "ecc31b7985fef768c188f914645a2bcb"
+  },
+  "last_update": "2025-08-01T15:37:45.679203",
+  "update_count": 1,
+  "last_config_hash": null
+}
