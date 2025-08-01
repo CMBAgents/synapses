@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import ChatContainer from "@/app/ui/chat-container";
 import WelcomeModal from "@/app/ui/welcome-modal";
 import { loadConfig, getDefaultProgram } from "@/app/utils/config";
-import styles from "../../styles/background.module.css";
+import styles from "../styles/background.module.css";
 
 export default function MainWithModalPage() {
   const [showWelcome, setShowWelcome] = useState(false);
@@ -53,7 +53,7 @@ export default function MainWithModalPage() {
 
   return (
     <main className={styles.background}>
-      <div className={styles.overlay}></div>
+      <div className={styles.blurOverlay}></div>
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
 
