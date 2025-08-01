@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { getAllDomains } from '../utils/domain-loader';
-import styles from "../../styles/background.module.css";
+import styles from "../styles/background.module.css";
 
 export default function DomainSelector() {
   const [selectedDomain, setSelectedDomain] = useState<string | null>(null);

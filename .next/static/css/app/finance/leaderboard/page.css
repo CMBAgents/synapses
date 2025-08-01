@@ -1,9 +1,9 @@
-/*!************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./styles/background.module.css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************/
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./app/styles/background.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
 /* /styles/background.module.css */
 
-.background_background__UvoUy {
+.background_background__z97Y6 {
   min-height: 100vh;
   background-image: url('/image_page1.png'); /* met l'image dans public/ */
   background-repeat: repeat-y; /* Répétition verticale */
@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-.background_blurOverlay__v2elQ {
+.background_blurOverlay__bhEWh {
   position: absolute;
   inset: 0;
   -webkit-backdrop-filter: blur(8px);
@@ -22,7 +22,7 @@
   z-index: 0;
 }
 
-.background_content__9mzSZ {
+.background_content__nFRqD {
   position: relative;
   z-index: 1;
   color: white;

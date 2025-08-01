@@ -1,6 +1,6 @@
 import ChatContainer from "@/app/ui/chat-container";
 import { loadConfig, getDefaultProgram } from "@/app/utils/config";
-import styles from "../../styles/background.module.css";
+import styles from "../styles/background.module.css";
 
 export default async function MainPage() {
   // Load configuration

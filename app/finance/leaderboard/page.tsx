@@ -3,7 +3,7 @@ import LeaderboardTable from "../../ui/leaderboardtable";
 import { loadFinanceData } from "../../utils/domain-loader";
 import FloatingMenu from "../../ui/FloatingMenu";
 import ThemeToggle from "../../ui/theme-toggle";
-import styles from "../../../styles/background.module.css";
+import styles from "../../styles/background.module.css";
 
 export default function FinanceLeaderboard() {
   const financeData = loadFinanceData();

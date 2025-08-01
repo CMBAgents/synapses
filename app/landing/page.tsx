@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styles from "../../styles/background.module.css";
+import styles from "../styles/background.module.css";
 
 export default function LandingPage() {
   return (

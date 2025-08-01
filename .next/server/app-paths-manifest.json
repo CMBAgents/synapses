@@ -2,6 +2,6 @@
   "/landing/page": "app/landing/page.js",
   "/domain-selector/page": "app/domain-selector/page.js",
   "/astronomy/page": "app/astronomy/page.js",
-  "/astronomy/leaderboard/page": "app/astronomy/leaderboard/page.js",
-  "/finance/leaderboard/page": "app/finance/leaderboard/page.js"
+  "/finance/leaderboard/page": "app/finance/leaderboard/page.js",
+  "/astronomy/leaderboard/page": "app/astronomy/leaderboard/page.js"
 }
