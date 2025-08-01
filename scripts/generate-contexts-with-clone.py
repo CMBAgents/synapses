@@ -105,8 +105,8 @@ def generate_context_for_library(library: Dict, domain: str) -> bool:
         package_name = library_name.split('/')[-1]
         
         # Create context directory if it doesn't exist
-        context_dir = f'app/context/{domain}'
-        os.makedirs(context_dir, exist_ok=True)
+            context_dir = f'public/context/{domain}'
+    os.makedirs(context_dir, exist_ok=True)
         
         # Check if context file already exists
         output_file = f'{context_dir}/{package_name}-context.txt'
@@ -137,7 +137,7 @@ def generate_context_for_library(library: Dict, domain: str) -> bool:
 def update_json_with_context_status(domain: str):
     """Update JSON file to reflect context file status"""
     json_path = f'app/data/{domain}-libraries.json'
-    context_dir = f'app/context/{domain}'
+    context_dir = f'public/context/{domain}'
     
     if not os.path.exists(json_path):
         return
@@ -211,7 +211,7 @@ def main():
     print("This will:")
     print("1. Clone repositories that don't have context files")
     print("2. Run contextmaker on the cloned repos")
-    print("3. Save context files to app/context/{domain}/")
+    print("3. Save context files to public/context/{domain}/")
     print("4. Update JSON files with context status")
     print("\nMake sure contextmaker is installed and available in your PATH.\n")
     

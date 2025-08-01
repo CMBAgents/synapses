@@ -102,9 +102,9 @@ def setup_environment_variables():
 def create_directories():
     """Creates necessary directories."""
     directories = [
-        "app/context",
-        "app/context/astronomy",
-        "app/context/finance",
+        "public/context",
+        "public/context/astronomy",
+        "public/context/finance",
         "public/context",
         "backups",
         "logs"

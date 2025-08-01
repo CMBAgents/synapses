@@ -30,7 +30,7 @@ logging.basicConfig(
 class AutoContextUpdater:
     def __init__(self, base_dir: str = "."):
         self.base_dir = Path(base_dir)
-        self.context_dir = self.base_dir / "app" / "context"
+        self.context_dir = self.base_dir / "public" / "context"
         self.data_dir = self.base_dir / "app" / "data"
         self.public_context_dir = self.base_dir / "public" / "context"
         self.temp_dir = self.base_dir / "temp" / "contexts"

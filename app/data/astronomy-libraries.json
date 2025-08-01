@@ -5,7 +5,8 @@
       "github_url": "https://github.com/skyfielders/python-skyfield",
       "stars": 1570,
       "rank": 1,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "python-skyfield.txt"
     },
     {
       "name": "dstndstn/astrometry.net",

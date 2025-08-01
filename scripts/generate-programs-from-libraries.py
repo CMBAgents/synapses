@@ -16,7 +16,7 @@ def create_program_from_library(library, domain):
         "name": library['name'].split('/')[-1],  # Prendre seulement la dernière partie du nom
         "description": f"{library['name']} - {domain.title()} library with {library['stars']} stars",
         "contextFiles": [],
-        "combinedContextFile": f"/api/context/{library['contextFileName']}" if library.get('hasContextFile') else None,
+        "combinedContextFile": f"/api/context/{domain}/{library['contextFileName']}" if library.get('hasContextFile') else None,
         "docsUrl": library['github_url'],
         "extraSystemPrompt": f"You are an expert on {library['name']}. Use the provided documentation to help users with this {domain} library."
     }

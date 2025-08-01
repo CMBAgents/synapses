@@ -6,7 +6,7 @@
       "name": "python-skyfield",
       "description": "skyfielders/python-skyfield - Astronomy library with 1570 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/astronomy/python-skyfield.txt",
       "docsUrl": "https://github.com/skyfielders/python-skyfield",
       "extraSystemPrompt": "You are an expert on skyfielders/python-skyfield. Use the provided documentation to help users with this astronomy library."
     },
@@ -582,7 +582,7 @@
       "name": "pixell",
       "description": "simonsobs/pixell - Astronomy library with 51 stars",
       "contextFiles": [],
-      "combinedContextFile": "/api/context/pixell-context.txt",
+      "combinedContextFile": "/api/context/astronomy/pixell-context.txt",
       "docsUrl": "https://github.com/simonsobs/pixell",
       "extraSystemPrompt": "You are an expert on simonsobs/pixell. Use the provided documentation to help users with this astronomy library."
     },
@@ -924,7 +924,7 @@
       "name": "yfinance",
       "description": "ranaroussi/yfinance - Finance library with 8500 stars",
       "contextFiles": [],
-      "combinedContextFile": "/api/context/yfinance-context.txt",
+      "combinedContextFile": "/api/context/finance/yfinance-context.txt",
       "docsUrl": "https://github.com/ranaroussi/yfinance",
       "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library."
     },

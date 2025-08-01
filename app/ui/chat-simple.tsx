@@ -425,7 +425,7 @@ export default function ChatSimple({
                   <div className="flex items-center mb-2">
                     <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                     <a 
-                      href={`/api/context/${libraries.find(lib => lib.name === selectedLibrary)?.contextFileName}`}
+                      href={`/api/context/${activeProgram === 'astronomy' ? 'astronomy' : 'finance'}/${libraries.find(lib => lib.name === selectedLibrary)?.contextFileName}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center"

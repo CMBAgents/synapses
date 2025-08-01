@@ -8,7 +8,7 @@ def update_libraries_with_context_status(domain):
     try:
         # Paths
         json_path = f'app/data/{domain}-libraries.json'
-        context_dir = f'app/context/{domain}'
+        context_dir = f'public/context/{domain}'
         
         if not os.path.exists(json_path):
             print(f"JSON file not found for domain: {domain}")
@@ -30,14 +30,16 @@ def update_libraries_with_context_status(domain):
         # Update each library entry
         for library in json_data['libraries']:
             # Try different naming patterns
+            package_name = library['name'].split('/')[-1]  # Get the package name
             patterns = [
+                f"{package_name}-context.txt",
+                f"{package_name}.txt",
                 f"{library['name'].replace('/', '-').replace('.', '-')}-context.txt",
-                f"{library['name'].split('/')[-1]}-context.txt",
-                f"{library['name'].split('/')[-1].replace('.', '-')}-context.txt",
-                # Handle cases like "skyfielders/python-skyfield" -> "skyfield-context.txt"
-                f"{library['name'].split('/')[-1].split('-')[-1]}-context.txt",
+                f"{package_name.replace('.', '-')}-context.txt",
                 # Handle cases like "python-skyfield" -> "skyfield-context.txt"
-                f"{library['name'].split('/')[-1].split('-')[-1]}-context.txt"
+                f"{package_name.split('-')[-1]}-context.txt",
+                # Handle cases like "python-skyfield" -> "skyfield.txt"
+                f"{package_name.split('-')[-1]}.txt"
             ]
             
             has_context_file = False

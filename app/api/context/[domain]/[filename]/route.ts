@@ -4,31 +4,23 @@ import path from 'path';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { filename: string } }
+  { params }: { params: { domain: string; filename: string } }
 ) {
   try {
-    const filename = params.filename;
+    const { domain, filename } = params;
     
-    // Vérifier que le nom de fichier est sécurisé
-    if (!filename || filename.includes('..') || filename.includes('/')) {
-      return new Response('Invalid filename', { status: 400 });
+    // Vérifier que les paramètres sont sécurisés
+    if (!domain || !filename || 
+        domain.includes('..') || domain.includes('/') ||
+        filename.includes('..') || filename.includes('/')) {
+      return new Response('Invalid parameters', { status: 400 });
     }
 
-    // Chercher le fichier dans les sous-dossiers astronomy et finance
-    const possiblePaths = [
-      path.join(process.cwd(), 'public', 'context', 'astronomy', filename),
-      path.join(process.cwd(), 'public', 'context', 'finance', filename)
-    ];
+    // Construire le chemin vers le fichier
+    const filePath = path.join(process.cwd(), 'public', 'context', domain, filename);
 
-    let filePath = null;
-    for (const possiblePath of possiblePaths) {
-      if (fs.existsSync(possiblePath)) {
-        filePath = possiblePath;
-        break;
-      }
-    }
-
-    if (!filePath) {
+    // Vérifier si le fichier existe
+    if (!fs.existsSync(filePath)) {
       return new Response('Context file not found', { status: 404 });
     }
 
