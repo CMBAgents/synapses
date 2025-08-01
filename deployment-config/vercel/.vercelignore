@@ -1,0 +1,15 @@
+# Ignore test files
+test-*.bat
+test-*.sh
+start-with-key.js
+
+# Ignore environment files
+.env.local
+.env.*.local
+
+# Ignore git files
+.git
+.gitignore
+
+# Ignore node_modules (Vercel handles this automatically)
+node_modules

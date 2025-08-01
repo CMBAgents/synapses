@@ -1,0 +1,30 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[5].use[3]!./styles/background.module.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+/* /styles/background.module.css */
+
+.background_background__UvoUy {
+  min-height: 100vh;
+  background-image: url('/image_page1.png'); /* met l'image dans public/ */
+  background-repeat: repeat-y; /* Répétition verticale */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.background_blurOverlay__v2elQ {
+  position: absolute;
+  inset: 0;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px); /* Applique un flou */
+  background-color: rgba(0, 0, 0, 0.4); /* Couleur sombre avec transparence */
+  z-index: 0;
+}
+
+.background_content__9mzSZ {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
