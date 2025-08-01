@@ -52,11 +52,11 @@ class ConfigValidator {
             const content = fs.readFileSync(fullPath, 'utf8');
             JSON.parse(content);
             this.success.push(`${description} JSON valid: ${filePath}`);
-            return true;
+        return true;
         } catch (error) {
             this.errors.push(`${description} JSON invalid: ${filePath} - ${error.message}`);
-            return false;
-        }
+        return false;
+      }
     }
 
     checkContextFiles() {
@@ -268,7 +268,7 @@ class ConfigValidator {
 
         if (summary.errors > 0) {
             this.log('❌ Configuration has errors that must be fixed', 'error');
-            process.exit(1);
+    process.exit(1);
         } else if (summary.warnings > 0) {
             this.log('⚠️  Configuration has warnings but can function', 'warn');
         } else {

@@ -47,7 +47,8 @@ def install_pip_packages():
         "tqdm",
         "pathlib",
         "typing-extensions",
-        "contextmaker"  # Package for documentation extraction
+        "contextmaker",  # Package for documentation extraction
+        "schedule"  # Package for scheduling tasks
     ]
     
     print("📦 Installing Python packages...")

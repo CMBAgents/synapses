@@ -65,7 +65,9 @@ Modify `cloud-config.json` according to your needs:
 
 ## 📋 Usage
 
-### Complete pipeline
+### Local Development
+
+#### Complete pipeline
 
 To run the complete pipeline (recommended):
 
@@ -73,7 +75,7 @@ To run the complete pipeline (recommended):
 python scripts/generate-and-sync-all.py
 ```
 
-### Individual commands
+#### Individual commands
 
 ```bash
 # Update library data from ASCL
@@ -92,11 +94,49 @@ python scripts/generate-and-sync-all.py build
 python scripts/generate-and-sync-all.py validate
 ```
 
-### Individual scripts
+#### Individual scripts
 
 ```bash
 # Generate missing contexts
 python scripts/generate-missing-contexts.py
+```
+
+### GCP Production Deployment
+
+#### Quick deployment
+
+```bash
+# Deploy everything to GCP
+./scripts/deploy-gcp.sh
+```
+
+#### Manual deployment steps
+
+1. **Setup GCP project:**
+   ```bash
+   gcloud init
+   gcloud config set project YOUR_PROJECT_ID
+   ```
+
+2. **Create buckets:**
+   ```bash
+   gsutil mb gs://YOUR_PROJECT_ID-contexts
+   gsutil mb gs://YOUR_PROJECT_ID-static
+   ```
+
+3. **Deploy application:**
+   ```bash
+   gcloud run deploy cmbagent-info --source . --platform managed --region us-central1 --allow-unauthenticated
+   ```
+
+4. **Setup automation:**
+   ```bash
+   # Deploy Cloud Function for context updates
+   gcloud functions deploy context-updater --runtime python39 --trigger-http --allow-unauthenticated --region us-central1
+   
+   # Create scheduler job
+   gcloud scheduler jobs create http context-update-job --schedule="0 * * * *" --uri="FUNCTION_URL" --http-method=POST
+   ```
 
 # Synchronize to cloud
 python scripts/cloud-sync-contexts.py
@@ -241,7 +281,54 @@ find app/context -name "*.txt" | wc -l
 
 ## 🔄 Automation
 
-### Cron job (Linux/Mac)
+### Automated Context Updater (Recommended)
+
+The system includes an automated context updater that runs every hour to check for:
+1. **Missing contexts** - Generates contexts for libraries that don't have them
+2. **New commits** - Updates contexts when repositories have new commits
+
+#### Installation
+
+```bash
+# Install dependencies (includes schedule package)
+python scripts/install-dependencies.py
+
+# Install as systemd service (Linux)
+chmod +x scripts/install-service.sh
+./scripts/install-service.sh
+```
+
+#### Usage
+
+```bash
+# Run once manually
+python scripts/auto-update-contexts.py once
+
+# Start automated service (runs every hour)
+python scripts/auto-update-contexts.py
+
+# Monitor the service
+python scripts/monitor-updater.py status
+python scripts/monitor-updater.py logs 50
+```
+
+#### Service Management
+
+```bash
+# Check service status
+sudo systemctl status context-updater
+
+# View logs
+sudo journalctl -u context-updater -f
+
+# Restart service
+sudo systemctl restart context-updater
+
+# Stop service
+sudo systemctl stop context-updater
+```
+
+### Alternative: Cron job (Linux/Mac)
 
 Add to your crontab:
 
@@ -250,7 +337,7 @@ Add to your crontab:
 0 2 * * * cd /path/to/cmbagent-info && python scripts/generate-and-sync-all.py
 ```
 
-### GitHub Actions
+### Alternative: GitHub Actions
 
 Create `.github/workflows/context-generation.yml`:
 

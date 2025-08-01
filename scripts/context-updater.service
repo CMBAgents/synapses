@@ -1,0 +1,27 @@
+[Unit]
+Description=Context Auto Updater Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/path/to/cmbagent-info
+ExecStart=/usr/bin/python3 /path/to/cmbagent-info/scripts/auto-update-contexts.py
+Restart=always
+RestartSec=10
+Environment=PYTHONPATH=/path/to/cmbagent-info
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=context-updater
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/path/to/cmbagent-info/temp /path/to/cmbagent-info/app/context /path/to/cmbagent-info/public/context
+
+[Install]
+WantedBy=multi-user.target 

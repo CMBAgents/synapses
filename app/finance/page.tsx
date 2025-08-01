@@ -1,6 +1,6 @@
 import ChatContainer from "@/app/ui/chat-container";
 import { loadFinanceData } from "@/app/utils/domain-loader";
-import FloatingMenu from "@/app/ui/floatingmenu";
+import FloatingMenu from "@/app/ui/FloatingMenu";
 import ThemeToggle from "@/app/ui/theme-toggle";
 import ContextUpdater from "@/app/ui/context-updater";
 

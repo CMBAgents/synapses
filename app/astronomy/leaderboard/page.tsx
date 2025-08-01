@@ -1,7 +1,7 @@
 import FadeIn from "../../ui/fadein";
 import LeaderboardTable from "../../ui/leaderboardtable";
 import { loadAstronomyData } from "../../utils/domain-loader";
-import FloatingMenu from "../../ui/floatingmenu";
+import FloatingMenu from "../../ui/FloatingMenu";
 import ThemeToggle from "../../ui/theme-toggle";
 import styles from "../../../styles/background.module.css";
 
