@@ -1,156 +1,384 @@
 #!/usr/bin/env python3
-import json
+"""
+Script to automatically generate missing contexts
+for all GitHub repositories listed in the data files.
+Uses the contextmaker package for complete documentation extraction.
+"""
+
 import os
+import json
+import csv
 import subprocess
-import sys
+import time
+import re
 from pathlib import Path
+from typing import Dict, List, Optional
+import logging
 
-def load_domain_data(domain):
-    """Load domain-specific JSON data"""
-    json_path = f'app/data/{domain}-libraries.json'
-    if not os.path.exists(json_path):
-        print(f"❌ JSON file not found for domain: {domain}")
+# Logging configuration
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('context_generation.log'),
+        logging.StreamHandler()
+    ]
+)
+
+class ContextGenerator:
+    def __init__(self, base_dir: str = "."):
+        self.base_dir = Path(base_dir)
+        self.context_dir = self.base_dir / "app" / "context"
+        self.data_dir = self.base_dir / "app" / "data"
+        self.public_context_dir = self.base_dir / "public" / "context"
+        self.temp_dir = self.base_dir / "temp" / "contexts"
+        self.repos_dir = self.base_dir / "temp" / "repos"
+        
+        # Create directories if they don't exist
+        self.context_dir.mkdir(parents=True, exist_ok=True)
+        self.public_context_dir.mkdir(parents=True, exist_ok=True)
+        self.temp_dir.mkdir(parents=True, exist_ok=True)
+        self.repos_dir.mkdir(parents=True, exist_ok=True)
+
+    def get_existing_contexts(self) -> Dict[str, List[str]]:
+        """Gets the list of existing contexts by domain."""
+        existing_contexts = {}
+        
+        for domain_dir in self.context_dir.iterdir():
+            if domain_dir.is_dir():
+                domain = domain_dir.name
+                existing_contexts[domain] = []
+                
+                for context_file in domain_dir.glob("*.txt"):
+                    # Extract library name from filename
+                    lib_name = context_file.stem.replace("-context", "")
+                    existing_contexts[domain].append(lib_name)
+        
+        return existing_contexts
+
+    def load_libraries_data(self) -> Dict[str, List[Dict]]:
+        """Loads library data from JSON files."""
+        libraries = {}
+        
+        # Load astronomy-libraries.json
+        astronomy_file = self.data_dir / "astronomy-libraries.json"
+        if astronomy_file.exists():
+            with open(astronomy_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                libraries['astronomy'] = data.get('libraries', [])
+        
+        # Load finance-libraries.json
+        finance_file = self.data_dir / "finance-libraries.json"
+        if finance_file.exists():
+            with open(finance_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                libraries['finance'] = data.get('libraries', [])
+        
+        # Load libraries.json for other domains
+        libraries_file = self.data_dir / "libraries.json"
+        if libraries_file.exists():
+            with open(libraries_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                for domain, libs in data.items():
+                    if domain not in libraries:
+                        libraries[domain] = libs
+        
+        return libraries
+
+    def extract_repo_info(self, github_url: str) -> Optional[Dict]:
+        """Extracts repository information from GitHub URL."""
+        try:
+            # Clean URL
+            url = github_url.strip()
+            if not url.startswith('http'):
+                url = f"https://{url}"
+            
+            # Extract owner/repo
+            if 'github.com' in url:
+                # Format: https://github.com/owner/repo
+                parts = url.split('/')
+                if len(parts) >= 2:
+                    owner = parts[-2]
+                    repo_name = parts[-1]
+                    # Clean name (remove .git if present)
+                    if repo_name.endswith('.git'):
+                        repo_name = repo_name[:-4]
+                    return {
+                        'owner': owner,
+                        'repo': repo_name,
+                        'url': url
+                    }
+            else:
+                # Format: owner/repo
+                parts = url.split('/')
+                if len(parts) >= 2:
+                    return {
+                        'owner': parts[-2],
+                        'repo': parts[-1],
+                        'url': f"https://github.com/{parts[-2]}/{parts[-1]}"
+                    }
+        except Exception as e:
+            logging.error(f"Error extracting repo info from {github_url}: {e}")
+        
         return None
-    
-    with open(json_path, 'r', encoding='utf-8') as f:
-        return json.load(f)
 
-def get_existing_context_files(domain):
-    """Get list of existing context files for a domain"""
-    context_dir = f'app/context/{domain}'
-    if not os.path.exists(context_dir):
-        return []
-    
-    context_files = []
-    for file in os.listdir(context_dir):
-        if file.endswith('.txt'):
-            context_files.append(file)
-    
-    return context_files
-
-def generate_context_for_library(library_name, domain):
-    """Generate context file for a specific library"""
-    try:
-        # Extract package name from library name
-        package_name = library_name.split('/')[-1]
-        context_dir = f'app/context/{domain}'
-        output_file = f'{context_dir}/{package_name}-context.txt'
+    def clone_repository(self, owner: str, repo: str, package_name: str) -> bool:
+        """Clones the GitHub repository."""
+        repo_path = self.repos_dir / package_name
         
-        # Create context directory if it doesn't exist
-        os.makedirs(context_dir, exist_ok=True)
+        # If repo already exists, remove it for a fresh version
+        if repo_path.exists():
+            try:
+                import shutil
+                shutil.rmtree(repo_path)
+                logging.info(f"Old repo deleted: {repo_path}")
+            except Exception as e:
+                logging.warning(f"Unable to delete old repo: {e}")
         
-        # Check if file already exists
-        if os.path.exists(output_file):
-            print(f"✅ {library_name}: Context file already exists")
-            return True
-        
-        print(f"🔄 Generating context for {library_name}...")
-        
-        # Run contextmaker command
-        command = f"contextmaker {package_name} --output {output_file}"
-        print(f"Running: {command}")
-        
-        result = subprocess.run(command, shell=True, capture_output=True, text=True)
-        
-        if result.returncode == 0:
-            if os.path.exists(output_file):
-                print(f"✅ {library_name}: Context file generated successfully")
+        try:
+            # Git clone command
+            clone_url = f"https://github.com/{owner}/{repo}.git"
+            cmd = ["git", "clone", clone_url, str(repo_path)]
+            
+            logging.info(f"Cloning {clone_url} to {repo_path}")
+            
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minutes timeout
+            )
+            
+            if result.returncode == 0:
+                logging.info(f"Repository cloned successfully: {package_name}")
                 return True
             else:
-                print(f"❌ {library_name}: Context file not created")
+                logging.error(f"Error cloning {package_name}")
+                logging.error(f"STDERR: {result.stderr}")
                 return False
-        else:
-            print(f"❌ {library_name}: Error running contextmaker")
-            print(f"STDOUT: {result.stdout}")
-            print(f"STDERR: {result.stderr}")
+                
+        except subprocess.TimeoutExpired:
+            logging.error(f"Timeout cloning {package_name}")
             return False
+        except Exception as e:
+            logging.error(f"Exception cloning {package_name}: {e}")
+            return False
+
+    def generate_context_with_contextmaker(self, package_name: str, lib_name: str) -> Optional[str]:
+        """Generates context using the contextmaker package."""
+        logging.info(f"Generating context for {package_name} with contextmaker")
+        
+        # Check that repository is cloned
+        repo_path = self.repos_dir / package_name
+        if not repo_path.exists():
+            logging.error(f"Repository {package_name} not found in {repo_path}")
+            return None
+        
+        # Create unique temporary path for this package
+        temp_output_path = self.temp_dir / f"{package_name}_context"
+        temp_output_path.mkdir(exist_ok=True)
+        
+        try:
+            # contextmaker command
+            cmd = [
+                "python", "-c", 
+                f"import contextmaker; contextmaker.make('{package_name}', output_path='{temp_output_path}')"
+            ]
             
-    except Exception as e:
-        print(f"❌ {library_name}: Exception - {e}")
-        return False
+            logging.info(f"Executing: {' '.join(cmd)}")
+            
+            # Execute contextmaker
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=300,  # 5 minutes timeout
+                cwd=self.base_dir  # Ensure correct working directory
+            )
+            
+            if result.returncode == 0:
+                logging.info(f"Contextmaker succeeded for {package_name}")
+                
+                # Look for generated file
+                context_files = list(temp_output_path.glob("*.txt"))
+                if context_files:
+                    # Take the first .txt file found
+                    context_file = context_files[0]
+                    
+                    # Read content
+                    with open(context_file, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    
+                    # Add metadata
+                    enhanced_content = self.enhance_context_content(content, package_name, lib_name)
+                    
+                    logging.info(f"Context generated for {package_name}: {len(content)} characters")
+                    return enhanced_content
+                else:
+                    logging.warning(f"No .txt file found in {temp_output_path}")
+                    return None
+            else:
+                logging.error(f"Contextmaker error for {package_name}")
+                logging.error(f"STDOUT: {result.stdout}")
+                logging.error(f"STDERR: {result.stderr}")
+                return None
+                
+        except subprocess.TimeoutExpired:
+            logging.error(f"Timeout for {package_name} (more than 5 minutes)")
+            return None
+        except Exception as e:
+            logging.error(f"Exception during generation for {package_name}: {e}")
+            return None
+        finally:
+            # Clean temporary directory
+            try:
+                import shutil
+                shutil.rmtree(temp_output_path)
+            except Exception as e:
+                logging.warning(f"Unable to clean {temp_output_path}: {e}")
 
-def update_json_with_context_status(domain):
-    """Update JSON file to reflect context file status"""
-    json_path = f'app/data/{domain}-libraries.json'
-    context_dir = f'app/context/{domain}'
-    
-    if not os.path.exists(json_path):
-        return
-    
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    # Get existing context files
-    context_files = []
-    if os.path.exists(context_dir):
-        for file in os.listdir(context_dir):
-            if file.endswith('.txt'):
-                context_files.append(file)
-    
-    # Update each library entry
-    for library in data['libraries']:
-        package_name = library['name'].split('/')[-1]
-        context_file_name = f"{package_name}-context.txt"
+    def enhance_context_content(self, content: str, package_name: str, lib_name: str) -> str:
+        """Enhances context content with metadata."""
+        enhanced_parts = []
+        enhanced_parts.append(f"# Documentation for {lib_name}")
+        enhanced_parts.append(f"Package: {package_name}")
+        enhanced_parts.append(f"Generated with: contextmaker")
+        enhanced_parts.append(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        enhanced_parts.append("")
+        enhanced_parts.append("=" * 80)
+        enhanced_parts.append("")
+        enhanced_parts.append(content)
         
-        has_context = context_file_name in context_files
-        library['hasContextFile'] = has_context
-        
-        if has_context:
-            library['contextFileName'] = context_file_name
-        elif 'contextFileName' in library:
-            del library['contextFileName']
-    
-    # Save updated JSON
-    with open(json_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-    
-    print(f"📝 Updated {domain} JSON with context status")
+        return "\n".join(enhanced_parts)
 
-def generate_all_missing_contexts(domain):
-    """Generate context files for all libraries without context"""
-    print(f"\n🔄 Processing {domain} domain...")
-    
-    data = load_domain_data(domain)
-    if not data:
-        return
-    
-    existing_contexts = get_existing_context_files(domain)
-    print(f"Found {len(existing_contexts)} existing context files")
-    
-    missing_count = 0
-    success_count = 0
-    
-    for library in data['libraries']:
-        library_name = library['name']
-        package_name = library_name.split('/')[-1]
-        context_file_name = f"{package_name}-context.txt"
+    def save_context_file(self, domain: str, lib_name: str, content: str):
+        """Saves the context file."""
+        # Create domain directory if it doesn't exist
+        domain_dir = self.context_dir / domain
+        domain_dir.mkdir(exist_ok=True)
         
-        if context_file_name not in existing_contexts:
-            missing_count += 1
-            if generate_context_for_library(library_name, domain):
-                success_count += 1
-    
-    print(f"\n📊 {domain} Summary:")
-    print(f"   Missing contexts: {missing_count}")
-    print(f"   Successfully generated: {success_count}")
-    print(f"   Failed: {missing_count - success_count}")
-    
-    # Update JSON with new context status
-    update_json_with_context_status(domain)
+        # Filename
+        filename = f"{lib_name}-context.txt"
+        filepath = domain_dir / filename
+        
+        # Save file
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+        
+        logging.info(f"Context saved: {filepath}")
+        
+        # Copy to public/context
+        public_filepath = self.public_context_dir / filename
+        with open(public_filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+
+    def check_contextmaker_available(self) -> bool:
+        """Checks if contextmaker is available."""
+        try:
+            result = subprocess.run(
+                ["python", "-c", "import contextmaker"],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                logging.info("✅ contextmaker package available")
+                return True
+            else:
+                logging.error("❌ contextmaker package not available")
+                logging.error(f"STDERR: {result.stderr}")
+                return False
+        except Exception as e:
+            logging.error(f"Error checking contextmaker: {e}")
+            return False
+
+    def check_git_available(self) -> bool:
+        """Checks if git is available."""
+        try:
+            result = subprocess.run(
+                ["git", "--version"],
+                capture_output=True,
+                text=True
+            )
+            if result.returncode == 0:
+                logging.info("✅ Git available")
+                return True
+            else:
+                logging.error("❌ Git not available")
+                return False
+        except Exception as e:
+            logging.error(f"Error checking git: {e}")
+            return False
+
+    def generate_missing_contexts(self):
+        """Generates missing contexts for all libraries."""
+        # Check that contextmaker and git are available
+        if not self.check_contextmaker_available():
+            logging.error("Cannot continue without contextmaker")
+            return
+        
+        if not self.check_git_available():
+            logging.error("Cannot continue without git")
+            return
+        
+        # Load existing data
+        existing_contexts = self.get_existing_contexts()
+        libraries_data = self.load_libraries_data()
+        
+        logging.info(f"Existing contexts: {existing_contexts}")
+        logging.info(f"Found libraries: {list(libraries_data.keys())}")
+        
+        total_generated = 0
+        
+        for domain, libraries in libraries_data.items():
+            logging.info(f"Processing domain: {domain}")
+            
+            existing_libs = existing_contexts.get(domain, [])
+            
+            for lib in libraries:
+                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-')
+                github_url = lib.get('github_url', '')
+                
+                if not github_url:
+                    logging.warning(f"No GitHub URL for {lib_name}")
+                    continue
+                
+                # Check if context already exists
+                if lib_name in existing_libs:
+                    logging.info(f"Existing context for {lib_name}, skipped")
+                    continue
+                
+                # Extract repository information
+                repo_info = self.extract_repo_info(github_url)
+                if not repo_info:
+                    logging.error(f"Unable to extract repo info: {github_url}")
+                    continue
+                
+                package_name = repo_info['repo']
+                
+                # 1. Clone repository
+                if not self.clone_repository(repo_info['owner'], repo_info['repo'], package_name):
+                    logging.error(f"Failed to clone {package_name}")
+                    continue
+                
+                # 2. Generate context content with contextmaker
+                content = self.generate_context_with_contextmaker(package_name, lib_name)
+                
+                if content:
+                    # Save file
+                    self.save_context_file(domain, lib_name, content)
+                    total_generated += 1
+                    
+                    # Pause to avoid overload
+                    time.sleep(2)
+                else:
+                    logging.warning(f"Unable to generate context for {lib_name}")
+        
+        logging.info(f"Generation complete. {total_generated} new contexts created.")
 
 def main():
-    """Main function to generate missing contexts for all domains"""
-    domains = ['astronomy', 'finance']
-    
-    print("🚀 Starting automatic context generation...")
-    print("This will generate context files for all libraries that don't have them yet.")
-    print("Make sure contextmaker is installed and available in your PATH.\n")
-    
-    for domain in domains:
-        generate_all_missing_contexts(domain)
-    
-    print("\n✅ Context generation completed!")
-    print("All JSON files have been updated with the latest context status.")
+    """Main function."""
+    generator = ContextGenerator()
+    generator.generate_missing_contexts()
 
 if __name__ == "__main__":
     main() 

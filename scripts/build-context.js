@@ -15,7 +15,7 @@ if (!fs.existsSync(publicContextDir)) {
 }
 
 // Copy individual context files to public/context
-const contextDir = path.join(__dirname, '..', 'context');
+const contextDir = path.join(__dirname, '..', 'app', 'context');
 const contextFiles = fs.readdirSync(contextDir);
 
 for (const file of contextFiles) {
