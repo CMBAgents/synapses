@@ -11,7 +11,7 @@ export async function POST(request: NextRequest) {
     }
 
     const jsonPath = path.join(process.cwd(), 'app', 'data', `${domain}-libraries.json`);
-    const contextDir = path.join(process.cwd(), 'app', 'context', domain);
+    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
     
     if (!fs.existsSync(jsonPath)) {
       return NextResponse.json({ error: 'JSON file not found' }, { status: 404 });

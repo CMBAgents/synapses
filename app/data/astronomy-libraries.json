@@ -5,7 +5,8 @@
       "github_url": "https://github.com/skyfielders/python-skyfield",
       "stars": 1570,
       "rank": 1,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "python-skyfield-context.txt"
     },
     {
       "name": "dstndstn/astrometry.net",
@@ -19,42 +20,48 @@
       "github_url": "https://github.com/astropy/astroquery",
       "stars": 739,
       "rank": 3,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "astroquery-context.txt"
     },
     {
       "name": "einsteinpy/einsteinpy",
       "github_url": "https://github.com/einsteinpy/einsteinpy",
       "stars": 650,
       "rank": 4,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "einsteinpy-context.txt"
     },
     {
       "name": "lightkurve/lightkurve",
       "github_url": "https://github.com/lightkurve/lightkurve",
       "stars": 459,
       "rank": 5,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "lightkurve-context.txt"
     },
     {
       "name": "gwpy/gwpy",
       "github_url": "https://github.com/gwpy/gwpy",
       "stars": 378,
       "rank": 6,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "gwpy-context.txt"
     },
     {
       "name": "gwastro/pycbc",
       "github_url": "https://github.com/gwastro/pycbc",
       "stars": 346,
       "rank": 7,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "pycbc-context.txt"
     },
     {
       "name": "amrex-astro/castro",
       "github_url": "https://github.com/amrex-astro/castro",
       "stars": 322,
       "rank": 8,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "castro-context.txt"
     },
     {
       "name": "healpy/healpy",
@@ -68,56 +75,64 @@
       "github_url": "https://github.com/astropy/photutils",
       "stars": 276,
       "rank": 10,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "photutils-context.txt"
     },
     {
       "name": "lesgourg/class_public",
       "github_url": "https://github.com/lesgourg/class_public",
       "stars": 267,
       "rank": 11,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "class_public-context.txt"
     },
     {
       "name": "spacepy/spacepy",
       "github_url": "https://github.com/spacepy/spacepy",
       "stars": 253,
       "rank": 12,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "spacepy-context.txt"
     },
     {
       "name": "scottransom/presto",
       "github_url": "https://github.com/scottransom/presto",
       "stars": 250,
       "rank": 13,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "presto-context.txt"
     },
     {
       "name": "galsim-developers/galsim",
       "github_url": "https://github.com/galsim-developers/galsim",
       "stars": 247,
       "rank": 14,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "galsim-context.txt"
     },
     {
       "name": "jobovy/galpy",
       "github_url": "https://github.com/jobovy/galpy",
       "stars": 246,
       "rank": 15,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "galpy-context.txt"
     },
     {
       "name": "radis/radis",
       "github_url": "https://github.com/radis/radis",
       "stars": 245,
       "rank": 16,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "radis-context.txt"
     },
     {
       "name": "spacetelescope/poppy",
       "github_url": "https://github.com/spacetelescope/poppy",
       "stars": 243,
       "rank": 17,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "poppy-context.txt"
     },
     {
       "name": "minaskar/zeus",
@@ -194,7 +209,8 @@
       "github_url": "https://github.com/mperrin/poppy",
       "stars": 184,
       "rank": 28,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "poppy-context.txt"
     },
     {
       "name": "pypeit/pypeit",

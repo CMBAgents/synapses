@@ -1,15 +1,29 @@
 {
-  "last_check": "2025-08-01T15:43:22.264254",
+  "last_check": "2025-08-11T00:16:17.909938",
   "context_hashes": {
     "astronomy/python-skyfield.txt": "a78fbe4e196c232915f3226d5ab358b5",
     "astronomy/pixell-context.txt": "73056fdbb528eb302952bdd18b4436e9",
-    "finance/yfinance-context.txt": "d4795d2bf868bfe94e3ff212513a43a9"
+    "finance/yfinance-context.txt": "d4795d2bf868bfe94e3ff212513a43a9",
+    "astronomy/presto.txt": "2157094855ee99259f2784160ae9f020",
+    "astronomy/einsteinpy.txt": "613b505318c7c3034ec4537964058f30",
+    "astronomy/photutils.txt": "ca802301c307d4e6d96e2796f9cbfc36",
+    "astronomy/spacepy.txt": "94d7b48d40e8e0a93be8324d5edb0da6",
+    "astronomy/galsim.txt": "cedb5a4d65c7e07f61cc8ed823ecbbd0",
+    "astronomy/galpy.txt": "10f41dd0ebed7d9b8a43e2160bee16af",
+    "astronomy/radis.txt": "2f5458bdb27a9202a0cd92fe896e4e36",
+    "astronomy/astroquery.txt": "11f2b7b48a1b2e08e2d50610f1877851",
+    "astronomy/gwpy.txt": "3c092bc24e03a6fd82fba683a567ad43",
+    "astronomy/poppy.txt": "c2a420c76dabea175a72f11558b905f8",
+    "astronomy/lightkurve.txt": "90c0d943d2397a1075ceee13a3c3182e",
+    "astronomy/pycbc.txt": "bd7a6c5f1a6cc47d2dee28a26257e5e7",
+    "astronomy/castro.txt": "2e487a65f8b55e2e136391b42f66308a",
+    "astronomy/class_public.txt": "deea793df7c57456c6ef1ea597ac041a"
   },
   "data_hashes": {
     "finance-libraries.json": "3449d7729e73b346b88247f3d3860009",
     "astronomy-libraries.json": "ecc31b7985fef768c188f914645a2bcb"
   },
-  "last_update": "2025-08-01T15:37:45.679203",
-  "update_count": 1,
+  "last_update": "2025-08-11T00:03:40.982253",
+  "update_count": 2,
   "last_config_hash": null
 }

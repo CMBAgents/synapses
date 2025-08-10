@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
 
 function handleLoadContextFile(domain: string, fileName: string) {
   try {
-    const contextPath = path.join(process.cwd(), 'app', 'context', domain, fileName);
+    const contextPath = path.join(process.cwd(), 'public', 'context', domain, fileName);
     if (fs.existsSync(contextPath)) {
       const content = fs.readFileSync(contextPath, 'utf-8');
       return NextResponse.json({ content });
@@ -57,7 +57,7 @@ function handleLoadContextFile(domain: string, fileName: string) {
 
 function handleGetContextFiles(domain: string) {
   try {
-    const contextDir = path.join(process.cwd(), 'app', 'context', domain);
+    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
     if (!fs.existsSync(contextDir)) {
       return NextResponse.json([]);
     }
@@ -85,7 +85,7 @@ function handleGetContextFiles(domain: string) {
 
 function handleHasContextFile(domain: string, fileName: string) {
   try {
-    const contextPath = path.join(process.cwd(), 'app', 'context', domain, fileName);
+    const contextPath = path.join(process.cwd(), 'public', 'context', domain, fileName);
     const hasFile = fs.existsSync(contextPath);
     return NextResponse.json({ hasFile });
   } catch (error) {
@@ -96,7 +96,7 @@ function handleHasContextFile(domain: string, fileName: string) {
 function handleUpdateLibrariesWithContextStatus(domain: string) {
   try {
     const jsonPath = path.join(process.cwd(), 'app', 'data', `${domain}-libraries.json`);
-    const contextDir = path.join(process.cwd(), 'app', 'context', domain);
+    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
     
     if (!fs.existsSync(jsonPath)) {
       return NextResponse.json({ error: 'JSON file not found' }, { status: 404 });
