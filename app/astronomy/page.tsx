@@ -1,31 +1,40 @@
+'use client';
+
+import { useSearchParams } from 'next/navigation';
 import ChatContainer from "@/app/ui/chat-container";
 import { loadAstronomyData } from "@/app/utils/domain-loader";
 import FloatingMenu from "@/app/ui/FloatingMenu";
-import ThemeToggle from "@/app/ui/theme-toggle";
 import ContextUpdater from "@/app/ui/context-updater";
 
-export default async function AstronomyPage() {
+export default function AstronomyPage() {
   const astronomyData = loadAstronomyData();
+  const searchParams = useSearchParams();
+  const preselectedLibrary = searchParams.get('library') || undefined;
 
   return (
     <ContextUpdater domain="astronomy">
-      <main className="min-h-screen bg-almond-beige flex flex-col">
+      <main 
+        className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col relative"
+        style={{ backgroundImage: "url('/earth.png')" }}
+      >
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        
         {/* Content */}
-        <div className="mx-auto pt-4 pb-4 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-black dark:text-white">
+        <div className="relative z-10 mx-auto pt-4 pb-4 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-white">
         {/* Header */}
         <div className="flex items-center mb-6 pt-8">
           <div className="flex items-center gap-4 flex-1">
-            <div className="text-4xl">🔭</div>
             <div>
-              <h1 className="text-3xl font-heading">Astronomy & Cosmology</h1>
-              <p className="text-gray-700 dark:text-gray-200 text-base font-inter">AI Assistant for celestial observations and cosmic analysis</p>
+              <h1 className="text-5xl font-jersey text-white">Astronomy & Cosmology</h1>
             </div>
           </div>
           <div className="flex gap-48">
             <FloatingMenu />
-            <ThemeToggle />
           </div>
         </div>
+
+
 
 
 
@@ -42,6 +51,7 @@ export default async function AstronomyPage() {
               extraSystemPrompt: `You are an AI assistant specialized in astronomy and cosmology. You have access to information about ${astronomyData.libraries.length} top astronomy libraries including: ${astronomyData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
             }]}
             defaultProgramId="astronomy"
+            preselectedLibrary={preselectedLibrary}
           />
         </div>
       </div>

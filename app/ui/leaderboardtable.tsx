@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter, usePathname } from 'next/navigation';
+
 type LibraryEntry = {
   rank: number;
   name: string;
@@ -15,6 +17,22 @@ type LeaderboardTableProps = {
 };
 
 export default function LeaderboardTable({ title, libraries }: LeaderboardTableProps) {
+  const router = useRouter();
+  const pathname = usePathname();
+  
+  // Déterminer le domaine basé sur le pathname
+  const getDomain = () => {
+    if (pathname.includes('astronomy')) return 'astronomy';
+    if (pathname.includes('finance')) return 'finance';
+    return 'astronomy'; // fallback
+  };
+  
+  const handleLibraryClick = (libraryName: string) => {
+    const domain = getDomain();
+    // Naviguer vers la page de chat avec la librairie pré-sélectionnée
+    router.push(`/${domain}?library=${encodeURIComponent(libraryName)}`);
+  };
+  
   return (
     <div className="flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-lg p-4 text-sm w-[900px] max-h-[400px] overflow-y-auto mb-6 border border-white/20">
       <h2 className="text-lg font-semibold text-center text-white mb-3">
@@ -36,7 +54,12 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
               <td className="border border-white/30 px-2 py-1">{rank}</td>
               <td className="border border-white/30 px-2 py-1">
                 <div className="flex flex-col">
-                  <span className="font-medium">{name}</span>
+                  <button 
+                    onClick={() => handleLibraryClick(name)}
+                    className="font-medium text-white hover:text-blue-200 hover:underline cursor-pointer text-left transition-colors duration-200"
+                  >
+                    {name}
+                  </button>
                   {hasContextFile && (
                     <div className="flex items-center mt-1">
                       <div className="w-2 h-2 bg-green-400 rounded-full mr-1"></div>

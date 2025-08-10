@@ -1,10 +1,12 @@
+'use client';
+
 import ChatContainer from "@/app/ui/chat-container";
 import { loadFinanceData } from "@/app/utils/domain-loader";
 import FloatingMenu from "@/app/ui/FloatingMenu";
-import ThemeToggle from "@/app/ui/theme-toggle";
+import LibrarySearch from "@/app/ui/library-search";
 import ContextUpdater from "@/app/ui/context-updater";
 
-export default async function FinancePage() {
+export default function FinancePage() {
   const financeData = loadFinanceData();
 
   return (
@@ -15,7 +17,7 @@ export default async function FinancePage() {
         {/* Header */}
         <div className="flex items-center mb-6 pt-8">
           <div className="flex items-center gap-4 flex-1">
-            <div className="text-4xl">📈</div>
+
             <div>
               <h1 className="text-3xl font-heading">Finance & Trading</h1>
               <p className="text-gray-700 dark:text-gray-200 text-base font-inter">AI Assistant for portfolio optimization and algorithmic trading</p>
@@ -23,11 +25,22 @@ export default async function FinancePage() {
           </div>
           <div className="flex gap-48">
             <FloatingMenu />
-            <ThemeToggle />
           </div>
         </div>
 
 
+
+        {/* Library Search */}
+        <div className="mb-8">
+          <LibrarySearch
+            libraries={financeData.libraries}
+            onLibrarySelect={(library) => {
+              // Ouvrir le lien GitHub de la librairie sélectionnée
+              window.open(library.github_url, '_blank');
+            }}
+            placeholder="Search finance libraries..."
+          />
+        </div>
 
         <div className="flex-1 mt-8">
           <ChatContainer
