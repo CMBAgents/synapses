@@ -4,10 +4,10 @@ import path from 'path';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { domain: string; filename: string } }
+  { params }: { params: Promise<{ domain: string; filename: string }> }
 ) {
   try {
-    const { domain, filename } = params;
+    const { domain, filename } = await params;
     
     // Vérifier que les paramètres sont sécurisés
     if (!domain || !filename || 

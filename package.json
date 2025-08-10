@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node scripts/build-context.js && node scripts/generate-context-module.js && next dev",
     "build": "node scripts/build-context.js && node scripts/generate-context-module.js && next build",
-    "start": "next start",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
     "validate-config": "node scripts/validate-config.js",

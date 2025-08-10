@@ -15,7 +15,7 @@ export interface Program {
   description: string;
   contextFiles: string[]; // Can be empty if combinedContextFile is a URL
   contextFile?: string; // For backward compatibility
-  combinedContextFile?: string; // Name of the combined context file for download or a URL to fetch context from
+  combinedContextFile?: string | null; // Name of the combined context file for download or a URL to fetch context from
   docsUrl: string;
   extraSystemPrompt?: string; // Additional program-specific system prompt instructions
 }
@@ -33,7 +33,7 @@ export interface Config {
   };
   availableModels: ModelConfig[]; // List of available models
   defaultModelId: string; // Default model ID to use
-  fallbackModelId?: string; // Fallback model ID to use if the default model fails
+  fallbackModelId?: string | null; // Fallback model ID to use if the default model fails
   useDirectOpenAIKey?: boolean; // Flag to use direct OpenAI key if available
   useDirectGeminiKey?: boolean; // Flag to use direct Gemini key if available
   systemPrompt?: string; // Common system prompt template with placeholders

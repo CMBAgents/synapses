@@ -14,7 +14,7 @@ interface RawConfigJson {
     name: string;
     description: string;
     contextFiles: string[]; // Can be empty if combinedContextFile is a URL
-    combinedContextFile?: string; // Can be a URL to fetch context from
+    combinedContextFile?: string | null; // Can be a URL to fetch context from
     docsUrl: string;
     extraSystemPrompt?: string;
   }>;
@@ -24,7 +24,7 @@ interface RawConfigJson {
   greeting?: string;
   additionalContext?: string;
   defaultModelId: string;
-  fallbackModelId?: string;
+  fallbackModelId?: string | null;
   useDirectOpenAIKey?: boolean;
   useDirectGeminiKey?: boolean;
   availableModels: Array<{
