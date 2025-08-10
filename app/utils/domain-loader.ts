@@ -42,13 +42,13 @@ export function getAllDomains(): Array<{id: string, name: string, description: s
       id: 'astronomy',
       name: 'Astronomy & Cosmology',
       description: 'Celestial observations, gravitational waves, and cosmic microwave background analysis',
-      icon: '🔭'
+      icon: ''
     },
     {
       id: 'finance',
       name: 'Finance & Trading',
       description: 'Portfolio optimization, algorithmic trading, and financial analysis',
-      icon: '📈'
+      icon: ''
     }
   ];
 } 

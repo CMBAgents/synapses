@@ -50,7 +50,7 @@ export default function DomainSelector() {
                 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl
                 ${isAnimating && selectedDomain === domain.id 
                   ? 'scale-110 rotate-3' 
-                  : 'hover:scale-105 hover:-rotate-1'
+                  : ''
                 }
                 ${isAnimating && selectedDomain !== domain.id 
                   ? 'scale-95 opacity-50' 
@@ -69,10 +69,10 @@ export default function DomainSelector() {
                   text-6xl mb-6 transition-all duration-500
                   ${selectedDomain === domain.id 
                     ? 'scale-125' 
-                    : 'group-hover:scale-110'
+                    : ''
                   }
                 `}>
-                  {domain.icon}
+                  {/* Icon removed */}
                 </div>
 
                 {/* Domain Title */}

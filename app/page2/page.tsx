@@ -3,15 +3,18 @@
 import FadeIn from "../ui/fadein";
 import LeaderboardTable from "../ui/leaderboardtable";
 
-import { astronomyLibs, financeLibs } from "../data/loadLibs";
+import { loadAstronomyData, loadFinanceData } from "../utils/domain-loader";
 
 export default function Page2() {
+  const astronomyData = loadAstronomyData();
+  const financeData = loadFinanceData();
+
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center bg-cover bg-center bg-no-repeat bg-fadein"
       style={{ backgroundImage: "url('image_page2.png')" }}
     >
-      <div className="w-full max-w-6xl bg-white/80 dark:bg-gray-900/80 rounded-lg p-6 shadow-lg">
+      <div className="relative z-10 w-full max-w-6xl bg-white/80 dark:bg-gray-900/80 rounded-lg p-6 shadow-lg">
         <FadeIn>
           <div className="w-full max-w-3xl mb-8">
             <h1 className="text-3xl text-center font-bold text-gray-900 dark:text-gray-100 text-right mb-2">
@@ -24,11 +27,11 @@ export default function Page2() {
           <div className="flex flex-wrap justify-center gap-6">
             <LeaderboardTable
               title="Astronomy"
-              libraries={astronomyLibs}
+              libraries={astronomyData.libraries}
             />
             <LeaderboardTable
               title="Finance"
-              libraries={financeLibs}
+              libraries={financeData.libraries}
             />
           </div>
         </FadeIn>
