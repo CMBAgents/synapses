@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     // Get library info from JSON
     const jsonPath = path.join(process.cwd(), 'app', 'data', `${domain}-libraries.json`);
-    const contextDir = path.join(process.cwd(), 'app', 'context', domain);
+    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
     
     if (!fs.existsSync(jsonPath)) {
       return NextResponse.json({ error: 'JSON file not found' }, { status: 404 });
@@ -73,34 +73,12 @@ export async function POST(request: NextRequest) {
           console.warn(`Git clone stderr: ${cloneResult.stderr}`);
         }
         
-        // Run contextmaker using Python API
+        // Run contextmaker using command line with --output
         const outputPath = path.join(contextDir, `${packageName}-context.txt`);
-        const pythonScript = `
-import contextmaker
-import sys
-import os
-
-try:
-    result_path = contextmaker.make(
-        library_name="${packageName}",
-        output_path="${path.dirname(outputPath)}",
-        input_path="${tempDir}",
-        extension='txt'
-    )
-    
-    if result_path and os.path.exists(result_path):
-        print("SUCCESS:" + result_path)
-    else:
-        print("FAILED:Context file not created")
-        sys.exit(1)
-except Exception as e:
-    print("ERROR:" + str(e))
-    sys.exit(1)
-        `;
         
         console.log(`Running contextmaker for ${packageName} from ${tempDir}`);
         
-        const { stdout, stderr } = await execAsync(`python3 -c "${pythonScript}"`, {
+        const { stdout, stderr } = await execAsync(`contextmaker ${packageName} --output "${outputPath}" --input-path "${tempDir}"`, {
           timeout: 300000 // 5 minutes timeout
         });
         
@@ -109,9 +87,8 @@ except Exception as e:
         }
         
         // Check if file was created
-        if (stdout.includes('SUCCESS:')) {
-          const resultPath = stdout.split('SUCCESS:')[1].trim();
-          console.log(`✅ Context file generated: ${resultPath}`);
+        if (fs.existsSync(outputPath)) {
+          console.log(`✅ Context file generated: ${outputPath}`);
           
           // Update the library entry
           library.hasContextFile = true;
@@ -123,7 +100,7 @@ except Exception as e:
             success: true, 
             message: `Context file generated for ${libraryName}`,
             contextFileName: `${packageName}-context.txt`,
-            outputPath: resultPath
+            outputPath: outputPath
           });
         } else {
           throw new Error('Context file was not created');

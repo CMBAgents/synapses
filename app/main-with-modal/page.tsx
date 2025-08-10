@@ -62,7 +62,7 @@ export default function MainWithModalPage() {
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold">
-            CMBAgent Info
+            Synapses
           </h1>
           <div className="flex gap-4">
             <button

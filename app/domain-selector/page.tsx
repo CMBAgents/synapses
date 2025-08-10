@@ -42,43 +42,36 @@ export default function DomainSelector() {
 
         {/* Domain Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl w-full content-fade-in">
-          {domains.map((domain, index) => (
-            <div
-              key={domain.id}
-              className={`
-                relative group cursor-pointer transform transition-all duration-500 ease-out
-                bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl
-                ${isAnimating && selectedDomain === domain.id 
-                  ? 'scale-110 rotate-3' 
-                  : 'hover:scale-105 hover:-rotate-1'
-                }
-                ${isAnimating && selectedDomain !== domain.id 
-                  ? 'scale-95 opacity-50' 
-                  : ''
-                }
-              `}
-              style={{
-                animationDelay: `${index * 200}ms`
-              }}
-              onClick={() => handleDomainSelect(domain.id)}
-            >
+          {domains.map((domain, index) => {
+            const isFinance = domain.id === 'finance';
+            const isDisabled = isFinance; // Finance est désactivé pour l'instant
+            
+            return (
+              <div
+                key={domain.id}
+                className={`relative group bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl ${
+                  isDisabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'
+                }`}
+                onClick={() => !isDisabled && handleDomainSelect(domain.id)}
+              >
               {/* Card Content */}
-              <div className="relative p-8 transition-all duration-500">
+              <div className="relative p-8">
                 {/* Domain Icon */}
-                <div className={`
-                  text-6xl mb-6 transition-all duration-500
-                  ${selectedDomain === domain.id 
-                    ? 'scale-125' 
-                    : 'group-hover:scale-110'
-                  }
-                `}>
-                  {domain.icon}
+                <div className="text-6xl mb-6">
+                  {/* Icon removed */}
                 </div>
 
                 {/* Domain Title */}
-                <h2 className="text-2xl md:text-3xl font-heading mb-4 text-white">
-                  {domain.name}
-                </h2>
+                <div className="flex items-center justify-between mb-4">
+                  <h2 className="text-4xl md:text-5xl font-jersey text-white">
+                    {domain.name}
+                  </h2>
+                  {isDisabled && (
+                    <div className="bg-yellow-500/80 text-black px-3 py-1 rounded-full text-sm font-bold font-inter">
+                      Soon
+                    </div>
+                  )}
+                </div>
 
                 {/* Domain Description */}
                 <p className="text-white text-lg leading-relaxed mb-6 font-inter">
@@ -86,20 +79,15 @@ export default function DomainSelector() {
                 </p>
 
                 {/* Selection Indicator */}
-                <div className={`
-                  absolute top-4 right-4 w-6 h-6 rounded-full border-2 transition-all duration-300
-                  ${selectedDomain === domain.id 
-                    ? 'border-black bg-black' 
-                    : 'border-white/60 group-hover:border-black/60'
-                  }
-                `}>
+                <div className="absolute top-4 right-4 w-6 h-6 rounded-full border-2 border-white/60">
                   {selectedDomain === domain.id && (
-                    <div className="absolute inset-1 bg-white rounded-full animate-pulse"></div>
+                    <div className="absolute inset-1 bg-white rounded-full"></div>
                   )}
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
 
         {/* Back Button */}

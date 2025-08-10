@@ -1,0 +1,975 @@
+# \- poppy | Complete Documentation -
+
+# Notebook
+
+* * *
+
+```python nbsphinx="hidden" %matplotlib inline import numpy as np import poppy
+import astropy.units as u import matplotlib import matplotlib.pyplot as plt
+import astropy.io.fits as fits
+
+matplotlib.rcParams['figure.figsize'] = (10,7)
+matplotlib.rcParams['font.size'] =12 plt.figure(figsize=(1,1))
+plt.plot(np.arange(10)) plt.title("Placeholder plot to make it load the rc
+file") plt.show() matplotlib.rcParams['figure.figsize'] = (10,7)
+matplotlib.rcParams['font.size'] =12 ```
+
+`python nbsphinx="hidden" matplotlib.rcParams['figure.figsize'] = (10,7)
+matplotlib.rcParams['font.size'] =12 plt.figure(figsize=(1,1))
+plt.plot(np.arange(10)) plt.title("Placeholder plot to make it load the rc
+file") plt.show()`
+
+# Available Optical Element Classes
+
+There are many available predefined types of optical elements in poppy. In
+addition you can easily specify your own custom optics.
+
+  * Pupils and Aperture Stops
+  * Image Plane Elements
+  * General Purpose Elements
+  * Wavefront Errors
+  * Deformable Mirrors and other Active Optics
+  * Supplying Custom Optics from Files or Arrays
+
+## Pupils and Aperture Stops
+
+These optics have dimensions specified in meters, or other units of length.
+They can be used in the pupil planes of a Fraunhofer optical system, or any
+plane of a Fresnel optical system. All of these may be translated or rotated
+around in the plane by setting the `rotation`, `shift_x` or `shift_y`
+parameters.
+
+### CircularAperture
+
+A basic aperture stop.
+
+`python optic = poppy.CircularAperture(radius=1) optic.display(what='both');`
+
+### SquareAperture
+
+A square stop. The specified size is the length across any one side.
+
+`python optic = poppy.SquareAperture(size=1.0) optic.display(what='both');`
+
+### RectangularAperture
+
+Specify the width and height to define a rectangle.
+
+`python optic = poppy.RectangleAperture(width=0.5*u.m, height=1.0*u.m)
+optic.display(what='both');`
+
+### HexagonAperture
+
+For instance, one segment of a segmented mirror.
+
+`python optic = poppy.HexagonAperture(side=1.0) optic.display(what='both');`
+
+### MultiHexagonAperture
+
+Arbitrarily many hexagons, in rings. You can adjust the size of each hex, the
+gap width between them, and whether any hexes are missing (in particular the
+center one).
+
+`python optic = poppy.MultiHexagonAperture(side=1, rings=1, gap=0.05,
+center=True) optic.display(what='both');`
+
+### NgonAperture
+
+Triangular apertures or other regular polygons besides hexagons are uncommon,
+but a generalized N-gon aperture allows modeling them if needed.
+
+`python optic = poppy.NgonAperture(nsides=5) optic.display(what='both');`
+
+### SecondaryObscuration
+
+This class adds an obstruction which is supported by a regular evenly-spaced
+grid of identical struts, or set `n_supports=0` for a free-standing
+obscuration.
+
+`python optic = poppy.SecondaryObscuration(secondary_radius=1.0, n_supports=4,
+support_width=5*u.cm) optic.display(what='both');`
+
+### AsymmetricSecondaryObscuration
+
+This class allows making more complex "spider" support patterns than the
+SecondaryObscuration class. Each strut may individually be adjusted in angle,
+width, and offset in x and y from the center of the aperture. Angles are given
+in a convention such that the +Y axis is 0 degrees, and increase
+counterclockwise (based on the typical astronomical convention that north is
+the origin for position angles, increasing towards east.)
+
+`python optic = poppy.AsymmetricSecondaryObscuration(secondary_radius=0.3*u.m,
+support_angle=(40, 140, 220, 320), support_width=[0.05, 0.03, 0.03, 0.05],
+support_offset_x=[0, -0.2, 0.2, 0], name='Complex secondary')
+optic.display(what='both');`
+
+### ThinLens
+
+This models a lens or powered mirror in the thin-lens approximation, with the
+retardance specified in terms of a number of waves at a given wavelength. The
+lens is perfectly achromatic.
+
+`python optic = poppy.ThinLens(nwaves=1, reference_wavelength=1e-6*u.m,
+radius=10*u.cm) optic.display(what='both');`
+
+### GaussianAperture
+
+This Gaussian profile can be used for instance to model an apodizer in the
+pupil plane, or to model a beam launched from a fiber optic.
+
+`python optic = poppy.GaussianAperture(fwhm=1*u.m)
+optic.display(what='both');`
+
+### KnifeEdge
+
+A knife edge is an infinite opaque half-plane.
+
+`python optic = poppy.optics.KnifeEdge(rotation=0)
+optic.display(what='both');`
+
+## Image Plane Elements
+
+Image plane classes have dimensions specified in units of arcseconds projected
+onto the sky. These classes can be placed in image planes in either Fraunhofer
+or Fresnel optical systems.
+
+### SquareFieldStop
+
+`python optic = poppy.SquareFieldStop() optic.display(what='both');`
+
+### RectangularFieldStop
+
+This class can be used to implement a spectrograph slit, for instance.
+
+`python optic = poppy.RectangularFieldStop() optic.display(what='both');`
+
+### AnnularFieldStop
+
+You can also use this as a circular field stop by setting `radius_inner=0`.
+
+`python optic = poppy.optics.AnnularFieldStop(radius_inner=1, radius_outer=3)
+optic.display(what='both');`
+
+### HexagonFieldStop
+
+`python optic = poppy.optics.HexagonFieldStop() optic.display(what='both');`
+
+### CircularOcculter
+
+`python optic = poppy.optics.CircularOcculter() optic.display(what='both');`
+
+### BarOcculter
+
+This is an opaque bar or line.
+
+`python optic = poppy.optics.BarOcculter(width=1, height=10)
+optic.display(what='both');`
+
+### BandLimitedCoronagraph
+
+`python optic = poppy.BandLimitedCoronagraph() optic.display(what='both');`
+
+### Four Quadrant Phase Mask
+
+The class is named `IdealFQPM` because this implements a notionally perfect
+4QPM at some given wavelength; it has precisely half a wave retardance at the
+reference wavelength.
+
+`python optic = poppy.IdealFQPM(wavelength=1*u.micron)
+optic.display(what='both');`
+
+## General Purpose Elements
+
+### ScalarTransmission
+
+This class implements a uniformly multiplicative transmission factor, i.e. a
+neutral density filter.
+
+`python optic = poppy.ScalarTransmission(transmission=0.85)
+optic.display(what='both');`
+
+### Inverse Transmission
+
+This optic acts on another to flip the transmission: Areas which were 0 become
+1 and vice versa. This operation is not meant as a representative of some real
+physical process itself, but can be useful in building certain types of
+compound optics.
+
+```python circ = poppy.CircularAperture(radius=1) ax1= plt.subplot(121)
+circ.display(what='amplitude', ax=ax1)
+
+ax2= plt.subplot(122) inverted_circ = poppy.InverseTransmission(circ)
+inverted_circ.display(grid_size=3, what='amplitude', ax=ax2) ```
+
+## Wavefront Errors
+
+Wavefront error classes can be used to represent various forms of phase delay,
+typically at a pupil plane. Further documentation on these classes can be
+found [here](wfe.html).
+
+### ZernikeWFE
+
+Wavefront errors can be specified by giving a list of Zernike coefficients,
+which are ordered using the Noll indexing convention. The different Zernikes
+are then added together to make an overall wavefront map.
+
+Note that while the Zernikes are defined with respect to some notional
+circular aperture of a given radius, by default this class just implements the
+_wavefront error_ part, not the aperture stop.
+
+`python optic = poppy.ZernikeWFE(radius=1*u.cm, coefficients=[0.1e-6, 3e-6,
+-3e-6, 1e-6, -7e-7, 0.4e-6, -2e-6], aperture_stop=False)
+optic.display(what='both', opd_vmax=1e-5, grid_size=0.03);`
+
+You can optionally set the parameter `aperture_stop=True` to ZernikeWFE if you
+want it to also act as a circular aperture stop.
+
+`python optic = poppy.ZernikeWFE(radius=1*u.cm, coefficients=[0, 2e-6, 3e-6,
+2e-6, 0, 0.4e-6, 1e-6], aperture_stop=True) optic.display(what='both',
+opd_vmax=1e-5, grid_size=0.03);`
+
+### SineWaveWFE
+
+A sinusoidal ripple across a mirror, for instance a deformable mirror. Specify
+the ripple by the spatial frequency (i.e. cycles per meter). Use the
+`amplitude`, `rotation` and `phaseoffset` parameters to adjust the sine wave.
+
+`python optic = poppy.SineWaveWFE(spatialfreq=5/u.meter, amplitude=1*u.micron,
+rotation=20) optic.display(what='both', opd_vmax=1*u.micron);`
+
+### StatisticalPSDWFE
+
+A wavefront error from a random phase with a power spectral density from a
+power law of index `-index`. The `seed` parameter allows to reinitialize the
+pseudo-random number generator
+
+`python optic = poppy.wfe.StatisticalPSDWFE(index=3.0, wfe=50*u.nm,
+radius=7*u.mm, seed=1234) optic.display(what='both', opd_vmax=150*u.nm);`
+
+## Deformable Mirrors and other Active Optics
+
+### Continuous Deformable Mirrors
+
+Represents a continuous phase-sheet DM, such as from Boston Micromachines or
+AOA Xinetics. Individual actuators in the DM can be addressed and poked with
+the `set_actuator` function. That function takes 3 parameters:
+`set_actuator(x_act, y_act, piston)`.
+
+`python dm = poppy.dms.ContinuousDeformableMirror(dm_shape=(16,16),
+actuator_spacing=0.3*u.mm, radius=2.3*u.mm) dm.set_actuator(2, 4, 1e-6)
+dm.set_actuator(12, 12, -1e-6) dm.display(what='both', opd_vmax=1*u.micron);`
+
+You can also set all actuators in the entire DM surface at once by calling
+`set_surface` with a suitably-sized array.
+
+`python dm = poppy.dms.ContinuousDeformableMirror(dm_shape=(32,32),
+actuator_spacing=0.3*u.mm, radius=4.9*u.mm) target_surf =
+fits.getdata('dm_example_surface.fits') dm.set_surface(target_surf);
+dm.display(what='both');`
+
+The DM class has much more functionality than currently shown here, including
+loading measured influence functions and models of high-spatial-frequency
+actuator print-through. These features are not yet fully documented but please
+contact Marshall if you're interested.
+
+## Hexagonally Segmented Deformable Mirrors
+
+For instance, one of the devices made by Iris AO.
+
+In this case, the `set_actuator` function takes 4 parameters:
+`set_actuator(segment_number, piston, tip, tilt)`.
+
+`python hexdm = poppy.dms.HexSegmentedDeformableMirror(rings=3)
+hexdm.set_actuator(12, 0.5*u.micron, 0, 0) hexdm.set_actuator(18,
+-0.25*u.micron, 0, 0) hexdm.set_actuator(6, 0, -0.25*u.microradian, 0) for i
+in range (19, 37, 3): hexdm.set_actuator(i, 0, 0, 2*u.microradian)
+hexdm.display(what='both');`
+
+## Circularly Segmented Deformable Mirrors
+
+A collection of circular apertures that can be individually controlled.
+
+Like HexSegmentedDeformableMirror, the `set_actuator` function takes 4
+parameters: `set_actuator(segment_number, piston, tip, tilt)`.
+
+`python gmt = poppy.dms.CircularSegmentedDeformableMirror(rings=1,
+segment_radius=8.4*u.m/2, gap=0.1*u.m) gmt.set_actuator(1, 0, 0,
+0.1*u.microradian) gmt.set_actuator(2, -0.25*u.micron, 0, 0)
+gmt.set_actuator(5, 0, -0.05*u.microradian, 0) gmt.display(what='both');`
+
+## Tip Tilt Stage
+
+This simulates a stage that can be used to adjust the tilt of some arbitrary
+optic. Create that optic first, then provide it as an input to this stage.
+
+The `set_tip_tilt` function takes 2 parameters: `set_tip_tilt(tip, tilt)` to
+specify where the PSF should be tilted towards. Assuming the input beam is a
+flat wavefront with 0 initial tilts, the resulting PSF should be located at
+the specified offset.
+
+```python aperture = ap = poppy.HexagonAperture(side= 10*u.cm)
+
+ttstage = poppy.TipTiltStage(aperture, radius=10 _u.cm)
+ttstage.set_tip_tilt(20_ u.arcsec, -10*u.arcsec) ttstage.display(what='both',
+opd_vmax=1e-5)
+
+# Demonstrate the effect on a wavefront by this stage
+
+w = poppy.Wavefront(diam=20 _u.cm) w_ = ttstage
+w.propagate_to(poppy.Detector(pixelscale=0.5*u.arcsec/u.pixel, fov_arcsec=50))
+plt.figure() w.display(imagecrop=50) plt.title("PSF with tip tilt (20,-10)
+arcsec applied")
+
+```
+
+## Supplying Custom Optics from Files or Arrays
+
+If you want to set some more complicated shape, you can do so by directly
+specifying an array of values and loading those into an `ArrayOpticalElement`.
+
+```python
+
+# Define arrays
+
+npix = 128 trans = np.zeros((npix, npix)) opd = np.zeros((npix, npix)) - 1e-7
+
+# Load values into those arrays
+
+opd[35:45, 35:87] = 2e-7 y, x = np.indices((npix, npix)) r =
+np.sqrt((x-npix/2)**2 + (y-npix/2)** 2) trans[r<50] = 1 for x in [35, 75]:
+trans[70:85, x:x+12] = 0 opd[45:52, x:x+12] = 2e-7
+
+# Create an optic using those arrays
+
+complex_optic = poppy.ArrayOpticalElement(transmission=trans, opd=opd,
+name='Friendly Optic', pixelscale=1*u.mm/u.pixel)
+complex_optic.display(what='both') ```
+
+You may also load arrays directly from FITS files to specify arbitrarily
+complicated optics using data defined by some external software, or measured
+data from an instrument.
+
+```python optic = poppy.FITSOpticalElement(transmission='example_flower.fits',
+pixelscale=0.01, opd='example_flower_opd.fits', opdunits='nanometers')
+
+optic.display(what='both') ```
+
+```python
+
+```
+
+# Notebook
+
+* * *
+
+`python nbsphinx="hidden" %matplotlib inline import numpy as np import poppy
+import astropy.units as u import matplotlib import matplotlib.pyplot as plt
+matplotlib.rcParams['figure.figsize'] = [12,4]`
+
+# Sign Conventions for Coordinates, Phase, and Wavefront Error
+
+_Thanks to Derek Sabatke (Ball Aerospace), Matt Bergkoetter, Alden Jurling,
+Tom Zielinski (NASA GSFC), and Randal Telfer (STScI) for invaluable
+discussions and contributions in disambiguating this oft-treacherous topic._
+
+We begin by stating the basic conventions assumed for spatial and angular
+coordinates, then move on to the more subtle issues of wavefront error and
+optical propagation sign conventions.
+
+Summary: In brief, `poppy` as of version 1.0 and later uses sign conventions
+consistent with widely used optical engineering tools (Code V, Zemax, etc), in
+that _positive wavefront error corresponds to advanced phase (and to shorter
+optical path length)_. Note that this convention is opposite that of the
+classic texts by Goodman or Born & Wolf. To be consistent with this, forward
+propagation calculations use a positive sign in the Fourier transform's
+complex exponential. This is what is labeled the 'inverse' Fourier transform
+in numpy.
+
+## Spatial Coordinate Conventions for Optical Planes
+
+`Poppy` adopts a right-handed coordinate system as follows. The $z$ axis is
+the optical axis of propagation, with $+z$ being in the direction of travel as
+usual. In the plane of an optic, the $+y$ axis is vertical upwards. Following
+the right hand rule, if looking from an image plane towards an object plane
+(i.e. looking "outward from the detector", in the $-z$ direction), the $+x$
+axis points toward the right.
+
+  
+![](poppy_pupil_axes_convention.png)  
+
+This convention has the convenient property that the $+x$ and $+y$ axes are
+consistent with `matplotlib` display conventions, assuming you use the
+`origin="lower"` display option to set the image axes origin to lower left.
+This display setting is applied automatically in all display functions in
+`poppy`.
+
+We note this axes convention is generally consistent with many optical
+engineering packages. For instance, Code V uses a similar right-handed system,
+and for the typical case in which $+z$ is the propagation direction (and
+without any additional coordinate rotations added) the axes definitions are
+similar.
+
+As noted elsewhere, the paradigm in `poppy` is to model "unfolded" optical
+systems, i.e. thinking of them in a linear fashion along the propagation
+direction "as if they were refractive". This intentionally simplifies away the
+change in physical propagation direction at reflective surfaces.
+
+**A note on reimaged pupils** : By convention and for convenience, `poppy` _by
+default models all pupils in a system on consistent axes matching that of the
+system exit pupil_ ; it does _not_ automatically model the inversion or flip
+at reimaged pupils (for Fraunhofer mode calculations). This is intended as a
+practical convenience to ease calculations on pupils without having to
+consider possibly-different coordinate signs for each successive pupil. If
+your use case requires modeling the spatial flip at reimaged pupils, add the
+coordinate inversion explicitly via a `poppy.CoordinateInversion` instance.
+For instance, this is done in `webbpsf` since the convention for the JWST
+primary is to represent it as in entrance pupil orientation seen from in front
+of the telescope; a `CoordinateInversion` is used to flip this to the exit
+pupil orientation before the optical propagations in the optical system model.
+Similarly, any intermediate image planes in a system are modeled with
+coordinates consistent with the final image plane.
+
+**Image plane coordinates** follow a similar convention for the $+x$ and $+y$
+axes, illustrated below. This typically also corresponds to the typical
+astronomical convention of "images as projected looking out onto the sky", and
+in particular matches the output image axes convention for the Hubble and JWST
+image processing pipelines (and the vast majority of astronomical software
+worldwide). Intuitively, imagine "being the detector" and looking out at the
+sky through the optical system, or equivalently "looking through a transparent
+detector" out at the sky.
+
+  
+![](poppy_image_axes_convention.png)  
+
+**Position Angles** : Rotation angles in an optical plane are defined
+increasing counterclockwise (seen looking in the $-z$ direction, as described
+just above). In other words a rotation from the $+x$ axis toward the $+y$ axis
+is positive.
+
+This definition is consistent with the common astronomical convention of
+measuring angles counterclockwise from North towards East as projected onto
+the sky. It's also consistent with the convention used by Wyant and Creath
+(their Figure 4B), who further note that it matches the convention used in
+various optical interferogram analyses packages.
+
+## Sign Conventions for Wavefront Error and Phase
+
+_The devil is in the details, and the details are all sign conventions.
+--Anonymous_
+
+The signs used to represent propagation of a complex wavefront ultimately
+depends on entirely arbitrary choices, particularly for the time dependence of
+the complex exponential. We discuss below in more detail the history of
+choices made by different authors. Ultimately there is no "right or wrong"
+answer here; what matters is to be consistent internally within a given
+toolkit, and clearly document the choices made.
+
+We choose to follow the convention that _an advanced wavefront corresponds to
+a positive optical path difference_. This follows e.g. [Wyant and Creath's
+Basic Wavefront Aberration Theory](https://wp.optics.arizona.edu/jcwyant/wp-
+content/uploads/sites/13/2016/08/03-BasicAberrations_and_Optical_Testing.pdf).
+We quote from their Section 1 on Sign Conventions:
+
+> The optical path difference (OPD) is defined as the difference between the
+> aberrated and the ideal unaberrated wavefronts. The OPD is positive if the
+> aberrated wavefront leads the ideal unaberrated wavefront as shown in Fig.
+> 2. Also, if the aberrated wavefront curves in more than the unaberrated
+> wavefront, the OPD is positive. Therefore, a negative focal shift will
+> introduce a positive aberration, so that a positive aberration will focus in
+> front of the Gaussian image plane, as shown in Fig. 3. In the case of
+> interferometric optical testing, this means that a bump on a test mirror
+> (aberrated beam) will be represented by a bump in the OPD.
+
+  
+![](fig_wyant_creath_sign_convention_fig2.png)
+![](fig_wyant_creath_sign_convention_fig3.png)  
+
+Thus in the case of a segmented telescope, advancing one segment forward
+(towards the secondary) should be represented as _positive_ wavefront error
+over the area of that segment.
+
+**Optical Path Difference vs. Optical Path Length:**
+
+An alternative phrasing that arrives at the same place is as follows. We can
+define the _optical path length_ (OPL) as the sum of distances across ray
+segments; this is intuitive, easy to calculate, and essentially free of sign
+conventions. With that definition in mind we can state: _A longer optical path
+length causes a ray’s phase to lag, so that corresponds to a negative
+wavefront error._ "Lag" in this context means that the propagation time is
+larger along that longer path. (This is equivalent to the choice of a positive
+sign for the harmonic time dependence, discussed below). We can then relate:
+
+`OPD = WFE = aberrated_wavefront - unaberrated_wavefront = constant - OPL`
+
+## Sign conventions used in optical propagation
+
+The sign of the phase term in expressions for complex amplitude depends on the
+choice of an arbitrary sign in the complex exponential $exp[\pm i(\omega t -
+kr)]$, where $r$ is propagation distance and $k= 2 \pi /\lambda$. So for an
+aberrated wave propagating roughly along the $z$ axis, we can say $r = z +
+OPL$. The sign on OPL is unambiguous because optical path length behaves like
+propagation distance. Plugging that in gives $exp(\mp ik OPL) exp[\pm i(\omega
+t - kz)]$, which technically answers the question, but is not so helpful until
+clarifying if you're using the signs on the top or the bottom of the complex
+exponential.
+
+In the case of `poppy` we choose the top signs (increasing phase with time).
+It is then possible to work through the derivation of plane wave propagation
+via the angular spectrum method and find that the Fourier transform should
+have a positive sign in the exponent, for a basic left-to-right propagation
+from a real pupil to a real image.
+
+The [numpy sign convention for
+FFTs](https://numpy.org/doc/stable/reference/routines.fft.html#module-
+numpy.fft) uses a negative sign in the exponential for the "forward" transform
+`np.fft`, and a positive sign in the exponential for the "inverse" transform
+`np.ifft`. Thus we arrive at the conclusion that we need an inverse FFT for
+the forward propagation, and vice versa a forward FFT for backward
+propagation.
+
+We verify below that adopting this convention does result in PSFs consistent
+with expectations, in particular for tilts on wavefronts.
+
+### **Sign conventions for wavefront tilts:**
+
+As a particular example, returning to Wyant and Creath, they state:
+
+> Tilt in a wavefront affects the image by causing a shift of its center
+> location in the Gaussian image plane. A tilt causing a positive OPD change
+> in the +x direction will cause the image to shift in the -x direction.
+
+We demonstrate below this is the case for poppy, both for overall wavefront
+tilts and for individual tilted segments.
+
+### Historical aside: Why is all this so confusing anyway?
+
+As noted above, there is a truly arbitrary choice for the sign convention of
+the harmonic time dependence, $exp[\pm i(\omega t - kr)]$. Different authors
+have chosen differently.
+
+  * Goodman and Born & Wolf chose the convention that meaning a diverging spherical wave looks like $exp(ikr – i\omega t)$, and a converging spherical wave is $exp(-ikr – i\omega t)$. You can see the time dependence shown explicitly in Goodman’s Eq. 3-10, and in Born & Wolf's Section 8.3.1. 
+  * Wyant & Creath and Code V adopted the other convention. Matthew Bergkoetter (NASA GSFC) speculates they adopted conventions following H.H. Hopkins. In particular the Code V documentation (the ‘Near Field Propagation’ section of Chapter 2 of the Diffraction Analysis Reference Manual), the paper they cite for their PSF calculation is [Hopkins and Yzuel 1970](https://doi.org/10.1080/713818292). In Eq. 1 of that paper, Hopkins starts his derivation with diverging spherical waves shown as $exp(-ikR’)$, which makes sense if he has a positive time dependence, i.e. $exp(-ikR’ + i\omega t)$. The effect this has can be seen later in that paper's Eq. 3, which is missing a negative sign in the exponent of the Fourier kernel, compared to Goodman’s formulas.
+
+## Sign Convention Test Cases and Verifications
+
+The remainder of this notebook presents test calculations to demonstrate
+consistencey with the above. Many of the test cases are repeated for both the
+Fraunhofer and Fresnel propagation algorithms.
+
+For displays of phase and/or OPD, poppy by default uses a diverging color
+table in which positive values are depicted in red and negative values in
+blue, as shown in the various plot colorbars below.
+
+### A converging wavefront has positive OPD
+
+The OPD is positive if the aberrated wavefront leads the ideal unaberrated
+wavefront. A converging wavefront leads at its outer edges relative to a flat
+wavefront. Here we create a converging wavefront and verify that it has
+positive wavefront aberration.
+
+```python
+
+# Construct a converging optical system:
+
+focal_length = 1.0 _u.m osys = poppy.FresnelOpticalSystem(beam_ratio=0.25,
+pupil_diameter=1_ u.m) osys.add_optic(poppy.CircularAperture(radius=0.5*u.m))
+lens = poppy.QuadraticLens(f_lens=focal_length, name="Converging lens")
+osys.add_optic(lens)
+osys.add_optic(poppy.ScalarTransmission(planetype=poppy.poppy_core.PlaneType.image,
+name='focus'), distance=focal_length);
+
+psf, waves = osys.calc_psf(wavelength=1*u.micron, display=False,
+return_intermediates=True)
+
+plt.figure() waves[1].display(what='both', colorbar=True)
+plt.suptitle("Wavefront after converging lens")
+
+assert np.all(waves[1].phase[waves[1].intensity != 0] >= 0), "Converging wave
+should have all positive phase"
+
+plt.figure() poppy.display_psf(psf, imagecrop=10, title='PSF at focal
+distance') ```
+
+### A positive lens has positive WFE
+
+A fairly simple test, to show consistency of the ThinLens class with the above
+expectations.
+
+```python lens = poppy.ThinLens(name = "Positive lens, converging", radius=1)
+plt.figure(figsize=(8,6)) lens.display(what='both')
+
+wavelen = 1*u.micron nwaves = 1 npix =33 # use odd number so it passes exactly
+through the origin lens_opd = poppy.ThinLens(nwaves=nwaves,
+reference_wavelength=wavelen, radius=1).sample(what='opd', npix=npix,
+grid_size=2)
+
+fig, axes = plt.subplots(figsize=(12,5), ncols=2)
+
+# Plot the lens WFE
+
+axes[0].imshow(lens_opd, cmap=poppy.conf.cmap_diverging)
+plt.colorbar(axes[0].images[0], ax=axes[0]) axes[0].set_title("Lens WFE,
+sampled coarsely")
+
+# Plot a 1D cut through the lens WFE
+
+axes[1].plot(lens_opd[lens_opd.shape[0]//2], label='cut across lens WFE')
+
+# Plot the expected form of the lens WFE as a parabola
+
+cen = (npix-1)//2 x = (np.arange(npix)-cen) / (npix/2)
+
+y = nwaves _wavelen.to_value(u.m) * x_ *2 y += lens_opd.min() axes[1].plot(y,
+ls='--', color='black', lw=2, label='Expected WFE') axes[1].axvline(cen,
+ls=":", color='gray') axes[1].set_xlabel("Pixels") axes[1].set_ylabel("WFE
+[m]") axes[1].set_title("Cut along X axis") axes[1].legend()
+
+assert np.allclose(lens_opd[lens_opd.shape[0]//2], y), "Lens WFE did not match
+expectations for a positive lens"
+
+# For a automated unit test version of this, see
+poppy.tests.test_sign_conventions.test_lens_wfe_sign
+
+```
+
+### OPD and WFE should have consistent signs and amplitudes
+
+A positive bump on an optic (or, equivalently, a positive perturbation on a
+segmented or deforamable mirror) should produce positive wavefront error in a
+beam that encounters that optic.
+
+```python wavelen = 1*u.micron
+
+hexdm = poppy.HexSegmentedDeformableMirror(flattoflat=0.25*u.m, name='Hex
+mirror\nwith one segment +piston') hexdm.set_actuator(0, wavelen/3, 0, 0 ) #
+apply some piston < 1/2 wave to avoid phase ambiguity
+
+osys2 = poppy.OpticalSystem(pupil_diameter=1 _u.m)
+osys2.add_pupil(poppy.CircularAperture(radius=0.5_ u.m))
+osys2.add_pupil(hexdm)
+
+wave = osys2.input_wavefront() wave *= hexdm
+
+fig, axes = plt.subplots(figsize=(18,4), ncols=3)
+
+# Display hex DM (zoomed in)
+
+hexdm.display(what='opd', npix=1024, ax=axes[0],
+colorbar_orientation='vertical') axes[0].set_xlim(-0.5, 0.5)
+axes[0].set_ylim(-0.5, 0.5)
+
+# display wavefront, as WFE and phase
+
+wave.display(what='wfe', colorbar=True, ax=axes[1], )
+wave.display(what='phase', colorbar=True, ax=axes[2])
+
+# Assert consistency
+
+opd = hexdm.get_opd(wave) where_valid = opd != 0 assert
+np.allclose(opd[where_valid].mean(), wave.wfe[where_valid].mean().value), \
+"OPD and WFE should be consistent, for cases avoiding phase wrapping"
+
+# For a related automated unit test, see
+poppy.tests.test_sign_conventions.test_wfe_opd_consistency
+
+```
+
+### A wavefront with positive OPD tilt in +x should shift the focused PSF
+toward -x
+
+We perform this test twice, verifying expected behavior for both Fraunhofer
+and Fresnel propagation methods.
+
+```python plt.suptitle("Wavefront tilt sign test (Fraunhofer propagation)",
+fontweight='bold')
+
+# Create a wavefront and apply a tilt
+
+wave = poppy.Wavefront(diam=1 _u.m, npix=256) wave_ =
+poppy.CircularAperture(radius=0.5*u.m)
+
+tilt_angle = -0.2 # must be a negative number (for -X direction shift), and
+within the FOV
+
+wave.tilt(Xangle=tilt_angle) # for this function, the input is the desired
+direction for the image to tilt. # A shift to -X is implemented by creating an
+OPD that increases toward +X n = wave.shape[0] assert wave.wfe[n//2, n//2-5] <
+wave.wfe[n//2, n//2+5], "Wavefront error should increase to +X"
+
+wave.display(what='both', colorbar=True,)
+
+wave.propagate_to(poppy.Detector(pixelscale=0.025, fov_pixels=256))
+
+plt.figure() wave.display(what='both', crosshairs=True, imagecrop=2)
+
+n = wave.shape[0] cen = poppy.measure_centroid(wave.as_fits()) assert
+np.allclose(cen[0], (n-1)/2), "Tilt in X should not displace the PSF in Y"
+assert cen[1] < (n-1)/2, "WFE tilt increasing to +X should displace the PSF to
+-X" assert np.allclose(((cen[1]-(n-1)/2)_u.pixel_
+wave.pixelscale).to_value(u.arcsec), tilt_angle), "PSF offset did not match
+expected amount"
+
+# For a automated unit test version of this, see
+poppy.tests.test_sign_conventions.test_wavefront_tilt_sign_and_direction
+
+```
+
+```python plt.suptitle("Wavefront tilt sign test (Fresnel propagation)",
+fontweight='bold')
+
+# Create a wavefront and apply a tilt
+
+wave = poppy.FresnelWavefront(beam_radius=0.5 _u.m, npix=256, oversample=8)
+wave_ = poppy.CircularAperture(radius=0.5*u.m)
+
+# tilt in arcseconds
+
+tilt_angle = -0.2 # must be a negative number (for -X direction shift), and
+within the FOV
+
+wave.tilt(Xangle=tilt_angle) # for this function, the input is the desired
+direction for the image to tilt. # A shift to -X is implemented by creating an
+OPD that increases toward +X n = wave.shape[0] assert wave.wfe[n//2, n//2-5] <
+wave.wfe[n//2, n//2+5], "Wavefront error should increase to +X"
+
+wave.display(what='both', colorbar=True)
+
+focal_length = 1 _u.m wave_ = poppy.QuadraticLens(f_lens=focal_length)
+
+wave.propagate_fresnel(focal_length)
+
+plt.figure() wave.display(what='both', crosshairs=True, imagecrop=0.00001,
+scale='log')
+
+n = wave.shape[0] nominal_cen = n//2 # In Fresnel mode, PSFs are centered on a
+pixel by default # (different from in Frauhofer mode by half a pixel)
+
+cen = poppy.measure_centroid(wave.as_fits()) assert np.allclose(cen[0],
+nominal_cen), "Tilt in X should not displace the PSF in Y" assert cen[1] <
+nominal_cen, "WFE tilt increasing to +X should displace the PSF to -X" assert
+np.allclose((cen[1]-nominal_cen)_u.pixel_ wave.pixelscale, (tilt_angle
+_u.arcsec).to_value(u.radian)_ focal_length), "PSF offset distance did not
+match expected amount"
+
+# For a automated unit test version of this, see
+poppy.tests.test_sign_conventions.test_wavefront_tilt_sign_and_direction_fresnel
+
+```
+
+### A tilted segment with positive OPD tilt in +x should shift its focused PSF
+toward -x
+
+A more complicated example, with multiple tilted segments in a deformable
+mirror. We tilt one segment to move its spot toward $-x$, and another to move
+its spot toward $-y$ by half the amount.
+
+We again perform this test twice, verifying expected behavior for both
+Fraunhofer and Fresnel propagation methods.
+
+```python hexdm = poppy.HexSegmentedDeformableMirror(flattoflat=0.5 _u.m,
+rings=1) hexdm.set_actuator(0, 0.2_ u.micron, 0, 0) # piston
+hexdm.set_actuator(1, 0, 2 _u.arcsec, 0) # tip hexdm.set_actuator(2, 0, 0, 1_
+u.arcsec) # tilt
+
+osys2 = poppy.OpticalSystem(pupil_diameter=2*u.m)
+
+# osys2.add_pupil(poppy.CircularAperture(radius=0.4*u.m))
+
+osys2.add_pupil(poppy.MultiHexagonAperture(flattoflat=0.5*u.m, rings=1,
+center=True)) osys2.add_pupil(hexdm) osys2.add_detector(0.010, fov_arcsec=10)
+
+hexdm.display(what='opd', colorbar_orientation='vertical', opd_vmax=2e-6)
+
+plt.figure(figsize=(14,5)) plt.suptitle("Segment tilt sign test (Fraunhofer
+propagation)", fontweight='bold') psf2, waves =
+osys2.calc_psf(display_intermediates=True, return_intermediates=True)
+
+# For a automated unit test version of this, see
+poppy.tests.test_sign_conventions.test_segment_tilt_sign_and_direction
+
+```
+
+```python
+
+# Same thing, in Fresnel:
+
+hexdm = poppy.HexSegmentedDeformableMirror(flattoflat=0.5 _u.m, rings=1)
+hexdm.set_actuator(0, 0.2_ u.micron, 0, 0) # piston hexdm.set_actuator(1, 0, 2
+_u.arcsec, 0) # tip hexdm.set_actuator(2, 0, 0, 1_ u.arcsec) # tilt
+
+focal_length = 1.0 _u.m osys3 = poppy.FresnelOpticalSystem(pupil_diameter=2_
+u.m, beam_ratio=0.25)
+osys3.add_optic(poppy.MultiHexagonAperture(flattoflat=0.5*u.m, rings=1,
+center=True)) osys3.add_optic(hexdm) lens =
+poppy.QuadraticLens(f_lens=focal_length, name="Converging lens")
+osys3.add_optic(lens)
+osys3.add_optic(poppy.ScalarTransmission(planetype=poppy.poppy_core.PlaneType.image,
+name='focus'), distance=focal_length);
+
+hexdm.display(what='opd', colorbar_orientation='vertical', opd_vmax=2e-6)
+plt.figure(figsize=(10,10)) plt.suptitle("Segment tilt sign test (Fresnel
+propagation)", fontweight='bold') psf2, waves =
+osys3.calc_psf(display_intermediates=True, return_intermediates=True) ```
+
+### Additional positive focus WFE moves the focus earlier (towards -z), and
+vice versa
+
+We verify here that:
+
+  1. A negative weak lens produces images (before focus) that have consistent orientation with the exit pupil
+  2. A positive weak lens produces images (after focus) that have the opposite orientation as the exit pupil
+  3. Images with the same magnitude but opposite signs of defocus should be 180 degree rotations of one another (for the simple case with no wavefront error).
+
+(As an aside, this terminology for "positive" and "negative" lenses is
+consistent with that used in the JWST wavefront sensing lenses; for instance,
+the "positive 8 waves" lens for JWST is plano-convex, and results in images
+inverted relative to the JWST OTE exit pupil.)
+
+  
+![](fig_before_and_after_focus_fraunhofer.png)  
+
+We can do this with a letter-F shaped aperture for the parity test.
+
+```python fig, axes = plt.subplots(figsize=(15,6), ncols=3)
+plt.suptitle("Before and After Focus sign test (Fraunhofer propagation)",
+fontweight='bold')
+
+wave = poppy.Wavefront(diam=3 _u.m) wave_ = poppy.LetterFAperture()
+wave.display(ax=axes[0]) wave0 = wave.copy() wave2 = wave.copy()
+
+wave _= poppy.ThinLens(nwaves=-5)
+wave.propagate_to(poppy.Detector(fov_pixels=256, pixelscale=0.03_
+u.arcsec/u.pixel)) wave.display(imagecrop=30, ax=axes[1], title='Intensity at
+detector plane with\nnegative thin lens at pupil\n(before focus)')
+
+wave2 _= poppy.ThinLens(nwaves=+5)
+wave2.propagate_to(poppy.Detector(fov_pixels=256, pixelscale=0.03_
+u.arcsec/u.pixel)) wave2.display(imagecrop=30, ax=axes[2], title='Intensity at
+detector plane with\npositive thin lens at pupil\n(after focus)')
+
+def brighter_top_half(image): s = image.shape top = image[s[0]//2:].sum() bot
+= image[:s[0]//2].sum() return top > bot
+
+def brighter_left_half(image): return not brighter_top_half(image.transpose())
+
+assert brighter_top_half(wave0.intensity) and
+brighter_left_half(wave0.intensity), "Letter F should be brighter at top and
+left" assert brighter_top_half(wave.intensity) and
+brighter_left_half(wave.intensity), "Image with negative lens (before focus)
+should have same orientation as the pupil " assert (not
+brighter_top_half(wave2.intensity)) and (not
+brighter_left_half(wave2.intensity)), "Image with positive lens (after focus)
+should have opposite orientation as the pupil "
+
+# For a automated unit test version of this, see
+poppy.tests.test_sign_conventions.test_pupil_orientations_before_and_after_focus
+
+```
+
+For the Fresnel version of this test, we do this slightly different than the
+test just above for Fraunhofer mode: Rather than adding focus to move the
+image forward and back relative to the detector, we simply test propagation
+directly to distances slightly different from the focal length.
+
+  
+![](fig_before_and_after_focus_fresnel.png)  
+
+```python fig, axes = plt.subplots(figsize=(15,6), ncols=3)
+plt.suptitle("Before and After Focus sign test (Fresnel propagation)",
+fontweight='bold')
+
+wave0 = poppy.FresnelWavefront(beam_radius=1.5 _u.m, oversample=2) wave0_ =
+poppy.LetterFAperture(radius = 1/np.sqrt(2)*u.m)
+
+focal_length = 1.0 _u.m lens = poppy.QuadraticLens(f_lens=focal_length,
+name="Converging lens") wave0_ = lens
+
+wave0.display(ax=axes[0]) wave1 = wave0.copy() wave2 = wave0.copy()
+
+fov = 0.00003
+
+wave1.propagate_fresnel(0.99999*focal_length) wave1.display(imagecrop=fov,
+title='Intensity at plane before focus', scale='log', ax=axes[1])
+
+wave2.propagate_fresnel(1.00001*focal_length) wave2.display(imagecrop=fov,
+title='Intensity at plane after focus', scale='log', ax=axes[2])
+
+assert brighter_top_half(wave0.intensity) and
+brighter_left_half(wave0.intensity), "Letter F should be brighter at top and
+left at pupil" assert brighter_top_half(wave1.intensity) and
+brighter_left_half(wave1.intensity), "Image with negative lens (before focus)
+should have same orientation as the pupil " assert (not
+brighter_top_half(wave2.intensity)) and (not
+brighter_left_half(wave2.intensity)), "Image with positive lens (after focus)
+should have opposite orientation as the pupil "
+
+# For a automated unit test version of this, see
+poppy.tests.test_sign_conventions.test_pupil_orientations_before_and_after_focus_fresnel
+
+```
+
+### Before and After focus, again but with a phase rather than amplitude
+pattern this time.
+
+Variation on the above tests, using a letter-F made with OPD rather than with
+amplitude. As expected, this is consistent too.
+
+Once again we repeat this test for both propagation methods.
+
+```python fig, axes = plt.subplots(figsize=(15,6), ncols=3)
+plt.suptitle("Before and After Focus sign test (Fraunhofer propagation)",
+fontweight='bold')
+
+wave = poppy.Wavefront(diam=3 _u.m) wave_ =
+poppy.optics.LetterFOpticalPathDifference(opd=0.25 _u.micron, radius=0.7_ u.m)
+wave _= poppy.CircularAperture(radius=1.2_ u.m) wave.display(ax=axes[0],
+what='phase') wave0 = wave.copy() wave2 = wave.copy()
+
+wave _= poppy.ThinLens(nwaves=-20)
+wave.propagate_to(poppy.Detector(fov_pixels=256, pixelscale=0.1_
+u.arcsec/u.pixel)) wave.display(imagecrop=30, ax=axes[1], title='Intensity at
+detector plane with\nnegative thin lens at pupil\n(before focus)')
+
+wave2 _= poppy.ThinLens(nwaves=+20)
+wave2.propagate_to(poppy.Detector(fov_pixels=256, pixelscale=0.1_
+u.arcsec/u.pixel)) wave2.display(imagecrop=30, ax=axes[2], title='Intensity at
+detector plane with\npositive thin lens at pupil\n(after focus)')
+
+# TODO - Not sure how to easily write a simple check for correctness of this;
+the human eye does it
+
+# easily but how to do in Python without invoking a large detour into machine
+vision?
+
+```
+
+```python fig, axes = plt.subplots(figsize=(15,6), ncols=3)
+plt.suptitle("Before and After Focus sign test (Fresnel propagation)",
+fontweight='bold')
+
+wave0 = poppy.FresnelWavefront(beam_radius=1.5 _u.m, oversample=2) wave0_ =
+poppy.optics.LetterFOpticalPathDifference(opd=0.25 _u.micron, radius=0.7_ u.m)
+wave0 _= poppy.CircularAperture(radius=1.2_ u.m)
+
+focal_length = 1.0 _u.m lens = poppy.QuadraticLens(f_lens=focal_length,
+name="Converging lens") wave0_ = lens
+
+wave0.display(ax=axes[0], what='phase') wave1 = wave0.copy() wave2 =
+wave0.copy()
+
+fov = 0.00006
+
+wave1.propagate_fresnel(0.99998*focal_length) wave1.display(imagecrop=fov,
+title='Intensity at plane before focus', scale='log', ax=axes[1])
+
+wave2.propagate_fresnel(1.00002*focal_length) wave2.display(imagecrop=fov,
+title='Intensity at plane after focus', scale='log', ax=axes[2])
+
+# TODO - Not sure how to easily write a simple check for correctness of this;
+the human eye does it
+
+# easily but how to do in Python without invoking a large detour into machine
+vision?
+
+```
+

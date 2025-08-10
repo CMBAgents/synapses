@@ -18,7 +18,7 @@ export default async function MainPage() {
         {/* Header with back button */}
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-3xl font-bold font-jersey">
-            CMBAgent Info
+            Synapses
           </h1>
           <a 
             href="/landing" 

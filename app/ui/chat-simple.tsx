@@ -17,7 +17,8 @@ export default function ChatSimple({
   programId,
   greeting,
   selectedModelId = '',
-  libraries = []
+  libraries = [],
+  preselectedLibrary
 }: {
   programId: string;
   greeting: string;
@@ -31,6 +32,7 @@ export default function ChatSimple({
     stars?: number;
     rank?: number;
   }>;
+  preselectedLibrary?: string;
 }) {
   // Use a ref to store messages for each program ID
   const messagesMapRef = useRef<Record<string, Message[]>>({});
@@ -39,12 +41,122 @@ export default function ChatSimple({
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
   const [selectedLibrary, setSelectedLibrary] = useState<string>("");
+  const [libraryInput, setLibraryInput] = useState<string>("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const messageId = useRef(0);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Store the selected model ID for reference
   const selectedModelIdRef = useRef<string>(selectedModelId);
+  
+  // Pré-sélectionner la librairie si fournie via URL
+  useEffect(() => {
+    if (preselectedLibrary) {
+      setLibraryInput(preselectedLibrary);
+      setSelectedLibrary(preselectedLibrary);
+    }
+  }, [preselectedLibrary]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  // Fonction de calcul de similarité (distance de Levenshtein)
+  const calculateSimilarity = (str1: string, str2: string): number => {
+    const longer = str1.length > str2.length ? str1 : str2;
+    const shorter = str1.length > str2.length ? str2 : str1;
+    
+    if (longer.length === 0) return 1.0;
+    
+    const editDistance = levenshteinDistance(longer.toLowerCase(), shorter.toLowerCase());
+    return (longer.length - editDistance) / longer.length;
+  };
+
+  const levenshteinDistance = (str1: string, str2: string): number => {
+    const matrix: number[][] = [];
+    
+    for (let i = 0; i <= str2.length; i++) {
+      matrix[i] = [i];
+    }
+    
+    for (let j = 0; j <= str1.length; j++) {
+      matrix[0][j] = j;
+    }
+    
+    for (let i = 1; i <= str2.length; i++) {
+      for (let j = 1; j <= str1.length; j++) {
+        if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+          matrix[i][j] = matrix[i - 1][j - 1];
+        } else {
+          matrix[i][j] = Math.min(
+            matrix[i - 1][j - 1] + 1,
+            matrix[i][j - 1] + 1,
+            matrix[i - 1][j] + 1
+          );
+        }
+      }
+    }
+    
+    return matrix[str2.length][str1.length];
+  };
+
+  // Trouver la meilleure correspondance
+  const findBestMatch = (input: string) => {
+    if (!input.trim() || libraries.length === 0) return null;
+    
+    const inputLower = input.toLowerCase();
+    
+    // Chercher d'abord une correspondance exacte
+    const exactMatch = libraries.find(lib => 
+      lib.name.toLowerCase() === inputLower
+    );
+    if (exactMatch) return { library: exactMatch, similarity: 1.0 };
+    
+    // Chercher une correspondance qui commence par l'input
+    const startsWithMatch = libraries.find(lib => 
+      lib.name.toLowerCase().startsWith(inputLower)
+    );
+    if (startsWithMatch) return { library: startsWithMatch, similarity: 0.9 };
+    
+    // Chercher par similarité
+    let bestMatch = null;
+    let bestSimilarity = 0;
+    
+    for (const library of libraries) {
+      const similarity = calculateSimilarity(input, library.name);
+      if (similarity > bestSimilarity && similarity > 0.6) { // Seuil de 60%
+        bestSimilarity = similarity;
+        bestMatch = library;
+      }
+    }
+    
+    return bestMatch ? { library: bestMatch, similarity: bestSimilarity } : null;
+  };
+
+  // Obtenir les suggestions filtrées
+  const getSuggestions = (input: string) => {
+    if (!input.trim() || libraries.length === 0) return [];
+    
+    const inputLower = input.toLowerCase();
+    
+    return libraries
+      .map(library => ({
+        ...library,
+        similarity: calculateSimilarity(input, library.name)
+      }))
+      .filter(library => 
+        library.name.toLowerCase().includes(inputLower) || 
+        library.similarity > 0.6
+      )
+      .sort((a, b) => {
+        const aStartsWith = a.name.toLowerCase().startsWith(inputLower);
+        const bStartsWith = b.name.toLowerCase().startsWith(inputLower);
+        
+        if (aStartsWith && !bStartsWith) return -1;
+        if (!aStartsWith && bStartsWith) return 1;
+        
+        return b.similarity - a.similarity;
+      })
+      .slice(0, 5);
+  };
 
   // Create a ref for the greeting message to avoid hydration mismatches
   const greetingMessageRef = useRef<Message>({
@@ -370,41 +482,139 @@ export default function ChatSimple({
         {/* Library selector takes full space */}
         <div className="bg-gradient-to-br from-white/15 to-white/5 backdrop-blur-md rounded-2xl p-6 border border-white/30 shadow-lg">
           <div className="flex items-center justify-between">
-            {/* Library selector */}
-            <div className="flex-1 mr-6">
-              <label htmlFor="library-select" className="block text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3 tracking-wide">
+            {/* Library search input */}
+            <div className="flex-1 mr-6 relative">
+              <label htmlFor="library-input" className="block text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3 tracking-wide">
                 Choose Library
               </label>
-              <div className="relative">
-                <select
-                  id="library-select"
-                  value={selectedLibrary}
-                  onChange={(e) => setSelectedLibrary(e.target.value)}
-                  className="w-full px-4 py-3 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-white/60 focus:border-white/70 transition-all duration-300 hover:bg-white/50 hover:border-white/60 appearance-none cursor-pointer"
-                >
-                  <option value="">Select a library...</option>
-                  {libraries.map((library, index) => (
-                    <option key={index} value={library.name} className="py-2">
-                      {library.name}
-                    </option>
+              <input
+                ref={inputRef}
+                id="library-input"
+                type="text"
+                value={libraryInput}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setLibraryInput(value);
+                  setShowSuggestions(value.length > 0);
+                  
+                  // Vérifier s'il y a une correspondance valide
+                  const match = findBestMatch(value);
+                  setSelectedLibrary(match ? match.library.name : value);
+                }}
+                onFocus={() => setShowSuggestions(libraryInput.length > 0)}
+                onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                placeholder="Type library name..."
+                className="w-full px-4 py-3 bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl text-black dark:text-white placeholder-gray-600 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/60 focus:border-white/70 transition-all duration-300 hover:bg-white/50 hover:border-white/60"
+              />
+              
+              {/* Suggestions dropdown */}
+              {showSuggestions && (
+                <div className="absolute top-full mt-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto">
+                  {getSuggestions(libraryInput).map((suggestion, index) => (
+                    <div
+                      key={suggestion.name}
+                      onClick={() => {
+                        setLibraryInput(suggestion.name);
+                        setSelectedLibrary(suggestion.name);
+                        setShowSuggestions(false);
+                      }}
+                      className={`px-4 py-3 cursor-pointer transition-all duration-150 text-white/90 hover:bg-white/15 ${
+                        index === 0 ? 'rounded-t-lg' : ''
+                      } ${index === getSuggestions(libraryInput).length - 1 ? 'rounded-b-lg' : ''}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="font-medium">{suggestion.name}</div>
+                        {suggestion.similarity && suggestion.similarity < 1 && (
+                          <div className="text-xs text-white/60 bg-white/10 px-2 py-1 rounded">
+                            {Math.round(suggestion.similarity * 100)}% match
+                          </div>
+                        )}
+                      </div>
+                    </div>
                   ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                  <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  {getSuggestions(libraryInput).length === 0 && (
+                    <div className="px-4 py-3 text-white/70 text-center">
+                      No matching libraries found
+                    </div>
+                  )}
                 </div>
-              </div>
+              )}
             </div>
             
             {/* Selected library display */}
-            {selectedLibrary && (
-              <div className="bg-gradient-to-r from-white/25 to-white/15 backdrop-blur-sm rounded-xl p-4 border border-white/30 shadow-inner min-w-[250px]">
-                <div className="flex items-center mb-3">
-                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-                  <div className="font-semibold text-gray-800 dark:text-gray-100 text-sm">
-                    {selectedLibrary}
+            {selectedLibrary && (() => {
+              const matchedLibrary = libraries.find(lib => lib.name === selectedLibrary);
+              const isRecognized = !!matchedLibrary;
+              
+              return (
+                <div className="bg-gradient-to-r from-white/25 to-white/15 backdrop-blur-sm rounded-xl p-4 border border-white/30 shadow-inner min-w-[250px]">
+                  <div className="flex items-center mb-3">
+                    <div className={`w-2 h-2 rounded-full mr-2 ${isRecognized ? 'bg-green-400 animate-pulse' : 'bg-gray-400'}`}></div>
+                    <div className="font-semibold text-gray-800 dark:text-gray-100 text-sm">
+                      {selectedLibrary}
+                    </div>
                   </div>
+                  
+                  {isRecognized ? (
+                    <>
+                      {/* GitHub Link */}
+                      <div className="flex items-center mb-2">
+                        <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
+                        <a 
+                          href={matchedLibrary.github_url || '#'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-400 hover:text-blue-300 transition-colors cursor-pointer flex items-center"
+                        >
+                          <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                          </svg>
+                          GitHub
+                        </a>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="flex items-center mb-2">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full mr-2"></div>
+                      <span className="text-xs text-yellow-400">
+                        Library not recognized - no documentation available
+                      </span>
+                    </div>
+                  )}
+                  
+                  {/* Context File Link */}
+                  {matchedLibrary?.hasContextFile ? (
+                    <div className="flex items-center mb-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                      <a 
+                        href={`/api/context/${matchedLibrary.contextFileName}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center"
+                      >
+                        <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                          <path d="M14 2v6h6"/>
+                          <path d="M16 13H8"/>
+                          <path d="M16 17H8"/>
+                          <path d="M10 9H8"/>
+                        </svg>
+                        View Context
+                      </a>
+                    </div>
+                  ) : isRecognized ? (
+                    <div className="flex items-center mb-2">
+                      <div className="w-2 h-2 bg-gray-400 rounded-full mr-2"></div>
+                      <span className="text-xs text-gray-400">No context documentation available</span>
+                    </div>
+                  ) : null}
+                  
+                  {/* Description */}
+                  {matchedLibrary?.description && (
+                    <p className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed mt-2">
+                      {matchedLibrary.description}
+                    </p>
+                  )}
                 </div>
                 
                 {/* GitHub Link */}
@@ -544,7 +754,7 @@ function ChatMessage({ message }: { message: Message }) {
     : message.content;
 
   return (
-    <div className={`flex rounded-lg text-gray-700 dark:text-gray-200 px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-blue-50 border-blue-100 dark:bg-blue-900 dark:border-blue-800' : 'bg-white/20 backdrop-blur-sm border-white/30 dark:bg-gray-800/20 dark:border-gray-700'}`}>
+    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-white' : 'bg-white/20 backdrop-blur-sm border-white/30 text-gray-700 dark:text-gray-200 dark:bg-gray-800/20 dark:border-gray-700'}`}>
       <div className="text-2xl sm:text-3xl flex-shrink-0 flex items-start pt-1">
         {displayRole(message.role)}
       </div>

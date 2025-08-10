@@ -2,11 +2,8 @@
 import json
 import os
 import subprocess
-import sys
 import tempfile
-import shutil
-from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List
 
 def load_domain_data(domain: str) -> Dict:
     """Load domain-specific JSON data"""
@@ -59,9 +56,9 @@ def clone_repository(github_url: str, temp_dir: str) -> bool:
 def check_contextmaker_installed() -> bool:
     """Check if contextmaker is installed and available"""
     try:
-        import contextmaker
-        return True
-    except ImportError:
+        result = subprocess.run(['contextmaker', '--version'], capture_output=True, text=True)
+        return result.returncode == 0
+    except FileNotFoundError:
         return False
 
 def generate_context_with_contextmaker(repo_dir: str, package_name: str, output_path: str) -> bool:
@@ -69,28 +66,37 @@ def generate_context_with_contextmaker(repo_dir: str, package_name: str, output_
     try:
         # Check if contextmaker is installed
         if not check_contextmaker_installed():
-            print(f"❌ contextmaker is not installed")
-            print(f"   Please install contextmaker first: pip install contextmaker")
+            print("❌ contextmaker is not installed")
+            print("   Please install contextmaker first: pip install contextmaker")
             return False
         
         print(f"🔄 Running contextmaker for {package_name}...")
         
-        # Import contextmaker and use the make function
-        import contextmaker
+        # Use contextmaker command line with --output to specify exact filename
         
-        # Use the make function with the cloned repository path
-        result_path = contextmaker.make(
-            library_name=package_name,
-            output_path=os.path.dirname(output_path),
-            input_path=repo_dir,
-            extension='txt'
+        cmd = [
+            'contextmaker', 
+            package_name, 
+            '--output', output_path,
+            '--input-path', repo_dir
+        ]
+        
+        print(f"🔄 Running: {' '.join(cmd)}")
+        
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=300  # 5 minutes timeout
         )
         
-        if result_path and os.path.exists(result_path):
-            print(f"✅ Context file generated: {result_path}")
+        if result.returncode == 0 and os.path.exists(output_path):
+            print(f"✅ Context file generated: {output_path}")
             return True
         else:
             print(f"❌ Context file not created for {package_name}")
+            if result.stderr:
+                print(f"STDERR: {result.stderr}")
             return False
             
     except Exception as e:
@@ -105,8 +111,8 @@ def generate_context_for_library(library: Dict, domain: str) -> bool:
         package_name = library_name.split('/')[-1]
         
         # Create context directory if it doesn't exist
-            context_dir = f'public/context/{domain}'
-    os.makedirs(context_dir, exist_ok=True)
+        context_dir = f'public/context/{domain}'
+        os.makedirs(context_dir, exist_ok=True)
         
         # Check if context file already exists
         output_file = f'{context_dir}/{package_name}-context.txt'
@@ -137,7 +143,7 @@ def generate_context_for_library(library: Dict, domain: str) -> bool:
 def update_json_with_context_status(domain: str):
     """Update JSON file to reflect context file status"""
     json_path = f'app/data/{domain}-libraries.json'
-    context_dir = f'public/context/{domain}'
+    context_dir = f'app/context/{domain}'
     
     if not os.path.exists(json_path):
         return

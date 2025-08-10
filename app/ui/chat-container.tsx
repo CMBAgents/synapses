@@ -13,11 +13,13 @@ import { loadAstronomyData, loadFinanceData } from '@/app/utils/domain-loader';
 interface ChatContainerProps {
   programs: Program[];
   defaultProgramId: string;
+  preselectedLibrary?: string;
 }
 
 export default function ChatContainer({
   programs,
-  defaultProgramId
+  defaultProgramId,
+  preselectedLibrary
 }: ChatContainerProps) {
   const config = loadConfig();
   const [activeProgram, setActiveProgram] = useState(defaultProgramId);
@@ -76,6 +78,7 @@ export default function ChatContainer({
         greeting={config.greeting || "How can I help you?"}
         selectedModelId={selectedModelId}
         libraries={getLibraries()}
+        preselectedLibrary={preselectedLibrary}
       />
     </div>
   );
