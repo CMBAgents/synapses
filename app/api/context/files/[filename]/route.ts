@@ -7,7 +7,9 @@ export async function GET(
   { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
-    const { filename } = await params;
+    // const { filename } = await params;
+    const resolvedParams = await params;
+    const filename = resolvedParams.filename;
     
     // Vérifier que le nom de fichier est sécurisé
     if (!filename || filename.includes('..') || filename.includes('/')) {
