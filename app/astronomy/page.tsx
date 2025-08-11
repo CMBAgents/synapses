@@ -1,12 +1,13 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ChatContainer from "@/app/ui/chat-container";
 import { loadAstronomyData } from "@/app/utils/domain-loader";
 import FloatingMenu from "@/app/ui/FloatingMenu";
 import ContextUpdater from "@/app/ui/context-updater";
 
-export default function AstronomyPage() {
+function AstronomyContent() {
   const astronomyData = loadAstronomyData();
   const searchParams = useSearchParams();
   const preselectedLibrary = searchParams.get('library') || undefined;
@@ -57,5 +58,13 @@ export default function AstronomyPage() {
       </div>
     </main>
     </ContextUpdater>
+  );
+}
+
+export default function AstronomyPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AstronomyContent />
+    </Suspense>
   );
 } 

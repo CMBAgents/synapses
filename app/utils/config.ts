@@ -24,7 +24,7 @@ interface RawConfigJson {
   greeting?: string;
   additionalContext?: string;
   defaultModelId: string;
-  fallbackModelId?: string;
+  fallbackModelId?: string | null;
   useDirectOpenAIKey?: boolean;
   useDirectGeminiKey?: boolean;
   availableModels: Array<{

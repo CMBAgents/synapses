@@ -33,7 +33,7 @@ export interface Config {
   };
   availableModels: ModelConfig[]; // List of available models
   defaultModelId: string; // Default model ID to use
-  fallbackModelId?: string; // Fallback model ID to use if the default model fails
+  fallbackModelId?: string | null; // Fallback model ID to use if the default model fails
   useDirectOpenAIKey?: boolean; // Flag to use direct OpenAI key if available
   useDirectGeminiKey?: boolean; // Flag to use direct Gemini key if available
   systemPrompt?: string; // Common system prompt template with placeholders
