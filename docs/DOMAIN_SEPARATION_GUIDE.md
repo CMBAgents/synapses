@@ -6,14 +6,13 @@ Ce guide explique la nouvelle structure de séparation des domaines Astronomy/Co
 
 ### **Navigation Flow :**
 ```
-/landing → /domain-selector → /astronomy ou /finance
+/landing (avec sélection de domaine intégrée) → /astronomy ou /finance
 ```
 
 ### **Pages Créées :**
 
 #### **Pages Principales :**
-- `/landing` - Page de garde
-- `/domain-selector` - Sélection de domaine avec animation
+- `/landing` - Page de garde avec sélection de domaine intégrée (HOME page)
 - `/astronomy` - Assistant IA pour l'astronomie
 - `/finance` - Assistant IA pour la finance
 
@@ -40,8 +39,7 @@ app/utils/
 ### **Pages :**
 ```
 app/
-├── landing/page.tsx
-├── domain-selector/page.tsx
+├── landing/page.tsx (HOME page avec sélection de domaine)
 ├── astronomy/
 │   ├── page.tsx
 │   └── leaderboard/page.tsx

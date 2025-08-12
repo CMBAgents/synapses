@@ -4,7 +4,6 @@ import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ChatContainer from "@/app/ui/chat-container";
 import { loadAstronomyData } from "@/app/utils/domain-loader";
-import FloatingMenu from "@/app/ui/FloatingMenu";
 import ContextUpdater from "@/app/ui/context-updater";
 
 function AstronomyContent() {
@@ -24,15 +23,28 @@ function AstronomyContent() {
         {/* Content */}
         <div className="relative z-10 mx-auto pt-4 pb-4 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-white">
         {/* Header */}
-        <div className="flex items-center mb-6 pt-8">
-          <div className="flex items-center gap-4 flex-1">
-            <div>
-              <h1 className="text-5xl font-jersey text-white">Astronomy & Cosmology</h1>
-            </div>
+        <div className="flex items-center justify-between mb-4 sm:mb-6 pt-4 sm:pt-6 md:pt-8">
+          <a 
+            href="/astronomy/leaderboard" 
+            className="bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold py-2 px-2 sm:py-3 sm:px-3 md:px-4 lg:px-6 rounded-full text-xs sm:text-sm md:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 hover:bg-white/30 hover:border-white/50 shadow-lg hover:shadow-xl font-inter"
+          >
+            <span className="hidden sm:inline">Leaderboard</span>
+            <span className="sm:hidden">List</span>
+          </a>
+          
+          <div className="text-center flex-1 mx-2 sm:mx-4">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jersey text-white">
+              <span className="hidden sm:inline">Astronomy & Cosmology</span>
+              <span className="sm:hidden">Astronomy</span>
+            </h1>
           </div>
-          <div className="flex gap-48">
-            <FloatingMenu />
-          </div>
+          
+          <a 
+            href="/landing" 
+            className="bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold py-2 px-3 sm:py-3 sm:px-4 md:px-6 rounded-full text-xs sm:text-sm md:text-base lg:text-lg transition-all duration-300 transform hover:scale-105 hover:bg-white/30 hover:border-white/50 shadow-lg hover:shadow-xl font-inter"
+          >
+            HOME
+          </a>
         </div>
 
 
