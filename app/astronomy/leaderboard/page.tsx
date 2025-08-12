@@ -27,7 +27,7 @@ export default function AstronomyLeaderboard() {
               
               <div className="text-center flex-1 mx-2 sm:mx-4">
                 <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jersey text-white">
-                  <span className="hidden sm:inline">Astrophysics & Cosmology Libraries</span>
+                  <span className="hidden sm:inline">Astrophysics & Cosmology</span>
                   <span className="sm:hidden">Astrophysics Libraries</span>
                 </h1>
               </div>
