@@ -132,3 +132,7 @@ test-gemini-api.js
 # typescript
 *.tsbuildinfo
 next-env.d.ts 
+
+
+temp/
+app/context/
