@@ -39,15 +39,15 @@ export function getDomainData(domain: 'astronomy' | 'finance'): DomainData {
 export function getAllDomains(): Array<{id: string, name: string, description: string, icon: string}> {
   return [
     {
-      id: 'machine-learning',
-      name: 'Machine Learning',
-      description: 'Deep learning, neural networks, and AI model development',
-      icon: ''
-    },
-    {
       id: 'astronomy',
       name: 'Astronomy & Cosmology',
       description: 'Celestial observations, gravitational waves, and cosmic microwave background analysis',
+      icon: ''
+    },
+    {
+      id: 'machine-learning',
+      name: 'Machine Learning',
+      description: 'Deep learning, neural networks, and AI model development',
       icon: ''
     },
     {
