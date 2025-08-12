@@ -30,7 +30,12 @@ This application supports multiple AI providers and models through a unified API
    - Supports Google's Gemini models through the OpenAI-compatible API
    - Available models: flash and Pro
 
-3. **OpenRouter**
+3. **Vertex AI Models**
+   - Google Cloud's managed AI platform with Gemini models
+   - Available models: `gemini-1.5-flash`, `gemini-1.5-pro`
+   - Requires Google Cloud project setup and service account authentication
+
+4. **OpenRouter**
    - Provides access to a wide range of models through a unified API
    - Includes models like DeepSeek, Claude, and others, where context large enough for use case
 
