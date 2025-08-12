@@ -1,6 +1,6 @@
 # Guide de Séparation des Domaines
 
-Ce guide explique la nouvelle structure de séparation des domaines Astronomy/Cosmology et Finance/Trading.
+Ce guide explique la nouvelle structure de séparation des domaines Astrophysics/Cosmology et Finance/Trading.
 
 ## 🎯 **Nouvelle Structure**
 
@@ -13,11 +13,11 @@ Ce guide explique la nouvelle structure de séparation des domaines Astronomy/Co
 
 #### **Pages Principales :**
 - `/landing` - Page de garde avec sélection de domaine intégrée (HOME page)
-- `/astronomy` - Assistant IA pour l'astronomie
+- `/astronomy` - Assistant IA pour l'astrophysique
 - `/finance` - Assistant IA pour la finance
 
 #### **Pages Leaderboard :**
-- `/astronomy/leaderboard` - Classement des librairies astronomie
+- `/astronomy/leaderboard` - Classement des librairies astrophysique
 - `/finance/leaderboard` - Classement des librairies finance
 
 ## 📁 **Structure des Fichiers**
@@ -25,7 +25,7 @@ Ce guide explique la nouvelle structure de séparation des domaines Astronomy/Co
 ### **Données Séparées :**
 ```
 app/data/
-├── astronomy-libraries.json  # Données astronomie
+├── astronomy-libraries.json  # Données astrophysique
 ├── finance-libraries.json    # Données finance
 └── libraries.json           # Ancien fichier (à supprimer)
 ```

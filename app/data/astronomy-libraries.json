@@ -719,11 +719,10 @@
     }
   ],
   "domain": "astronomy",
-  "description": "Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis",
+  "description": "Top astrophysics and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis",
   "keywords": [
-    "astronomy",
-    "cosmology",
     "astrophysics",
+    "cosmology",
     "gravitational waves",
     "CMB",
     "healpy",

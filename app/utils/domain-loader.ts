@@ -40,7 +40,7 @@ export function getAllDomains(): Array<{id: string, name: string, description: s
   return [
     {
       id: 'astronomy',
-      name: 'Astronomy & Cosmology',
+      name: 'Astrophysics & Cosmology',
       description: 'Celestial observations, gravitational waves, and cosmic microwave background analysis',
       icon: ''
     },

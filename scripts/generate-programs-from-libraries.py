@@ -14,11 +14,11 @@ def create_program_from_library(library, domain):
     return {
         "id": program_id,
         "name": library['name'].split('/')[-1],  # Prendre seulement la dernière partie du nom
-        "description": f"{library['name']} - {domain.title()} library with {library['stars']} stars",
+        "description": f"{library['name']} - {'Astrophysics' if domain == 'astronomy' else domain.title()} library with {library['stars']} stars",
         "contextFiles": [],
         "combinedContextFile": f"/api/context/{domain}/{library['contextFileName']}" if library.get('hasContextFile') else None,
         "docsUrl": library['github_url'],
-        "extraSystemPrompt": f"You are an expert on {library['name']}. Use the provided documentation to help users with this {domain} library."
+        "extraSystemPrompt": f"You are an expert on {library['name']}. Use the provided documentation to help users with this {'astrophysics' if domain == 'astronomy' else domain} library."
     }
 
 def main():
@@ -29,7 +29,7 @@ def main():
     with open('app/data/finance-libraries.json', 'r') as f:
         finance_data = json.load(f)
     
-    # Créer les programmes pour l'astronomie
+    # Créer les programmes pour l'astrophysique
     astronomy_programs = [create_program_from_library(lib, 'astronomy') 
                          for lib in astronomy_data['libraries']]
     
@@ -47,7 +47,7 @@ def main():
     # Remplacer les programmes existants
     config['programs'] = all_programs
     
-    # Changer le programme par défaut vers la première bibliothèque d'astronomie
+    # Changer le programme par défaut vers la première bibliothèque d'astrophysique
     config['defaultProgram'] = astronomy_programs[0]['id']
     
     # Sauvegarder la nouvelle configuration

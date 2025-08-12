@@ -34,8 +34,8 @@ function AstronomyContent() {
           
           <div className="text-center flex-1 mx-2 sm:mx-4">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jersey text-white">
-              <span className="hidden sm:inline">Astronomy & Cosmology</span>
-              <span className="sm:hidden">Astronomy</span>
+              <span className="hidden sm:inline">Astrophysics & Cosmology</span>
+              <span className="sm:hidden">Astrophysics</span>
             </h1>
           </div>
           
@@ -57,11 +57,11 @@ function AstronomyContent() {
           <ChatContainer
             programs={[{ 
               id: 'astronomy', 
-              name: 'Astronomy & Cosmology', 
+              name: 'Astrophysics & Cosmology', 
               description: astronomyData.description,
               contextFiles: [],
               docsUrl: '',
-              extraSystemPrompt: `You are an AI assistant specialized in astronomy and cosmology. You have access to information about ${astronomyData.libraries.length} top astronomy libraries including: ${astronomyData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+              extraSystemPrompt: `You are an AI assistant specialized in astrophysics and cosmology. You have access to information about ${astronomyData.libraries.length} top astrophysics libraries including: ${astronomyData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
             }]}
             defaultProgramId="astronomy"
             preselectedLibrary={preselectedLibrary}

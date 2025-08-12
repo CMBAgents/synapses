@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Script to update domain-specific JSON files using the get100 algorithm.
-This script separates astronomy/cosmology and finance libraries into separate files.
+This script separates astrophysics/cosmology and finance libraries into separate files.
 """
 
 import json
@@ -19,7 +19,7 @@ def load_csv_data(csv_path):
     return data
 
 def filter_astronomy_libraries(data):
-    """Filter astronomy and cosmology libraries."""
+    """Filter astrophysics and cosmology libraries."""
     astronomy_keywords = [
         "astro", "astropy", "healpy", "photutils", "sky", "gal", "cosmo", "cmb",
         "planck", "tardis", "lightkurve", "astroquery", "pypeit", "poppy", "stellar",
@@ -64,8 +64,8 @@ def create_domain_json(libraries, domain, output_path):
     
     # Set domain-specific metadata
     if domain == "astronomy":
-        domain_data["description"] = "Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis"
-        domain_data["keywords"] = ["astronomy", "cosmology", "astrophysics", "gravitational waves", "CMB", "healpy", "astropy"]
+        domain_data["description"] = "Top astrophysics and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis"
+        domain_data["keywords"] = ["astrophysics", "cosmology", "gravitational waves", "CMB", "healpy", "astropy"]
     elif domain == "finance":
         domain_data["description"] = "Top finance and trading libraries for portfolio optimization, algorithmic trading, and financial analysis"
         domain_data["keywords"] = ["finance", "trading", "portfolio", "quantitative", "zipline", "yfinance", "pyfolio"]
@@ -116,9 +116,9 @@ def main():
     print(f"Loaded {len(data)} libraries from CSV")
     
     # Filter by domain
-    print("Filtering astronomy libraries...")
+    print("Filtering astrophysics libraries...")
     astronomy_libs = filter_astronomy_libraries(data)
-    print(f"Found {len(astronomy_libs)} astronomy libraries")
+    print(f"Found {len(astronomy_libs)} astrophysics libraries")
     
     print("Filtering finance libraries...")
     finance_libs = filter_finance_libraries(data)

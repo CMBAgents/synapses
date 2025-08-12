@@ -68,7 +68,7 @@ export default function WelcomeModal({ isOpen, onClose }: WelcomeModalProps) {
           </div>
 
           <p className="text-gray-300 mb-6">
-            Access the <strong>100 most-starred GitHub libraries</strong> in finance and astronomy. 
+            Access the <strong>100 most-starred GitHub libraries</strong> in finance and astrophysics. 
             From portfolio optimization to cosmic microwave background analysis.
           </p>
 

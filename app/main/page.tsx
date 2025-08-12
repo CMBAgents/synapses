@@ -30,7 +30,7 @@ export default async function MainPage() {
 
         {/* Description */}
         <p className="text-center text-lg mb-8 max-w-2xl mx-auto italic font-semibold font-inter">
-          A <strong>next-generation chatbot</strong> fluent in the language of the <strong>100 most-starred GitHub libraries</strong> in finance and astronomy. From <strong>portfolio optimization</strong> to <em>cosmic microwave background</em> analysis, it instantly bridges <strong>code and insight</strong> — no setup required, just <em>smart execution.</em>
+          A <strong>next-generation chatbot</strong> fluent in the language of the <strong>100 most-starred GitHub libraries</strong> in finance and astrophysics. From <strong>portfolio optimization</strong> to <em>cosmic microwave background</em> analysis, it instantly bridges <strong>code and insight</strong> — no setup required, just <em>smart execution.</em>
         </p>
 
         <ChatContainer

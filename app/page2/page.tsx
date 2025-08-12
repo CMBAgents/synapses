@@ -21,12 +21,12 @@ export default function Page2() {
               Python Libraries Leaderboard
             </h1>
             <p className="text-center text-lg mb-8 max-w-2xl text-gray-900 dark:text-gray-100 italic text-right font-semibold">
-          Criteria for the leaderboard: Number of stars on GitHub, Key words : astronomy & cosmology for astronomy libraries, finance & trading for finance libraries.
+          Criteria for the leaderboard: Number of stars on GitHub, Key words : astrophysics & cosmology for astrophysics libraries, finance & trading for finance libraries.
             </p>
           </div>
           <div className="flex flex-wrap justify-center gap-6">
             <LeaderboardTable
-              title="Astronomy"
+              title="Astrophysics"
               libraries={astronomyData.libraries}
             />
             <LeaderboardTable
