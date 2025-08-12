@@ -10,4 +10,7 @@ pathlib2>=2.3.7
 typing-extensions>=4.4.0
 
 # User's custom package (without jupyter dependencies for now)
-# contextmaker>=1.0.0 
+contextmaker>=1.0.0
+
+# Daily maintenance dependencies
+schedule>=1.2.0 
