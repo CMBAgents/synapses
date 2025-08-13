@@ -136,3 +136,4 @@ next-env.d.ts
 
 temp/
 app/context/
+gcp_configs/cmbagent-info-a978301b2160.json
