@@ -8,6 +8,7 @@ export type LibraryEntry = {
   stars: number;
   hasContextFile?: boolean;
   contextFileName?: string;
+  programId?: string; // Derived field for the program ID
 };
 
 export type DomainData = {
@@ -18,7 +19,15 @@ export type DomainData = {
 };
 
 export function loadAstronomyData(): DomainData {
-  return astronomyData as DomainData;
+  const data = astronomyData as DomainData;
+  
+  // Add programId field to each library entry
+  data.libraries = data.libraries.map(lib => ({
+    ...lib,
+    programId: lib.contextFileName ? lib.contextFileName.replace('-context.txt', '') : undefined
+  }));
+  
+  return data;
 }
 
 export function loadFinanceData(): DomainData {

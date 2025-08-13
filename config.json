@@ -32,8 +32,8 @@
       "id": "einsteinpy-einsteinpy",
       "name": "einsteinpy",
       "description": "einsteinpy/einsteinpy - Astrophysics library with 650 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/einsteinpy-context.txt",
+      "contextFiles": ["astronomy/einsteinpy-einsteinpy-context.txt"],
+      "combinedContextFile": "/api/context/einsteinpy-einsteinpy-context.txt",
       "docsUrl": "https://github.com/einsteinpy/einsteinpy",
       "extraSystemPrompt": "You are an expert on einsteinpy/einsteinpy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -1012,9 +1012,9 @@
       }
     },
     {
-      "id": "vertexai/gemini-1.5-flash",
-      "name": "Vertex AI Gemini 1.5 Flash",
-      "description": "Google's Gemini 1.5 Flash model through Vertex AI",
+      "id": "vertexai/gemini-2.5-flash",
+      "name": "Vertex AI Gemini 2.5 Flash",
+      "description": "Google's Gemini 2.5 Flash model through Vertex AI",
       "options": {
         "temperature": 0.7,
         "max_completion_tokens": 4096,

@@ -26,7 +26,7 @@ const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
   },
   vertexai: {
     apiKeyEnvVar: 'GOOGLE_APPLICATION_CREDENTIALS',
-    defaultModel: 'gemini-1.5-flash',
+    defaultModel: 'gemini-2.5-flash',
     isVertexAI: true
   },
   // We'll keep SambaNova support but not add it to the default config due to context limitations
@@ -182,46 +182,39 @@ async function createVertexAIChatCompletion(
   options: Record<string, any> = {}
 ) {
   try {
-    // Import Vertex AI client dynamically to avoid issues in edge runtime
-    const { PredictionServiceClient } = await import('@google-cloud/aiplatform');
+    // Import Vertex AI Generative AI client
+    const { VertexAI } = await import('@google-cloud/vertexai');
     
     // Initialize the client
-    const client = new PredictionServiceClient({
-      apiEndpoint: process.env.VERTEX_AI_ENDPOINT || 'us-central1-aiplatform.googleapis.com',
-      projectId: process.env.GOOGLE_CLOUD_PROJECT,
+    const vertexAI = new VertexAI({
+      project: process.env.GOOGLE_CLOUD_PROJECT,
+      location: process.env.VERTEX_AI_LOCATION || 'us-central1',
     });
 
-    // Convert messages to Vertex AI format
-    const vertexMessages = messages.map(msg => ({
-      role: msg.role === 'system' ? 'user' : msg.role, // Vertex AI doesn't support system role
-      content: msg.content
+    // Get the generative model
+    const model = vertexAI.getGenerativeModel({
+      model: modelName,
+      generation_config: {
+        temperature: options.temperature || 0.7,
+        max_output_tokens: options.max_completion_tokens || 4096,
+        top_p: options.top_p || 0.8,
+        top_k: options.top_k || 40,
+      },
+    });
+
+    // Convert messages to the format expected by Gemini
+    const geminiMessages = messages.map(msg => ({
+      role: msg.role === 'system' ? 'user' : msg.role, // Gemini doesn't support system role
+      parts: [{ text: msg.content }]
     }));
 
-    // Create the request
-    const request = {
-      endpoint: `projects/${process.env.GOOGLE_CLOUD_PROJECT}/locations/${process.env.VERTEX_AI_LOCATION || 'us-central1'}/publishers/google/models/${modelName}`,
-      instances: [{
-        messages: vertexMessages
-      }],
-      parameters: {
-        temperature: options.temperature || 0.7,
-        maxOutputTokens: options.max_completion_tokens || 4096,
-        topP: options.top_p || 0.8,
-        topK: options.top_k || 40
-      }
-    };
+    // Generate content
+    const result = await model.generateContent({
+      contents: geminiMessages,
+    });
 
-    // Make the prediction
-    const [response] = await client.predict(request);
-    
-    // Extract the response content
-    const prediction = response.predictions?.[0];
-    if (!prediction) {
-      throw new Error('No prediction received from Vertex AI');
-    }
-
-    // Convert Vertex AI response to OpenAI format
-    const content = prediction.structValue?.fields?.candidates?.listValue?.values?.[0]?.structValue?.fields?.content?.stringValue || '';
+    const response = result.response;
+    const content = response.candidates?.[0]?.content?.parts?.[0]?.text || '';
     
     return {
       choices: [{

@@ -3,8 +3,8 @@ import { loadContext, getSystemPromptWithContext } from '@/app/utils/context';
 import { getProgramById, loadConfig } from '@/app/utils/config';
 import { createChatCompletion, createStreamingChatCompletion, logTokenUsage } from '@/app/utils/unified-client';
 
-// This enables Edge Functions in Vercel
-export const runtime = "edge";
+// This enables Node.js runtime for Google Cloud compatibility
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {

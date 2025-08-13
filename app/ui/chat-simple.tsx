@@ -29,6 +29,7 @@ export default function ChatSimple({
     hasContextFile?: boolean;
     contextFileName?: string;
     github_url?: string;
+    programId?: string;
   }>;
   preselectedLibrary?: string;
 }) {
@@ -51,9 +52,17 @@ export default function ChatSimple({
   useEffect(() => {
     if (preselectedLibrary) {
       setLibraryInput(preselectedLibrary);
-      setSelectedLibrary(preselectedLibrary);
+      // Find the library and use its programId if available
+      const library = libraries.find(lib => lib.name === preselectedLibrary);
+      if (library?.programId) {
+        setSelectedLibrary(library.programId);
+        console.log('Found library:', library.name, 'with programId:', library.programId);
+      } else {
+        console.log('Library not found for:', preselectedLibrary);
+        setSelectedLibrary(preselectedLibrary);
+      }
     }
-  }, [preselectedLibrary]);
+  }, [preselectedLibrary, libraries]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -249,13 +258,17 @@ export default function ChatSimple({
         setIsStreaming(true);
       }
 
+      // Determine the correct program ID to send
+      // If a specific library is selected, use its ID; otherwise use the generic programId
+      const effectiveProgramId = selectedLibrary || programId;
+      
       const response = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          programId,
+          programId: effectiveProgramId,
           messages: apiMessages,
           modelId: selectedModelId, // Pass the selected model ID
           stream: useStreaming, // Pass streaming flag
@@ -497,7 +510,7 @@ export default function ChatSimple({
                   
                   // Vérifier s'il y a une correspondance valide
                   const match = findBestMatch(value);
-                  setSelectedLibrary(match ? match.library.name : value);
+                  setSelectedLibrary(match ? (match.library.programId || match.library.name) : value);
                 }}
                 onFocus={() => setShowSuggestions(libraryInput.length > 0)}
                 onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
@@ -513,7 +526,7 @@ export default function ChatSimple({
                       key={suggestion.name}
                       onClick={() => {
                         setLibraryInput(suggestion.name);
-                        setSelectedLibrary(suggestion.name);
+                        setSelectedLibrary(suggestion.programId || suggestion.name);
                         setShowSuggestions(false);
                       }}
                       className={`px-4 py-3 cursor-pointer transition-all duration-150 text-white/90 hover:bg-white/15 ${
@@ -541,7 +554,10 @@ export default function ChatSimple({
             
             {/* Selected library display */}
             {selectedLibrary && (() => {
-              const matchedLibrary = libraries.find(lib => lib.name === selectedLibrary);
+              // Find the library by either programId or name
+              const matchedLibrary = libraries.find(lib => 
+                lib.programId === selectedLibrary || lib.name === selectedLibrary
+              );
               const isRecognized = !!matchedLibrary;
               
               return (

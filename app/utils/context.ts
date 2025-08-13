@@ -14,10 +14,15 @@ const pendingFetches: Record<string, any> = {};
 
 // Function to check if a string is a URL
 function isUrl(str: string): boolean {
+  // Check if it's an absolute URL
   try {
     new URL(str);
     return true;
   } catch (e) {
+    // Check if it's an API path that should be treated as a URL
+    if (str.startsWith('/api/')) {
+      return true;
+    }
     return false;
   }
 }
