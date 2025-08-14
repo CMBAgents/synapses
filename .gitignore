@@ -138,3 +138,6 @@ temp/
 app/context/
 gcp_configs/cmbagent-info-a978301b2160.json
 gcp_credentials.json
+
+# Documentation files
+docs/
