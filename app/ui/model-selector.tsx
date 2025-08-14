@@ -87,36 +87,7 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
     }
   };
 
-  const testApiKey = async (modelId: string) => {
-    const modelCredentials = credentials[modelId];
-    if (!modelCredentials) {
-      alert('Please enter credentials first before testing');
-      return;
-    }
 
-    try {
-      const response = await fetch('/api/test-api-key', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          modelId,
-          credentials: { [modelId]: modelCredentials }
-        }),
-      });
-
-      const result = await response.json();
-      
-      if (result.success) {
-        alert(`✅ API Key Test Successful!\n\n${result.message}\nProvider: ${result.provider}\nModel: ${result.modelName}`);
-      } else {
-        alert(`❌ API Key Test Failed!\n\nError: ${result.error}\nDetails: ${result.details}`);
-      }
-    } catch (error) {
-      alert(`❌ Test Request Failed!\n\nError: ${error instanceof Error ? error.message : String(error)}`);
-    }
-  };
 
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>
@@ -156,14 +127,6 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
             credentialType={selected.credentialType}
             onCredentialsChange={(newCredentials) => handleCredentialsChange(selected.id, newCredentials)}
           />
-          <div className="mt-3">
-            <button
-              onClick={() => testApiKey(selected.id)}
-              className="w-full px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-md transition-colors duration-200"
-            >
-              🧪 Test API Key
-            </button>
-          </div>
         </>
       )}
 
