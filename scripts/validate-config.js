@@ -137,7 +137,7 @@ class ConfigValidator {
         this.validateJsonFile('config.json', 'Main configuration');
 
         // Check cloud-config.json
-        this.validateJsonFile('gestion/cloud-config.json', 'Cloud configuration');
+        this.validateJsonFile('gestion/config/cloud-config.json', 'Cloud configuration');
 
         // Check package.json
         this.validateJsonFile('package.json', 'Node.js configuration');
@@ -173,7 +173,7 @@ class ConfigValidator {
 
     validateCloudConfig() {
         try {
-            const cloudConfigPath = path.join(this.baseDir, 'gestion', 'cloud-config.json');
+            const cloudConfigPath = path.join(this.baseDir, 'gestion', 'config', 'cloud-config.json');
             if (!fs.existsSync(cloudConfigPath)) {
                 this.errors.push('Cloud configuration missing');
                 return;

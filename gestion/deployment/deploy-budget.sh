@@ -5,7 +5,7 @@
 set -e
 
 # Charger la configuration
-CONFIG_FILE="gestion/budget-config.json"
+CONFIG_FILE="gestion/config/budget-config.json"
 PROJECT_ID=$(jq -r '.project_id' "$CONFIG_FILE")
 REGION=$(jq -r '.region' "$CONFIG_FILE")
 MEMORY=$(jq -r '.resources.memory' "$CONFIG_FILE")
@@ -59,7 +59,7 @@ gcloud projects add-iam-policy-binding $PROJECT_ID \
     --role="roles/storage.objectAdmin"
 
 # Credentials
-gcloud iam service-accounts keys create gcp-credentials.json \
+gcloud iam service-accounts keys create gestion/env/gcp-credentials.json \
     --iam-account=$SERVICE_ACCOUNT_EMAIL 2>/dev/null || true
 
 # Déployer avec configuration optimisée

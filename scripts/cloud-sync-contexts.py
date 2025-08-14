@@ -41,7 +41,7 @@ class CloudContextSync:
 
     def load_cloud_config(self) -> Dict:
         """Loads cloud configuration from JSON file."""
-        config_file = self.base_dir / "gestion" / "cloud-config.json"
+        config_file = self.base_dir / "gestion" / "config" / "cloud-config.json"
         
         if config_file.exists():
             with open(config_file, 'r', encoding='utf-8') as f:

@@ -36,7 +36,7 @@ class GCPCostMonitor:
         self.init_database()
         
         # Configuration files
-        self.config_file = self.base_dir / "gestion" / "budget-config.json"
+        self.config_file = self.base_dir / "gestion" / "config" / "budget-config.json"
         self.cost_history_file = self.cost_data_dir / "cost-history.json"
         self.budget_alerts_file = self.cost_data_dir / "budget-alerts.json"
         

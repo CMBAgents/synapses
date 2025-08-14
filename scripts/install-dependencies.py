@@ -120,7 +120,7 @@ def create_directories():
 
 def check_cloud_config():
     """Checks and creates cloud configuration if necessary."""
-            cloud_config = Path("gestion/cloud-config.json")
+            cloud_config = Path("gestion/config/cloud-config.json")
     
     if not cloud_config.exists():
         print("🔧 Creating default cloud configuration...")
@@ -223,10 +223,10 @@ def main():
     print("✅ Installation completed successfully!")
     print("\n📋 Next steps:")
     print("1. Configure your environment variables in the .env file")
-            print("2. Modify gestion/cloud-config.json according to your needs")
+            print("2. Modify gestion/config/cloud-config.json according to your needs")
     print("3. Run: python scripts/generate-and-sync-all.py")
     print("\n📚 Documentation:")
-            print("- gestion/cloud-config.json: Cloud storage configuration")
+            print("- gestion/config/cloud-config.json: Cloud storage configuration")
     print("- .env: Environment variables")
     print("- scripts/: Generation and synchronization scripts")
     print("="*70)
