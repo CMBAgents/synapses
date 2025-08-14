@@ -68,8 +68,8 @@ function AstronomyContent() {
                 {
                   id: "deepseek/deepseek-chat-v3-0324",
                   name: "DeepSeek Chat V3 (OpenRouter)",
-                  description: "DeepSeek's latest V3 model via OpenRouter - requires API key",
-                  requiresCredentials: true,
+                  description: "DeepSeek's latest V3 model via OpenRouter - no API key required",
+                  requiresCredentials: false,
                   credentialType: "openrouter"
                 },
                 {
