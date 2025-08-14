@@ -996,25 +996,15 @@
   "showContextLink": true,
   "simpleMode": true,
   "greeting": "How can I help you?",
-  "defaultModelId": "gemini/gemini-2.5-flash-preview-04-17",
-  "fallbackModelId": null,
+  "defaultModelId": "vertexai/gemini-2.5-flash",
+  "fallbackModelId": "vertexai/gemini-1.5-flash",
   "useDirectOpenAIKey": false,
-  "useDirectGeminiKey": true,
+  "useDirectGeminiKey": false,
   "availableModels": [
-    {
-      "id": "gemini/gemini-2.5-flash-preview-04-17",
-      "name": "Gemini 2.5 Flash",
-      "description": "Latest Gemini Flash model for fast and efficient responses",
-      "options": {
-        "temperature": 0.7,
-        "max_completion_tokens": 4096,
-        "stream": true
-      }
-    },
     {
       "id": "vertexai/gemini-2.5-flash",
       "name": "Vertex AI Gemini 2.5 Flash",
-      "description": "Google's Gemini 2.5 Flash model through Vertex AI",
+      "description": "Google's Gemini 2.5 Flash model through Vertex AI (Recommended - Europe Region)",
       "options": {
         "temperature": 0.7,
         "max_completion_tokens": 4096,
@@ -1029,6 +1019,16 @@
         "temperature": 0.7,
         "max_completion_tokens": 8192,
         "stream": false
+      }
+    },
+    {
+      "id": "gemini/gemini-2.5-flash-preview-04-17",
+      "name": "Gemini 2.5 Flash (Direct)",
+      "description": "Direct Gemini API access (fallback only)",
+      "options": {
+        "temperature": 0.7,
+        "max_completion_tokens": 4096,
+        "stream": true
       }
     }
   ]

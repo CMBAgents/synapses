@@ -188,17 +188,17 @@ async function createVertexAIChatCompletion(
     // Initialize the client
     const vertexAI = new VertexAI({
       project: process.env.GOOGLE_CLOUD_PROJECT,
-      location: process.env.VERTEX_AI_LOCATION || 'us-central1',
+      location: process.env.VERTEX_AI_LOCATION || 'europe-west1',
     });
 
     // Get the generative model
     const model = vertexAI.getGenerativeModel({
       model: modelName,
-      generation_config: {
+      generationConfig: {
         temperature: options.temperature || 0.7,
-        max_output_tokens: options.max_completion_tokens || 4096,
-        top_p: options.top_p || 0.8,
-        top_k: options.top_k || 40,
+        maxOutputTokens: options.max_completion_tokens || 4096,
+        topP: options.top_p || 0.8,
+        topK: options.top_k || 40,
       },
     });
 
