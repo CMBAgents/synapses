@@ -171,7 +171,7 @@ class ConfigUpdater:
                 # Check if context file exists
                 has_context = any(
                     file_info["filename"] == context_filename 
-                    for file_info in context_files.get("astronomy", [])
+                    for file_info in context_files.get("astro", [])
                 )
                 
                 lib["hasContextFile"] = has_context
@@ -230,12 +230,15 @@ class ConfigUpdater:
         except Exception as e:
             logging.error(f"Error running generate script: {e}")
 
-    def check_and_update(self):
+    def check_and_update(self, force: bool = False):
         """Main method to check for changes and update config if needed."""
         logging.info("Checking for changes in context and data files...")
         
-        if self.has_changes():
-            logging.info("Changes detected, updating configuration...")
+        if force or self.has_changes():
+            if force:
+                logging.info("Force update requested, updating configuration...")
+            else:
+                logging.info("Changes detected, updating configuration...")
             
             # Update library metadata
             self.update_library_metadata()
@@ -282,6 +285,7 @@ def main():
     parser.add_argument("--continuous", action="store_true", help="Run continuously")
     parser.add_argument("--interval", type=int, default=300, help="Check interval in seconds (default: 300)")
     parser.add_argument("--base-dir", default=".", help="Base directory")
+    parser.add_argument("--force", action="store_true", help="Force update even if no changes detected")
     
     args = parser.parse_args()
     
@@ -290,7 +294,7 @@ def main():
     if args.continuous:
         updater.run_continuous(args.interval)
     else:
-        updater.check_and_update()
+        updater.check_and_update(force=args.force)
 
 if __name__ == "__main__":
     main() 

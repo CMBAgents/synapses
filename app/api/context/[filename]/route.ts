@@ -15,9 +15,9 @@ export async function GET(
       return new Response('Invalid filename', { status: 400 });
     }
 
-    // Chercher le fichier dans les sous-dossiers astronomy et finance
+    // Chercher le fichier dans les sous-dossiers astro et finance
     const possiblePaths = [
-      path.join(process.cwd(), 'public', 'context', 'astronomy', filename),
+      path.join(process.cwd(), 'public', 'context', 'astro', filename),
       path.join(process.cwd(), 'public', 'context', 'finance', filename)
     ];
 
