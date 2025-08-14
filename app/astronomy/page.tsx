@@ -11,7 +11,7 @@ function AstronomyContent() {
   const astronomyData = loadAstronomyData();
   const searchParams = useSearchParams();
   const preselectedLibrary = searchParams.get('library') || undefined;
-  const [selectedModelId, setSelectedModelId] = useState("vertexai/gemini-2.5-flash");
+  const [selectedModelId, setSelectedModelId] = useState("deepseek/deepseek-chat-v3-0324");
   const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
 
 
@@ -66,6 +66,13 @@ function AstronomyContent() {
             <ModelSelector
               models={[
                 {
+                  id: "deepseek/deepseek-chat-v3-0324",
+                  name: "DeepSeek Chat V3 (OpenRouter)",
+                  description: "DeepSeek's latest V3 model via OpenRouter - requires API key",
+                  requiresCredentials: true,
+                  credentialType: "openrouter"
+                },
+                {
                   id: "vertexai/gemini-2.5-flash",
                   name: "Gemini 2.5 Flash (Vertex AI)",
                   description: "Google's Gemini 2.5 Flash model through Vertex AI - requires credentials",
@@ -81,8 +88,8 @@ function AstronomyContent() {
                 },
                 {
                   id: "deepseek/deepseek-v3",
-                  name: "DeepSeek V3",
-                  description: "DeepSeek's latest V3 model - requires API key",
+                  name: "DeepSeek V3 (Direct)",
+                  description: "DeepSeek's latest V3 model via direct API - requires API key",
                   requiresCredentials: true,
                   credentialType: "deepseek"
                 }

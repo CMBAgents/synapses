@@ -996,11 +996,23 @@
   "showContextLink": true,
   "simpleMode": true,
   "greeting": "How can I help you?",
-  "defaultModelId": "vertexai/gemini-2.5-flash",
-  "fallbackModelId": "vertexai/gemini-1.5-flash",
+  "defaultModelId": "deepseek/deepseek-chat-v3-0324",
+  "fallbackModelId": "vertexai/gemini-2.5-flash",
   "useDirectOpenAIKey": false,
   "useDirectGeminiKey": false,
   "availableModels": [
+    {
+      "id": "deepseek/deepseek-chat-v3-0324",
+      "name": "DeepSeek Chat V3 (OpenRouter)",
+      "description": "DeepSeek's latest V3 model via OpenRouter - requires API key",
+      "options": {
+        "temperature": 0.7,
+        "max_completion_tokens": 4096,
+        "stream": true
+      },
+      "requiresCredentials": true,
+      "credentialType": "openrouter"
+    },
     {
       "id": "vertexai/gemini-2.5-flash",
       "name": "Gemini 2.5 Flash (Vertex AI)",

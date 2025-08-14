@@ -219,5 +219,32 @@ export default function CredentialInput({ credentialType, onCredentialsChange }:
     );
   }
 
+  if (credentialType === 'openrouter') {
+    return (
+      <div className="mt-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-md border border-gray-200 dark:border-gray-700">
+        <h4 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+          OpenRouter API Key Required
+        </h4>
+        <div className="space-y-2">
+          <div>
+            <label className="block text-xs text-gray-600 dark:text-gray-400 mb-1">
+              API Key
+            </label>
+            <input
+              type="password"
+              placeholder="sk-or-v1-..."
+              className="w-full px-3 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-blue-500 focus:border-transparent font-mono text-xs"
+              value={credentials.apiKey || ''}
+              onChange={(e) => handleInputChange('apiKey', e.target.value)}
+            />
+          </div>
+        </div>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
+          Your OpenRouter API key is stored locally and never sent to our servers.
+        </p>
+      </div>
+    );
+  }
+
   return null;
 }

@@ -103,7 +103,7 @@ export function loadConfig(): Config {
     greeting: urlGreeting || (configJson.greeting !== undefined ? configJson.greeting : defaultConfig.greeting),
     // Use URL parameter for additional context if available, otherwise use config or default
     additionalContext: urlAdditionalContext || (configJson.additionalContext !== undefined ? configJson.additionalContext : defaultConfig.additionalContext),
-    defaultModelId: configJson.defaultModelId || 'gemini/gemini-2.0-flash',
+    defaultModelId: configJson.defaultModelId || 'deepseek/deepseek-chat-v3-0324',
     fallbackModelId: configJson.fallbackModelId, // Optional fallback model ID
     availableModels: configJson.availableModels || [],
     // Load the new flags, defaulting to true if not present in config.json
