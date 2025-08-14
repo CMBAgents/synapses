@@ -9,7 +9,6 @@ export default async function MainPage() {
 
   return (
     <main className={styles.background}>
-      <div className={styles.overlay}></div>
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
 

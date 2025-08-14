@@ -9,8 +9,7 @@ export default function AstronomyLeaderboard() {
 
   return (
     <main 
-      className="min-h-screen bg-cover bg-center bg-no-repeat relative"
-      style={{ backgroundImage: "url('/pexels-slendyalex-3745234.jpg')" }}
+      className="min-h-screen bg-black relative"
     >
       <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-2 sm:px-4">

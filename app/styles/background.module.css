@@ -2,20 +2,8 @@
 
 .background {
   min-height: 100vh;
-  background-image: url('/image_page1.png'); /* met l'image dans public/ */
-  background-repeat: repeat-y; /* Répétition verticale */
-  background-size: cover;
-  background-position: center;
+  background-color: #000000; /* Black background */
   position: relative;
-  overflow: hidden;
-}
-
-.blurOverlay {
-  position: absolute;
-  inset: 0;
-  backdrop-filter: blur(8px); /* Applique un flou */
-  background-color: rgba(0, 0, 0, 0.4); /* Couleur sombre avec transparence */
-  z-index: 0;
 }
 
 .content {

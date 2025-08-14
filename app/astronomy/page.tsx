@@ -21,8 +21,7 @@ function AstronomyContent() {
   return (
     <ContextUpdater domain="astronomy">
       <main 
-        className="min-h-screen bg-cover bg-center bg-no-repeat flex flex-col relative"
-        style={{ backgroundImage: "url('/earth.png')" }}
+        className="min-h-screen bg-black flex flex-col relative"
       >
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>

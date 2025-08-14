@@ -151,16 +151,7 @@ export default function CredentialInput({ credentialType, onCredentialsChange }:
                         ✅ Service account key loaded from: {selectedFileName}
                       </div>
                     )}
-                    {credentials.projectId && (
-                      <div className="text-xs text-blue-600 dark:text-blue-400">
-                        📍 Project ID: {credentials.projectId}
-                      </div>
-                    )}
-                    {credentials.location && (
-                      <div className="text-xs text-blue-600 dark:text-blue-400">
-                        🌍 Location: {credentials.location}
-                      </div>
-                    )}
+
                     <p className="text-xs text-gray-500 dark:text-gray-400">
                       Upload your Google Cloud service account key JSON file. Project ID and location will be automatically extracted from the file.
                     </p>
