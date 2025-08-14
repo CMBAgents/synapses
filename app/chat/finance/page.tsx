@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import ChatContainer from "@/app/ui/chat-container";
 import { loadFinanceData } from "@/app/utils/domain-loader";
 import ContextUpdater from "@/app/ui/context-updater";
+import LibrarySelector from "@/app/ui/library-selector";
 
 function FinanceContent() {
   const financeData = loadFinanceData();
@@ -39,10 +40,11 @@ function FinanceContent() {
               <span className="sm:hidden">List</span>
             </a>
             
-            <div className="text-center flex-1 mx-2 sm:mx-4">
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-inter text-white">
-                Chat
-              </h2>
+            <div className="flex justify-center flex-1 mx-2 sm:mx-4">
+              <LibrarySelector 
+                libraries={financeData.libraries}
+                preselectedLibrary={preselectedLibrary}
+              />
             </div>
             
             <a 
@@ -55,7 +57,7 @@ function FinanceContent() {
             </a>
           </div>
 
-          <div className="flex-1 mt-8">
+          <div className="flex-1">
             <ChatContainer
               programs={[{ 
                 id: 'finance', 
