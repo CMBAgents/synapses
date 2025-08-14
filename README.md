@@ -2,9 +2,6 @@
 
 A modern platform to explore and rank the top 100 open source libraries by expertise domain.
 
-[![GitHub stars](https://img.shields.io/github/stars/CMBAgents/cmbagent-info?style=social)](https://github.com/CMBAgents/cmbagent-info)
-[![GitHub forks](https://img.shields.io/github/forks/CMBAgents/cmbagent-info?style=social)](https://github.com/CMBAgents/cmbagent-info)
-[![GitHub issues](https://img.shields.io/github/issues/CMBAgents/cmbagent-info)](https://github.com/CMBAgents/cmbagent-info/issues)
 [![GitHub license](https://img.shields.io/github/license/CMBAgents/cmbagent-info)](https://github.com/CMBAgents/cmbagent-info/blob/main/LICENSE)
 
 ## Overview
@@ -14,10 +11,10 @@ Synapses allows you to discover, compare, and interact with the most popular lib
 ## Screenshots
 
 ### Main Interface
-![Synapses Main Interface](/github1.png)
+![Synapses Main Interface](public/github1.png)
 
 ### Library Rankings
-![Library Rankings](/github2.png)
+![Library Rankings](public/github2.png)
 
 ## Features
 
