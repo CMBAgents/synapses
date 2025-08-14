@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 const jerseyFont = Jersey_10({ weight: "400", subsets: ["latin"], variable: "--font-jersey" });
 
 export const metadata: Metadata = {
-  title: "Cosmology Tools Help Assistant",
-  description: "Interactive help assistant for CAMB, GetDist, and other cosmology tools",
+  title: "GitHub Libraries Help Assistant",
+  description: "Interactive help assistant for top starred GitHub libraries",
 };
 
 export default async function RootLayout({
