@@ -14,9 +14,9 @@ export default function LandingPage() {
     setSelectedDomain(domainId);
     setIsAnimating(true);
     
-    // Navigate immediately to leaderboard - context update will happen on page load
+    // Navigate to domain leaderboard
     setTimeout(() => {
-      router.push(`/${domainId}/leaderboard`);
+      router.push(`/leaderboard/${domainId}`);
     }, 800);
   };
 

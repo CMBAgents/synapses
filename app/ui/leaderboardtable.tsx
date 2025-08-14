@@ -22,6 +22,10 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
   
   // Déterminer le domaine basé sur le pathname
   const getDomain = () => {
+    if (pathname.includes('/leaderboard/astronomy')) return 'astronomy';
+    if (pathname.includes('/leaderboard/finance')) return 'finance';
+    if (pathname.includes('/chat/astronomy')) return 'astronomy';
+    if (pathname.includes('/chat/finance')) return 'finance';
     if (pathname.includes('astronomy')) return 'astronomy';
     if (pathname.includes('finance')) return 'finance';
     return 'astronomy'; // fallback
@@ -29,8 +33,8 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
   
   const handleLibraryClick = (libraryName: string) => {
     const domain = getDomain();
-    // Naviguer vers la page de chat avec la librairie pré-sélectionnée
-    router.push(`/${domain}?library=${encodeURIComponent(libraryName)}`);
+    // Navigate to the chat page with the pre-selected library
+    router.push(`/chat/${domain}?library=${encodeURIComponent(libraryName)}`);
   };
   
   return (
@@ -48,7 +52,11 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
               <span className="hidden sm:inline">GitHub</span>
               <span className="sm:hidden">Git</span>
             </th>
-            <th className="border border-white/30 px-1 sm:px-2 py-1 w-12 sm:w-16">Stars</th>
+            <th className="border border-white/30 px-1 sm:px-2 py-1 w-12 sm:w-16">
+              <svg width="16" height="16" className="mx-auto" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </th>
           </tr>
         </thead>
         <tbody>
