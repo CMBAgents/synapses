@@ -9,16 +9,35 @@ html {
 
 :root {
   --font-jersey: 'Jersey 10', monospace;
+  --color-bg-main: #ffffff;
+  --color-bg-overlay: #f8f9fa;
+  --color-bg-card: #ffffff;
+  --color-text-main: #1a202c;
+  --color-text-muted: #4a5568;
+  --color-accent: #d4a574;
+  --color-accent-dark: #a67c52;
+  --color-border: #e2e8f0;
+  --color-beige-light: #f5f5dc;
+  --color-beige-dark: #8b7355;
+  
+  /* CSS variables for Tailwind typography plugin */
+  --foreground-rgb: 26, 32, 44;
+  --background-rgb: 255, 255, 255;
+  --foreground-rgb-dark: 229, 231, 235;
+  --background-rgb-dark: 26, 32, 44;
+  --code-bg-dark: 45, 45, 45;
+  --code-block-bg-dark: 30, 30, 30;
+  --border-color-dark: 75, 75, 75;
+}
+
+/* Dark mode variables */
+.dark {
   --color-bg-main: #181c20;
   --color-bg-overlay: #23272b;
   --color-bg-card: #23272b;
   --color-text-main: #e5e7eb;
   --color-text-muted: #b0b4ba;
-  --color-accent: #d4a574;
-  --color-accent-dark: #a67c52;
   --color-border: #2d3238;
-  --color-beige-light: #f5f5dc;
-  --color-beige-dark: #8b7355;
 }
 
 /* Headings use Inter by default */
@@ -64,6 +83,7 @@ body {
   color: var(--color-text-main);
   font-family: 'Inter', sans-serif;
   font-weight: 400;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .bg-main {
@@ -80,6 +100,22 @@ body {
 }
 .text-muted {
   color: var(--color-text-muted) !important;
+}
+
+/* Ensure high contrast text in both themes */
+.text-high-contrast {
+  color: var(--color-text-main) !important;
+  font-weight: 500;
+}
+
+/* Light theme specific text colors */
+:root .text-light-theme {
+  color: #1a202c !important;
+}
+
+/* Dark theme specific text colors */
+.dark .text-light-theme {
+  color: #e5e7eb !important;
 }
 .border-main {
   border-color: var(--color-border) !important;
@@ -140,9 +176,14 @@ body {
   border-color: rgb(37, 99, 235);
 }
 
+/* Apply light mode to prose content */
+.prose {
+  color: var(--color-text-main);
+}
+
 /* Apply dark mode to prose content */
 .dark .prose {
-  color: rgb(209, 213, 219);
+  color: var(--color-text-main);
 }
 
 /* Code block styling */
@@ -474,5 +515,191 @@ pre:hover .copy-code-button {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* Enhanced text readability utilities */
+.text-readable {
+  color: var(--color-text-main) !important;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-readable-strong {
+  color: var(--color-text-main) !important;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+/* Ensure proper contrast for headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-main) !important;
+  font-weight: 500;
+}
+
+/* Ensure proper contrast for paragraphs and text */
+p, span, div, a, button, input, textarea, label {
+  color: var(--color-text-main) !important;
+}
+
+/* High contrast mode for accessibility */
+@media (prefers-contrast: high) {
+  :root {
+    --color-text-main: #000000;
+    --color-text-muted: #333333;
+  }
+  
+  .dark {
+    --color-text-main: #ffffff;
+    --color-text-muted: #cccccc;
+  }
+}
+
+/* Additional text contrast improvements */
+.text-white {
+  color: var(--color-text-main) !important;
+}
+
+.dark .text-white {
+  color: #ffffff !important;
+}
+
+/* Ensure proper contrast for all text elements */
+* {
+  color: inherit;
+}
+
+/* Override any hardcoded text colors that might cause issues */
+.text-gray-700,
+.text-gray-600,
+.text-gray-500,
+.text-gray-400 {
+  color: var(--color-text-main) !important;
+}
+
+.dark .text-gray-700,
+.dark .text-gray-600,
+.dark .text-gray-500,
+.dark .text-gray-400 {
+  color: var(--color-text-main) !important;
+}
+
+/* Ensure buttons and interactive elements have proper contrast */
+button, a, input, textarea {
+  color: var(--color-text-main) !important;
+}
+
+/* Override any remaining hardcoded colors */
+.text-black {
+  color: var(--color-text-main) !important;
+}
+
+.dark .text-black {
+  color: #ffffff !important;
+}
+
+/* Additional overrides for common text colors */
+.text-slate-900,
+.text-slate-800,
+.text-slate-700,
+.text-slate-600,
+.text-slate-500,
+.text-slate-400 {
+  color: var(--color-text-main) !important;
+}
+
+.dark .text-slate-900,
+.dark .text-slate-800,
+.dark .text-slate-700,
+.dark .text-slate-600,
+.dark .text-slate-500,
+.dark .text-slate-400 {
+  color: var(--color-text-main) !important;
+}
+
+/* Ensure all text elements inherit the proper color */
+body * {
+  color: inherit;
+}
+
+/* Force proper contrast for critical text elements */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label {
+  color: var(--color-text-main) !important;
+}
+
+/* Ensure proper contrast in both themes */
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Additional accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Final overrides for any remaining hardcoded colors */
+.text-neutral-900,
+.text-neutral-800,
+.text-neutral-700,
+.text-neutral-600,
+.text-neutral-500,
+.text-neutral-400,
+.text-neutral-300,
+.text-neutral-200,
+.text-neutral-100 {
+  color: var(--color-text-main) !important;
+}
+
+.dark .text-neutral-900,
+.dark .text-neutral-800,
+.dark .text-neutral-700,
+.dark .text-neutral-600,
+.dark .text-neutral-500,
+.dark .text-neutral-400,
+.dark .text-neutral-300,
+.dark .text-neutral-200,
+.dark .text-neutral-100 {
+  color: var(--color-text-main) !important;
+}
+
+/* Ensure proper contrast for all text elements */
+.text-current {
+  color: var(--color-text-main) !important;
+}
+
+/* Override any remaining color utilities */
+[class*="text-"] {
+  color: var(--color-text-main) !important;
+}
+
+/* But allow specific colors to work */
+.text-blue-400,
+.text-blue-500,
+.text-blue-600,
+.text-green-400,
+.text-green-500,
+.text-yellow-400,
+.text-yellow-500,
+.text-red-400,
+.text-red-500 {
+  color: currentColor !important;
+}
+
+/* Ensure proper contrast for the deployed version */
+@media (min-width: 1px) {
+  body {
+    color: var(--color-text-main) !important;
+  }
+  
+  * {
+    color: inherit;
   }
 }

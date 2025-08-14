@@ -24,16 +24,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
     // Function to apply theme
     const applyTheme = (newTheme: Theme) => {
+      console.log(`Applying theme: ${newTheme}`)
       setTheme(newTheme)
       document.documentElement.classList.toggle('dark', newTheme === 'dark')
 
       if (newTheme === 'dark') {
         document.documentElement.style.backgroundColor = '#1a202c'
         document.body.style.backgroundColor = '#1a202c'
+        console.log('Applied dark theme styles')
       } else {
         document.documentElement.style.backgroundColor = '#ffffff'
         document.body.style.backgroundColor = '#ffffff'
+        console.log('Applied light theme styles')
       }
+      
+      // Force a repaint to ensure styles are applied
+      document.body.style.display = 'none'
+      document.body.offsetHeight // Trigger reflow
+      document.body.style.display = ''
     }
 
     // Function to get URL parameters without using useSearchParams

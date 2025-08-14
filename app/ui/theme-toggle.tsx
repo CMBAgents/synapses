@@ -1,33 +1,34 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTheme } from '../context/theme-context';
 
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const { theme, toggleTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Check current theme on mount
-    const isDarkMode = document.documentElement.classList.contains('dark');
-    setIsDark(isDarkMode);
+    setMounted(true);
   }, []);
 
-  const toggleTheme = () => {
-    const newTheme = !isDark;
-    setIsDark(newTheme);
-    
-    if (newTheme) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  // Avoid hydration mismatch
+  if (!mounted) {
+    return (
+      <button
+        className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center justify-center"
+        aria-label="Toggle theme"
+      >
+        <div className="w-6 h-6 bg-gray-400 rounded-full animate-pulse"></div>
+      </button>
+    );
+  }
+
+  const isDark = theme === 'dark';
 
   return (
     <button
       onClick={toggleTheme}
-      className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center justify-center"
+      className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-300 flex items-center justify-center text-readable"
       aria-label="Toggle theme"
     >
       {isDark ? (
@@ -37,7 +38,7 @@ export default function ThemeToggle() {
         </svg>
       ) : (
         // Moon icon for light mode
-        <svg className="w-6 h-6 text-gray-700" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-6 h-6 text-readable" fill="currentColor" viewBox="0 0 20 20">
           <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
         </svg>
       )}

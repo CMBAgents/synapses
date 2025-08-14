@@ -134,7 +134,7 @@ export default function LibrarySearch({ libraries, onLibrarySelect, placeholder 
         onChange={(e) => setSearchTerm(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200"
+        className="w-full px-4 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg text-readable placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200"
       />
       
       {/* Liste des suggestions */}
@@ -146,8 +146,8 @@ export default function LibrarySearch({ libraries, onLibrarySelect, placeholder 
               onClick={() => handleLibrarySelect(library)}
               className={`px-4 py-3 cursor-pointer transition-all duration-150 ${
                 index === selectedIndex
-                  ? 'bg-white/20 text-white'
-                  : 'text-white/90 hover:bg-white/15'
+                  ? 'bg-white/20 text-readable'
+                  : 'text-readable/90 hover:bg-white/15'
               } ${index === 0 ? 'rounded-t-lg' : ''} ${
                 index === filteredLibraries.length - 1 ? 'rounded-b-lg' : ''
               }`}
@@ -155,12 +155,12 @@ export default function LibrarySearch({ libraries, onLibrarySelect, placeholder 
               <div className="flex items-center justify-between">
                 <div>
                   <div className="font-medium">{library.name}</div>
-                  <div className="text-sm text-white/70">
+                  <div className="text-sm text-readable/70">
                     ⭐ {library.stars.toLocaleString()} stars
                   </div>
                 </div>
                 {library.similarity && library.similarity < 1 && (
-                  <div className="text-xs text-white/60 bg-white/10 px-2 py-1 rounded">
+                  <div className="text-xs text-readable/60 bg-white/10 px-2 py-1 rounded">
                     {Math.round(library.similarity * 100)}% match
                   </div>
                 )}
@@ -172,7 +172,7 @@ export default function LibrarySearch({ libraries, onLibrarySelect, placeholder 
       
       {/* Message quand aucun résultat */}
       {searchTerm.length > 0 && filteredLibraries.length === 0 && (
-        <div className="absolute top-full mt-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg z-50 px-4 py-3 text-white/70 text-center">
+        <div className="absolute top-full mt-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg z-50 px-4 py-3 text-readable/70 text-center">
           No libraries found for "{searchTerm}"
         </div>
       )}

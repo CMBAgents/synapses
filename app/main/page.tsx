@@ -13,10 +13,10 @@ export default async function MainPage() {
       <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
 
       {/* Content above overlay */}
-      <div className="relative z-10 mx-auto my-4 sm:my-8 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-white">
+      <div className="relative z-10 mx-auto my-4 sm:my-8 px-2 sm:px-4 w-full max-w-2xl lg:max-w-4xl xl:max-w-6xl text-readable">
         {/* Header with back button */}
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-3xl font-bold font-jersey">
+          <h1 className="text-3xl font-bold font-jersey text-readable-strong">
             Synapses
           </h1>
           <a 
@@ -28,7 +28,7 @@ export default async function MainPage() {
         </div>
 
         {/* Description */}
-        <p className="text-center text-lg mb-8 max-w-2xl mx-auto italic font-semibold font-inter">
+        <p className="text-center text-lg mb-8 max-w-2xl mx-auto italic font-semibold font-inter text-readable">
           A <strong>next-generation chatbot</strong> fluent in the language of the <strong>100 most-starred GitHub libraries</strong> in finance and astrophysics. From <strong>portfolio optimization</strong> to <em>cosmic microwave background</em> analysis, it instantly bridges <strong>code and insight</strong> — no setup required, just <em>smart execution.</em>
         </p>
 

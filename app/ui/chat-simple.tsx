@@ -728,7 +728,7 @@ function ChatMessage({ message }: { message: Message }) {
     : message.content;
 
   return (
-    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-white' : 'bg-white/20 backdrop-blur-sm border-white/30 text-gray-700 dark:text-gray-200 dark:bg-gray-800/20 dark:border-gray-700'}`}>
+    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-readable' : 'bg-white/20 backdrop-blur-sm border-white/30 text-readable dark:bg-gray-800/20 dark:border-gray-700'}`}>
       <div className="text-2xl sm:text-3xl flex-shrink-0 flex items-start pt-1">
         {displayRole(message.role)}
       </div>

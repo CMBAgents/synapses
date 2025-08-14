@@ -29,14 +29,14 @@ export default function LandingPage() {
       <div className="absolute inset-0 bg-black opacity-60 dark:opacity-70"></div>
 
       {/* Content above overlay */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-white page-fade-in">
+      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-readable page-fade-in">
         {/* Hero section */}
         <div className="text-center max-w-none mx-auto content-fade-in mb-8 sm:mb-12">
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-bold mb-4 sm:mb-6 text-white font-jersey text-center uppercase">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-bold mb-4 sm:mb-6 text-readable-strong font-jersey text-center uppercase">
             Synapses
           </h1>
           
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jersey mb-6 sm:mb-8 md:mb-10 text-white">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jersey mb-6 sm:mb-8 md:mb-10 text-readable-strong">
             Choose Your Domain
           </h2>
         </div>
@@ -64,7 +64,7 @@ export default function LandingPage() {
                   <div className="relative p-4 sm:p-6 md:p-8 flex items-center justify-center min-h-[100px] sm:min-h-[120px] md:min-h-[140px]">
                     <div className="text-center">
                       {/* Domain Title */}
-                      <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-jersey text-white">
+                      <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-jersey text-readable-strong">
                         {domain.name}
                       </h3>
                       {isDisabled && (

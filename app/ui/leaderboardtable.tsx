@@ -37,7 +37,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
     <div className="flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-lg p-2 sm:p-4 text-xs sm:text-sm w-full max-w-[350px] sm:max-w-[600px] md:max-w-[900px] mb-6 border border-white/20">
       {title && (
         <h2 
-          className="text-base sm:text-lg font-semibold text-center text-white mb-2 sm:mb-3"
+          className="text-base sm:text-lg font-semibold text-center text-readable-strong mb-2 sm:mb-3"
           style={{ fontFamily: 'var(--font-jersey), monospace' }}
         >
           {title}
@@ -46,7 +46,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
 
       {/* Scrollable Table */}
       <div className="max-h-[400px] sm:max-h-[500px] overflow-y-auto border border-white/30 rounded-lg">
-        <table className="w-full border-collapse text-center text-white">
+        <table className="w-full border-collapse text-center text-readable">
           <tbody>
             {libraries.map(({ rank, name, github_url, stars, hasContextFile, contextFileName }) => (
               <tr key={name} className="hover:bg-white/10">
@@ -54,7 +54,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
                 <td className="border border-white/30 px-1 sm:px-2 py-1 min-w-0 flex-1">
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col flex-1 min-w-0">
-                      <span className="font-medium text-white text-left text-xs sm:text-sm truncate">
+                      <span className="font-medium text-readable text-left text-xs sm:text-sm truncate">
                         {name}
                       </span>
                       {hasContextFile && (
@@ -74,7 +74,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
                     </div>
                     <button 
                       onClick={() => handleLibraryClick(name)}
-                      className="ml-1 sm:ml-2 p-1 text-white hover:text-blue-200 transition-colors duration-200 hover:bg-white/10 rounded flex-shrink-0"
+                      className="ml-1 sm:ml-2 p-1 text-readable hover:text-blue-200 transition-colors duration-200 hover:bg-white/10 rounded flex-shrink-0"
                       title="Open chat"
                     >
                       <svg width="16" height="16" className="sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -89,7 +89,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
                       href={github_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-white hover:text-blue-200 transition-colors duration-200 hover:bg-white/10 rounded p-1"
+                      className="text-readable hover:text-blue-200 transition-colors duration-200 hover:bg-white/10 rounded p-1"
                       title="View on GitHub"
                     >
                       <svg width="16" height="16" className="sm:w-5 sm:h-5 md:w-6 md:h-6" fill="currentColor" viewBox="0 0 24 24">
