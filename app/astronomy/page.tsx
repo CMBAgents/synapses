@@ -62,7 +62,6 @@ function AstronomyContent() {
         <div className="flex-1 mt-8">
           {/* Model Selector */}
           <div className="mb-6">
-            <h3 className="text-lg font-semibold text-white mb-3">Choose AI Model</h3>
             <ModelSelector
               models={[
                 {

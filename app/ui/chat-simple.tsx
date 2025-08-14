@@ -509,9 +509,6 @@ export default function ChatSimple({
           <div className="flex items-center justify-between">
             {/* Library search input */}
             <div className="flex-1 mr-6 relative">
-              <label htmlFor="library-input" className="block text-sm font-semibold text-gray-800 dark:text-gray-100 mb-3 tracking-wide">
-                Choose Library
-              </label>
               <input
                 ref={inputRef}
                 id="library-input"
