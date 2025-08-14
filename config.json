@@ -164,6 +164,15 @@
       "extraSystemPrompt": "You are an expert on minaskar/zeus. Use the provided documentation to help users with this astrophysics library."
     },
     {
+      "id": "cmbant-camb",
+      "name": "camb",
+      "description": "cmbant/camb - Astrophysics library with 228 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/cmbant/camb",
+      "extraSystemPrompt": "You are an expert on cmbant/camb. Use the provided documentation to help users with this astrophysics library."
+    },
+    {
       "id": "tardis-sn-tardis",
       "name": "tardis",
       "description": "tardis-sn/tardis - Astrophysics library with 220 stars",
@@ -290,6 +299,15 @@
       "extraSystemPrompt": "You are an expert on quatrope/astroalign. Use the provided documentation to help users with this astrophysics library."
     },
     {
+      "id": "cobayasampler-cobaya",
+      "name": "cobaya",
+      "description": "CobayaSampler/cobaya - Astrophysics library with 147 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/CobayaSampler/cobaya",
+      "extraSystemPrompt": "You are an expert on CobayaSampler/cobaya. Use the provided documentation to help users with this astrophysics library."
+    },
+    {
       "id": "polymathicai-astroclip",
       "name": "astroclip",
       "description": "polymathicai/astroclip - Astrophysics library with 146 stars",
@@ -306,6 +324,15 @@
       "combinedContextFile": null,
       "docsUrl": "https://github.com/adrn/gala",
       "extraSystemPrompt": "You are an expert on adrn/gala. Use the provided documentation to help users with this astrophysics library."
+    },
+    {
+      "id": "cmbagents-cmbagent",
+      "name": "cmbagent",
+      "description": "CMBAgents/cmbagent - Astrophysics library with 136 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/CMBAgents/cmbagent",
+      "extraSystemPrompt": "You are an expert on CMBAgents/cmbagent. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "deepsphere-deepsphere-cosmo-tf1",
@@ -873,33 +900,6 @@
       "combinedContextFile": null,
       "docsUrl": "https://github.com/trasal/frbpoppy",
       "extraSystemPrompt": "You are an expert on trasal/frbpoppy. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
-      "id": "astro-group-bristol-gradus-jl",
-      "name": "gradus.jl",
-      "description": "astro-group-bristol/gradus.jl - Astrophysics library with 28 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/astro-group-bristol/gradus.jl",
-      "extraSystemPrompt": "You are an expert on astro-group-bristol/gradus.jl. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
-      "id": "astro-sean-autophot",
-      "name": "autophot",
-      "description": "astro-sean/autophot - Astrophysics library with 28 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/astro-sean/autophot",
-      "extraSystemPrompt": "You are an expert on astro-sean/autophot. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
-      "id": "spacetelescope-astrocut",
-      "name": "astrocut",
-      "description": "spacetelescope/astrocut - Astrophysics library with 28 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/spacetelescope/astrocut",
-      "extraSystemPrompt": "You are an expert on spacetelescope/astrocut. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "quantopian-zipline",
