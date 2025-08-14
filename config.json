@@ -1003,33 +1003,51 @@
   "availableModels": [
     {
       "id": "vertexai/gemini-2.5-flash",
-      "name": "Vertex AI Gemini 2.5 Flash",
-      "description": "Google's Gemini 2.5 Flash model through Vertex AI (Recommended - Europe Region)",
+      "name": "Gemini 2.5 Flash (Vertex AI)",
+      "description": "Google's Gemini 2.5 Flash model through Vertex AI - requires credentials",
       "options": {
         "temperature": 0.7,
         "max_completion_tokens": 4096,
         "stream": false
-      }
+      },
+      "requiresCredentials": true,
+      "credentialType": "vertexai"
     },
     {
-      "id": "vertexai/gemini-1.5-pro",
-      "name": "Vertex AI Gemini 1.5 Pro",
-      "description": "Google's Gemini 1.5 Pro model through Vertex AI",
-      "options": {
-        "temperature": 0.7,
-        "max_completion_tokens": 8192,
-        "stream": false
-      }
-    },
-    {
-      "id": "gemini/gemini-2.5-flash-preview-04-17",
-      "name": "Gemini 2.5 Flash (Direct)",
-      "description": "Direct Gemini API access (fallback only)",
+      "id": "openai/gpt-5-2025-08-07",
+      "name": "GPT-5 (OpenAI)",
+      "description": "OpenAI's latest GPT-5 model - requires API key",
       "options": {
         "temperature": 0.7,
         "max_completion_tokens": 4096,
         "stream": true
-      }
+      },
+      "requiresCredentials": true,
+      "credentialType": "openai"
+    },
+    {
+      "id": "deepseek/deepseek-v3",
+      "name": "DeepSeek V3",
+      "description": "DeepSeek's latest V3 model - requires API key",
+      "options": {
+        "temperature": 0.7,
+        "max_completion_tokens": 4096,
+        "stream": true
+      },
+      "requiresCredentials": true,
+      "credentialType": "deepseek"
+    },
+    {
+      "id": "vertexai/gemini-1.5-pro",
+      "name": "Gemini 1.5 Pro (Vertex AI)",
+      "description": "Google's Gemini 1.5 Pro model through Vertex AI - requires credentials",
+      "options": {
+        "temperature": 0.7,
+        "max_completion_tokens": 8192,
+        "stream": false
+      },
+      "requiresCredentials": true,
+      "credentialType": "vertexai"
     }
   ]
 }

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ModelConfig } from '@/app/utils/types';
+import CredentialInput from './credential-input';
 
 interface ModelSelectorProps {
   models: ModelConfig[];
@@ -14,6 +15,7 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
   const [selected, setSelected] = useState<ModelConfig | undefined>(
     models.find(model => model.id === selectedModelId) || models[0]
   );
+  const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, right: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -68,6 +70,13 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
     closeDropdown();
   };
 
+  const handleCredentialsChange = (modelId: string, newCredentials: Record<string, string>) => {
+    setCredentials(prev => ({
+      ...prev,
+      [modelId]: newCredentials
+    }));
+  };
+
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>
       <div>
@@ -98,6 +107,14 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
           </svg>
         </button>
       </div>
+      
+      {/* Show credential input if the selected model requires credentials */}
+      {selected?.requiresCredentials && selected.credentialType && (
+        <CredentialInput
+          credentialType={selected.credentialType}
+          onCredentialsChange={(newCredentials) => handleCredentialsChange(selected.id, newCredentials)}
+        />
+      )}
 
       {isOpen && (
         <div
