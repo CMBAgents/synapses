@@ -17,7 +17,9 @@ export async function POST(request: NextRequest) {
 
     // Get library info from JSON
     const jsonPath = path.join(process.cwd(), 'app', 'data', `${domain}-libraries.json`);
-    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
+    // Handle the special case where astronomy context files are in 'astro' directory
+    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDir = path.join(process.cwd(), 'public', 'context', contextDirName);
     
     if (!fs.existsSync(jsonPath)) {
       return NextResponse.json({ error: 'JSON file not found' }, { status: 404 });

@@ -50,13 +50,46 @@ def save_commit_log(path, log):
 
 def run_contextmaker_py(repo_dir, repo_name, output_dir):
     output_file = os.path.join(output_dir, f"{repo_name}_context.txt")
-    # Exemple avec contextmaker Python API
-    # Adapté selon l'API du package contextmaker
-    # Supposons que tu as une fonction contextmaker.generate_context(input_path) -> str
     
-    context_text = contextmaker.generate_context(repo_dir)
-    with open(output_file, "w") as f:
-        f.write(context_text)
+    try:
+        # Use the correct contextmaker.make() API with input_path
+        print(f"[{repo_name}] Generating context using contextmaker.make()...")
+        result = contextmaker.make(repo_name, output_file, input_path=repo_dir)
+        
+        # contextmaker.make() creates a directory with the file inside
+        # Check if the directory was created and contains the expected file
+        if os.path.exists(output_file) and os.path.isdir(output_file):
+            # Look for the actual context file inside the directory
+            context_file = os.path.join(output_file, f"{repo_name}.txt")
+            if os.path.exists(context_file):
+                # Create a temporary file to avoid conflicts
+                temp_output = output_file + ".tmp"
+                import shutil
+                shutil.copy2(context_file, temp_output)
+                # Remove the directory
+                shutil.rmtree(output_file)
+                # Move temp file to final location
+                shutil.move(temp_output, output_file)
+                print(f"[{repo_name}] ✅ Context generated successfully: {output_file}")
+            else:
+                print(f"[{repo_name}] ⚠️ Context directory created but file not found")
+        elif os.path.exists(output_file) and os.path.isfile(output_file):
+            print(f"[{repo_name}] ✅ Context generated successfully: {output_file}")
+        else:
+            print(f"[{repo_name}] ⚠️ Context generation may have failed")
+            
+    except Exception as e:
+        print(f"[{repo_name}] ❌ Error generating context: {e}")
+        # Clean up any partial files
+        if os.path.exists(output_file):
+            if os.path.isdir(output_file):
+                import shutil
+                shutil.rmtree(output_file)
+            elif os.path.isfile(output_file):
+                os.remove(output_file)
+        # Create a fallback context file
+        with open(output_file, "w") as f:
+            f.write(f"# Context for {repo_name}\n\nError during generation: {e}\n")
 
 def clean_up_dir(dir_path):
     shutil.rmtree(dir_path, ignore_errors=True)

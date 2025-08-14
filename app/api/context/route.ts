@@ -43,7 +43,9 @@ export async function GET(request: NextRequest) {
 
 function handleLoadContextFile(domain: string, fileName: string) {
   try {
-    const contextPath = path.join(process.cwd(), 'public', 'context', domain, fileName);
+    // Handle the special case where astronomy context files are in 'astro' directory
+    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextPath = path.join(process.cwd(), 'public', 'context', contextDirName, fileName);
     if (fs.existsSync(contextPath)) {
       const content = fs.readFileSync(contextPath, 'utf-8');
       return NextResponse.json({ content });
@@ -57,7 +59,9 @@ function handleLoadContextFile(domain: string, fileName: string) {
 
 function handleGetContextFiles(domain: string) {
   try {
-    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
+    // Handle the special case where astronomy context files are in 'astro' directory
+    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDir = path.join(process.cwd(), 'public', 'context', contextDirName);
     if (!fs.existsSync(contextDir)) {
       return NextResponse.json([]);
     }
@@ -85,7 +89,9 @@ function handleGetContextFiles(domain: string) {
 
 function handleHasContextFile(domain: string, fileName: string) {
   try {
-    const contextPath = path.join(process.cwd(), 'public', 'context', domain, fileName);
+    // Handle the special case where astronomy context files are in 'astro' directory
+    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextPath = path.join(process.cwd(), 'public', 'context', contextDirName, fileName);
     const hasFile = fs.existsSync(contextPath);
     return NextResponse.json({ hasFile });
   } catch (error) {
@@ -96,7 +102,9 @@ function handleHasContextFile(domain: string, fileName: string) {
 function handleUpdateLibrariesWithContextStatus(domain: string) {
   try {
     const jsonPath = path.join(process.cwd(), 'app', 'data', `${domain}-libraries.json`);
-    const contextDir = path.join(process.cwd(), 'public', 'context', domain);
+    // Handle the special case where astronomy context files are in 'astro' directory
+    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDir = path.join(process.cwd(), 'public', 'context', contextDirName);
     
     if (!fs.existsSync(jsonPath)) {
       return NextResponse.json({ error: 'JSON file not found' }, { status: 404 });

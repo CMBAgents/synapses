@@ -112,6 +112,29 @@ Thumbs.db
 *.tmp
 *.temp
 
+# Cache files
+.cache/
+cache/
+*.cache
+.cache.json
+cache.json
+
+# Context cache files
+context_cache/
+context-cache/
+*.context-cache
+context_cache.json
+
+# API response cache
+api-cache/
+api_cache/
+*.api-cache
+
+# Build cache
+build-cache/
+build_cache/
+.next/cache/
+
 # test files
 test-*.bat
 test-*.sh
@@ -133,11 +156,34 @@ test-gemini-api.js
 *.tsbuildinfo
 next-env.d.ts 
 
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+.coverage
+htmlcov/
 
+# State and cache files
 temp/
 app/context/
 gcp_configs/cmbagent-info-a978301b2160.json
 gcp_credentials.json
+
+# Maintenance and state files
+*.state.json
+*_state.json
+maintenance_state.json
+context_manager_state.json
+config_update_state.json
+updater_state.json
 
 # Documentation files
 docs/
