@@ -10,10 +10,10 @@ Synapses allows you to discover, compare, and interact with the most popular lib
 
 ## Screenshots
 
-### Main Interface
+### Leaderboard
 ![Synapses Main Interface](public/github1.png)
 
-### Library Rankings
+### Chat
 ![Library Rankings](public/github2.png)
 
 ## Features
