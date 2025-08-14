@@ -39,21 +39,11 @@ export default function AstronomyLeaderboard() {
               </a>
             </div>
 
-            {/* Description */}
-            <div className="text-center mb-4 sm:mb-6 md:mb-8">
-              <p className="text-sm sm:text-base md:text-lg mb-2 sm:mb-4 max-w-2xl mx-auto italic font-semibold text-muted font-inter">
-                <span className="hidden sm:inline">Criteria: Number of stars on GitHub, Keywords: astrophysics & cosmology</span>
-                <span className="sm:hidden">Top astrophysics libraries by GitHub stars</span>
-              </p>
-              <p className="text-muted max-w-3xl mx-auto font-inter text-xs sm:text-sm md:text-base hidden sm:block">
-                {astronomyData.description}
-              </p>
-            </div>
+
 
             {/* Leaderboard */}
             <div className="flex justify-center">
               <LeaderboardTable
-                title="Astrophysics & Cosmology"
                 libraries={astronomyData.libraries}
               />
             </div>
