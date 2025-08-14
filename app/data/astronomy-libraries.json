@@ -36,24 +36,21 @@
       "github_url": "https://github.com/lightkurve/lightkurve",
       "stars": 459,
       "rank": 5,
-      "hasContextFile": true,
-      "contextFileName": "lightkurve-lightkurve-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "gwpy/gwpy",
       "github_url": "https://github.com/gwpy/gwpy",
       "stars": 378,
       "rank": 6,
-      "hasContextFile": true,
-      "contextFileName": "gwpy-gwpy-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "gwastro/pycbc",
       "github_url": "https://github.com/gwastro/pycbc",
       "stars": 346,
       "rank": 7,
-      "hasContextFile": true,
-      "contextFileName": "gwastro-pycbc-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "amrex-astro/castro",
@@ -74,8 +71,7 @@
       "github_url": "https://github.com/astropy/photutils",
       "stars": 276,
       "rank": 10,
-      "hasContextFile": true,
-      "contextFileName": "astropy-photutils-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "lesgourg/class_public",
@@ -89,8 +85,7 @@
       "github_url": "https://github.com/spacepy/spacepy",
       "stars": 253,
       "rank": 12,
-      "hasContextFile": true,
-      "contextFileName": "spacepy-spacepy-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "scottransom/presto",

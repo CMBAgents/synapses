@@ -51,7 +51,15 @@ async function fetchContextFromUrl(url: string): Promise<{ content: string; wasF
   // Create a new fetch promise
   const fetchPromise = new Promise<{ content: string; wasFetched: boolean }>(async (resolve) => {
     try {
-      const response = await fetch(url, {
+      // Convert relative URLs to absolute URLs for server-side fetching
+      let fetchUrl = url;
+      if (url.startsWith('/api/')) {
+        // For server-side requests, we need to construct the full URL
+        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+        fetchUrl = `${baseUrl}${url}`;
+      }
+      
+      const response = await fetch(fetchUrl, {
         headers: {
           'Accept': 'text/plain, text/markdown, application/json'
         }

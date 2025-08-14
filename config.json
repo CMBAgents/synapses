@@ -6,7 +6,7 @@
       "name": "python-skyfield",
       "description": "skyfielders/python-skyfield - Astrophysics library with 1570 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/python-skyfield-context.txt",
+      "combinedContextFile": "/api/context/astronomy/skyfielders-python-skyfield-context.txt",
       "docsUrl": "https://github.com/skyfielders/python-skyfield",
       "extraSystemPrompt": "You are an expert on skyfielders/python-skyfield. Use the provided documentation to help users with this astrophysics library."
     },
@@ -24,7 +24,7 @@
       "name": "astroquery",
       "description": "astropy/astroquery - Astrophysics library with 739 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/astroquery-context.txt",
+      "combinedContextFile": "/api/context/astronomy/astropy-astroquery-context.txt",
       "docsUrl": "https://github.com/astropy/astroquery",
       "extraSystemPrompt": "You are an expert on astropy/astroquery. Use the provided documentation to help users with this astrophysics library."
     },
@@ -32,8 +32,8 @@
       "id": "einsteinpy-einsteinpy",
       "name": "einsteinpy",
       "description": "einsteinpy/einsteinpy - Astrophysics library with 650 stars",
-      "contextFiles": ["astronomy/einsteinpy-einsteinpy-context.txt"],
-      "combinedContextFile": "/context/astronomy/einsteinpy-einsteinpy-context.txt",
+      "contextFiles": [],
+      "combinedContextFile": "/api/context/astronomy/einsteinpy-einsteinpy-context.txt",
       "docsUrl": "https://github.com/einsteinpy/einsteinpy",
       "extraSystemPrompt": "You are an expert on einsteinpy/einsteinpy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -42,7 +42,7 @@
       "name": "lightkurve",
       "description": "lightkurve/lightkurve - Astrophysics library with 459 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/lightkurve-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/lightkurve/lightkurve",
       "extraSystemPrompt": "You are an expert on lightkurve/lightkurve. Use the provided documentation to help users with this astrophysics library."
     },
@@ -51,7 +51,7 @@
       "name": "gwpy",
       "description": "gwpy/gwpy - Astrophysics library with 378 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/gwpy-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/gwpy/gwpy",
       "extraSystemPrompt": "You are an expert on gwpy/gwpy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -60,7 +60,7 @@
       "name": "pycbc",
       "description": "gwastro/pycbc - Astrophysics library with 346 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/pycbc-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/gwastro/pycbc",
       "extraSystemPrompt": "You are an expert on gwastro/pycbc. Use the provided documentation to help users with this astrophysics library."
     },
@@ -69,7 +69,7 @@
       "name": "castro",
       "description": "amrex-astro/castro - Astrophysics library with 322 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/castro-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/amrex-astro/castro",
       "extraSystemPrompt": "You are an expert on amrex-astro/castro. Use the provided documentation to help users with this astrophysics library."
     },
@@ -87,7 +87,7 @@
       "name": "photutils",
       "description": "astropy/photutils - Astrophysics library with 276 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/photutils-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/astropy/photutils",
       "extraSystemPrompt": "You are an expert on astropy/photutils. Use the provided documentation to help users with this astrophysics library."
     },
@@ -96,7 +96,7 @@
       "name": "class_public",
       "description": "lesgourg/class_public - Astrophysics library with 267 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/class_public-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/lesgourg/class_public",
       "extraSystemPrompt": "You are an expert on lesgourg/class_public. Use the provided documentation to help users with this astrophysics library."
     },
@@ -105,7 +105,7 @@
       "name": "spacepy",
       "description": "spacepy/spacepy - Astrophysics library with 253 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/spacepy-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/spacepy/spacepy",
       "extraSystemPrompt": "You are an expert on spacepy/spacepy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -114,7 +114,7 @@
       "name": "presto",
       "description": "scottransom/presto - Astrophysics library with 250 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/presto-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/scottransom/presto",
       "extraSystemPrompt": "You are an expert on scottransom/presto. Use the provided documentation to help users with this astrophysics library."
     },
@@ -123,7 +123,7 @@
       "name": "galsim",
       "description": "galsim-developers/galsim - Astrophysics library with 247 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/galsim-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/galsim-developers/galsim",
       "extraSystemPrompt": "You are an expert on galsim-developers/galsim. Use the provided documentation to help users with this astrophysics library."
     },
@@ -132,7 +132,7 @@
       "name": "galpy",
       "description": "jobovy/galpy - Astrophysics library with 246 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/galpy-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/jobovy/galpy",
       "extraSystemPrompt": "You are an expert on jobovy/galpy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -141,7 +141,7 @@
       "name": "radis",
       "description": "radis/radis - Astrophysics library with 245 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/radis-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/radis/radis",
       "extraSystemPrompt": "You are an expert on radis/radis. Use the provided documentation to help users with this astrophysics library."
     },
@@ -150,7 +150,7 @@
       "name": "poppy",
       "description": "spacetelescope/poppy - Astrophysics library with 243 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/poppy-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/spacetelescope/poppy",
       "extraSystemPrompt": "You are an expert on spacetelescope/poppy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -249,7 +249,7 @@
       "name": "poppy",
       "description": "mperrin/poppy - Astrophysics library with 184 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/poppy-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/mperrin/poppy",
       "extraSystemPrompt": "You are an expert on mperrin/poppy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -582,7 +582,7 @@
       "name": "pixell",
       "description": "simonsobs/pixell - Astrophysics library with 51 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/astronomy/pixell-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/simonsobs/pixell",
       "extraSystemPrompt": "You are an expert on simonsobs/pixell. Use the provided documentation to help users with this astrophysics library."
     },
@@ -924,7 +924,7 @@
       "name": "yfinance",
       "description": "ranaroussi/yfinance - Finance library with 8500 stars",
       "contextFiles": [],
-      "combinedContextFile": "/context/finance/yfinance-context.txt",
+      "combinedContextFile": null,
       "docsUrl": "https://github.com/ranaroussi/yfinance",
       "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library."
     },

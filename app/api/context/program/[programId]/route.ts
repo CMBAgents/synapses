@@ -26,8 +26,8 @@ export async function GET(_request: NextRequest, context: { params: Promise<{ pr
       );
     }
 
-    // Check if the program has a combinedContextFile that is a URL
-    if (program.combinedContextFile && program.combinedContextFile.startsWith('http')) {
+    // Check if the program has a combinedContextFile that is a URL or API path
+    if (program.combinedContextFile && (program.combinedContextFile.startsWith('http') || program.combinedContextFile.startsWith('/api/'))) {
       try {
         // Load context using the loadContext function which handles URLs
         const contextContent = await loadContext([], programId);

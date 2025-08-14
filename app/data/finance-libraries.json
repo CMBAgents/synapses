@@ -19,7 +19,7 @@
       "github_url": "https://github.com/ranaroussi/yfinance",
       "stars": 8500,
       "rank": 3,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "yfinance-context.txt"
     },
     {

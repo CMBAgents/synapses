@@ -600,12 +600,12 @@ export default function ChatSimple({
                   {matchedLibrary?.hasContextFile ? (
                     <div className="flex items-center mb-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                      <a 
-                        href={`/api/context/${matchedLibrary.contextFileName}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center"
-                      >
+                                              <a 
+                          href={`/api/context/${programId === 'astronomy' ? 'astronomy' : 'finance'}/${matchedLibrary.contextFileName}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center"
+                        >
                         <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
                           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
                           <path d="M14 2v6h6"/>
