@@ -1,5 +1,5 @@
 {
-  "libraries": [
+  "astronomy": [
     {
       "name": "skyfielders/python-skyfield",
       "github_url": "https://github.com/skyfielders/python-skyfield",
@@ -600,16 +600,5 @@
       "stars": 30,
       "rank": 100
     }
-  ],
-  "domain": "astronomy",
-  "description": "Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis. Libraries with the same number of stars get attributed the same rank, so the list may contain more than 100 libraries while maintaining a top 100 ranking system.",
-  "keywords": [
-    "astronomy",
-    "cosmology",
-    "astrophysics",
-    "gravitational waves",
-    "CMB",
-    "healpy",
-    "astropy"
   ]
 }

@@ -17,6 +17,7 @@ jobovy/galpy,https://github.com/jobovy/galpy,246
 radis/radis,https://github.com/radis/radis,245
 spacetelescope/poppy,https://github.com/spacetelescope/poppy,243
 minaskar/zeus,https://github.com/minaskar/zeus,237
+cmbant/camb,https://github.com/cmbant/camb,228
 tardis-sn/tardis,https://github.com/tardis-sn/tardis,220
 astropy/astroplan,https://github.com/astropy/astroplan,209
 johannesbuchner/pymultinest,https://github.com/johannesbuchner/pymultinest,205
@@ -31,8 +32,10 @@ pypeit/pypeit,https://github.com/pypeit/pypeit,183
 sczesla/pyastronomy,https://github.com/sczesla/pyastronomy,166
 cmbant/getdist,https://github.com/cmbant/getdist,165
 quatrope/astroalign,https://github.com/quatrope/astroalign,151
+CobayaSampler/cobaya,https://github.com/CobayaSampler/cobaya,147
 polymathicai/astroclip,https://github.com/polymathicai/astroclip,146
 adrn/gala,https://github.com/adrn/gala,141
+CMBAgents/cmbagent,https://github.com/CMBAgents/cmbagent,136
 deepsphere/deepsphere-cosmo-tf1,https://github.com/deepsphere/deepsphere-cosmo-tf1,133
 skypyproject/skypy,https://github.com/skypyproject/skypy,125
 astropy/reproject,https://github.com/astropy/reproject,116
@@ -96,6 +99,3 @@ mtazzari/galario,https://github.com/mtazzari/galario,32
 cosmodesi/pycorr,https://github.com/cosmodesi/pycorr,31
 lofar-astron/rmextract,https://github.com/lofar-astron/rmextract,31
 trasal/frbpoppy,https://github.com/trasal/frbpoppy,30
-astro-group-bristol/gradus.jl,https://github.com/astro-group-bristol/gradus.jl,28
-astro-sean/autophot,https://github.com/astro-sean/autophot,28
-spacetelescope/astrocut,https://github.com/spacetelescope/astrocut,28
