@@ -49,16 +49,16 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
       style={{ backgroundImage: "url('/pexels-slendyalex-3745234.jpg')" }}
     >
       <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
-      <div className="relative z-10 h-screen flex flex-col items-center justify-start px-2 sm:px-4 pt-8 sm:pt-12 md:pt-16">
+      <div className="relative z-10 h-screen flex flex-col items-center justify-start px-2 sm:px-4 pt-4 sm:pt-6 md:pt-8">
         {/* Title outside the frame */}
-        <div className="text-center mb-6 sm:mb-8 md:mb-10">
+        <div className="text-center mb-3 sm:mb-4 md:mb-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-jersey text-white">
             {getDomainTitle()}
           </h1>
         </div>
 
         {/* Translucent frame starts here */}
-        <div className="w-full max-w-6xl bg-white/10 backdrop-blur-sm rounded-lg p-3 sm:p-4 md:p-6 shadow-lg border border-white/20 flex-1 flex flex-col">
+        <div className="w-full max-w-4xl bg-white/10 backdrop-blur-sm rounded-lg p-2 sm:p-3 md:p-4 shadow-lg border border-white/20 flex flex-col" style={{ maxHeight: '80vh' }}>
           <FadeIn>
             {/* Header with description */}
             <div className="flex items-center justify-between mb-4">
