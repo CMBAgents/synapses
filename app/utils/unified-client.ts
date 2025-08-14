@@ -48,7 +48,7 @@ const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
  * @param modelId The model ID in the format "provider/model-name"
  * @returns An OpenAI client configured for the specified provider
  */
-export function createClient(modelId?: string) {
+export function createClient(modelId?: string, credentials?: Record<string, Record<string, string>>) {
   const config = loadConfig();
 
   // Default to the configuration's default model if no model ID is provided
@@ -84,13 +84,38 @@ export function createClient(modelId?: string) {
   
   // For Vertex AI, we need to check for Google Cloud credentials
   let apiKey: string | undefined;
-  if (targetProviderKey === 'vertexai') {
-    // Check for Google Cloud credentials
-    apiKey = process.env.GOOGLE_APPLICATION_CREDENTIALS || 
-              process.env.GOOGLE_CLOUD_PROJECT || 
-              process.env.GOOGLE_ACCESS_TOKEN;
-  } else {
-    apiKey = process.env[apiKeyEnvVar];
+  
+  // First check if credentials were provided for this specific model
+  if (credentials && credentials[modelIdToUse]) {
+    const modelCredentials = credentials[modelIdToUse];
+    
+    if (targetProviderKey === 'vertexai') {
+      // For Vertex AI, check if we have the required credentials
+      if (modelCredentials.projectId && modelCredentials.location && modelCredentials.serviceAccountKey) {
+        // Store credentials in environment for this request
+        process.env.GOOGLE_CLOUD_PROJECT = modelCredentials.projectId;
+        process.env.VERTEX_AI_LOCATION = modelCredentials.location;
+        process.env.GOOGLE_APPLICATION_CREDENTIALS = modelCredentials.serviceAccountKey;
+        apiKey = modelCredentials.projectId; // Use project ID as the key identifier
+      }
+    } else if (targetProviderKey === 'openai' || targetProviderKey === 'deepseek') {
+      // For OpenAI/DeepSeek, use the API key
+      if (modelCredentials.apiKey) {
+        apiKey = modelCredentials.apiKey;
+      }
+    }
+  }
+  
+  // Fallback to environment variables if no credentials provided
+  if (!apiKey) {
+    if (targetProviderKey === 'vertexai') {
+      // Check for Google Cloud credentials
+      apiKey = process.env.GOOGLE_APPLICATION_CREDENTIALS || 
+                process.env.GOOGLE_CLOUD_PROJECT || 
+                process.env.GOOGLE_ACCESS_TOKEN;
+    } else {
+      apiKey = process.env[apiKeyEnvVar];
+    }
   }
 
   // Determine actual provider and model name for the API call
@@ -246,10 +271,11 @@ async function createVertexAIChatCompletion(
 export async function createChatCompletion(
   modelId: string | undefined,
   messages: Array<{ role: string; content: string }>,
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
+  credentials?: Record<string, Record<string, string>>
 ) {
   // Create the client for the specified model
-  const { client, modelName, isVertexAI } = createClient(modelId);
+  const { client, modelName, isVertexAI } = createClient(modelId, credentials);
 
   // Handle Vertex AI separately
   if (isVertexAI) {
@@ -266,6 +292,9 @@ export async function createChatCompletion(
     ...modelOptions,
     ...options
   };
+
+  // Log the final options for debugging
+  console.log(`Creating chat completion for ${modelName} with options:`, completionOptions);
 
   // Ensure client exists before using it
   if (!client) {
@@ -286,10 +315,11 @@ export async function createChatCompletion(
 export async function createStreamingChatCompletion(
   modelId: string | undefined,
   messages: Array<{ role: string; content: string }>,
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
+  credentials?: Record<string, Record<string, string>>
 ) {
   // Create the client for the specified model
-  const { client, modelName, provider, isVertexAI } = createClient(modelId);
+  const { client, modelName, provider, isVertexAI } = createClient(modelId, credentials);
 
   // Handle Vertex AI separately (note: Vertex AI streaming is more complex)
   if (isVertexAI) {
@@ -316,8 +346,9 @@ export async function createStreamingChatCompletion(
     stream: true
   };
 
-  // Log the streaming request
+  // Log the streaming request and options
   console.log(`Creating streaming completion for ${provider}/${modelName}`);
+  console.log(`Streaming options:`, completionOptions);
 
   try {
     // Ensure client exists before using it

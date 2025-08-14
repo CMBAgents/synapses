@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ChatContainer from "@/app/ui/chat-container";
 import ModelSelector from "@/app/ui/model-selector";
@@ -11,6 +11,10 @@ function AstronomyContent() {
   const astronomyData = loadAstronomyData();
   const searchParams = useSearchParams();
   const preselectedLibrary = searchParams.get('library') || undefined;
+  const [selectedModelId, setSelectedModelId] = useState("vertexai/gemini-2.5-flash");
+  const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
+
+
 
   return (
     <ContextUpdater domain="astronomy">
@@ -70,7 +74,7 @@ function AstronomyContent() {
                 {
                   id: "openai/gpt-5-2025-08-07",
                   name: "GPT-5 (OpenAI)",
-                  description: "OpenAI's latest GPT-5 model - requires API key",
+                  description: "OpenAI's latest GPT-5 model - requires API key (no temperature support)",
                   requiresCredentials: true,
                   credentialType: "openai"
                 },
@@ -82,8 +86,9 @@ function AstronomyContent() {
                   credentialType: "deepseek"
                 }
               ]}
-              selectedModelId="vertexai/gemini-2.5-flash"
-              onModelChange={(modelId) => console.log('Model changed to:', modelId)}
+              selectedModelId={selectedModelId}
+              onModelChange={(modelId) => setSelectedModelId(modelId)}
+              onCredentialsChange={(newCredentials) => setCredentials(newCredentials)}
             />
           </div>
           
@@ -98,6 +103,9 @@ function AstronomyContent() {
             }]}
             defaultProgramId="astronomy"
             preselectedLibrary={preselectedLibrary}
+            selectedModelId={selectedModelId}
+            onModelChange={setSelectedModelId}
+            credentials={credentials}
           />
         </div>
       </div>

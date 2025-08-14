@@ -14,17 +14,27 @@ interface ChatContainerProps {
   programs: Program[];
   defaultProgramId: string;
   preselectedLibrary?: string;
+  selectedModelId?: string;
+  onModelChange?: (modelId: string) => void;
+  credentials?: Record<string, Record<string, string>>;
 }
 
 export default function ChatContainer({
   programs,
   defaultProgramId,
-  preselectedLibrary
+  preselectedLibrary,
+  selectedModelId: externalSelectedModelId,
+  onModelChange: externalOnModelChange,
+  credentials
 }: ChatContainerProps) {
   const config = loadConfig();
   const [activeProgram, setActiveProgram] = useState(defaultProgramId);
   // Chat state is managed internally by ChatSimple component
-  const [selectedModelId, setSelectedModelId] = useState<string>(config.defaultModelId);
+  // Always use the external model ID if provided, otherwise fall back to default
+  const effectiveModelId = externalSelectedModelId || config.defaultModelId;
+  
+  // No need for local state - just use the external one directly
+  const selectedModelId = effectiveModelId;
 
   // Preload context for the default program when the component mounts
   useEffect(() => {
@@ -44,8 +54,10 @@ export default function ChatContainer({
 
   // Handle model change
   const handleModelChange = (modelId: string) => {
-    setSelectedModelId(modelId);
-    // The selected model is passed to ChatSimple component
+    // Call external handler if provided
+    if (externalOnModelChange) {
+      externalOnModelChange(modelId);
+    }
   };
 
   // Get the active program
@@ -79,6 +91,7 @@ export default function ChatContainer({
         selectedModelId={selectedModelId}
         libraries={getLibraries()}
         preselectedLibrary={preselectedLibrary}
+        credentials={credentials}
       />
     </div>
   );

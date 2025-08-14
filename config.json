@@ -1018,7 +1018,6 @@
       "name": "GPT-5 (OpenAI)",
       "description": "OpenAI's latest GPT-5 model - requires API key",
       "options": {
-        "temperature": 0.7,
         "max_completion_tokens": 4096,
         "stream": true
       },

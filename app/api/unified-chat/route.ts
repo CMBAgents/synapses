@@ -9,7 +9,7 @@ export const runtime = "nodejs";
 export async function POST(request: NextRequest) {
   try {
     // Parse message from post
-    const { programId, messages, modelId, stream = false } = await request.json();
+    const { programId, messages, modelId, stream = false, credentials = {} } = await request.json();
 
     // Get program configuration
     const program = getProgramById(programId);
@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
         // Handle streaming request
         try {
           // Try with the primary model first
-          const streamingResponse = await createStreamingChatCompletion(modelId, allMessages);
+          const streamingResponse = await createStreamingChatCompletion(modelId, allMessages, {}, credentials);
 
           // For streaming responses, we need to convert the OpenAI stream to a ReadableStream
           const encoder = new TextEncoder();
@@ -140,7 +140,7 @@ export async function POST(request: NextRequest) {
             console.log(`Primary model failed, trying fallback model: ${fallbackModelId}`);
 
             // Try with the fallback model
-            const fallbackStreamingResponse = await createStreamingChatCompletion(fallbackModelId, allMessages);
+            const fallbackStreamingResponse = await createStreamingChatCompletion(fallbackModelId, allMessages, {}, credentials);
 
             // Check if the fallback streaming response is valid
             if (!fallbackStreamingResponse) {
@@ -225,7 +225,7 @@ export async function POST(request: NextRequest) {
         // Handle non-streaming request
         try {
           // Try with the primary model first
-          const completion = await createChatCompletion(modelId, allMessages);
+          const completion = await createChatCompletion(modelId, allMessages, {}, credentials);
 
           // Log token usage
           if (completion.usage) {
@@ -247,7 +247,7 @@ export async function POST(request: NextRequest) {
 
             try {
               // Try with the fallback model
-              const fallbackCompletion = await createChatCompletion(fallbackModelId, allMessages);
+              const fallbackCompletion = await createChatCompletion(fallbackModelId, allMessages, {}, credentials);
 
               // Log token usage for the fallback model
               if (fallbackCompletion.usage) {
