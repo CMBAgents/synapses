@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "cmbagent": {
+      "command": "python",
+      "args": ["mcp_cmbagent.py", "stdio"],
+      "env": {
+        "PYTHONPATH": "."
+      }
+    }
+  }
+}
