@@ -2,6 +2,11 @@
 
 A modern platform to explore and rank the top 100 open source libraries by expertise domain.
 
+[![GitHub stars](https://img.shields.io/github/stars/CMBAgents/cmbagent-info?style=social)](https://github.com/CMBAgents/cmbagent-info)
+[![GitHub forks](https://img.shields.io/github/forks/CMBAgents/cmbagent-info?style=social)](https://github.com/CMBAgents/cmbagent-info)
+[![GitHub issues](https://img.shields.io/github/issues/CMBAgents/cmbagent-info)](https://github.com/CMBAgents/cmbagent-info/issues)
+[![GitHub license](https://img.shields.io/github/license/CMBAgents/cmbagent-info)](https://github.com/CMBAgents/cmbagent-info/blob/main/LICENSE)
+
 ## Overview
 
 Synapses allows you to discover, compare, and interact with the most popular libraries across different domains. Each library is ranked according to its GitHub popularity and comes with detailed contexts automatically generated from existing documentation, docstrings, notebooks, and even code.
@@ -19,6 +24,8 @@ Synapses allows you to discover, compare, and interact with the most popular lib
 **Smart Rankings** : Ranking system based on GitHub stars with tie-breaking management
 
 **Automatic Contexts** : Automatic generation of contextual documentation for each library taking into account existing documentation, docstrings, notebooks, and even code
+
+**Modern Interface** : Responsive design with smooth animations and intuitive navigation
 
 **Specialized Domains** : Focus on machine learning, astrophysics/cosmology, and finance/trading
 
