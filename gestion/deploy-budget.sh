@@ -5,7 +5,7 @@
 set -e
 
 # Charger la configuration
-CONFIG_FILE="budget-config.json"
+CONFIG_FILE="gestion/budget-config.json"
 PROJECT_ID=$(jq -r '.project_id' "$CONFIG_FILE")
 REGION=$(jq -r '.region' "$CONFIG_FILE")
 MEMORY=$(jq -r '.resources.memory' "$CONFIG_FILE")

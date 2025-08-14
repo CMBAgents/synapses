@@ -50,7 +50,7 @@ class ContextOrchestrator:
                 config.update(json.load(f))
         
         # Load cloud-config.json
-        cloud_config_file = self.base_dir / "cloud-config.json"
+        cloud_config_file = self.base_dir / "gestion" / "cloud-config.json"
         if cloud_config_file.exists():
             with open(cloud_config_file, 'r', encoding='utf-8') as f:
                 config['cloud'] = json.load(f)

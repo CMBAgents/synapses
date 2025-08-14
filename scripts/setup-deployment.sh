@@ -176,8 +176,8 @@ NODE_ENV=production
 NEXT_PUBLIC_APP_URL=https://$CUSTOM_DOMAIN
 EOF
 
-# Mettre à jour cloud-config.json
-cat > cloud-config.json << EOF
+        # Mettre à jour cloud-config.json
+        cat > gestion/cloud-config.json << EOF
 {
   "provider": "gcp",
   "bucket_name": "$CONTEXTS_BUCKET",
@@ -267,7 +267,7 @@ cat > DEPLOYMENT_INFO.md << EOF
 
 - \`deployment-config.json\` - Configuration principale
 - \`.env.local\` - Variables d'environnement
-- \`cloud-config.json\` - Configuration cloud
+        - \`gestion/cloud-config.json\` - Configuration cloud
 - \`deploy-custom.sh\` - Script de déploiement personnalisé
 
 ## Étapes Suivantes
@@ -330,7 +330,7 @@ echo ""
 echo "📁 Fichiers créés:"
 echo "  - deployment-config.json"
 echo "  - .env.local"
-echo "  - cloud-config.json"
+        echo "  - gestion/cloud-config.json"
 echo "  - deploy-custom.sh"
 echo "  - DEPLOYMENT_INFO.md"
 echo ""
