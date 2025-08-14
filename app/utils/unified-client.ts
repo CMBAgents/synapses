@@ -72,6 +72,9 @@ export function createClient(modelId?: string, credentials?: Record<string, Reco
     targetProviderKey = 'vertexai';
   } else if (provider === 'sambanova') {
     targetProviderKey = 'sambanova';
+  } else if (provider === 'deepseek') {
+    // DeepSeek models should always route through OpenRouter
+    targetProviderKey = 'openrouter';
   } else if (PROVIDER_CONFIGS[provider]) {
     // Handle cases where a known provider (like 'openrouter') is explicitly requested
     // or when direct keys for openai/gemini are disabled/missing.

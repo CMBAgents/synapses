@@ -230,9 +230,18 @@ export async function POST(request: NextRequest) {
           // Try with the primary model first
           const completion = await createChatCompletion(modelId, allMessages, {}, credentials);
 
+          // Debug: Log the completion response
+          console.log('Primary model completion response:', JSON.stringify(completion, null, 2));
+
           // Log token usage
           if (completion.usage) {
             logTokenUsage(modelId, programId, completion.usage);
+          }
+
+          // Check if completion has the expected structure
+          if (!completion || !completion.choices || !completion.choices[0]) {
+            console.error('Invalid completion structure:', completion);
+            throw new Error(`Invalid completion response structure: ${JSON.stringify(completion)}`);
           }
 
           // Extract the content from the response

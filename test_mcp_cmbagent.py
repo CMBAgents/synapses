@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Test script for the CMB Agent MCP Server
-This demonstrates how to use the MCP server programmatically
+Test script for the CMB Agent MCP Server - Chat Focus
+This demonstrates the chat functionality using the default model (deepseek via OpenRouter)
 """
 
 import asyncio
@@ -9,13 +9,25 @@ import json
 from mcp import ClientSession, StdioServerParameters
 from mcp.client.stdio import stdio_client
 
-async def test_cmbagent_mcp():
-    """Test the CMB Agent MCP server functionality."""
+def extract_content(result):
+    """Extract text content from MCP tool result."""
+    if hasattr(result, 'content') and result.content:
+        # Handle TextContent objects
+        if hasattr(result.content[0], 'text'):
+            return result.content[0].text
+        # Handle direct content
+        return result.content
+    return str(result)
+
+async def test_chat_functionality():
+    """Test the chat functionality of the CMB Agent MCP server."""
     
     # Server parameters
+    # NOTE: You need to get an OpenRouter API key from https://openrouter.ai/
+    # Replace "your-openrouter-api-key-here" with your actual API key
     server_params = StdioServerParameters(
         command="python",
-        args=["mcp_cmbagent.py", "stdio"],
+        args=["mcp_cmbagent.py", "stdio", "--openrouter-key", "your-openrouter-api-key-here"],
         env={"PYTHONPATH": "."}
     )
     
@@ -25,59 +37,48 @@ async def test_cmbagent_mcp():
             async with ClientSession(read, write) as session:
                 print("Connected to CMB Agent MCP Server!")
                 
-                # Test 1: List available programs
-                print("\n=== Testing list_programs ===")
+                # Initialize the MCP session
+                print("Initializing MCP session...")
                 try:
-                    result = await session.call_tool("list_programs", {})
-                    print(f"Available programs: {json.dumps(result.content, indent=2)}")
+                    init_result = await session.initialize()
+                    print(f"Server initialized successfully!")
                 except Exception as e:
-                    print(f"Error listing programs: {e}")
+                    print(f"Failed to initialize MCP session: {e}")
+                    return
                 
-                # Test 2: Check service health
-                print("\n=== Testing check_service_health ===")
-                try:
-                    result = await session.call_tool("check_service_health", {})
-                    print(f"Service health: {json.dumps(result.content, indent=2)}")
-                except Exception as e:
-                    print(f"Error checking health: {e}")
+                print("Server is ready!")
                 
-                # Test 3: Search for astronomy libraries
-                print("\n=== Testing search_astronomy_libraries ===")
-                try:
-                    result = await session.call_tool("search_astronomy_libraries", {"query": "skyfield"})
-                    print(f"Search results: {json.dumps(result.content, indent=2)}")
-                except Exception as e:
-                    print(f"Error searching libraries: {e}")
+                # Test chat functionality
+                print("\n=== Testing Chat with Astronomy ===")
+                print("Using default model: deepseek/deepseek-chat-v3-0324 (via OpenRouter)")
                 
-                # Test 4: Chat with astronomy chatbot
-                print("\n=== Testing chat_with_astronomy ===")
+                test_message = "What is python-skyfield and what can it do?"
+                program_id = "skyfielders-python-skyfield"
+                
+                print(f"\nSending message: {test_message}")
+                print(f"Program: {program_id}")
+                
                 try:
                     result = await session.call_tool("chat_with_astronomy", {
-                        "message": "What is python-skyfield and what can it do?",
-                        "program_id": "skyfielders-python-skyfield"
+                        "message": test_message,
+                        "program_id": program_id
                     })
-                    print(f"Chat response: {json.dumps(result.content, indent=2)}")
+                    
+                    content = extract_content(result)
+                    print(f"\nChat Response:")
+                    print(f"{'='*50}")
+                    print(content)
+                    print(f"{'='*50}")
+                    
                 except Exception as e:
                     print(f"Error chatting: {e}")
-                
-                # Test 5: Get program context
-                print("\n=== Testing get_program_context ===")
-                try:
-                    result = await session.call_tool("get_program_context", {
-                        "program_id": "skyfielders-python-skyfield"
-                    })
-                    context = result.content
-                    if isinstance(context, str) and len(context) > 100:
-                        print(f"Context preview: {context[:100]}...")
-                    else:
-                        print(f"Context: {context}")
-                except Exception as e:
-                    print(f"Error getting context: {e}")
                 
     except Exception as e:
         print(f"Failed to connect to MCP server: {e}")
         print("Make sure the MCP server is running and dependencies are installed")
 
 if __name__ == "__main__":
-    print("Testing CMB Agent MCP Server...")
-    asyncio.run(test_cmbagent_mcp())
+    print("Testing CMB Agent MCP Server - Chat Functionality")
+    print("Default Model: deepseek/deepseek-chat-v3-0324 (via OpenRouter)")
+    print("="*70)
+    asyncio.run(test_chat_functionality())

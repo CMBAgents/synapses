@@ -997,7 +997,7 @@
   "simpleMode": true,
   "greeting": "How can I help you?",
   "defaultModelId": "deepseek/deepseek-chat-v3-0324",
-  "fallbackModelId": "vertexai/gemini-2.5-flash",
+  "fallbackModelId": null,
   "useDirectOpenAIKey": false,
   "useDirectGeminiKey": false,
   "availableModels": [
