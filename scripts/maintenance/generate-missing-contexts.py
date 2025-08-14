@@ -74,14 +74,8 @@ class ContextGenerator:
                 data = json.load(f)
                 libraries['finance'] = data.get('libraries', [])
         
-        # Load libraries.json for other domains
-        libraries_file = self.data_dir / "libraries.json"
-        if libraries_file.exists():
-            with open(libraries_file, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                for domain, libs in data.items():
-                    if domain not in libraries:
-                        libraries[domain] = libs
+        # Note: libraries.json a été supprimé car il était incorrect
+        # On utilise maintenant uniquement les fichiers spécifiques par domaine
         
         return libraries
 

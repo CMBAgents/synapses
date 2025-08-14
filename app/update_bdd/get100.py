@@ -231,58 +231,8 @@ def update_astronomy_json():
 
     print(f"Fichier astronomy-libraries.json mis à jour avec {len(new_libs)} librairies")
 
-def update_libraries_json():
-    """
-    Met à jour le fichier libraries.json principal.
-    """
-    json_path = "app/data/libraries.json"
-    csv_path = "app/update_bdd/last.csv"
-    category = "astronomy"
-
-    # Lire le CSV
-    new_libs = []
-    with open(csv_path, newline='', encoding='utf-8') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for row in reader:
-            try:
-                name = row['library_name']
-                url = row['github_url']
-                stars = int(row['stars'])
-                new_libs.append({
-                    "name": name,
-                    "github_url": url,
-                    "stars": stars
-                })
-            except (KeyError, ValueError):
-                continue  # Ignore lignes incomplètes ou corrompues
-
-    # Trier par nombre d'étoiles décroissant
-    new_libs.sort(key=lambda x: -x["stars"])
-
-    # Ajouter les rangs avec la règle des ex-aequo
-    current_rank = 1
-    for i, lib in enumerate(new_libs):
-        if i > 0 and new_libs[i]["stars"] < new_libs[i-1]["stars"]:
-            current_rank = i + 1
-        lib["rank"] = current_rank
-
-    # Créer ou lire le JSON existant
-    try:
-        with open(json_path, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-    except FileNotFoundError:
-        # Créer un nouveau fichier si il n'existe pas
-        data = {}
-        print(f"Fichier {json_path} créé car il n'existait pas")
-
-    # Mettre à jour la catégorie
-    data[category] = new_libs
-
-    # Sauvegarder le nouveau JSON
-    with open(json_path, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2)
-
-    print(f"'{category}' updated with {len(new_libs)} libraries in {json_path}")
+# Cette fonction a été supprimée car elle créait un fichier libraries.json incorrect
+# On utilise maintenant uniquement les fichiers spécifiques par domaine (astronomy-libraries.json, finance-libraries.json)
 
 def main():
     """
@@ -306,9 +256,8 @@ def main():
     # Nettoyer les fichiers temporaires
     clean()
 
-    # Mettre à jour les fichiers JSON
+    # Mettre à jour le fichier JSON du domaine
     update_astronomy_json()
-    update_libraries_json()
 
     print("Mise à jour terminée !")
     print(f"Bibliothèques spécifiques ajoutées: {len(specific_libs_info)}")

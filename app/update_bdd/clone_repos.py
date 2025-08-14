@@ -9,7 +9,7 @@ import contextmaker  # ton package python installé
 
 # ==== CONFIG ====
 
-JSON_LIB_PATH = "app/data/libraries.json"  # chemin vers ton fichier json
+JSON_LIB_PATH = "app/data/astronomy-libraries.json"  # chemin vers le fichier astronomy-libraries.json
 CHECK_INTERVAL = 10 * 60  # en secondes
 
 OUTPUT_DIR = "app/data/context_outputs"  # dossier où écrire les outputs
