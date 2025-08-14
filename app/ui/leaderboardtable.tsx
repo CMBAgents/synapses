@@ -36,19 +36,22 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
   return (
     <div className="flex flex-col bg-white/10 backdrop-blur-sm rounded-xl shadow-lg p-2 sm:p-4 text-xs sm:text-sm w-full max-w-[350px] sm:max-w-[600px] md:max-w-[900px] mb-6 border border-white/20">
       {title && (
-        <h2 className="text-base sm:text-lg font-semibold text-center text-white mb-2 sm:mb-3">
+        <h2 
+          className="text-base sm:text-lg font-semibold text-center text-white mb-2 sm:mb-3"
+          style={{ fontFamily: 'var(--font-jersey), monospace' }}
+        >
           {title}
         </h2>
       )}
 
       {/* Scrollable Table */}
       <div className="max-h-[400px] sm:max-h-[500px] overflow-y-auto border border-white/30 rounded-lg">
-        <table className="w-full table-fixed border-collapse text-center text-white">
+        <table className="w-full border-collapse text-center text-white">
           <tbody>
             {libraries.map(({ rank, name, github_url, stars, hasContextFile, contextFileName }) => (
               <tr key={name} className="hover:bg-white/10">
-                <td className="border border-white/30 px-1 sm:px-2 py-1 text-xs sm:text-sm">{rank}</td>
-                <td className="border border-white/30 px-1 sm:px-2 py-1">
+                <td className="border border-white/30 px-1 sm:px-2 py-1 text-xs sm:text-sm w-12 sm:w-16">{rank}</td>
+                <td className="border border-white/30 px-1 sm:px-2 py-1 min-w-0 flex-1">
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col flex-1 min-w-0">
                       <span className="font-medium text-white text-left text-xs sm:text-sm truncate">
@@ -80,7 +83,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
                     </button>
                   </div>
                 </td>
-                <td className="border border-white/30 px-1 sm:px-2 py-1">
+                <td className="border border-white/30 px-1 sm:px-2 py-1 w-12 sm:w-16">
                   <div className="flex justify-center">
                     <a
                       href={github_url}
@@ -95,7 +98,7 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
                     </a>
                   </div>
                 </td>
-                <td className="border border-white/30 px-1 sm:px-2 py-1 text-xs sm:text-sm">
+                <td className="border border-white/30 px-1 sm:px-2 py-1 text-xs sm:text-sm w-16 sm:w-20">
                   <div className="flex items-center justify-center gap-1">
                     <span className="hidden sm:inline">{stars}</span>
                     <span className="sm:hidden">{stars > 1000 ? `${Math.round(stars/1000)}k` : stars}</span>
