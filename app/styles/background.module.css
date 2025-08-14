@@ -2,12 +2,13 @@
 
 .background {
   min-height: 100vh;
-  background-color: #000000; /* Black background */
+  background-color: var(--color-bg-main);
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .content {
   position: relative;
   z-index: 1;
-  color: white;
+  color: var(--color-text-main);
 }

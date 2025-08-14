@@ -76,12 +76,8 @@ export default async function RootLayout({
                   // Apply theme immediately to prevent flash
                   if (theme === 'dark') {
                     document.documentElement.classList.add('dark');
-                    document.documentElement.style.backgroundColor = '#1a202c';
-                    if (document.body) document.body.style.backgroundColor = '#1a202c';
                   } else {
                     document.documentElement.classList.remove('dark');
-                    document.documentElement.style.backgroundColor = '#ffffff';
-                    if (document.body) document.body.style.backgroundColor = '#ffffff';
                   }
                 } catch (e) {
                   console.error('Error in theme initialization script:', e);

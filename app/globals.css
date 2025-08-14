@@ -86,6 +86,13 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Ensure html element also has proper background */
+html {
+  background: var(--color-bg-main);
+  transition: background-color 0.3s ease;
+}
+
+/* Background color utilities */
 .bg-main {
   background: var(--color-bg-main) !important;
 }
@@ -617,14 +624,9 @@ button, a, input, textarea {
   color: var(--color-text-main) !important;
 }
 
-/* Ensure all text elements inherit the proper color */
-body * {
-  color: inherit;
-}
-
-/* Force proper contrast for critical text elements */
+/* Apply proper text color to critical text elements */
 h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label {
-  color: var(--color-text-main) !important;
+  color: var(--color-text-main);
 }
 
 /* Ensure proper contrast in both themes */
@@ -675,9 +677,20 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label {
   color: var(--color-text-main) !important;
 }
 
-/* Override any remaining color utilities */
-[class*="text-"] {
-  color: var(--color-text-main) !important;
+/* Only override specific problematic text colors */
+.text-gray-700,
+.text-gray-600,
+.text-gray-500,
+.text-gray-400,
+.text-slate-700,
+.text-slate-600,
+.text-slate-500,
+.text-slate-400,
+.text-neutral-700,
+.text-neutral-600,
+.text-neutral-500,
+.text-neutral-400 {
+  color: var(--color-text-main);
 }
 
 /* But allow specific colors to work */
@@ -693,13 +706,71 @@ h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, label {
   color: currentColor !important;
 }
 
+/* Ensure body has proper text color */
+body {
+  color: var(--color-text-main);
+}
+
 /* Ensure proper contrast for the deployed version */
 @media (min-width: 1px) {
   body {
-    color: var(--color-text-main) !important;
+    color: var(--color-text-main);
   }
-  
-  * {
-    color: inherit;
-  }
+}
+
+/* Debug: Force specific text colors to prevent inheritance issues */
+.text-readable {
+  color: var(--color-text-main) !important;
+}
+
+.text-readable-strong {
+  color: var(--color-text-main) !important;
+  font-weight: 600;
+}
+
+/* Ensure the main content area has proper text color */
+main, .main, #main {
+  color: var(--color-text-main) !important;
+}
+
+/* Override any remaining problematic text colors */
+.text-blue-400,
+.text-blue-500,
+.text-blue-600 {
+  color: #3b82f6 !important; /* Keep blue colors for links */
+}
+
+/* But ensure other text uses proper theme colors */
+.text-blue-400:not(a),
+.text-blue-500:not(a),
+.text-blue-600:not(a) {
+  color: var(--color-text-main) !important;
+}
+
+/* Ensure theme colors take precedence */
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Force theme colors to override any conflicting styles */
+* {
+  color: var(--color-text-main);
+}
+
+/* But preserve specific colors for links and interactive elements */
+a, button, input, textarea {
+  color: inherit;
+}
+
+/* Ensure the theme system works properly */
+html.dark {
+  color-scheme: dark;
+}
+
+html:not(.dark) {
+  color-scheme: light;
 }

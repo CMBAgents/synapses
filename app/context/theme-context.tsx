@@ -27,21 +27,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       console.log(`Applying theme: ${newTheme}`)
       setTheme(newTheme)
       document.documentElement.classList.toggle('dark', newTheme === 'dark')
-
-      if (newTheme === 'dark') {
-        document.documentElement.style.backgroundColor = '#1a202c'
-        document.body.style.backgroundColor = '#1a202c'
-        console.log('Applied dark theme styles')
-      } else {
-        document.documentElement.style.backgroundColor = '#ffffff'
-        document.body.style.backgroundColor = '#ffffff'
-        console.log('Applied light theme styles')
-      }
-      
-      // Force a repaint to ensure styles are applied
-      document.body.style.display = 'none'
-      document.body.offsetHeight // Trigger reflow
-      document.body.style.display = ''
+      console.log(`Applied ${newTheme} theme`)
     }
 
     // Function to get URL parameters without using useSearchParams
@@ -99,12 +85,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Update classList directly - ensure it's correct
     if (newTheme === 'dark') {
       document.documentElement.classList.add('dark')
-      document.documentElement.style.backgroundColor = '#1a202c'
-      document.body.style.backgroundColor = '#1a202c'
     } else {
       document.documentElement.classList.remove('dark')
-      document.documentElement.style.backgroundColor = '#ffffff'
-      document.body.style.backgroundColor = '#ffffff'
     }
 
     // Save to localStorage
