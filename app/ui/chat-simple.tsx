@@ -244,6 +244,11 @@ export default function ChatSimple({
       const apiEndpoint = '/api/unified-chat';
 
       console.log(`Using API endpoint: ${apiEndpoint} with model ID: ${selectedModelId || 'default'}`);
+      console.log('ChatSimple credentials debug:', {
+        hasCredentials: !!credentials,
+        credentialKeys: credentials ? Object.keys(credentials) : [],
+        credentialsForModel: credentials?.[selectedModelId] ? 'Present' : 'Missing'
+      });
 
       // Get model options to check if streaming is enabled
       const configModule = await import('@/app/utils/config');
@@ -263,6 +268,12 @@ export default function ChatSimple({
       // Determine the correct program ID to send
       // If a specific library is selected, use its ID; otherwise use the generic programId
       const effectiveProgramId = selectedLibrary || programId;
+      
+      console.log('API request body credentials:', {
+        hasCredentials: !!credentials,
+        credentialKeys: credentials ? Object.keys(credentials) : [],
+        credentialsForModel: credentials?.[selectedModelId] ? 'Present' : 'Missing'
+      });
       
       const response = await fetch(apiEndpoint, {
         method: 'POST',

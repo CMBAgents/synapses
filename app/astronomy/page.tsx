@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ChatContainer from "@/app/ui/chat-container";
 import ModelSelector from "@/app/ui/model-selector";
@@ -13,6 +13,8 @@ function AstronomyContent() {
   const preselectedLibrary = searchParams.get('library') || undefined;
   const [selectedModelId, setSelectedModelId] = useState("vertexai/gemini-2.5-flash");
   const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
+
+
 
 
 
@@ -88,7 +90,10 @@ function AstronomyContent() {
               ]}
               selectedModelId={selectedModelId}
               onModelChange={(modelId) => setSelectedModelId(modelId)}
-              onCredentialsChange={(newCredentials) => setCredentials(newCredentials)}
+              onCredentialsChange={(newCredentials) => {
+                console.log('AstronomyPage received new credentials:', newCredentials);
+                setCredentials(newCredentials);
+              }}
             />
           </div>
           
@@ -107,6 +112,11 @@ function AstronomyContent() {
             onModelChange={setSelectedModelId}
             credentials={credentials}
           />
+          {credentials && Object.keys(credentials).length > 0 && (
+            <div className="text-xs text-gray-500 mt-2">
+              Debug: Credentials being passed to ChatContainer: {JSON.stringify(Object.keys(credentials))}
+            </div>
+          )}
         </div>
       </div>
     </main>

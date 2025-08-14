@@ -72,14 +72,17 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
   };
 
   const handleCredentialsChange = (modelId: string, newCredentials: Record<string, string>) => {
+    console.log('ModelSelector handleCredentialsChange:', { modelId, newCredentials });
     const updatedCredentials = {
       ...credentials,
       [modelId]: newCredentials
     };
+    console.log('Updated credentials in ModelSelector:', updatedCredentials);
     setCredentials(updatedCredentials);
     
     // Call parent callback if provided
     if (onCredentialsChange) {
+      console.log('Calling parent onCredentialsChange with:', updatedCredentials);
       onCredentialsChange(updatedCredentials);
     }
   };

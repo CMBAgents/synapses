@@ -45,7 +45,10 @@ export async function POST(request: NextRequest) {
       modelId: modelId || 'default',
       messageCount: messages.length,
       systemMessageLength: systemMessage.content.length,
-      streaming: stream
+      streaming: stream,
+      hasCredentials: !!credentials,
+      credentialKeys: credentials ? Object.keys(credentials) : [],
+      credentialsForModel: credentials?.[modelId] ? 'Present' : 'Missing'
     });
 
     // Load config to check for fallback model

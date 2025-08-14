@@ -35,7 +35,7 @@ export default function ChatContainer({
   
   // No need for local state - just use the external one directly
   const selectedModelId = effectiveModelId;
-
+  
   // Preload context for the default program when the component mounts
   useEffect(() => {
     if (defaultProgramId) {
@@ -93,6 +93,11 @@ export default function ChatContainer({
         preselectedLibrary={preselectedLibrary}
         credentials={credentials}
       />
+      {credentials && Object.keys(credentials).length > 0 && (
+        <div className="text-xs text-gray-500 mt-2">
+          Debug: Credentials received in ChatContainer: {JSON.stringify(Object.keys(credentials))}
+        </div>
+      )}
     </div>
   );
 }
