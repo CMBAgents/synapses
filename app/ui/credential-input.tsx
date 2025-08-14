@@ -96,16 +96,22 @@ export default function CredentialInput({ credentialType, onCredentialsChange }:
                                   location: location ? 'Present' : 'Missing'
                                 });
                                 
-                                handleInputChange('serviceAccountKey', jsonContent);
-                                console.log('After setting serviceAccountKey, current state:', credentials);
+                                // Create the complete credentials object
+                                const completeCredentials = {
+                                  serviceAccountKey: jsonContent,
+                                  projectId: projectId,
+                                  location: location
+                                };
                                 
-                                handleInputChange('projectId', projectId);
-                                console.log('After setting projectId, current state:', credentials);
+                                console.log('Complete credentials object:', completeCredentials);
                                 
-                                handleInputChange('location', location);
-                                console.log('After setting location, current state:', credentials);
+                                // Set all credentials at once using a single call
+                                onCredentialsChange(completeCredentials);
                                 
-                                console.log('All credentials set, final state:', credentials);
+                                // Also update local state for display
+                                setCredentials(completeCredentials);
+                                
+                                console.log('All credentials set at once');
                                 
                               } catch (error) {
                                 console.error('Error processing service account file:', error);

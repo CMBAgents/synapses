@@ -3,6 +3,10 @@
  */
 import OpenAI from 'openai';
 import { parseModelId, loadConfig } from './config';
+import { writeFileSync, unlinkSync } from 'fs';
+import { join } from 'path';
+import { randomBytes } from 'crypto';
+import { tmpdir } from 'os';
 
 // Provider configuration interface
 interface ProviderConfig {
@@ -293,11 +297,14 @@ async function createVertexAIChatCompletion(
     // Parse the service account key
     const serviceAccountKey = JSON.parse(modelCredentials.serviceAccountKey);
     
-    // Initialize the client with user-provided credentials
-    const vertexAI = new VertexAI({
-      project: modelCredentials.projectId,
-      location: modelCredentials.location,
-    });
+    // Create a temporary file for the service account key
+    const tempFileName = `temp-credentials-${randomBytes(8).toString('hex')}.json`;
+    const tempFilePath = join(tmpdir(), tempFileName);
+    
+    console.log('Creating temporary credentials file:', tempFilePath);
+    
+    // Write the service account key to the temporary file
+    writeFileSync(tempFilePath, modelCredentials.serviceAccountKey);
     
     // Set the credentials in the environment temporarily for this request
     const originalCredentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
@@ -306,7 +313,7 @@ async function createVertexAIChatCompletion(
     
     try {
       // Set environment variables for this request
-      process.env.GOOGLE_APPLICATION_CREDENTIALS = JSON.stringify(serviceAccountKey);
+      process.env.GOOGLE_APPLICATION_CREDENTIALS = tempFilePath;
       process.env.GOOGLE_CLOUD_PROJECT = modelCredentials.projectId;
       process.env.VERTEX_AI_LOCATION = modelCredentials.location;
       
@@ -360,6 +367,14 @@ async function createVertexAIChatCompletion(
       process.env.GOOGLE_APPLICATION_CREDENTIALS = originalCredentials;
       process.env.GOOGLE_CLOUD_PROJECT = originalProject;
       process.env.VERTEX_AI_LOCATION = originalLocation;
+      
+      // Clean up the temporary file
+      try {
+        unlinkSync(tempFilePath);
+        console.log('Temporary credentials file cleaned up:', tempFilePath);
+      } catch (cleanupError) {
+        console.warn('Failed to clean up temporary credentials file:', cleanupError);
+      }
     }
   } catch (error) {
     console.error('Error creating Vertex AI completion:', error);
