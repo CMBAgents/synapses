@@ -112,11 +112,7 @@ function AstronomyContent() {
             onModelChange={setSelectedModelId}
             credentials={credentials}
           />
-          {credentials && Object.keys(credentials).length > 0 && (
-            <div className="text-xs text-gray-500 mt-2">
-              Debug: Credentials being passed to ChatContainer: {JSON.stringify(Object.keys(credentials))}
-            </div>
-          )}
+
         </div>
       </div>
     </main>

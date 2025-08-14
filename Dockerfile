@@ -20,6 +20,8 @@ RUN pip3 install --break-system-packages -r requirements.txt
 # Copy application code
 COPY . .
 
+RUN rm -f gcp_credentials.json *.pem *.key *.p12 *.pfx
+
 # Create necessary directories
 RUN mkdir -p temp/repos temp/contexts app/context public/context
 

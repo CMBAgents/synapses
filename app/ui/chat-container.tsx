@@ -93,11 +93,7 @@ export default function ChatContainer({
         preselectedLibrary={preselectedLibrary}
         credentials={credentials}
       />
-      {credentials && Object.keys(credentials).length > 0 && (
-        <div className="text-xs text-gray-500 mt-2">
-          Debug: Credentials received in ChatContainer: {JSON.stringify(Object.keys(credentials))}
-        </div>
-      )}
+
     </div>
   );
 }

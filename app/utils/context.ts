@@ -54,9 +54,14 @@ async function fetchContextFromUrl(url: string): Promise<{ content: string; wasF
       // Convert relative URLs to absolute URLs for server-side fetching
       let fetchUrl = url;
       if (url.startsWith('/api/')) {
-        // For server-side requests, we need to construct the full URL
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-        fetchUrl = `${baseUrl}${url}`;
+        // For server-side requests, try to use relative URL first
+        if (typeof window === 'undefined') {
+          // Server-side: use relative URL to avoid container networking issues
+          fetchUrl = url;
+        } else {
+          // Client-side: use current origin
+          fetchUrl = `${window.location.origin}${url}`;
+        }
       }
       
       const response = await fetch(fetchUrl, {
@@ -131,6 +136,31 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
 
     // Check if the program has a combinedContextFile that is a URL
     if (program.combinedContextFile && isUrl(program.combinedContextFile)) {
+      // For server-side requests, try to read the file directly if it's a local path
+      if (typeof window === 'undefined' && program.combinedContextFile.startsWith('/api/context/')) {
+        try {
+          // Extract domain and filename from the API path
+          const pathParts = program.combinedContextFile.split('/');
+          const domain = pathParts[3]; // /api/context/[domain]/[filename]
+          const filename = pathParts[4];
+          
+          if (domain && filename) {
+            // Try to read the file directly from the filesystem
+            const fs = await import('fs');
+            const path = await import('path');
+            const contextPath = path.join(process.cwd(), 'public', 'context', domain, filename);
+            
+            if (fs.existsSync(contextPath)) {
+              const content = fs.readFileSync(contextPath, 'utf-8');
+              console.log(`Successfully loaded context directly from file: ${contextPath} (${content.length} bytes)`);
+              return content;
+            }
+          }
+        } catch (error) {
+          console.log(`Failed to read context file directly, falling back to HTTP request: ${error}`);
+        }
+      }
+      
       // Fetch the context from the URL - errors are handled inside fetchContextFromUrl
       const { content } = await fetchContextFromUrl(program.combinedContextFile);
 
