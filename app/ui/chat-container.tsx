@@ -112,7 +112,7 @@ export default function ChatContainer({
   return (
     <div className="flex flex-col w-full h-full">
       {/* Chat area */}
-      <div className="flex-1">
+      <div className="flex-1 h-full">
         <ChatSimple
           programId={activeProgram}
           greeting={config.greeting || "How can I help you?"}

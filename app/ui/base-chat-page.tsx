@@ -104,8 +104,8 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
             </div>
           </div>
 
-          {/* Chat area - full width below selectors */}
-          <div className="w-full">
+          {/* Chat area - full width below selectors with fixed height */}
+          <div className="w-full h-[calc(100vh-300px)] min-h-[500px]">
             <ChatContainer
               programs={[{ 
                 id: domain, 

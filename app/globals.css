@@ -142,22 +142,47 @@ body {
 
 /* Apply dark mode to prose content */
 .dark .prose {
-  color: rgb(209, 213, 219);
+  color: white;
+}
+
+/* Default prose color for chat messages */
+.prose {
+  color: white;
+}
+
+/* Ensure all prose elements have white text */
+.prose p,
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6,
+.prose li,
+.prose ul,
+.prose ol,
+.prose blockquote,
+.prose strong,
+.prose em,
+.prose a {
+  color: white;
 }
 
 /* Code block styling */
 .prose pre {
-  background-color: #f8f9fa;
-  border: 1px solid #e5e7eb;
+  background-color: #1e1e1e;
+  border: 1px solid #2d2d2d;
   border-radius: 0.375rem;
   padding: 1rem;
   overflow-x: auto;
   margin: 1rem 0;
   position: relative;
+  color: #e6e6e6;
 }
 
 .prose code {
-  background-color: #f1f1f1;
+  background-color: #2d2d2d;
+  color: #e6e6e6;
   padding: 0.2em 0.4em;
   border-radius: 0.25rem;
   font-size: 0.875em;

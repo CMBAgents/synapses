@@ -365,8 +365,8 @@ export default function ChatSimple({
 
   return (
     <div className="flex flex-col h-full">
-      {/* Chat messages area - scrollable */}
-      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-4">
+      {/* Chat messages area - scrollable, takes up all space except input area */}
+      <div className="flex-1 overflow-y-auto px-4 py-2 space-y-4 pb-4">
         {currentMessages.map(m =>
           <ChatMessage
             key={m.id}
@@ -376,7 +376,7 @@ export default function ChatSimple({
       </div>
 
       {/* Input panel - fixed at bottom */}
-      <div className="p-4 border-t border-white/20">
+      <div className="p-4 border-t border-white/20 bg-black/50 backdrop-blur-sm">
         <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-center space-x-4">
             <div className="flex-1 relative">
@@ -432,9 +432,9 @@ function ChatMessage({ message }: { message: Message }) {
   function displayRole(roleName: string) {
     switch (roleName) {
       case "user":
-        return <AiOutlineUser className="text-gray-600" />;
+        return <AiOutlineUser className="text-white" />;
       case "assistant":
-        return <AiOutlineRobot className="text-gray-600" />;
+        return <AiOutlineRobot className="text-white" />;
       default:
         return null;
     }
@@ -449,7 +449,7 @@ function ChatMessage({ message }: { message: Message }) {
     : message.content;
 
   return (
-    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-white' : 'bg-white/20 backdrop-blur-sm border-white/30 text-gray-700'}`}>
+    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-white' : 'bg-transparent border-white/30 text-white'}`}>
       <div className="text-2xl sm:text-3xl flex-shrink-0 flex items-start pt-1">
         {displayRole(message.role)}
       </div>

@@ -95,7 +95,7 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
         <button
           ref={buttonRef}
           type="button"
-          className="inline-flex justify-between items-center w-full rounded-md border border-gray-300 dark:border-gray-700 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"
+          className="inline-flex justify-between items-center w-full rounded-md border border-white/30 shadow-sm px-4 py-2 bg-transparent text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/50"
           id="model-selector"
           aria-haspopup="true"
           aria-expanded={isOpen}
@@ -132,7 +132,7 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
 
       {isOpen && (
         <div
-          className="origin-top-right rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[100]"
+          className="origin-top-right rounded-md shadow-lg bg-black/80 backdrop-blur-sm ring-1 ring-white/20 z-[100]"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="model-selector"
@@ -150,15 +150,15 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
               <button
                 key={model.id}
                 className={`${
-                  selected?.id === model.id ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'
-                } block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700`}
+                  selected?.id === model.id ? 'bg-white/20 text-white' : 'text-white/80'
+                } block w-full text-left px-4 py-2 text-sm hover:bg-white/10`}
                 role="menuitem"
                 onClick={() => handleModelSelect(model)}
               >
                 <div className="flex flex-col">
                   <span className="font-medium">{model.name}</span>
                   {model.description && (
-                    <span className="text-xs text-gray-500 dark:text-gray-400">{model.description}</span>
+                    <span className="text-xs text-white/60">{model.description}</span>
                   )}
                 </div>
               </button>
