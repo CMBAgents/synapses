@@ -492,7 +492,7 @@ export default function ChatSimple({
         <div className="max-w-4xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-center space-x-4">
             <div className="flex-1 relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 z-10">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10">
                 <AiOutlineRobot className="w-5 h-5" />
               </div>
               <textarea
@@ -500,7 +500,7 @@ export default function ChatSimple({
                 disabled={isLoading}
                 autoFocus
                 rows={1}
-                className="w-full pl-10 pr-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="w-full pl-10 pr-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black placeholder-gray-500 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
                 onChange={handlePromptChange}
                 onKeyDown={handleKeyDown}
                 value={prompt}
@@ -513,14 +513,14 @@ export default function ChatSimple({
                     e.preventDefault();
                     handleCancelStream();
                   }}
-                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white hover:bg-white/30 transition-colors duration-200"
+                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black hover:bg-white/30 transition-colors duration-200"
                 >
                   <ChatSpinner color="currentColor" />
                 </button>
               ) : (
                 <button
                   disabled
-                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white"
+                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black"
                 >
                   <ChatSpinner color="currentColor" />
                 </button>
@@ -528,7 +528,7 @@ export default function ChatSimple({
             ) : (
               <button
                 disabled={prompt.length === 0}
-                className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black dark:text-white hover:bg-white/30 transition-colors duration-200 disabled:opacity-50"
+                className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black hover:bg-white/30 transition-colors duration-200 disabled:opacity-50"
               >
                 <AiOutlineSend />
               </button>
@@ -544,9 +544,9 @@ function ChatMessage({ message }: { message: Message }) {
   function displayRole(roleName: string) {
     switch (roleName) {
       case "user":
-        return <AiOutlineUser className="text-gray-600 dark:text-gray-300" />;
+        return <AiOutlineUser className="text-gray-600" />;
       case "assistant":
-        return <AiOutlineRobot className="text-gray-600 dark:text-gray-300" />;
+        return <AiOutlineRobot className="text-gray-600" />;
       default:
         return null;
     }
@@ -561,11 +561,11 @@ function ChatMessage({ message }: { message: Message }) {
     : message.content;
 
   return (
-    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-white' : 'bg-white/20 backdrop-blur-sm border-white/30 text-gray-700 dark:text-gray-200 dark:bg-gray-800/20 dark:border-gray-700'}`}>
+    <div className={`flex rounded-lg px-3 sm:px-4 py-3 my-2 shadow-sm border ${isUser ? 'bg-transparent border-white/30 text-white' : 'bg-white/20 backdrop-blur-sm border-white/30 text-gray-700'}`}>
       <div className="text-2xl sm:text-3xl flex-shrink-0 flex items-start pt-1">
         {displayRole(message.role)}
       </div>
-      <div className="ml-2 sm:mx-3 text-left w-full overflow-hidden prose dark:prose-invert max-w-none">
+      <div className="ml-2 sm:mx-3 text-left w-full overflow-hidden prose max-w-none">
         <Markdown
             remarkPlugins={[remarkGfm, remarkMath]}
             rehypePlugins={[rehypeRaw, rehypeHighlight, rehypeKatex]}

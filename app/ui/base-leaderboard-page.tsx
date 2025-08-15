@@ -48,7 +48,7 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
       className="h-screen bg-cover bg-center bg-no-repeat relative overflow-hidden"
       style={{ backgroundImage: "url('/pexels-slendyalex-3745234.jpg')" }}
     >
-      <div className="absolute inset-0 bg-black opacity-40 dark:opacity-60"></div>
+              <div className="absolute inset-0 bg-black opacity-40"></div>
       <div className="relative z-10 h-screen flex flex-col items-center justify-start px-2 sm:px-4 pt-4 sm:pt-6 md:pt-8">
         {/* Title outside the frame */}
         <div className="text-center mb-3 sm:mb-4 md:mb-6">

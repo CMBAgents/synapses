@@ -12,7 +12,7 @@ import contextmaker  # ton package python installé
 JSON_LIB_PATH = "app/data/astronomy-libraries.json"  # chemin vers le fichier astronomy-libraries.json
 CHECK_INTERVAL = 10 * 60  # en secondes
 
-OUTPUT_DIR = "app/data/context_outputs"  # dossier où écrire les outputs
+OUTPUT_DIR = "public/context/astro"  # dossier où écrire les outputs
 COMMIT_LOG = "commit_log.json"  # fichier pour stocker derniers SHAs
 
 # ==== UTILS ====

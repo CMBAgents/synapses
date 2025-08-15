@@ -26,7 +26,7 @@ export default function LandingPage() {
       style={{ backgroundImage: "url('/earth.png')" }}
     >
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black opacity-60 dark:opacity-70"></div>
+              <div className="absolute inset-0 bg-black opacity-60"></div>
 
       {/* Content above overlay */}
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 text-white page-fade-in">
