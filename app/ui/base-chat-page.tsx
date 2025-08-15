@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import ChatContainer from "./chat-container";
 import { loadAstronomyData, loadFinanceData } from "../utils/domain-loader";
@@ -12,6 +12,9 @@ interface BaseChatPageProps {
 }
 
 function BaseChatContent({ domain }: BaseChatPageProps) {
+  const [selectedLibrary, setSelectedLibrary] = useState<any>(null);
+  const [currentProgramId, setCurrentProgramId] = useState<string>(domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline');
+
   const getDomainData = () => {
     if (domain === 'astronomy') {
       return loadAstronomyData();
@@ -37,6 +40,25 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
   const domainData = getDomainData();
   const searchParams = useSearchParams();
   const preselectedLibrary = searchParams.get('library') || undefined;
+
+  // Function to map library name to program ID
+  const getProgramIdFromLibraryName = (libraryName: string): string => {
+    // Convert library name format to program ID format
+    // e.g., "skyfielders/python-skyfield" -> "skyfielders-python-skyfield"
+    return libraryName.replace(/\//g, '-');
+  };
+
+  // Handle library selection
+  const handleLibrarySelect = (library: any) => {
+    setSelectedLibrary(library);
+    if (library && library.name) {
+      const programId = getProgramIdFromLibraryName(library.name);
+      setCurrentProgramId(programId);
+    } else {
+      // Fallback to default program for the domain
+      setCurrentProgramId(domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline');
+    }
+  };
 
   return (
     <ContextUpdater domain={domain}>
@@ -81,14 +103,14 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
             <div className="w-full sm:w-80">
               <ChatContainer
                 programs={[{ 
-                  id: domain, 
-                  name: getDomainTitle(), 
-                  description: domainData.description,
+                  id: currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline'), 
+                  name: selectedLibrary ? selectedLibrary.name : getDomainTitle(), 
+                  description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                   contextFiles: [],
-                  docsUrl: '',
-                  extraSystemPrompt: `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+                  docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
+                  extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
                 }]}
-                defaultProgramId={domain}
+                defaultProgramId={currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline')}
                 preselectedLibrary={preselectedLibrary}
                 showModelSelectorOnly={true}
               />
@@ -100,6 +122,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
                 libraries={domainData.libraries}
                 preselectedLibrary={preselectedLibrary}
                 simplified={true}
+                onLibrarySelect={handleLibrarySelect}
               />
             </div>
           </div>
@@ -108,14 +131,14 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
           <div className="w-full h-[calc(100vh-300px)] min-h-[500px]">
             <ChatContainer
               programs={[{ 
-                id: domain, 
-                name: getDomainTitle(), 
-                description: domainData.description,
+                id: currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline'), 
+                name: selectedLibrary ? selectedLibrary.name : getDomainTitle(), 
+                description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                 contextFiles: [],
-                docsUrl: '',
-                extraSystemPrompt: `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+                docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
+                extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
               }]}
-              defaultProgramId={domain}
+              defaultProgramId={currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline')}
               preselectedLibrary={preselectedLibrary}
               showModelSelectorOnly={false}
             />
