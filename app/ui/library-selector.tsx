@@ -8,13 +8,15 @@ interface LibrarySelectorProps {
   onLibrarySelect?: (library: LibraryEntry | null) => void;
   preselectedLibrary?: string;
   className?: string;
+  simplified?: boolean;
 }
 
 export default function LibrarySelector({ 
   libraries, 
   onLibrarySelect, 
   preselectedLibrary,
-  className = ""
+  className = "",
+  simplified = false
 }: LibrarySelectorProps) {
   const [libraryInput, setLibraryInput] = useState(preselectedLibrary || "");
   const [selectedLibrary, setSelectedLibrary] = useState<string>(preselectedLibrary || "");
@@ -131,7 +133,100 @@ export default function LibrarySelector({
 
   const matchedLibrary = libraries.find(lib => lib.name === selectedLibrary);
   const isRecognized = !!matchedLibrary;
+  const hasContext = matchedLibrary?.hasContextFile;
 
+  // Version simplifiée
+  if (simplified) {
+    return (
+      <div className={`relative ${className}`}>
+        <div className="flex items-center space-x-3">
+          {/* Input de sélection */}
+          <div className="flex-1 relative">
+            <input
+              ref={inputRef}
+              id="library-input"
+              type="text"
+              value={libraryInput}
+              onChange={(e) => {
+                const value = e.target.value;
+                setLibraryInput(value);
+                setShowSuggestions(value.length > 0);
+                
+                const match = findBestMatch(value);
+                setSelectedLibrary(match ? match.library.name : value);
+                onLibrarySelect?.(match ? match.library : null);
+              }}
+              onFocus={() => setShowSuggestions(libraryInput.length > 0)}
+              onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+              placeholder="Type library name..."
+              className="w-full px-3 py-2 bg-transparent border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50 transition-all duration-200 text-sm"
+            />
+            
+            {/* Suggestions dropdown */}
+            {showSuggestions && (
+              <div className="absolute top-full mt-1 w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto">
+                {getSuggestions(libraryInput).map((suggestion, index) => (
+                  <div
+                    key={suggestion.name}
+                    onClick={() => handleLibrarySelect(suggestion)}
+                    className={`px-4 py-3 cursor-pointer transition-all duration-150 text-white/90 hover:bg-white/15 ${
+                      index === 0 ? 'rounded-t-lg' : ''
+                    } ${index === getSuggestions(libraryInput).length - 1 ? 'rounded-b-lg' : ''}`}
+                  >
+                    <div className="font-medium">{suggestion.name}</div>
+                  </div>
+                ))}
+                {getSuggestions(libraryInput).length === 0 && (
+                  <div className="px-4 py-3 text-white/70 text-center">
+                    No matching libraries found
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Indicateur de contexte simplifié */}
+          <div className="flex-shrink-0">
+            {isRecognized ? (
+              hasContext ? (
+                <a 
+                  href={`/api/context/${matchedLibrary.contextFileName}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-3 py-2 bg-transparent border border-green-400/50 rounded-lg text-green-400 hover:bg-green-400/10 transition-colors cursor-pointer text-sm font-medium"
+                >
+                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                    <path d="M14 2v6h6"/>
+                    <path d="M16 13H8"/>
+                    <path d="M16 17H8"/>
+                    <path d="M10 9H8"/>
+                  </svg>
+                  Context Available
+                </a>
+              ) : (
+                <span className="inline-flex items-center px-3 py-2 bg-transparent border border-yellow-400/50 rounded-lg text-yellow-400 text-sm font-medium">
+                  <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                  No Context
+                </span>
+              )
+            ) : (
+              <span className="inline-flex items-center px-3 py-2 bg-transparent border border-white/30 rounded-lg text-white/70 text-sm font-medium">
+                <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+                </svg>
+                Unknown
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Version complète (originale)
   return (
     <div className={`relative ${className}`}>
       <div className="flex items-center justify-center space-x-4">
@@ -252,10 +347,10 @@ export default function LibrarySelector({
                 </div>
               )}
               
-              {/* Description */}
-              {matchedLibrary?.description && (
+              {/* Stars info */}
+              {matchedLibrary?.stars && (
                 <p className="text-xs text-gray-300 leading-relaxed mt-2">
-                  {matchedLibrary.description}
+                  ⭐ {matchedLibrary.stars.toLocaleString()} stars on GitHub
                 </p>
               )}
             </>

@@ -10,7 +10,6 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 // We'll handle syntax highlighting styles in globals.css
 import { Message, ModelConfig } from '@/app/utils/types';
-import ModelSelector from './model-selector';
 import CopyButton from './copy-button';
 
 export default function ChatSimple({
@@ -38,123 +37,13 @@ export default function ChatSimple({
   const [prompt, setPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isStreaming, setIsStreaming] = useState(false);
-  const [selectedLibrary, setSelectedLibrary] = useState<string>("");
-  const [libraryInput, setLibraryInput] = useState<string>("");
-  const [showSuggestions, setShowSuggestions] = useState(false);
   const messageId = useRef(0);
   const abortControllerRef = useRef<AbortController | null>(null);
 
   // Store the selected model ID for reference
   const selectedModelIdRef = useRef<string>(selectedModelId);
   
-  // Pré-sélectionner la librairie si fournie via URL
-  useEffect(() => {
-    if (preselectedLibrary) {
-      setLibraryInput(preselectedLibrary);
-      setSelectedLibrary(preselectedLibrary);
-    }
-  }, [preselectedLibrary]);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
-
-  // Fonction de calcul de similarité (distance de Levenshtein)
-  const calculateSimilarity = (str1: string, str2: string): number => {
-    const longer = str1.length > str2.length ? str1 : str2;
-    const shorter = str1.length > str2.length ? str2 : str1;
-    
-    if (longer.length === 0) return 1.0;
-    
-    const editDistance = levenshteinDistance(longer.toLowerCase(), shorter.toLowerCase());
-    return (longer.length - editDistance) / longer.length;
-  };
-
-  const levenshteinDistance = (str1: string, str2: string): number => {
-    const matrix: number[][] = [];
-    
-    for (let i = 0; i <= str2.length; i++) {
-      matrix[i] = [i];
-    }
-    
-    for (let j = 0; j <= str1.length; j++) {
-      matrix[0][j] = j;
-    }
-    
-    for (let i = 1; i <= str2.length; i++) {
-      for (let j = 1; j <= str1.length; j++) {
-        if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
-          matrix[i][j] = matrix[i - 1][j - 1];
-        } else {
-          matrix[i][j] = Math.min(
-            matrix[i - 1][j - 1] + 1,
-            matrix[i][j - 1] + 1,
-            matrix[i - 1][j] + 1
-          );
-        }
-      }
-    }
-    
-    return matrix[str2.length][str1.length];
-  };
-
-  // Trouver la meilleure correspondance
-  const findBestMatch = (input: string) => {
-    if (!input.trim() || libraries.length === 0) return null;
-    
-    const inputLower = input.toLowerCase();
-    
-    // Chercher d'abord une correspondance exacte
-    const exactMatch = libraries.find(lib => 
-      lib.name.toLowerCase() === inputLower
-    );
-    if (exactMatch) return { library: exactMatch, similarity: 1.0 };
-    
-    // Chercher une correspondance qui commence par l'input
-    const startsWithMatch = libraries.find(lib => 
-      lib.name.toLowerCase().startsWith(inputLower)
-    );
-    if (startsWithMatch) return { library: startsWithMatch, similarity: 0.9 };
-    
-    // Chercher par similarité
-    let bestMatch = null;
-    let bestSimilarity = 0;
-    
-    for (const library of libraries) {
-      const similarity = calculateSimilarity(input, library.name);
-      if (similarity > bestSimilarity && similarity > 0.6) { // Seuil de 60%
-        bestSimilarity = similarity;
-        bestMatch = library;
-      }
-    }
-    
-    return bestMatch ? { library: bestMatch, similarity: bestSimilarity } : null;
-  };
-
-  // Obtenir les suggestions filtrées
-  const getSuggestions = (input: string) => {
-    if (!input.trim() || libraries.length === 0) return [];
-    
-    const inputLower = input.toLowerCase();
-    
-    return libraries
-      .map(library => ({
-        ...library,
-        similarity: calculateSimilarity(input, library.name)
-      }))
-      .filter(library => 
-        library.name.toLowerCase().includes(inputLower) || 
-        library.similarity > 0.6
-      )
-      .sort((a, b) => {
-        const aStartsWith = a.name.toLowerCase().startsWith(inputLower);
-        const bStartsWith = b.name.toLowerCase().startsWith(inputLower);
-        
-        if (aStartsWith && !bStartsWith) return -1;
-        if (!aStartsWith && bStartsWith) return 1;
-        
-        return b.similarity - a.similarity;
-      })
-      .slice(0, 5);
-  };
 
   // Create a ref for the greeting message to avoid hydration mismatches
   const greetingMessageRef = useRef<Message>({
@@ -471,14 +360,10 @@ export default function ChatSimple({
     }
   }
 
-  // No longer need handleModelChange as the model selector is moved to the container
-
   return (
     <div className="flex flex-col h-full">
       {/* Chat messages area - scrollable */}
       <div className="flex-1 overflow-y-auto px-4 py-2 space-y-4">
-
-        
         {currentMessages.map(m =>
           <ChatMessage
             key={m.id}
@@ -488,11 +373,11 @@ export default function ChatSimple({
       </div>
 
       {/* Input panel - fixed at bottom */}
-      <div className="bg-almond-beige/80 backdrop-blur-sm border-t border-white/20 p-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="p-4 border-t border-white/20">
+        <div className="max-w-2xl mx-auto">
           <form onSubmit={handleSubmit} className="flex items-center space-x-4">
             <div className="flex-1 relative">
-              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 z-10">
+              <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/60 z-10">
                 <AiOutlineRobot className="w-5 h-5" />
               </div>
               <textarea
@@ -500,7 +385,7 @@ export default function ChatSimple({
                 disabled={isLoading}
                 autoFocus
                 rows={1}
-                className="w-full pl-10 pr-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black placeholder-gray-500 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
+                className="w-full pl-10 pr-4 py-3 bg-transparent border border-white/30 rounded-lg text-white placeholder-white/50 resize-none overflow-hidden min-h-[38px] focus:outline-none focus:ring-2 focus:ring-white/50"
                 onChange={handlePromptChange}
                 onKeyDown={handleKeyDown}
                 value={prompt}
@@ -513,14 +398,14 @@ export default function ChatSimple({
                     e.preventDefault();
                     handleCancelStream();
                   }}
-                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black hover:bg-white/30 transition-colors duration-200"
+                  className="px-6 py-3 bg-transparent border border-white/30 rounded-lg text-white hover:bg-white/10 transition-colors duration-200"
                 >
                   <ChatSpinner color="currentColor" />
                 </button>
               ) : (
                 <button
                   disabled
-                  className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black"
+                  className="px-6 py-3 bg-transparent border border-white/30 rounded-lg text-white"
                 >
                   <ChatSpinner color="currentColor" />
                 </button>
@@ -528,7 +413,7 @@ export default function ChatSimple({
             ) : (
               <button
                 disabled={prompt.length === 0}
-                className="px-6 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-black hover:bg-white/30 transition-colors duration-200 disabled:opacity-50"
+                className="px-6 py-3 bg-transparent border border-white/30 rounded-lg text-white hover:bg-white/10 transition-colors duration-200 disabled:opacity-50"
               >
                 <AiOutlineSend />
               </button>
