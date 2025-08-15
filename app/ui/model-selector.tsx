@@ -17,6 +17,7 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
     models.find(model => model.id === selectedModelId) || models[0]
   );
   const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
+  const [showCredentials, setShowCredentials] = useState(true);
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, right: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -68,6 +69,7 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
   const handleModelSelect = (model: ModelConfig) => {
     setSelected(model);
     onModelChange(model.id);
+    setShowCredentials(true); // Show credentials panel when switching to a model that needs credentials
     closeDropdown();
   };
 
@@ -91,46 +93,49 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
 
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>
-      <div>
-        <button
-          ref={buttonRef}
-          type="button"
-          className="inline-flex justify-between items-center w-full rounded-md border border-white/30 shadow-sm px-4 py-2 bg-transparent text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/50"
-          id="model-selector"
-          aria-haspopup="true"
-          aria-expanded={isOpen}
-          onClick={toggleDropdown}
-        >
-          <span className="flex items-center">
-            <span className="ml-1 mr-2">{selected?.name || 'Select Model'}</span>
-          </span>
-          <svg
-            className="-mr-1 ml-2 h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </button>
-      </div>
-      
-      {/* Show credential input if the selected model requires credentials */}
-      {selected?.requiresCredentials && selected.credentialType && (
-        <>
+      {/* Credentials panel - positioned absolutely to the left */}
+      {selected?.requiresCredentials && selected.credentialType && showCredentials && (
+        <div className="absolute right-full mr-4 top-0 w-80 z-50">
           <CredentialInput
             credentialType={selected.credentialType}
             onCredentialsChange={(newCredentials) => handleCredentialsChange(selected.id, newCredentials)}
+            onClose={() => setShowCredentials(false)}
           />
-        </>
+        </div>
       )}
+      
+      {/* Model selector - stays in place */}
+      <div className="relative inline-block text-left w-full">
+        <div>
+          <button
+            ref={buttonRef}
+            type="button"
+            className="inline-flex justify-between items-center w-full rounded-md border border-white/30 shadow-sm px-4 py-2 bg-transparent text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/50"
+            id="model-selector"
+            aria-haspopup="true"
+            aria-expanded={isOpen}
+            onClick={toggleDropdown}
+          >
+            <span className="flex items-center">
+              <span className="ml-1 mr-2">{selected?.name || 'Select Model'}</span>
+            </span>
+            <svg
+              className="-mr-1 ml-2 h-5 w-5"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
 
-      {isOpen && (
+        {isOpen && (
         <div
           className="origin-top-right rounded-md shadow-lg bg-black/80 backdrop-blur-sm ring-1 ring-white/20 z-[100]"
           role="menu"
@@ -165,7 +170,8 @@ export default function ModelSelector({ models, selectedModelId, onModelChange, 
             ))}
           </div>
         </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
