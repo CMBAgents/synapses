@@ -2,28 +2,29 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { ModelConfig } from '@/app/utils/types';
+import CredentialInput from './credential-input';
 
 interface ModelSelectorProps {
   models: ModelConfig[];
   selectedModelId: string;
   onModelChange: (modelId: string) => void;
+  onCredentialsChange?: (credentials: Record<string, Record<string, string>>) => void;
 }
 
-export default function ModelSelector({ models, selectedModelId, onModelChange }: ModelSelectorProps) {
+export default function ModelSelector({ models, selectedModelId, onModelChange, onCredentialsChange }: ModelSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<ModelConfig | undefined>(
-    models?.find(model => model.id === selectedModelId) || models?.[0]
+    models.find(model => model.id === selectedModelId) || models[0]
   );
+  const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
   const [dropdownPosition, setDropdownPosition] = useState({ top: 0, right: 0 });
   const dropdownRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   // Update the selected model when the selectedModelId prop changes
   useEffect(() => {
-    if (models && models.length > 0) {
-      const model = models.find(model => model.id === selectedModelId) || models[0];
-      setSelected(model);
-    }
+    const model = models.find(model => model.id === selectedModelId) || models[0];
+    setSelected(model);
   }, [selectedModelId, models]);
 
   // Add click outside handler to close the dropdown
@@ -45,8 +46,8 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
     };
   }, [isOpen]);
 
-  // If there's no models or only one model, don't show the selector
-  if (!models || models.length <= 1) {
+  // If there's only one model, don't show the selector
+  if (models.length <= 1) {
     return null;
   }
 
@@ -70,13 +71,31 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
     closeDropdown();
   };
 
+  const handleCredentialsChange = (modelId: string, newCredentials: Record<string, string>) => {
+    console.log('ModelSelector handleCredentialsChange:', { modelId, newCredentials });
+    const updatedCredentials = {
+      ...credentials,
+      [modelId]: newCredentials
+    };
+    console.log('Updated credentials in ModelSelector:', updatedCredentials);
+    setCredentials(updatedCredentials);
+    
+    // Call parent callback if provided
+    if (onCredentialsChange) {
+      console.log('Calling parent onCredentialsChange with:', updatedCredentials);
+      onCredentialsChange(updatedCredentials);
+    }
+  };
+
+
+
   return (
     <div className="relative inline-block text-left w-full" ref={dropdownRef}>
       <div>
         <button
           ref={buttonRef}
           type="button"
-          className="inline-flex justify-between items-center w-full rounded-md border border-white/30 shadow-sm px-4 py-2 bg-transparent text-sm font-medium text-white hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/50"
+          className="inline-flex justify-between items-center w-full rounded-md border border-gray-300 dark:border-gray-700 shadow-sm px-4 py-2 bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-400"
           id="model-selector"
           aria-haspopup="true"
           aria-expanded={isOpen}
@@ -100,10 +119,20 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
           </svg>
         </button>
       </div>
+      
+      {/* Show credential input if the selected model requires credentials */}
+      {selected?.requiresCredentials && selected.credentialType && (
+        <>
+          <CredentialInput
+            credentialType={selected.credentialType}
+            onCredentialsChange={(newCredentials) => handleCredentialsChange(selected.id, newCredentials)}
+          />
+        </>
+      )}
 
       {isOpen && (
         <div
-          className="origin-top-right rounded-md shadow-lg bg-white/10 backdrop-blur-md ring-1 ring-white/20 z-[100]"
+          className="origin-top-right rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 dark:ring-gray-700 z-[100]"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="model-selector"
@@ -121,15 +150,15 @@ export default function ModelSelector({ models, selectedModelId, onModelChange }
               <button
                 key={model.id}
                 className={`${
-                  selected?.id === model.id ? 'bg-white/20 text-white' : 'text-white/90'
-                } block w-full text-left px-4 py-2 text-sm hover:bg-white/15`}
+                  selected?.id === model.id ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-gray-100' : 'text-gray-700 dark:text-gray-300'
+                } block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-700`}
                 role="menuitem"
                 onClick={() => handleModelSelect(model)}
               >
                 <div className="flex flex-col">
                   <span className="font-medium">{model.name}</span>
                   {model.description && (
-                    <span className="text-xs text-white/70">{model.description}</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">{model.description}</span>
                   )}
                 </div>
               </button>

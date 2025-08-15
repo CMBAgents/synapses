@@ -3,6 +3,10 @@
  */
 import OpenAI from 'openai';
 import { parseModelId, loadConfig } from './config';
+import { writeFileSync, unlinkSync } from 'fs';
+import { join } from 'path';
+import { randomBytes } from 'crypto';
+import { tmpdir } from 'os';
 
 // Provider configuration interface
 interface ProviderConfig {
@@ -26,7 +30,7 @@ const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
   },
   vertexai: {
     apiKeyEnvVar: 'GOOGLE_APPLICATION_CREDENTIALS',
-    defaultModel: 'gemini-1.5-flash',
+    defaultModel: 'gemini-2.5-flash',
     isVertexAI: true
   },
   // We'll keep SambaNova support but not add it to the default config due to context limitations
@@ -48,7 +52,7 @@ const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
  * @param modelId The model ID in the format "provider/model-name"
  * @returns An OpenAI client configured for the specified provider
  */
-export function createClient(modelId?: string) {
+export function createClient(modelId?: string, credentials?: Record<string, Record<string, string>>) {
   const config = loadConfig();
 
   // Default to the configuration's default model if no model ID is provided
@@ -68,6 +72,9 @@ export function createClient(modelId?: string) {
     targetProviderKey = 'vertexai';
   } else if (provider === 'sambanova') {
     targetProviderKey = 'sambanova';
+  } else if (provider === 'deepseek') {
+    // DeepSeek models should always route through OpenRouter
+    targetProviderKey = 'openrouter';
   } else if (PROVIDER_CONFIGS[provider]) {
     // Handle cases where a known provider (like 'openrouter') is explicitly requested
     // or when direct keys for openai/gemini are disabled/missing.
@@ -84,13 +91,38 @@ export function createClient(modelId?: string) {
   
   // For Vertex AI, we need to check for Google Cloud credentials
   let apiKey: string | undefined;
-  if (targetProviderKey === 'vertexai') {
-    // Check for Google Cloud credentials
-    apiKey = process.env.GOOGLE_APPLICATION_CREDENTIALS || 
-              process.env.GOOGLE_CLOUD_PROJECT || 
-              process.env.GOOGLE_ACCESS_TOKEN;
-  } else {
-    apiKey = process.env[apiKeyEnvVar];
+  
+  // First check if credentials were provided for this specific model
+  if (credentials && credentials[modelIdToUse]) {
+    const modelCredentials = credentials[modelIdToUse];
+    
+    if (targetProviderKey === 'vertexai') {
+      // For Vertex AI, check if we have the required credentials
+      if (modelCredentials.projectId && modelCredentials.location && modelCredentials.serviceAccountKey) {
+        // Store credentials in environment for this request
+        process.env.GOOGLE_CLOUD_PROJECT = modelCredentials.projectId;
+        process.env.VERTEX_AI_LOCATION = modelCredentials.location;
+        process.env.GOOGLE_APPLICATION_CREDENTIALS = modelCredentials.serviceAccountKey;
+        apiKey = modelCredentials.projectId; // Use project ID as the key identifier
+      }
+    } else if (targetProviderKey === 'openai' || targetProviderKey === 'deepseek') {
+      // For OpenAI/DeepSeek, use the API key
+      if (modelCredentials.apiKey) {
+        apiKey = modelCredentials.apiKey;
+      }
+    }
+  }
+  
+  // Fallback to environment variables if no credentials provided
+  if (!apiKey) {
+    if (targetProviderKey === 'vertexai') {
+      // Check for Google Cloud credentials
+      apiKey = process.env.GOOGLE_APPLICATION_CREDENTIALS || 
+                process.env.GOOGLE_CLOUD_PROJECT || 
+                process.env.GOOGLE_ACCESS_TOKEN;
+    } else {
+      apiKey = process.env[apiKeyEnvVar];
+    }
   }
 
   // Determine actual provider and model name for the API call
@@ -179,64 +211,174 @@ export function getModelOptions(modelId?: string) {
 async function createVertexAIChatCompletion(
   modelName: string,
   messages: Array<{ role: string; content: string }>,
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
+  credentials?: Record<string, Record<string, string>>,
+  modelId?: string
 ) {
   try {
-    // Import Vertex AI client dynamically to avoid issues in edge runtime
-    const { PredictionServiceClient } = await import('@google-cloud/aiplatform');
+    // Import Vertex AI Generative AI client
+    const { VertexAI } = await import('@google-cloud/vertexai');
     
-    // Initialize the client
-    const client = new PredictionServiceClient({
-      apiEndpoint: process.env.VERTEX_AI_ENDPOINT || 'us-central1-aiplatform.googleapis.com',
-      projectId: process.env.GOOGLE_CLOUD_PROJECT,
+    // Get credentials for this specific model using the full modelId
+    const modelCredentials = modelId ? credentials?.[modelId] : credentials?.[`vertexai/${modelName}`];
+    
+    console.log('Vertex AI credentials debug:', {
+      modelName,
+      modelId,
+      hasCredentials: !!credentials,
+      credentialKeys: credentials ? Object.keys(credentials) : [],
+      modelCredentials,
+      serviceAccountKey: modelCredentials?.serviceAccountKey ? 'Present' : 'Missing',
+      envProjectId: process.env.GOOGLE_CLOUD_PROJECT,
+      envLocation: process.env.VERTEX_AI_LOCATION,
+      envCredentials: process.env.GOOGLE_APPLICATION_CREDENTIALS ? 'Present' : 'Missing'
     });
-
-    // Convert messages to Vertex AI format
-    const vertexMessages = messages.map(msg => ({
-      role: msg.role === 'system' ? 'user' : msg.role, // Vertex AI doesn't support system role
-      content: msg.content
-    }));
-
-    // Create the request
-    const request = {
-      endpoint: `projects/${process.env.GOOGLE_CLOUD_PROJECT}/locations/${process.env.VERTEX_AI_LOCATION || 'us-central1'}/publishers/google/models/${modelName}`,
-      instances: [{
-        messages: vertexMessages
-      }],
-      parameters: {
-        temperature: options.temperature || 0.7,
-        maxOutputTokens: options.max_completion_tokens || 4096,
-        topP: options.top_p || 0.8,
-        topK: options.top_k || 40
+    
+    // Check if we have complete user credentials
+    const hasCompleteUserCredentials = modelCredentials?.projectId && 
+                                    modelCredentials?.location && 
+                                    modelCredentials?.serviceAccountKey;
+    
+    if (!hasCompleteUserCredentials) {
+      console.log('Incomplete user credentials, falling back to environment variables');
+      
+      // Check if environment variables are available
+      if (!process.env.GOOGLE_CLOUD_PROJECT || !process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+        throw new Error('Vertex AI credentials not provided and environment variables are not configured. Please provide credentials or set GOOGLE_CLOUD_PROJECT and GOOGLE_APPLICATION_CREDENTIALS.');
       }
-    };
-
-    // Make the prediction
-    const [response] = await client.predict(request);
-    
-    // Extract the response content
-    const prediction = response.predictions?.[0];
-    if (!prediction) {
-      throw new Error('No prediction received from Vertex AI');
-    }
-
-    // Convert Vertex AI response to OpenAI format
-    const content = prediction.structValue?.fields?.candidates?.listValue?.values?.[0]?.structValue?.fields?.content?.stringValue || '';
-    
-    return {
-      choices: [{
-        message: {
-          role: 'assistant',
-          content: content
+      
+      // Use environment variables
+      const vertexAI = new VertexAI({
+        project: process.env.GOOGLE_CLOUD_PROJECT,
+        location: process.env.VERTEX_AI_LOCATION || 'us-central1',
+      });
+      
+      // Get the generative model
+      const model = vertexAI.getGenerativeModel({
+        model: modelName,
+        generationConfig: {
+          temperature: options.temperature || 0.7,
+          maxOutputTokens: options.max_completion_tokens || 4096,
+          topP: options.top_p || 0.8,
+          topK: options.top_k || 40,
         },
-        finish_reason: 'stop'
-      }],
-      usage: {
-        prompt_tokens: 0, // Vertex AI doesn't provide token usage in this format
-        completion_tokens: 0,
-        total_tokens: 0
+      });
+      
+      // Convert messages to the format expected by Gemini
+      const geminiMessages = messages.map(msg => ({
+        role: msg.role === 'system' ? 'user' : msg.role, // Gemini doesn't support system role
+        parts: [{ text: msg.content }]
+      }));
+      
+      // Generate content
+      const result = await model.generateContent({
+        contents: geminiMessages,
+      });
+      
+      const response = result.response;
+      const content = response.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      
+      return {
+        choices: [{
+          message: {
+            role: 'assistant',
+            content: content
+          },
+          finish_reason: 'stop'
+        }],
+        usage: {
+          prompt_tokens: 0, // Vertex AI doesn't provide token usage in this format
+          completion_tokens: 0,
+          total_tokens: 0
+        }
+      };
+    }
+    
+    // Use user-provided credentials
+    console.log('Using user-provided credentials');
+    
+    // Parse the service account key
+    const serviceAccountKey = JSON.parse(modelCredentials.serviceAccountKey);
+    
+    // Create a temporary file for the service account key
+    const tempFileName = `temp-credentials-${randomBytes(8).toString('hex')}.json`;
+    const tempFilePath = join(tmpdir(), tempFileName);
+    
+    console.log('Creating temporary credentials file:', tempFilePath);
+    
+    // Write the service account key to the temporary file
+    writeFileSync(tempFilePath, modelCredentials.serviceAccountKey);
+    
+    // Set the credentials in the environment temporarily for this request
+    const originalCredentials = process.env.GOOGLE_APPLICATION_CREDENTIALS;
+    const originalProject = process.env.GOOGLE_CLOUD_PROJECT;
+    const originalLocation = process.env.VERTEX_AI_LOCATION;
+    
+    try {
+      // Set environment variables for this request
+      process.env.GOOGLE_APPLICATION_CREDENTIALS = tempFilePath;
+      process.env.GOOGLE_CLOUD_PROJECT = modelCredentials.projectId;
+      process.env.VERTEX_AI_LOCATION = modelCredentials.location;
+      
+      // Re-initialize the client with the updated environment
+      const vertexAIWithCredentials = new VertexAI({
+        project: modelCredentials.projectId,
+        location: modelCredentials.location,
+      });
+      
+      // Get the generative model
+      const model = vertexAIWithCredentials.getGenerativeModel({
+        model: modelName,
+        generationConfig: {
+          temperature: options.temperature || 0.7,
+          maxOutputTokens: options.max_completion_tokens || 4096,
+          topP: options.top_p || 0.8,
+          topK: options.top_k || 40,
+        },
+      });
+      
+      // Convert messages to the format expected by Gemini
+      const geminiMessages = messages.map(msg => ({
+        role: msg.role === 'system' ? 'user' : msg.role, // Gemini doesn't support system role
+        parts: [{ text: msg.content }]
+      }));
+      
+      // Generate content
+      const result = await model.generateContent({
+        contents: geminiMessages,
+      });
+      
+      const response = result.response;
+      const content = response.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      
+      return {
+        choices: [{
+          message: {
+            role: 'assistant',
+            content: content
+          },
+          finish_reason: 'stop'
+        }],
+        usage: {
+          prompt_tokens: 0, // Vertex AI doesn't provide token usage in this format
+          completion_tokens: 0,
+          total_tokens: 0
+        }
+      };
+    } finally {
+      // Restore original environment variables
+      process.env.GOOGLE_APPLICATION_CREDENTIALS = originalCredentials;
+      process.env.GOOGLE_CLOUD_PROJECT = originalProject;
+      process.env.VERTEX_AI_LOCATION = originalLocation;
+      
+      // Clean up the temporary file
+      try {
+        unlinkSync(tempFilePath);
+        console.log('Temporary credentials file cleaned up:', tempFilePath);
+      } catch (cleanupError) {
+        console.warn('Failed to clean up temporary credentials file:', cleanupError);
       }
-    };
+    }
   } catch (error) {
     console.error('Error creating Vertex AI completion:', error);
     throw error;
@@ -253,14 +395,15 @@ async function createVertexAIChatCompletion(
 export async function createChatCompletion(
   modelId: string | undefined,
   messages: Array<{ role: string; content: string }>,
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
+  credentials?: Record<string, Record<string, string>>
 ) {
   // Create the client for the specified model
-  const { client, modelName, isVertexAI } = createClient(modelId);
+  const { client, modelName, isVertexAI } = createClient(modelId, credentials);
 
   // Handle Vertex AI separately
   if (isVertexAI) {
-    return createVertexAIChatCompletion(modelName, messages, options);
+    return createVertexAIChatCompletion(modelName, messages, options, credentials, modelId);
   }
 
   // Get the model options from the configuration
@@ -273,6 +416,9 @@ export async function createChatCompletion(
     ...modelOptions,
     ...options
   };
+
+  // Log the final options for debugging
+  console.log(`Creating chat completion for ${modelName} with options:`, completionOptions);
 
   // Ensure client exists before using it
   if (!client) {
@@ -293,15 +439,16 @@ export async function createChatCompletion(
 export async function createStreamingChatCompletion(
   modelId: string | undefined,
   messages: Array<{ role: string; content: string }>,
-  options: Record<string, any> = {}
+  options: Record<string, any> = {},
+  credentials?: Record<string, Record<string, string>>
 ) {
   // Create the client for the specified model
-  const { client, modelName, provider, isVertexAI } = createClient(modelId);
+  const { client, modelName, provider, isVertexAI } = createClient(modelId, credentials);
 
   // Handle Vertex AI separately (note: Vertex AI streaming is more complex)
   if (isVertexAI) {
     // For now, return a non-streaming response wrapped in a stream-like format
-    const response = await createVertexAIChatCompletion(modelName, messages, options);
+    const response = await createVertexAIChatCompletion(modelName, messages, options, credentials, modelId);
     return {
       ...response,
       // Create a simple stream-like interface
@@ -323,8 +470,9 @@ export async function createStreamingChatCompletion(
     stream: true
   };
 
-  // Log the streaming request
+  // Log the streaming request and options
   console.log(`Creating streaming completion for ${provider}/${modelName}`);
+  console.log(`Streaming options:`, completionOptions);
 
   try {
     // Ensure client exists before using it

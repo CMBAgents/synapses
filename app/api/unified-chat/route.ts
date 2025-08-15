@@ -3,13 +3,13 @@ import { loadContext, getSystemPromptWithContext } from '@/app/utils/context';
 import { getProgramById, loadConfig } from '@/app/utils/config';
 import { createChatCompletion, createStreamingChatCompletion, logTokenUsage } from '@/app/utils/unified-client';
 
-// This enables Edge Functions in Vercel
-export const runtime = "edge";
+// This enables Node.js runtime for Google Cloud compatibility
+export const runtime = "nodejs";
 
 export async function POST(request: NextRequest) {
   try {
     // Parse message from post
-    const { programId, messages, modelId, stream = false } = await request.json();
+    const { programId, messages, modelId, stream = false, credentials = {} } = await request.json();
 
     // Get program configuration
     const program = getProgramById(programId);
@@ -45,7 +45,10 @@ export async function POST(request: NextRequest) {
       modelId: modelId || 'default',
       messageCount: messages.length,
       systemMessageLength: systemMessage.content.length,
-      streaming: stream
+      streaming: stream,
+      hasCredentials: !!credentials,
+      credentialKeys: credentials ? Object.keys(credentials) : [],
+      credentialsForModel: credentials?.[modelId] ? 'Present' : 'Missing'
     });
 
     // Load config to check for fallback model
@@ -57,7 +60,7 @@ export async function POST(request: NextRequest) {
         // Handle streaming request
         try {
           // Try with the primary model first
-          const streamingResponse = await createStreamingChatCompletion(modelId, allMessages);
+          const streamingResponse = await createStreamingChatCompletion(modelId, allMessages, {}, credentials);
 
           // For streaming responses, we need to convert the OpenAI stream to a ReadableStream
           const encoder = new TextEncoder();
@@ -140,7 +143,7 @@ export async function POST(request: NextRequest) {
             console.log(`Primary model failed, trying fallback model: ${fallbackModelId}`);
 
             // Try with the fallback model
-            const fallbackStreamingResponse = await createStreamingChatCompletion(fallbackModelId, allMessages);
+            const fallbackStreamingResponse = await createStreamingChatCompletion(fallbackModelId, allMessages, {}, credentials);
 
             // Check if the fallback streaming response is valid
             if (!fallbackStreamingResponse) {
@@ -225,11 +228,20 @@ export async function POST(request: NextRequest) {
         // Handle non-streaming request
         try {
           // Try with the primary model first
-          const completion = await createChatCompletion(modelId, allMessages);
+          const completion = await createChatCompletion(modelId, allMessages, {}, credentials);
+
+          // Debug: Log the completion response
+          console.log('Primary model completion response:', JSON.stringify(completion, null, 2));
 
           // Log token usage
           if (completion.usage) {
             logTokenUsage(modelId, programId, completion.usage);
+          }
+
+          // Check if completion has the expected structure
+          if (!completion || !completion.choices || !completion.choices[0]) {
+            console.error('Invalid completion structure:', completion);
+            throw new Error(`Invalid completion response structure: ${JSON.stringify(completion)}`);
           }
 
           // Extract the content from the response
@@ -247,7 +259,7 @@ export async function POST(request: NextRequest) {
 
             try {
               // Try with the fallback model
-              const fallbackCompletion = await createChatCompletion(fallbackModelId, allMessages);
+              const fallbackCompletion = await createChatCompletion(fallbackModelId, allMessages, {}, credentials);
 
               // Log token usage for the fallback model
               if (fallbackCompletion.usage) {

@@ -5,8 +5,11 @@ export interface ModelConfig {
   options?: {
     temperature?: number; // Model temperature (0-1)
     max_completion_tokens?: number; // Maximum number of tokens to generate
+    stream?: boolean; // Whether the model supports streaming
     [key: string]: any; // Allow for additional model-specific options
   };
+  requiresCredentials?: boolean; // Whether the model requires user credentials
+  credentialType?: string; // Type of credentials required (e.g., 'vertexai')
 }
 
 export interface Program {

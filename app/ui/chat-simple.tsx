@@ -17,7 +17,8 @@ export default function ChatSimple({
   greeting,
   selectedModelId = '',
   libraries = [],
-  preselectedLibrary
+  preselectedLibrary,
+  credentials = {}
 }: {
   programId: string;
   greeting: string;
@@ -30,6 +31,7 @@ export default function ChatSimple({
     github_url?: string;
   }>;
   preselectedLibrary?: string;
+  credentials?: Record<string, Record<string, string>>;
 }) {
   // Use a ref to store messages for each program ID
   const messagesMapRef = useRef<Record<string, Message[]>>({});
@@ -148,6 +150,7 @@ export default function ChatSimple({
           messages: apiMessages,
           modelId: selectedModelId, // Pass the selected model ID
           stream: useStreaming, // Pass streaming flag
+          credentials: credentials, // Pass credentials
         }),
         signal, // Pass the abort signal
       });

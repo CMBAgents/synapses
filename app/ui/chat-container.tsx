@@ -26,22 +26,23 @@ export default function ChatContainer({
   const [config, setConfig] = useState<any>(null);
   const [activeProgram, setActiveProgram] = useState(defaultProgramId);
   const [selectedModelId, setSelectedModelId] = useState<string>('');
+  const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
 
   // Load config safely
   useEffect(() => {
     try {
       const loadedConfig = loadConfig();
       setConfig(loadedConfig);
-      setSelectedModelId(loadedConfig.defaultModelId || 'gemini/gemini-2.5-flash-preview-04-17');
+      setSelectedModelId(loadedConfig.defaultModelId || 'deepseek/deepseek-chat-v3-0324');
     } catch (error) {
       console.error('Error loading config:', error);
       // Set fallback values
       setConfig({
         availableModels: [],
-        defaultModelId: 'gemini/gemini-2.5-flash-preview-04-17',
+        defaultModelId: 'deepseek/deepseek-chat-v3-0324',
         greeting: "How can I help you?"
       });
-      setSelectedModelId('gemini/gemini-2.5-flash-preview-04-17');
+      setSelectedModelId('deepseek/deepseek-chat-v3-0324');
     }
   }, []);
 
@@ -62,6 +63,11 @@ export default function ChatContainer({
   // Handle model change
   const handleModelChange = (modelId: string) => {
     setSelectedModelId(modelId);
+  };
+
+  // Handle credentials change
+  const handleCredentialsChange = (newCredentials: Record<string, Record<string, string>>) => {
+    setCredentials(newCredentials);
   };
 
   // Get the active program
@@ -98,6 +104,7 @@ export default function ChatContainer({
         models={config.availableModels || []}
         selectedModelId={selectedModelId}
         onModelChange={handleModelChange}
+        onCredentialsChange={handleCredentialsChange}
       />
     );
   }
@@ -112,6 +119,7 @@ export default function ChatContainer({
           selectedModelId={selectedModelId}
           libraries={getLibraries()}
           preselectedLibrary={preselectedLibrary}
+          credentials={credentials}
         />
       </div>
     </div>
