@@ -47,12 +47,84 @@ const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
   // Default fallback for unknown providers will be OpenRouter
 };
 
+// Utility function to decrypt sensitive data (server-side)
+async function decryptData(encryptedData: string, key: string): Promise<string> {
+  try {
+    const crypto = require('crypto');
+    
+    // Convert from base64
+    const combined = Buffer.from(encryptedData, 'base64');
+    
+    // Extract IV and encrypted data
+    const iv = combined.slice(0, 12);
+    const encryptedBuffer = combined.slice(12);
+    
+    // Create decipher
+    const decipher = crypto.createDecipher('aes-256-gcm', key);
+    decipher.setAuthTag(encryptedBuffer.slice(-16));
+    
+    // Decrypt
+    let decrypted = decipher.update(encryptedBuffer.slice(0, -16), null, 'utf8');
+    decrypted += decipher.final('utf8');
+    
+    return decrypted;
+  } catch (error) {
+    console.error('Decryption failed:', error);
+    throw new Error('Failed to decrypt credentials');
+  }
+}
+
+// Utility function to detect if data is encrypted
+function isEncrypted(data: string): boolean {
+  try {
+    // Check if it's base64 encoded and has the right structure
+    const buffer = Buffer.from(data, 'base64');
+    return buffer.length > 28; // IV (12) + minimum encrypted data (16)
+  } catch {
+    return false;
+  }
+}
+
+// Secure credential processing
+async function processCredentials(credentials: Record<string, Record<string, string>>, modelId: string): Promise<Record<string, string>> {
+  const processedCredentials: Record<string, string> = {};
+  
+  if (!credentials || !credentials[modelId]) {
+    return processedCredentials;
+  }
+  
+  const modelCredentials = credentials[modelId];
+  
+  // Process each credential field
+  for (const [key, value] of Object.entries(modelCredentials)) {
+    if (value) {
+      // Check if the value is encrypted
+      if (isEncrypted(value)) {
+        try {
+          // For now, we'll use a simple approach - in production, you'd want to pass the encryption key securely
+          // This is a simplified version - in a real implementation, you'd need to securely pass the encryption key
+          const decryptedValue = await decryptData(value, process.env.ENCRYPTION_KEY || 'fallback-key');
+          processedCredentials[key] = decryptedValue;
+        } catch (error) {
+          console.error(`Failed to decrypt ${key}:`, error);
+          // Fall back to treating it as unencrypted
+          processedCredentials[key] = value;
+        }
+      } else {
+        processedCredentials[key] = value;
+      }
+    }
+  }
+  
+  return processedCredentials;
+}
+
 /**
  * Create an OpenAI client configured for the specified model ID
  * @param modelId The model ID in the format "provider/model-name"
  * @returns An OpenAI client configured for the specified provider
  */
-export function createClient(modelId?: string, credentials?: Record<string, Record<string, string>>) {
+export async function createClient(modelId?: string, credentials?: Record<string, Record<string, string>>) {
   const config = loadConfig();
 
   // Default to the configuration's default model if no model ID is provided
@@ -89,26 +161,48 @@ export function createClient(modelId?: string, credentials?: Record<string, Reco
   const providerConfig = PROVIDER_CONFIGS[targetProviderKey];
   const apiKeyEnvVar = providerConfig.apiKeyEnvVar;
   
+  // Process credentials securely
+  const processedCredentials = await processCredentials(credentials || {}, modelIdToUse);
+  
   // For Vertex AI, we need to check for Google Cloud credentials
   let apiKey: string | undefined;
   
   // First check if credentials were provided for this specific model
-  if (credentials && credentials[modelIdToUse]) {
-    const modelCredentials = credentials[modelIdToUse];
-    
+  if (processedCredentials && Object.keys(processedCredentials).length > 0) {
     if (targetProviderKey === 'vertexai') {
       // For Vertex AI, check if we have the required credentials
-      if (modelCredentials.projectId && modelCredentials.location && modelCredentials.serviceAccountKey) {
-        // Store credentials in environment for this request
-        process.env.GOOGLE_CLOUD_PROJECT = modelCredentials.projectId;
-        process.env.VERTEX_AI_LOCATION = modelCredentials.location;
-        process.env.GOOGLE_APPLICATION_CREDENTIALS = modelCredentials.serviceAccountKey;
-        apiKey = modelCredentials.projectId; // Use project ID as the key identifier
+      if (processedCredentials.projectId && processedCredentials.location && processedCredentials.serviceAccountKey) {
+        // Create a temporary file for the service account key
+        const tempFile = join(tmpdir(), `service-account-${randomBytes(8).toString('hex')}.json`);
+        
+        try {
+          // Write the service account key to a temporary file
+          writeFileSync(tempFile, processedCredentials.serviceAccountKey);
+          
+          // Store credentials in environment for this request
+          process.env.GOOGLE_CLOUD_PROJECT = processedCredentials.projectId;
+          process.env.VERTEX_AI_LOCATION = processedCredentials.location;
+          process.env.GOOGLE_APPLICATION_CREDENTIALS = tempFile;
+          apiKey = processedCredentials.projectId; // Use project ID as the key identifier
+          
+          // Schedule cleanup of the temporary file
+          setTimeout(() => {
+            try {
+              unlinkSync(tempFile);
+            } catch (error) {
+              console.error('Failed to cleanup temporary service account file:', error);
+            }
+          }, 60000); // Clean up after 1 minute
+          
+        } catch (error) {
+          console.error('Failed to create temporary service account file:', error);
+          throw new Error('Failed to process Google Cloud credentials');
+        }
       }
     } else if (targetProviderKey === 'openai' || targetProviderKey === 'deepseek') {
       // For OpenAI/DeepSeek, use the API key
-      if (modelCredentials.apiKey) {
-        apiKey = modelCredentials.apiKey;
+      if (processedCredentials.apiKey) {
+        apiKey = processedCredentials.apiKey;
       }
     }
   }
@@ -130,7 +224,7 @@ export function createClient(modelId?: string, credentials?: Record<string, Reco
   // Use the original modelId for OpenRouter, otherwise just the modelName
   const actualModelName = (targetProviderKey === 'openrouter') ? modelIdToUse : modelName;
 
-  // Log the decision
+  // Log the decision (without sensitive data)
   if (targetProviderKey !== 'openrouter' && (provider === targetProviderKey)) {
       console.log(`Attempting to use direct ${targetProviderKey} key for model: ${actualModelName}`);
   } else {
@@ -399,7 +493,7 @@ export async function createChatCompletion(
   credentials?: Record<string, Record<string, string>>
 ) {
   // Create the client for the specified model
-  const { client, modelName, isVertexAI } = createClient(modelId, credentials);
+  const { client, modelName, isVertexAI } = await createClient(modelId, credentials);
 
   // Handle Vertex AI separately
   if (isVertexAI) {
@@ -443,7 +537,7 @@ export async function createStreamingChatCompletion(
   credentials?: Record<string, Record<string, string>>
 ) {
   // Create the client for the specified model
-  const { client, modelName, provider, isVertexAI } = createClient(modelId, credentials);
+  const { client, modelName, provider, isVertexAI } = await createClient(modelId, credentials);
 
   // Handle Vertex AI separately (note: Vertex AI streaming is more complex)
   if (isVertexAI) {
