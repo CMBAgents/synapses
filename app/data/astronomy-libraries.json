@@ -5,7 +5,7 @@
       "github_url": "https://github.com/skyfielders/python-skyfield",
       "stars": 1570,
       "rank": 1,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "python-skyfield-context.txt"
     },
     {
@@ -20,7 +20,7 @@
       "github_url": "https://github.com/astropy/astroquery",
       "stars": 739,
       "rank": 3,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "astroquery-context.txt"
     },
     {
@@ -28,7 +28,7 @@
       "github_url": "https://github.com/einsteinpy/einsteinpy",
       "stars": 650,
       "rank": 4,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "einsteinpy-context.txt"
     },
     {
@@ -36,7 +36,7 @@
       "github_url": "https://github.com/lightkurve/lightkurve",
       "stars": 459,
       "rank": 5,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "lightkurve-context.txt"
     },
     {
@@ -44,7 +44,7 @@
       "github_url": "https://github.com/gwpy/gwpy",
       "stars": 378,
       "rank": 6,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "gwpy-context.txt"
     },
     {
@@ -52,7 +52,7 @@
       "github_url": "https://github.com/gwastro/pycbc",
       "stars": 346,
       "rank": 7,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "pycbc-context.txt"
     },
     {
@@ -60,7 +60,7 @@
       "github_url": "https://github.com/amrex-astro/castro",
       "stars": 322,
       "rank": 8,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "castro-context.txt"
     },
     {
@@ -75,7 +75,7 @@
       "github_url": "https://github.com/astropy/photutils",
       "stars": 276,
       "rank": 10,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "photutils-context.txt"
     },
     {
@@ -83,7 +83,7 @@
       "github_url": "https://github.com/lesgourg/class_public",
       "stars": 267,
       "rank": 11,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "class_public-context.txt"
     },
     {
@@ -91,7 +91,7 @@
       "github_url": "https://github.com/spacepy/spacepy",
       "stars": 253,
       "rank": 12,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "spacepy-context.txt"
     },
     {
@@ -99,7 +99,7 @@
       "github_url": "https://github.com/scottransom/presto",
       "stars": 250,
       "rank": 13,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "presto-context.txt"
     },
     {
@@ -107,7 +107,7 @@
       "github_url": "https://github.com/galsim-developers/galsim",
       "stars": 247,
       "rank": 14,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "galsim-context.txt"
     },
     {
@@ -115,7 +115,7 @@
       "github_url": "https://github.com/jobovy/galpy",
       "stars": 246,
       "rank": 15,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "galpy-context.txt"
     },
     {
@@ -123,7 +123,7 @@
       "github_url": "https://github.com/radis/radis",
       "stars": 245,
       "rank": 16,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "radis-context.txt"
     },
     {
@@ -131,7 +131,7 @@
       "github_url": "https://github.com/spacetelescope/poppy",
       "stars": 243,
       "rank": 17,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "poppy-context.txt"
     },
     {
@@ -216,7 +216,7 @@
       "github_url": "https://github.com/mperrin/poppy",
       "stars": 184,
       "rank": 29,
-      "hasContextFile": true,
+      "hasContextFile": false,
       "contextFileName": "poppy-context.txt"
     },
     {

@@ -149,7 +149,7 @@ class ContextManager:
                 
                 has_context = any(
                     file_info["filename"] == context_filename 
-                    for file_info in context_files.get("astro", [])
+                    for file_info in context_files.get("astronomy", [])
                 )
                 
                 lib["hasContextFile"] = has_context

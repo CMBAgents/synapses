@@ -133,7 +133,7 @@ class MaintenanceManager:
             finance_data = self._load_finance_data()
             
             # Générer les contextes manquants pour astronomy
-            self._generate_contexts_for_domain(astronomy_data, "astro")
+            self._generate_contexts_for_domain(astronomy_data, "astronomy")
             
             # Générer les contextes manquants pour finance
             self._generate_contexts_for_domain(finance_data, "finance")

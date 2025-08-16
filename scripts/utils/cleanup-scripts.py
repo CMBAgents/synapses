@@ -199,7 +199,7 @@ python3 scripts/deploy.py --project-id YOUR_PROJECT_ID --budget 15.0
 
 ### Génération de contextes manquants
 ```bash
-python3 scripts/generate-missing-contexts.py --domain astro
+python3 scripts/generate-missing-contexts.py --domain astronomy
 ```
 """
     
