@@ -63,6 +63,71 @@ class MaintenanceManager:
         )
         self.logger = logging.getLogger(__name__)
     
+    def step0_ensure_dependencies(self):
+        """Étape 0: Vérifie et installe les dépendances nécessaires"""
+        self.logger.info("=== ÉTAPE 0: Vérification et installation des dépendances ===")
+        
+        try:
+            # Vérifier contextmaker
+            if not self._check_contextmaker():
+                self.logger.info("Installation de contextmaker...")
+                self._install_contextmaker()
+            
+            # Vérifier git
+            if not self._check_git():
+                self.logger.error("❌ Git n'est pas installé. Veuillez l'installer manuellement.")
+                raise Exception("Git non disponible")
+            
+            self.logger.info("✅ Étape 0 terminée: toutes les dépendances sont disponibles")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Erreur dans l'étape 0: {e}")
+            raise
+    
+    def _check_contextmaker(self) -> bool:
+        """Vérifie si contextmaker est disponible"""
+        try:
+            result = subprocess.run(
+                ["python3", "-c", "import contextmaker"],
+                capture_output=True,
+                text=True
+            )
+            return result.returncode == 0
+        except Exception:
+            return False
+    
+    def _install_contextmaker(self):
+        """Installe contextmaker via pip"""
+        try:
+            self.logger.info("Installation de contextmaker via pip3...")
+            result = subprocess.run(
+                ["pip3", "install", "contextmaker"],
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minutes timeout
+            )
+            
+            if result.returncode == 0:
+                self.logger.info("✅ contextmaker installé avec succès")
+            else:
+                self.logger.error(f"❌ Échec de l'installation: {result.stderr}")
+                raise Exception(f"Installation échouée: {result.stderr}")
+                
+        except subprocess.TimeoutExpired:
+            self.logger.error("❌ Timeout lors de l'installation de contextmaker")
+            raise Exception("Timeout installation")
+        except Exception as e:
+            self.logger.error(f"❌ Erreur lors de l'installation: {e}")
+            raise
+    
+    def _check_git(self) -> bool:
+        """Vérifie si git est disponible"""
+        try:
+            result = subprocess.run(["git", "--version"], capture_output=True, text=True)
+            return result.returncode == 0
+        except Exception:
+            return False
+    
     def step1_fetch_libraries_data(self) -> List[Dict]:
         """Étape 1: Récupère les librairies depuis ASCL"""
         self.logger.info("=== ÉTAPE 1: Récupération des données des librairies ===")
@@ -186,6 +251,9 @@ class MaintenanceManager:
         self.logger.info("🚀 Début de la maintenance complète")
         
         try:
+            # Étape 0: Vérification et installation des dépendances
+            self.step0_ensure_dependencies()
+            
             # Étape 1: Récupération des données
             libraries_data = self.step1_fetch_libraries_data()
             

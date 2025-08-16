@@ -274,7 +274,7 @@ class ContextGenerator:
         """Checks if contextmaker is available."""
         try:
             result = subprocess.run(
-                ["python", "-c", "import contextmaker"],
+                ["python3", "-c", "import contextmaker"],
                 capture_output=True,
                 text=True
             )
@@ -359,7 +359,7 @@ class ContextGenerator:
                     continue
                 
                 # 2. Generate context content with contextmaker
-                content = self.generate_context_with_contextmaker(package_name, lib_name)
+                content = self.generate_context_with_contextmaker(package_name, lib_name, domain)
                 
                 if content:
                     # Save file
