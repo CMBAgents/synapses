@@ -265,10 +265,14 @@ class ContextGenerator:
         
         logging.info(f"Context saved: {filepath}")
         
-        # Copy to public/context
-        public_filepath = self.public_context_dir / filename
+        # Copy to public/context/{domain} (not to public/context directly)
+        public_domain_dir = self.public_context_dir / domain
+        public_domain_dir.mkdir(parents=True, exist_ok=True)
+        public_filepath = public_domain_dir / filename
         with open(public_filepath, 'w', encoding='utf-8') as f:
             f.write(content)
+        
+        logging.info(f"Context also saved to public: {public_filepath}")
 
     def check_contextmaker_available(self) -> bool:
         """Checks if contextmaker is available."""

@@ -189,11 +189,11 @@ class MaintenanceManager:
             raise
     
     def step3_generate_missing_contexts(self):
-        """Étape 3: Génère les contextes manquants"""
+        """Étape 3: Génération des contextes manquants"""
         self.logger.info("=== ÉTAPE 3: Génération des contextes manquants ===")
         
         try:
-            # Charger les données
+            # Charger les données existantes
             astronomy_data = self._load_astronomy_data()
             finance_data = self._load_finance_data()
             
@@ -202,6 +202,9 @@ class MaintenanceManager:
             
             # Générer les contextes manquants pour finance
             self._generate_contexts_for_domain(finance_data, "finance")
+            
+            # Nettoyer les contextes dupliqués
+            self._cleanup_duplicate_contexts()
             
             self.logger.info("✅ Étape 3 terminée")
             
@@ -361,6 +364,15 @@ class MaintenanceManager:
         script_path = self.base_dir / "scripts" / "maintenance" / "generate-missing-contexts.py"
         if script_path.exists():
             subprocess.run(["python3", str(script_path), "--domain", domain], cwd=self.base_dir)
+    
+    def _cleanup_duplicate_contexts(self):
+        """Nettoie les contextes dupliqués"""
+        self.logger.info("Nettoyage des contextes dupliqués")
+        script_path = self.base_dir / "scripts" / "maintenance" / "cleanup-duplicate-contexts.py"
+        if script_path.exists():
+            subprocess.run(["python3", str(script_path)], cwd=self.base_dir)
+        else:
+            self.logger.warning("Script cleanup-duplicate-contexts.py non trouvé")
     
     def _cleanup_old_logs(self):
         """Nettoie les anciens logs"""
