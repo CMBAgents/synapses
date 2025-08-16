@@ -43,8 +43,7 @@ export async function GET(request: NextRequest) {
 
 function handleLoadContextFile(domain: string, fileName: string) {
   try {
-    // Handle the special case where astronomy context files are in 'astro' directory
-    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDirName = domain;
     const contextPath = path.join(process.cwd(), 'public', 'context', contextDirName, fileName);
     if (fs.existsSync(contextPath)) {
       const content = fs.readFileSync(contextPath, 'utf-8');
@@ -59,8 +58,7 @@ function handleLoadContextFile(domain: string, fileName: string) {
 
 function handleGetContextFiles(domain: string) {
   try {
-    // Handle the special case where astronomy context files are in 'astro' directory
-    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDirName = domain;
     const contextDir = path.join(process.cwd(), 'public', 'context', contextDirName);
     if (!fs.existsSync(contextDir)) {
       return NextResponse.json([]);
@@ -89,8 +87,7 @@ function handleGetContextFiles(domain: string) {
 
 function handleHasContextFile(domain: string, fileName: string) {
   try {
-    // Handle the special case where astronomy context files are in 'astro' directory
-    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDirName = domain;
     const contextPath = path.join(process.cwd(), 'public', 'context', contextDirName, fileName);
     const hasFile = fs.existsSync(contextPath);
     return NextResponse.json({ hasFile });
@@ -102,8 +99,7 @@ function handleHasContextFile(domain: string, fileName: string) {
 function handleUpdateLibrariesWithContextStatus(domain: string) {
   try {
     const jsonPath = path.join(process.cwd(), 'app', 'data', `${domain}-libraries.json`);
-    // Handle the special case where astronomy context files are in 'astro' directory
-    const contextDirName = domain === 'astronomy' ? 'astro' : domain;
+    const contextDirName = domain;
     const contextDir = path.join(process.cwd(), 'public', 'context', contextDirName);
     
     if (!fs.existsSync(jsonPath)) {
