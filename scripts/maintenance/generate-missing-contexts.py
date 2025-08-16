@@ -158,7 +158,7 @@ class ContextGenerator:
             logging.error(f"Exception cloning {package_name}: {e}")
             return False
 
-    def generate_context_with_contextmaker(self, package_name: str, lib_name: str) -> Optional[str]:
+    def generate_context_with_contextmaker(self, package_name: str, lib_name: str, domain: str) -> Optional[str]:
         """Generates context using the contextmaker package."""
         logging.info(f"Generating context for {package_name} with contextmaker")
         
@@ -168,68 +168,72 @@ class ContextGenerator:
             logging.error(f"Repository {package_name} not found in {repo_path}")
             return None
         
-        # Create unique temporary path for this package
-        temp_output_path = self.temp_dir / f"{package_name}_context"
-        temp_output_path.mkdir(exist_ok=True)
+        # Create domain directory in public/context if it doesn't exist
+        domain_context_dir = self.public_context_dir / domain
+        domain_context_dir.mkdir(parents=True, exist_ok=True)
+        
+        # Define output path for context file
+        output_filename = f"{lib_name}-context.txt"
+        output_path = domain_context_dir / output_filename
         
         try:
-            # contextmaker command
-            cmd = [
-                "python", "-c", 
-                f"import contextmaker; contextmaker.make('{package_name}', output_path='{temp_output_path}')"
-            ]
+            # Use contextmaker.make() directly with the specified structure
+            import contextmaker
             
-            logging.info(f"Executing: {' '.join(cmd)}")
+            logging.info(f"Calling contextmaker.make() for {package_name}")
+            logging.info(f"  - library_name: {package_name}")
+            logging.info(f"  - output_path: {output_path}")
+            logging.info(f"  - input_path: {repo_path}")
+            logging.info(f"  - rough: True")
             
-            # Execute contextmaker
-            result = subprocess.run(
-                cmd,
-                capture_output=True,
-                text=True,
-                timeout=300,  # 5 minutes timeout
-                cwd=self.base_dir  # Ensure correct working directory
+            result = contextmaker.make(
+                library_name=package_name,
+                output_path=str(output_path),
+                input_path=str(repo_path),
+                rough=True,
             )
             
-            if result.returncode == 0:
+            if result and output_path.exists():
                 logging.info(f"Contextmaker succeeded for {package_name}")
                 
-                # Look for generated file
-                context_files = list(temp_output_path.glob("*.txt"))
-                if context_files:
-                    # Take the first .txt file found
-                    context_file = context_files[0]
-                    
-                    # Read content
-                    with open(context_file, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                    
-                    # Add metadata
-                    enhanced_content = self.enhance_context_content(content, package_name, lib_name)
-                    
-                    logging.info(f"Context generated for {package_name}: {len(content)} characters")
-                    return enhanced_content
-                else:
-                    logging.warning(f"No .txt file found in {temp_output_path}")
-                    return None
+                # Read content
+                with open(output_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                # Add metadata
+                enhanced_content = self.enhance_context_content(content, package_name, lib_name)
+                
+                # Save enhanced content back to the same file
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(enhanced_content)
+                
+                logging.info(f"Context generated for {package_name}: {len(enhanced_content)} characters")
+                logging.info(f"Context saved to: {output_path}")
+                
+                # Also save to app/context for consistency
+                app_context_dir = self.context_dir / domain
+                app_context_dir.mkdir(exist_ok=True)
+                app_context_file = app_context_dir / output_filename
+                with open(app_context_file, 'w', encoding='utf-8') as f:
+                    f.write(enhanced_content)
+                
+                return enhanced_content
             else:
-                logging.error(f"Contextmaker error for {package_name}")
-                logging.error(f"STDOUT: {result.stdout}")
-                logging.error(f"STDERR: {result.stderr}")
+                logging.warning(f"Context file not found at {output_path}")
+                logging.warning(f"contextmaker result: {result}")
                 return None
                 
-        except subprocess.TimeoutExpired:
-            logging.error(f"Timeout for {package_name} (more than 5 minutes)")
-            return None
         except Exception as e:
             logging.error(f"Exception during generation for {package_name}: {e}")
             return None
         finally:
-            # Clean temporary directory
+            # Clean only the temporary repository, NOT the context file
             try:
                 import shutil
-                shutil.rmtree(temp_output_path)
+                shutil.rmtree(repo_path)
+                logging.info(f"Temporary repository cleaned: {repo_path}")
             except Exception as e:
-                logging.warning(f"Unable to clean {temp_output_path}: {e}")
+                logging.warning(f"Unable to clean temporary repository {repo_path}: {e}")
 
     def enhance_context_content(self, content: str, package_name: str, lib_name: str) -> str:
         """Enhances context content with metadata."""

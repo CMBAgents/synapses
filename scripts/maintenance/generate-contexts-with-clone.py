@@ -72,31 +72,28 @@ def generate_context_with_contextmaker(repo_dir: str, package_name: str, output_
         
         print(f"🔄 Running contextmaker for {package_name}...")
         
-        # Use contextmaker command line with --output to specify exact filename
+        # Use contextmaker.make() directly with the specified structure
+        import contextmaker
         
-        cmd = [
-            'contextmaker', 
-            package_name, 
-            '--output', output_path,
-            '--input-path', repo_dir
-        ]
+        print(f"🔄 Calling contextmaker.make() for {package_name}")
+        print(f"  - library_name: {package_name}")
+        print(f"  - output_path: {output_path}")
+        print(f"  - input_path: {repo_dir}")
+        print(f"  - rough: True")
         
-        print(f"🔄 Running: {' '.join(cmd)}")
-        
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=300  # 5 minutes timeout
+        result = contextmaker.make(
+            library_name=package_name,
+            output_path=output_path,
+            input_path=repo_dir,
+            rough=True,
         )
         
-        if result.returncode == 0 and os.path.exists(output_path):
+        if result and os.path.exists(output_path):
             print(f"✅ Context file generated: {output_path}")
             return True
         else:
             print(f"❌ Context file not created for {package_name}")
-            if result.stderr:
-                print(f"STDERR: {result.stderr}")
+            print(f"contextmaker result: {result}")
             return False
             
     except Exception as e:

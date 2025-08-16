@@ -52,31 +52,26 @@ def run_contextmaker_py(repo_dir, repo_name, output_dir):
     output_file = os.path.join(output_dir, f"{repo_name}_context.txt")
     
     try:
-        # Use the correct contextmaker.make() API with input_path
+        # Use the new contextmaker.make() API structure
         print(f"[{repo_name}] Generating context using contextmaker.make()...")
-        result = contextmaker.make(repo_name, output_file, input_path=repo_dir)
+        print(f"[{repo_name}]   - library_name: {repo_name}")
+        print(f"[{repo_name}]   - output_path: {output_file}")
+        print(f"[{repo_name}]   - input_path: {repo_dir}")
+        print(f"[{repo_name}]   - rough: True")
         
-        # contextmaker.make() creates a directory with the file inside
-        # Check if the directory was created and contains the expected file
-        if os.path.exists(output_file) and os.path.isdir(output_file):
-            # Look for the actual context file inside the directory
-            context_file = os.path.join(output_file, f"{repo_name}.txt")
-            if os.path.exists(context_file):
-                # Create a temporary file to avoid conflicts
-                temp_output = output_file + ".tmp"
-                import shutil
-                shutil.copy2(context_file, temp_output)
-                # Remove the directory
-                shutil.rmtree(output_file)
-                # Move temp file to final location
-                shutil.move(temp_output, output_file)
-                print(f"[{repo_name}] ✅ Context generated successfully: {output_file}")
-            else:
-                print(f"[{repo_name}] ⚠️ Context directory created but file not found")
-        elif os.path.exists(output_file) and os.path.isfile(output_file):
+        result = contextmaker.make(
+            library_name=repo_name,
+            output_path=output_file,
+            input_path=repo_dir,
+            rough=True,
+        )
+        
+        # Check if the context file was generated successfully
+        if result and os.path.exists(output_file):
             print(f"[{repo_name}] ✅ Context generated successfully: {output_file}")
         else:
             print(f"[{repo_name}] ⚠️ Context generation may have failed")
+            print(f"[{repo_name}] contextmaker result: {result}")
             
     except Exception as e:
         print(f"[{repo_name}] ❌ Error generating context: {e}")
