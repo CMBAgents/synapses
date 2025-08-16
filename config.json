@@ -992,7 +992,7 @@
       "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library."
     }
   ],
-  "defaultProgram": "skyfielders-python-skyfield",
+  "defaultProgram": "",
   "showContextLink": true,
   "simpleMode": true,
   "greeting": "How can I help you?",

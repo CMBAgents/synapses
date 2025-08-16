@@ -47,8 +47,8 @@ def main():
     # Remplacer les programmes existants
     config['programs'] = all_programs
     
-    # Changer le programme par défaut vers la première bibliothèque d'astrophysique
-    config['defaultProgram'] = astronomy_programs[0]['id']
+    # Pas de programme par défaut
+    config['defaultProgram'] = ""
     
     # Sauvegarder la nouvelle configuration
     with open('config.json', 'w') as f:
@@ -57,7 +57,7 @@ def main():
     print(f"✅ Généré {len(all_programs)} programmes:")
     print(f"   - Astronomy: {len(astronomy_programs)} programmes")
     print(f"   - Finance: {len(finance_programs)} programmes")
-    print(f"   - Programme par défaut: {config['defaultProgram']}")
+    print(f"   - Programme par défaut: Aucun")
     print(f"\n📁 Configuration sauvegardée dans: config.json")
 
 if __name__ == "__main__":
