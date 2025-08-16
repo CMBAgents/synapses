@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import CopyScript from "./ui/copy-script";
+import MaintenanceProvider from "./ui/maintenance-provider";
+import MaintenanceNotification from "./ui/maintenance-notification";
 
 // Import fonts for headings
 import { Jersey_10 } from "next/font/google";
@@ -76,6 +78,8 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen" suppressHydrationWarning>
+        <MaintenanceProvider />
+        <MaintenanceNotification />
         {children}
         <CopyScript />
       </body>
