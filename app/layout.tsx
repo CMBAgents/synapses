@@ -4,6 +4,7 @@ import "./globals.css";
 import CopyScript from "./ui/copy-script";
 import MaintenanceProvider from "./ui/maintenance-provider";
 import MaintenanceNotification from "./ui/maintenance-notification";
+import { ProgramProvider } from "./contexts/ProgramContext";
 
 // Import fonts for headings
 import { Jersey_10 } from "next/font/google";
@@ -80,7 +81,9 @@ export default function RootLayout({
       <body className="min-h-screen" suppressHydrationWarning>
         <MaintenanceProvider />
         <MaintenanceNotification />
-        {children}
+        <ProgramProvider>
+          {children}
+        </ProgramProvider>
         <CopyScript />
       </body>
     </html>

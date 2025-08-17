@@ -1,19 +1,26 @@
 'use client';
 
-import { Suspense, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { Suspense, useState, useEffect } from 'react';
+import { useSearchParams, useParams } from 'next/navigation';
 import ChatContainer from "./chat-container";
 import { loadAstronomyData, loadFinanceData } from "../utils/domain-loader";
 import ContextUpdater from "./context-updater";
 import LibrarySelector from "./library-selector";
+import { useProgramContext } from "../contexts/ProgramContext";
+
 
 interface BaseChatPageProps {
   domain: 'astronomy' | 'finance';
 }
 
 function BaseChatContent({ domain }: BaseChatPageProps) {
-  const [selectedLibrary, setSelectedLibrary] = useState<any>(null);
-  const [currentProgramId, setCurrentProgramId] = useState<string>(domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline');
+  const { activeProgramId, setActiveProgramId, selectedLibrary, setSelectedLibrary } = useProgramContext();
+  const searchParams = useSearchParams();
+  const params = useParams();
+  const preselectedLibrary = searchParams.get('library') || undefined;
+
+  // Get programId from URL params if available
+  const urlProgramId = params.programId as string;
 
   const getDomainData = () => {
     if (domain === 'astronomy') {
@@ -37,9 +44,10 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
     return `/leaderboard/${domain}`;
   };
 
-  const domainData = getDomainData();
-  const searchParams = useSearchParams();
-  const preselectedLibrary = searchParams.get('library') || undefined;
+  // Function to get default program ID for the domain
+  const getDefaultProgramIdForDomain = () => {
+    return domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline';
+  };
 
   // Function to map library name to program ID
   const getProgramIdFromLibraryName = (libraryName: string): string => {
@@ -48,17 +56,50 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
     return libraryName.replace(/\//g, '-');
   };
 
+  // Initialize activeProgramId based on priority:
+  // 1. URL programId (highest priority)
+  // 2. Preselected library from URL params
+  // 3. Use a real existing program as fallback
+  useEffect(() => {
+    let programId = '';
+    
+    if (urlProgramId) {
+      // Highest priority: programId from URL
+      programId = urlProgramId;
+    } else if (preselectedLibrary) {
+      // Second priority: preselected library from URL params
+      programId = getProgramIdFromLibraryName(preselectedLibrary);
+    } else {
+      // Fallback: use the first available program from the domain
+      const domainData = getDomainData();
+      if (domainData.libraries.length > 0) {
+        // Use the first library as fallback
+        programId = getProgramIdFromLibraryName(domainData.libraries[0].name);
+      }
+    }
+    
+    setActiveProgramId(programId);
+  }, [urlProgramId, preselectedLibrary, domain, setActiveProgramId]);
+
   // Handle library selection
   const handleLibrarySelect = (library: any) => {
     setSelectedLibrary(library);
     if (library && library.name) {
       const programId = getProgramIdFromLibraryName(library.name);
-      setCurrentProgramId(programId);
+      setActiveProgramId(programId);
     } else {
-      // Fallback to default program for the domain
-      setCurrentProgramId(domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline');
+      // Fallback: use the first available program from the domain
+      const domainData = getDomainData();
+      if (domainData.libraries.length > 0) {
+        const fallbackProgramId = getProgramIdFromLibraryName(domainData.libraries[0].name);
+        setActiveProgramId(fallbackProgramId);
+      } else {
+        setActiveProgramId('');
+      }
     }
   };
+
+  const domainData = getDomainData();
 
   return (
     <ContextUpdater domain={domain}>
@@ -103,14 +144,14 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
             <div className="w-full sm:w-80">
               <ChatContainer
                 programs={[{ 
-                  id: currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline'), 
+                  id: activeProgramId || getDefaultProgramIdForDomain(), 
                   name: selectedLibrary ? selectedLibrary.name : getDomainTitle(), 
                   description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                   contextFiles: [],
                   docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
                   extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
                 }]}
-                defaultProgramId={currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline')}
+                defaultProgramId={activeProgramId || getDefaultProgramIdForDomain()}
                 preselectedLibrary={preselectedLibrary}
                 showModelSelectorOnly={true}
               />
@@ -131,14 +172,14 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
           <div className="w-full h-[calc(100vh-300px)] min-h-[500px]">
             <ChatContainer
               programs={[{ 
-                id: currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline'), 
+                id: activeProgramId || getDefaultProgramIdForDomain(), 
                 name: selectedLibrary ? selectedLibrary.name : getDomainTitle(), 
                 description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                 contextFiles: [],
                 docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
                 extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
               }]}
-              defaultProgramId={currentProgramId || (domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline')}
+              defaultProgramId={activeProgramId || getDefaultProgramIdForDomain()}
               preselectedLibrary={preselectedLibrary}
               showModelSelectorOnly={false}
             />

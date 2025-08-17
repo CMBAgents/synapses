@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import ProgramTabs from './program-tabs';
 import ChatSimple from './chat-simple';
 import ModelSelector from './model-selector';
 import ThemeWrapper from './theme-wrapper';
@@ -9,6 +8,7 @@ import { Program } from '@/app/utils/types';
 import { loadConfig } from '@/app/utils/config';
 import { preloadContext } from '@/app/utils/context';
 import { loadAstronomyData, loadFinanceData } from '@/app/utils/domain-loader';
+import { useProgramContext } from '../contexts/ProgramContext';
 
 interface ChatContainerProps {
   programs: Program[];
@@ -23,8 +23,8 @@ export default function ChatContainer({
   preselectedLibrary,
   showModelSelectorOnly = false
 }: ChatContainerProps) {
+  const { activeProgramId } = useProgramContext();
   const [config, setConfig] = useState<any>(null);
-  const [activeProgram, setActiveProgram] = useState(defaultProgramId);
   const [selectedModelId, setSelectedModelId] = useState<string>('');
   const [credentials, setCredentials] = useState<Record<string, Record<string, string>>>({});
 
@@ -46,19 +46,14 @@ export default function ChatContainer({
     }
   }, []);
 
-  // Preload context for the default program when the component mounts
+  // Preload context for the active program when the component mounts
   useEffect(() => {
-    if (defaultProgramId) {
-      preloadContext(defaultProgramId).catch(error => {
-        console.error(`Error preloading context for default program ${defaultProgramId}:`, error);
+    if (activeProgramId && activeProgramId !== '') {
+      preloadContext(activeProgramId).catch(error => {
+        console.error(`Error preloading context for active program ${activeProgramId}:`, error);
       });
     }
-  }, [defaultProgramId]);
-
-  // Handle program change
-  const handleProgramChange = (programId: string) => {
-    setActiveProgram(programId);
-  };
+  }, [activeProgramId]);
 
   // Handle model change
   const handleModelChange = (modelId: string) => {
@@ -70,9 +65,13 @@ export default function ChatContainer({
     setCredentials(newCredentials);
   };
 
-  // Get the active program
+  // Get the active program - use the global activeProgramId
   const getActiveProgram = () => {
-    return programs.find(p => p.id === activeProgram) || programs[0];
+    if (activeProgramId && activeProgramId !== '') {
+      return programs.find(p => p.id === activeProgramId) || programs[0];
+    }
+    // If no specific program is selected, return the first available program
+    return programs[0];
   };
 
   const currentProgram = getActiveProgram();
@@ -84,9 +83,9 @@ export default function ChatContainer({
 
   // Load libraries based on the active program
   const getLibraries = () => {
-    if (activeProgram === 'astronomy') {
+    if (activeProgramId === 'astronomy') {
       return loadAstronomyData().libraries;
-    } else if (activeProgram === 'finance') {
+    } else if (activeProgramId === 'finance') {
       return loadFinanceData().libraries;
     }
     return [];
@@ -114,7 +113,7 @@ export default function ChatContainer({
       {/* Chat area */}
       <div className="flex-1 h-full">
         <ChatSimple
-          programId={activeProgram}
+          programId={activeProgramId || 'general'}
           greeting={config.greeting || "How can I help you?"}
           selectedModelId={selectedModelId}
           libraries={getLibraries()}
