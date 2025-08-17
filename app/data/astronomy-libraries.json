@@ -28,8 +28,7 @@
       "github_url": "https://github.com/einsteinpy/einsteinpy",
       "stars": 650,
       "rank": 4,
-      "hasContextFile": true,
-      "contextFileName": "einsteinpy-einsteinpy-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "lightkurve/lightkurve",
@@ -44,8 +43,7 @@
       "github_url": "https://github.com/gwpy/gwpy",
       "stars": 378,
       "rank": 6,
-      "hasContextFile": true,
-      "contextFileName": "gwpy-gwpy-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "gwastro/pycbc",
@@ -74,8 +72,7 @@
       "github_url": "https://github.com/astropy/photutils",
       "stars": 276,
       "rank": 10,
-      "hasContextFile": true,
-      "contextFileName": "astropy-photutils-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "lesgourg/class_public",

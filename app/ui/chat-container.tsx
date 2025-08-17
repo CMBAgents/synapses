@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import ChatSimple from './chat-simple';
 import ModelSelector from './model-selector';
-import ThemeWrapper from './theme-wrapper';
 import { Program } from '@/app/utils/types';
 import { loadConfig } from '@/app/utils/config';
 import { preloadContext } from '@/app/utils/context';
