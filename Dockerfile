@@ -23,8 +23,9 @@ COPY . .
 # Create necessary directories
 RUN mkdir -p temp/repos temp/contexts public/context
 
-# Set permissions
-RUN chmod +x scripts/*.py scripts/*.sh
+# Set permissions for all Python and shell scripts in subdirectories
+RUN find scripts -name "*.py" -exec chmod +x {} \; && \
+    find scripts -name "*.sh" -exec chmod +x {} \;
 
 # Install curl for health check
 RUN apk add --no-cache curl
