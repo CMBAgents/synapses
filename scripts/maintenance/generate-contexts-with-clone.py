@@ -17,7 +17,7 @@ def load_domain_data(domain: str) -> Dict:
 
 def get_existing_context_files(domain: str) -> List[str]:
     """Get list of existing context files for a domain"""
-    context_dir = f'app/context/{domain}'
+    context_dir = f'public/context/{domain}'
     if not os.path.exists(context_dir):
         return []
     
@@ -140,7 +140,7 @@ def generate_context_for_library(library: Dict, domain: str) -> bool:
 def update_json_with_context_status(domain: str):
     """Update JSON file to reflect context file status"""
     json_path = f'app/data/{domain}-libraries.json'
-    context_dir = f'app/context/{domain}'
+    context_dir = f'public/context/{domain}'
     
     if not os.path.exists(json_path):
         return

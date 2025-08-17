@@ -56,7 +56,7 @@ NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict
 ProtectHome=true
-ReadWritePaths=$PROJECT_DIR/temp $PROJECT_DIR/app/context $PROJECT_DIR/public/context
+ReadWritePaths=$PROJECT_DIR/temp $PROJECT_DIR/public/context
 
 [Install]
 WantedBy=multi-user.target

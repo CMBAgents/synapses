@@ -28,15 +28,13 @@ logging.basicConfig(
 class ContextGenerator:
     def __init__(self, base_dir: str = "."):
         self.base_dir = Path(base_dir)
-        self.context_dir = self.base_dir / "app" / "context"
         self.data_dir = self.base_dir / "app" / "data"
-        self.public_context_dir = self.base_dir / "public" / "context"
+        self.context_dir = self.base_dir / "public" / "context"  # UNIFIED: Only public/context
         self.temp_dir = self.base_dir / "temp" / "contexts"
         self.repos_dir = self.base_dir / "temp" / "repos"
         
         # Create directories if they don't exist
         self.context_dir.mkdir(parents=True, exist_ok=True)
-        self.public_context_dir.mkdir(parents=True, exist_ok=True)
         self.temp_dir.mkdir(parents=True, exist_ok=True)
         self.repos_dir.mkdir(parents=True, exist_ok=True)
 
@@ -168,8 +166,8 @@ class ContextGenerator:
             logging.error(f"Repository {package_name} not found in {repo_path}")
             return None
         
-        # Create domain directory in public/context if it doesn't exist
-        domain_context_dir = self.public_context_dir / domain
+        # Create domain directory in context if it doesn't exist
+        domain_context_dir = self.context_dir / domain
         domain_context_dir.mkdir(parents=True, exist_ok=True)
         
         # Define output path for context file
@@ -209,13 +207,6 @@ class ContextGenerator:
                 
                 logging.info(f"Context generated for {package_name}: {len(enhanced_content)} characters")
                 logging.info(f"Context saved to: {output_path}")
-                
-                # Also save to app/context for consistency
-                app_context_dir = self.context_dir / domain
-                app_context_dir.mkdir(exist_ok=True)
-                app_context_file = app_context_dir / output_filename
-                with open(app_context_file, 'w', encoding='utf-8') as f:
-                    f.write(enhanced_content)
                 
                 return enhanced_content
             else:
@@ -264,15 +255,6 @@ class ContextGenerator:
             f.write(content)
         
         logging.info(f"Context saved: {filepath}")
-        
-        # Copy to public/context/{domain} (not to public/context directly)
-        public_domain_dir = self.public_context_dir / domain
-        public_domain_dir.mkdir(parents=True, exist_ok=True)
-        public_filepath = public_domain_dir / filename
-        with open(public_filepath, 'w', encoding='utf-8') as f:
-            f.write(content)
-        
-        logging.info(f"Context also saved to public: {public_filepath}")
 
     def check_contextmaker_available(self) -> bool:
         """Checks if contextmaker is available."""

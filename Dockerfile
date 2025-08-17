@@ -21,7 +21,7 @@ RUN pip3 install --break-system-packages -r requirements.txt
 COPY . .
 
 # Create necessary directories
-RUN mkdir -p temp/repos temp/contexts app/context public/context
+RUN mkdir -p temp/repos temp/contexts public/context
 
 # Set permissions
 RUN chmod +x scripts/*.py scripts/*.sh

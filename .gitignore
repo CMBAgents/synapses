@@ -173,7 +173,7 @@ htmlcov/
 
 # State and cache files
 temp/
-app/context/
+# app/context/ - REMOVED: No longer used, unified to public/context
 gcp_configs/cmbagent-info-a978301b2160.json
 gcp_credentials.json
 
