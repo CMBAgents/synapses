@@ -33,7 +33,7 @@ export default function LandingPage() {
         {/* Hero section */}
         <div className="text-center max-w-none mx-auto content-fade-in mb-8 sm:mb-12">
           <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-bold mb-4 sm:mb-6 text-white font-jersey text-center uppercase">
-            Synapses
+            SynapsAgents
           </h1>
           
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jersey mb-6 sm:mb-8 md:mb-10 text-white">

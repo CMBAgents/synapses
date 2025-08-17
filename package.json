@@ -1,5 +1,5 @@
 {
-  "name": "synapses",
+  "name": "synapsagents",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,7 +19,7 @@
   "dependencies": {
     "@google-cloud/aiplatform": "^4.0.0",
     "@google-cloud/storage": "^7.7.0",
-    "@google-cloud/vertexai": "^0.2.0",
+    "@google-cloud/vertexai": "^1.10.0",
     "highlight.js": "^11.11.1",
     "katex": "^0.16.9",
     "next": "15.3.0",

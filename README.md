@@ -1,4 +1,4 @@
-# Synapses
+# SynapsAgents
 
 A modern platform to explore and rank the top 100 open source libraries by expertise domain.
 
@@ -6,12 +6,12 @@ A modern platform to explore and rank the top 100 open source libraries by exper
 
 ## Overview
 
-Synapses allows you to discover, compare, and interact with the most popular libraries across different domains. Each library is ranked according to its GitHub popularity and comes with detailed contexts automatically generated from existing documentation, docstrings, notebooks, and even code.
+SynapsAgents allows you to discover, compare, and interact with the most popular libraries across different domains. Each library is ranked according to its GitHub popularity and comes with detailed contexts automatically generated from existing documentation, docstrings, notebooks, and even code.
 
 ## Screenshots
 
 ### Leaderboard
-![Synapses Main Interface](public/github1.png)
+![SynapsAgents Main Interface](public/github1.png)
 
 ### Chat
 ![Library Rankings](public/github2.png)

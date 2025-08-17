@@ -11,8 +11,8 @@ RUN apk add --no-cache python3 py3-pip git gcc musl-dev linux-headers python3-de
 COPY package*.json ./
 COPY requirements.txt ./
 
-# Install Node.js dependencies (skip husky in production)
-RUN npm ci --only=production --ignore-scripts
+# Install Node.js dependencies (including dev dependencies for build)
+RUN npm ci --ignore-scripts
 
 # Install Python dependencies
 RUN pip3 install --break-system-packages -r requirements.txt
