@@ -71,7 +71,7 @@ htmlcov/
 
 # Context and data files (can be large)
 context/
-public/context/
+# public/context/ - Keep this for the API to work
 *.md
 
 # Configuration state files
