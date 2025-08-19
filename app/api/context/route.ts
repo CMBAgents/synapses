@@ -134,7 +134,19 @@ function handleUpdateLibrariesWithContextStatus(domain: string) {
         // Handle cases like "skyfielders/python-skyfield" -> "skyfield-context.txt"
         `${library.name.split('/').pop().split('-').pop()}-context.txt`,
         // Handle cases like "python-skyfield" -> "skyfield-context.txt"
-        `${library.name.split('/').pop().split('-').slice(-1)[0]}-context.txt`
+        `${library.name.split('/').pop().split('-').slice(-1)[0]}-context.txt`,
+        // Handle cases like "lesgourg/class_public" -> "lesgourg-class-public-context.txt"
+        `${library.name.replace(/\//g, '-').replace(/_/g, '-')}-context.txt`,
+        // Handle cases like "owner/repo_name" -> "owner-repo-name-context.txt"
+        `${library.name.replace(/\//g, '-').replace(/_/g, '-')}-context.txt`,
+        // Handle simplified filenames like "astroabc.txt" -> "elisej/astroabc"
+        `${library.name.split('/').pop()}.txt`,
+        // Handle cases like "astromatic/swarp" -> "swarp.txt"
+        `${library.name.split('/').pop()}.txt`,
+        // Handle cases like "mtazzari/galario" -> "galario.txt"
+        `${library.name.split('/').pop()}.txt`,
+        // Handle cases like "dstndstn/astrometry.net" -> "dstndstn-astrometry.net-context.txt"
+        `${library.name.replace(/\//g, '-').replace(/\./g, '-')}-context.txt`
       ];
       
       let hasContextFile = false;

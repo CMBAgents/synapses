@@ -85,7 +85,8 @@
       "github_url": "https://github.com/lesgourg/class_public",
       "stars": 267,
       "rank": 11,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "lesgourg-class-public-context.txt"
     },
     {
       "name": "spacepy/spacepy",
@@ -228,8 +229,7 @@
       "github_url": "https://github.com/mperrin/poppy",
       "stars": 184,
       "rank": 29,
-      "hasContextFile": true,
-      "contextFileName": "mperrin-poppy-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "pypeit/pypeit",
@@ -364,8 +364,7 @@
       "github_url": "https://github.com/amrex-astro/nyx",
       "stars": 96,
       "rank": 46,
-      "hasContextFile": true,
-      "contextFileName": "amrex-astro-nyx-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "autostronomy/astrophot",
@@ -405,7 +404,7 @@
       "stars": 85,
       "rank": 51,
       "hasContextFile": true,
-      "contextFileName": "astrocv-astrocv-context.txt"
+      "contextFileName": "astrocv.txt"
     },
     {
       "name": "spacetelescope/astronify",
@@ -541,7 +540,7 @@
       "stars": 51,
       "rank": 68,
       "hasContextFile": true,
-      "contextFileName": "simonsobs-pixell-context.txt"
+      "contextFileName": "pixell-context.txt"
     },
     {
       "name": "quokka-astro/quokka",
@@ -645,15 +644,14 @@
       "stars": 44,
       "rank": 78,
       "hasContextFile": true,
-      "contextFileName": "numcosmo-numcosmo-context.txt"
+      "contextFileName": "numcosmo.txt"
     },
     {
       "name": "amrex-astro/maestroex",
       "github_url": "https://github.com/amrex-astro/maestroex",
       "stars": 43,
       "rank": 82,
-      "hasContextFile": true,
-      "contextFileName": "amrex-astro-maestroex-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "punzo/slicerastro",
@@ -747,8 +745,7 @@
       "github_url": "https://github.com/smith42/astropt",
       "stars": 34,
       "rank": 93,
-      "hasContextFile": true,
-      "contextFileName": "smith42-astropt-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "amrex-astro/maestro",
@@ -763,14 +760,16 @@
       "github_url": "https://github.com/dalya/weirdestgalaxies",
       "stars": 32,
       "rank": 96,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "weirdestgalaxies.txt"
     },
     {
       "name": "mtazzari/galario",
       "github_url": "https://github.com/mtazzari/galario",
       "stars": 32,
       "rank": 96,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "galario.txt"
     },
     {
       "name": "cosmodesi/pycorr",
@@ -785,7 +784,8 @@
       "github_url": "https://github.com/lofar-astron/rmextract",
       "stars": 31,
       "rank": 98,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "rmextract.txt"
     },
     {
       "name": "trasal/frbpoppy",
