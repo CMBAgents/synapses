@@ -5,7 +5,8 @@
       "github_url": "https://github.com/quantopian/zipline",
       "stars": 15800,
       "rank": 1,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "quantopian-zipline-context.txt"
     },
     {
       "name": "mlfinlab/mlfinlab",

@@ -144,13 +144,31 @@ class ContextManager:
             
             # Mettre à jour les bibliothèques astronomy
             for lib in astronomy_data["libraries"]:
-                lib_name = lib["name"].split("/")[-1]
-                context_filename = f"{lib_name}-context.txt"
+                lib_name = lib["name"].replace("/", "-")
                 
-                has_context = any(
-                    file_info["filename"] == context_filename 
-                    for file_info in context_files.get("astronomy", [])
-                )
+                # Chercher le fichier de contexte correspondant
+                has_context = False
+                context_filename = None
+                
+                for file_info in context_files.get("astronomy", []):
+                    filename = file_info["filename"]
+                    
+                    # Extraire les parties du nom pour des correspondances flexibles
+                    lib_parts = lib["name"].split("/")
+                    lib_short = lib_parts[-1]  # Dernière partie (ex: astrocv de astrocv/astrocv)
+                    lib_first = lib_parts[0]   # Première partie (ex: astrocv de astrocv/astrocv)
+                    
+                    # Vérifier si le fichier correspond à cette librairie
+                    if (filename == f"{lib_name}-context.txt" or 
+                        filename == f"{lib_name}.txt" or
+                        filename.startswith(f"{lib_name}-") and filename.endswith(".txt") or
+                        filename == f"{lib_short}-context.txt" or
+                        filename == f"{lib_short}.txt" or
+                        filename == f"{lib_first}-context.txt" or
+                        filename == f"{lib_first}.txt"):
+                        has_context = True
+                        context_filename = filename
+                        break
                 
                 lib["hasContextFile"] = has_context
                 if has_context:
@@ -158,13 +176,31 @@ class ContextManager:
             
             # Mettre à jour les bibliothèques finance
             for lib in finance_data["libraries"]:
-                lib_name = lib["name"].split("/")[-1]
-                context_filename = f"{lib_name}-context.txt"
+                lib_name = lib["name"].replace("/", "-")
                 
-                has_context = any(
-                    file_info["filename"] == context_filename 
-                    for file_info in context_files.get("finance", [])
-                )
+                # Chercher le fichier de contexte correspondant
+                has_context = False
+                context_filename = None
+                
+                for file_info in context_files.get("finance", []):
+                    filename = file_info["filename"]
+                    
+                    # Extraire les parties du nom pour des correspondances flexibles
+                    lib_parts = lib["name"].split("/")
+                    lib_short = lib_parts[-1]  # Dernière partie
+                    lib_first = lib_parts[0]   # Première partie
+                    
+                    # Vérifier si le fichier correspond à cette librairie
+                    if (filename == f"{lib_name}-context.txt" or 
+                        filename == f"{lib_name}.txt" or
+                        filename.startswith(f"{lib_name}-") and filename.endswith(".txt") or
+                        filename == f"{lib_short}-context.txt" or
+                        filename == f"{lib_short}.txt" or
+                        filename == f"{lib_first}-context.txt" or
+                        filename == f"{lib_first}.txt"):
+                        has_context = True
+                        context_filename = filename
+                        break
                 
                 lib["hasContextFile"] = has_context
                 if has_context:
