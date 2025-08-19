@@ -1,0 +1,29 @@
+# MCP Server Dependencies for CMB Agent - Main Branch Adapted
+# Core MCP functionality
+mcp>=1.0.0
+fastmcp>=0.1.0
+
+# HTTP client for API communication
+requests>=2.31.0
+
+# Type hints and modern Python features
+typing-extensions>=4.0.0
+
+# Optional: Enhanced JSON handling
+ujson>=5.0.0
+
+# Optional: Better HTTP session management
+requests-oauthlib>=1.3.0
+
+# Optional: Async support for future enhancements
+aiohttp>=3.8.0
+asyncio-mqtt>=0.13.0
+
+# Optional: Enhanced logging
+structlog>=23.0.0
+
+# Optional: Configuration management
+pydantic>=2.0.0
+
+# Optional: Environment variable management
+python-dotenv>=1.0.0

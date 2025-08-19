@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "cmbagent": {
+      "command": "python",
+      "args": ["mcp_cmbagent.py", "stdio"],
+      "env": {
+        "PYTHONPATH": ".",
+        "OPEN_ROUTER_KEY": "${OPEN_ROUTER_KEY}"
+      },
+      "description": "CMB Agent MCP Server - Adapted for main branch with full astronomy and finance support"
+    }
+  },
+  "settings": {
+    "baseUrl": "http://localhost:3000",
+    "defaultProgram": "skyfielders-python-skyfield",
+    "defaultModel": "deepseek/deepseek-chat-v3-0324",
+    "domains": ["astronomy", "finance"],
+    "features": {
+      "chat": true,
+      "context": true,
+      "leaderboard": true,
+      "search": true,
+      "health": true,
+      "models": true
+    }
+  }
+}
