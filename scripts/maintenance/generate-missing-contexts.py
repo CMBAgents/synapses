@@ -54,6 +54,21 @@ class ContextGenerator:
         
         return existing_contexts
 
+    def normalize_library_name(self, lib_name: str) -> str:
+        """Normalizes library name for consistent file naming."""
+        # Remove common prefixes and normalize
+        normalized = lib_name.replace('/', '-').replace('_', '-').replace('.', '-')
+        # Remove duplicate hyphens
+        normalized = re.sub(r'-+', '-', normalized)
+        # Remove leading/trailing hyphens
+        normalized = normalized.strip('-')
+        return normalized
+
+    def get_context_filename(self, lib_name: str) -> str:
+        """Gets the standardized context filename for a library."""
+        normalized_name = self.normalize_library_name(lib_name)
+        return f"{normalized_name}-context.txt"
+
     def load_libraries_data(self) -> Dict[str, List[Dict]]:
         """Loads library data from JSON files."""
         libraries = {}
@@ -170,12 +185,12 @@ class ContextGenerator:
         domain_context_dir = self.context_dir / domain
         domain_context_dir.mkdir(parents=True, exist_ok=True)
         
-        # Define output path for context file
-        output_filename = f"{lib_name}-context.txt"
+        # Define output path for context file using normalized name
+        output_filename = self.get_context_filename(lib_name)
         output_path = domain_context_dir / output_filename
         
         try:
-            # Use contextmaker.make() directly with the specified structure
+            # Use contextmaker.make() with the correct API structure
             import contextmaker
             
             logging.info(f"Calling contextmaker.make() for {package_name}")
@@ -184,6 +199,7 @@ class ContextGenerator:
             logging.info(f"  - input_path: {repo_path}")
             logging.info(f"  - rough: True")
             
+            # Use the correct API structure based on the codebase examples
             result = contextmaker.make(
                 library_name=package_name,
                 output_path=str(output_path),
@@ -191,7 +207,8 @@ class ContextGenerator:
                 rough=True,
             )
             
-            if result and output_path.exists():
+            # Check if the file was created
+            if output_path.exists():
                 logging.info(f"Contextmaker succeeded for {package_name}")
                 
                 # Read content
@@ -210,13 +227,28 @@ class ContextGenerator:
                 
                 return enhanced_content
             else:
-                logging.warning(f"Context file not found at {output_path}")
-                logging.warning(f"contextmaker result: {result}")
-                return None
+                # Try alternative approach using command line
+                logging.warning(f"Context file not found at {output_path}, trying command line approach")
+                return self.try_command_line_contextmaker(package_name, lib_name, domain, repo_path, output_path)
                 
         except Exception as e:
             logging.error(f"Exception during generation for {package_name}: {e}")
-            return None
+            # Try alternative approach
+            fallback_result = self.try_command_line_contextmaker(package_name, lib_name, domain, repo_path, output_path)
+            if fallback_result:
+                return fallback_result
+            
+            # If all methods fail, create a non-Sphinx context
+            logging.warning(f"All contextmaker methods failed for {package_name}, creating non-Sphinx context")
+            non_sphinx_content = self.create_non_sphinx_context(package_name, lib_name, repo_path)
+            enhanced_content = self.enhance_context_content(non_sphinx_content, package_name, lib_name)
+            
+            # Save non-Sphinx content
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(enhanced_content)
+            
+            logging.info(f"Non-Sphinx context created for {package_name} as final fallback")
+            return enhanced_content
         finally:
             # Clean only the temporary repository, NOT the context file
             try:
@@ -225,6 +257,252 @@ class ContextGenerator:
                 logging.info(f"Temporary repository cleaned: {repo_path}")
             except Exception as e:
                 logging.warning(f"Unable to clean temporary repository {repo_path}: {e}")
+
+    def create_fallback_context(self, package_name: str, lib_name: str, repo_path: Path) -> str:
+        """Creates a basic fallback context when contextmaker fails."""
+        logging.info(f"Creating fallback context for {package_name}")
+        
+        # Try to extract basic information from the repository
+        fallback_content = []
+        fallback_content.append(f"# Documentation for {lib_name}")
+        fallback_content.append(f"Package: {package_name}")
+        fallback_content.append(f"Generated with: fallback method")
+        fallback_content.append(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        fallback_content.append("")
+        fallback_content.append("=" * 80)
+        fallback_content.append("")
+        fallback_content.append(f"# {lib_name}")
+        fallback_content.append("")
+        fallback_content.append("This context was generated using a fallback method because the primary contextmaker failed.")
+        fallback_content.append("")
+        
+        # Try to read README files
+        readme_files = [
+            "README.md", "README.rst", "README.txt", "readme.md", "readme.rst", "readme.txt"
+        ]
+        
+        for readme_file in readme_files:
+            readme_path = repo_path / readme_file
+            if readme_path.exists():
+                try:
+                    with open(readme_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        fallback_content.append(f"## README Content")
+                        fallback_content.append("")
+                        fallback_content.append("```markdown")
+                        fallback_content.append(content)
+                        fallback_content.append("```")
+                        fallback_content.append("")
+                        break
+                except Exception as e:
+                    logging.warning(f"Could not read {readme_file}: {e}")
+        
+        # Try to extract basic file structure
+        try:
+            fallback_content.append("## Repository Structure")
+            fallback_content.append("")
+            fallback_content.append("```")
+            for item in sorted(repo_path.iterdir()):
+                if item.is_dir():
+                    fallback_content.append(f"📁 {item.name}/")
+                else:
+                    fallback_content.append(f"📄 {item.name}")
+            fallback_content.append("```")
+            fallback_content.append("")
+        except Exception as e:
+            logging.warning(f"Could not list repository structure: {e}")
+        
+        return "\n".join(fallback_content)
+
+    def create_non_sphinx_context(self, package_name: str, lib_name: str, repo_path: Path) -> str:
+        """Creates a comprehensive context without using Sphinx."""
+        logging.info(f"Creating non-Sphinx context for {package_name}")
+        
+        context_parts = []
+        context_parts.append(f"# Documentation for {lib_name}")
+        context_parts.append(f"Package: {package_name}")
+        context_parts.append(f"Generated with: non-Sphinx method")
+        context_parts.append(f"Date: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+        context_parts.append("")
+        context_parts.append("=" * 80)
+        context_parts.append("")
+        
+        # 1. README and documentation files
+        context_parts.append("## Documentation Files")
+        context_parts.append("")
+        
+        doc_files = [
+            "README.md", "README.rst", "README.txt", "readme.md", "readme.rst", "readme.txt",
+            "INSTALL.md", "INSTALL.rst", "INSTALL.txt", "install.md", "install.rst", "install.txt",
+            "USAGE.md", "USAGE.rst", "USAGE.txt", "usage.md", "usage.rst", "usage.txt",
+            "CHANGELOG.md", "CHANGELOG.rst", "CHANGELOG.txt", "changelog.md", "changelog.rst", "changelog.txt",
+            "LICENSE", "LICENSE.md", "LICENSE.txt", "license", "license.md", "license.txt"
+        ]
+        
+        for doc_file in doc_files:
+            doc_path = repo_path / doc_file
+            if doc_path.exists():
+                try:
+                    with open(doc_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        context_parts.append(f"### {doc_file}")
+                        context_parts.append("")
+                        context_parts.append("```")
+                        context_parts.append(content)
+                        context_parts.append("```")
+                        context_parts.append("")
+                except Exception as e:
+                    logging.warning(f"Could not read {doc_file}: {e}")
+        
+        # 2. Python source code documentation
+        context_parts.append("## Python Source Code")
+        context_parts.append("")
+        
+        python_files = []
+        for root, dirs, files in os.walk(repo_path):
+            # Skip common directories to avoid
+            dirs[:] = [d for d in dirs if d not in ['.git', '__pycache__', '.pytest_cache', 'build', 'dist', 'venv', '.venv']]
+            
+            for file in files:
+                if file.endswith('.py'):
+                    python_files.append(os.path.join(root, file))
+        
+        # Sort files and limit to first 20 to avoid huge contexts
+        python_files.sort()
+        python_files = python_files[:20]
+        
+        for py_file in python_files:
+            try:
+                rel_path = os.path.relpath(py_file, repo_path)
+                with open(py_file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    context_parts.append(f"### {rel_path}")
+                    context_parts.append("")
+                    context_parts.append("```python")
+                    context_parts.append(content)
+                    context_parts.append("```")
+                    context_parts.append("")
+            except Exception as e:
+                logging.warning(f"Could not read {py_file}: {e}")
+        
+        # 3. Configuration files
+        context_parts.append("## Configuration Files")
+        context_parts.append("")
+        
+        config_files = [
+            "setup.py", "setup.cfg", "pyproject.toml", "requirements.txt", "requirements-dev.txt",
+            "Makefile", "CMakeLists.txt", "Dockerfile", ".gitignore", "MANIFEST.in"
+        ]
+        
+        for config_file in config_files:
+            config_path = repo_path / config_file
+            if config_path.exists():
+                try:
+                    with open(config_path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        context_parts.append(f"### {config_file}")
+                        context_parts.append("")
+                        context_parts.append("```")
+                        context_parts.append(content)
+                        context_parts.append("```")
+                        context_parts.append("")
+                except Exception as e:
+                    logging.warning(f"Could not read {config_file}: {e}")
+        
+        # 4. Repository structure
+        context_parts.append("## Repository Structure")
+        context_parts.append("")
+        context_parts.append("```")
+        
+        def list_directory(path, prefix="", max_depth=3, current_depth=0):
+            if current_depth > max_depth:
+                return
+            
+            items = sorted(path.iterdir())
+            for i, item in enumerate(items):
+                is_last = i == len(items) - 1
+                current_prefix = "└── " if is_last else "├── "
+                
+                if item.is_dir():
+                    context_parts.append(f"{prefix}{current_prefix}{item.name}/")
+                    if current_depth < max_depth:
+                        new_prefix = prefix + ("    " if is_last else "│   ")
+                        list_directory(item, new_prefix, max_depth, current_depth + 1)
+                else:
+                    context_parts.append(f"{prefix}{current_prefix}{item.name}")
+        
+        list_directory(repo_path)
+        context_parts.append("```")
+        context_parts.append("")
+        
+        return "\n".join(context_parts)
+
+    def try_command_line_contextmaker(self, package_name: str, lib_name: str, domain: str, repo_path: Path, output_path: Path) -> Optional[str]:
+        """Try using contextmaker via command line as fallback."""
+        try:
+            logging.info(f"Trying command line contextmaker for {package_name}")
+            
+            # Use the command line interface
+            cmd = [
+                "contextmaker", 
+                package_name, 
+                "--output", str(output_path),
+                "--input-path", str(repo_path)
+            ]
+            
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=300  # 5 minutes timeout
+            )
+            
+            if result.returncode == 0 and output_path.exists():
+                logging.info(f"Command line contextmaker succeeded for {package_name}")
+                
+                # Read content
+                with open(output_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                
+                # Add metadata
+                enhanced_content = self.enhance_context_content(content, package_name, lib_name)
+                
+                # Save enhanced content back to the same file
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(enhanced_content)
+                
+                return enhanced_content
+            else:
+                logging.error(f"Command line contextmaker failed for {package_name}")
+                logging.error(f"STDOUT: {result.stdout}")
+                logging.error(f"STDERR: {result.stderr}")
+                
+                # Use non-Sphinx method as final fallback
+                logging.info(f"Using non-Sphinx method for {package_name}")
+                non_sphinx_content = self.create_non_sphinx_context(package_name, lib_name, repo_path)
+                enhanced_content = self.enhance_context_content(non_sphinx_content, package_name, lib_name)
+                
+                # Save non-Sphinx content
+                with open(output_path, 'w', encoding='utf-8') as f:
+                    f.write(enhanced_content)
+                
+                logging.info(f"Non-Sphinx context created for {package_name}")
+                return enhanced_content
+                
+        except Exception as e:
+            logging.error(f"Exception in command line contextmaker for {package_name}: {e}")
+            
+            # Use non-Sphinx method as final fallback
+            logging.info(f"Using non-Sphinx method for {package_name} after exception")
+            non_sphinx_content = self.create_non_sphinx_context(package_name, lib_name, repo_path)
+            enhanced_content = self.enhance_context_content(non_sphinx_content, package_name, lib_name)
+            
+            # Save non-Sphinx content
+            with open(output_path, 'w', encoding='utf-8') as f:
+                f.write(enhanced_content)
+            
+            logging.info(f"Non-Sphinx context created for {package_name} after exception")
+            return enhanced_content
 
     def enhance_context_content(self, content: str, package_name: str, lib_name: str) -> str:
         """Enhances context content with metadata."""
@@ -246,8 +524,8 @@ class ContextGenerator:
         domain_dir = self.context_dir / domain
         domain_dir.mkdir(exist_ok=True)
         
-        # Filename
-        filename = f"{lib_name}-context.txt"
+        # Use normalized filename
+        filename = self.get_context_filename(lib_name)
         filepath = domain_dir / filename
         
         # Save file
@@ -326,8 +604,11 @@ class ContextGenerator:
                     logging.warning(f"No GitHub URL for {lib_name}")
                     continue
                 
-                # Check if context already exists
-                if lib_name in existing_libs:
+                # Normalize library name for consistent comparison
+                normalized_lib_name = self.normalize_library_name(lib_name)
+                
+                # Check if context already exists using normalized name
+                if normalized_lib_name in existing_libs:
                     logging.info(f"Existing context for {lib_name}, skipped")
                     continue
                 

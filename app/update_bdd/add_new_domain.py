@@ -1,13 +1,27 @@
 #!/usr/bin/env python3
 """
-Script pour ajouter facilement un nouveau domaine au système.
-Utilise les modèles prédéfinis et permet la personnalisation.
+Script pour ajouter de nouveaux domaines au système.
+Utilise maintenant une configuration locale au lieu de update_all_domains.
 """
 
-import sys
 import json
+import sys
 from pathlib import Path
 import argparse
+
+# Configuration des domaines existants (localisée)
+DOMAIN_CONFIGS = {
+    "astronomy": {
+        "description": "Astronomy and cosmology libraries",
+        "keywords": ["astronomy", "cosmology", "astrophysics"],
+        "use_ascl": True
+    },
+    "finance": {
+        "description": "Finance and trading libraries",
+        "keywords": ["finance", "trading", "portfolio"],
+        "use_ascl": False
+    }
+}
 
 # Ajouter le répertoire parent au path
 sys.path.append(str(Path(__file__).parent))
@@ -18,7 +32,6 @@ from domain_templates import (
     create_custom_domain, 
     validate_domain_config
 )
-from update_all_domains import DOMAIN_CONFIGS
 
 def show_existing_domains():
     """Affiche les domaines existants"""
