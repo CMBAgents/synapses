@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 const jerseyFont = Jersey_10({ weight: "400", subsets: ["latin"], variable: "--font-jersey" });
 
 export const metadata: Metadata = {
-  title: "SynapsAgents - Multi-Domain Tools Help Assistant",
+      title: "Synapses - Multi-Domain Tools Help Assistant",
   description: "Interactive help assistant for Machine Learning, Astrophysics & Cosmology and Finance & Trading",
 };
 
