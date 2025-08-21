@@ -15,7 +15,6 @@ import os
 import sys
 import json
 import csv
-import requests
 import subprocess
 import tempfile
 import shutil
@@ -165,71 +164,28 @@ class MaintenanceManager:
             raise
     
     def step2_update_json_data(self, libraries_data: List[Dict]):
-        """Étape 2: Met à jour les fichiers JSON via la nouvelle API context"""
-        self.logger.info("=== ÉTAPE 2: Mise à jour des données JSON via l'API ===")
+        """Étape 2: Mise à jour des données JSON via le script unifié"""
+        self.logger.info("=== ÉTAPE 2: Mise à jour des données JSON ===")
         
         try:
-            # Utiliser la nouvelle API pour mettre à jour le statut des contextes
-            self._update_json_status_via_api()
+            # Utiliser le script unifié context-manager-unified.py
+            script_path = self.base_dir / "scripts" / "maintenance" / "context-manager-unified.py"
+            if script_path.exists():
+                self.logger.info("Exécution de context-manager-unified.py (mise à jour rapide)...")
+                subprocess.run(["python3", str(script_path), "--quick"], cwd=self.base_dir, check=True)
+                self.logger.info("✅ Statut des contextes mis à jour via le script unifié")
+            else:
+                self.logger.error("Script context-manager-unified.py non trouvé")
+                raise Exception("Script context-manager-unified.py introuvable")
             
-            self.logger.info("✅ Étape 2 terminée: statut des contextes mis à jour via l'API")
+            self.logger.info("✅ Étape 2 terminée: statut des contextes mis à jour")
             
         except Exception as e:
             self.logger.error(f"❌ Erreur dans l'étape 2: {e}")
             raise
     
-    def _update_json_status_via_api(self):
-        """Met à jour le statut des contextes via l'API context"""
-        self.logger.info("Mise à jour du statut des contextes via l'API...")
-        
-        try:
-            # Vérifier que le serveur est accessible
-            if not self._check_server_status():
-                raise Exception("Serveur Next.js inaccessible")
-            
-            # Mettre à jour astronomy
-            self.logger.info("Mise à jour du domaine astronomy...")
-            astronomy_success = self._update_domain_via_api("astronomy")
-            
-            # Mettre à jour finance
-            self.logger.info("Mise à jour du domaine finance...")
-            finance_success = self._update_domain_via_api("finance")
-            
-            if astronomy_success and finance_success:
-                self.logger.info("✅ Tous les domaines mis à jour avec succès")
-            else:
-                self.logger.warning("⚠️  Certains domaines n'ont pas pu être mis à jour")
-                
-        except Exception as e:
-            self.logger.error(f"Erreur lors de la mise à jour via l'API: {e}")
-            raise
-    
-    def _check_server_status(self) -> bool:
-        """Vérifie que le serveur Next.js est accessible"""
-        try:
-            response = requests.get("http://localhost:3000/api/health", timeout=10)
-            return response.status_code == 200
-        except:
-            return False
-    
-    def _update_domain_via_api(self, domain: str) -> bool:
-        """Met à jour un domaine via l'API context"""
-        try:
-            api_url = f"http://localhost:3000/api/context?domain={domain}&action=updateLibrariesWithContextStatus"
-            response = requests.get(api_url, timeout=30)
-            response.raise_for_status()
-            
-            data = response.json()
-            if data.get("success"):
-                self.logger.info(f"✅ Domaine {domain} mis à jour via l'API")
-                return True
-            else:
-                self.logger.error(f"❌ Échec de la mise à jour du domaine {domain}: {data.get('error')}")
-                return False
-                
-        except Exception as e:
-            self.logger.error(f"❌ Erreur lors de la mise à jour du domaine {domain}: {e}")
-            return False
+    # Les méthodes _update_json_status_via_api, _check_server_status et _update_domain_via_api 
+    # ont été supprimées car remplacées par l'utilisation directe de update-json-status.py
     
     def step3_generate_missing_contexts(self):
         """Étape 3: Génération des contextes manquants"""
@@ -260,12 +216,13 @@ class MaintenanceManager:
         self.logger.info("=== ÉTAPE 4: Mise à jour de la configuration ===")
         
         try:
-            # Exécuter le gestionnaire de contextes directement
-            script_path = self.base_dir / "scripts" / "core" / "manage-contexts.py"
+            # Exécuter le script unifié pour la mise à jour de configuration
+            script_path = self.base_dir / "scripts" / "maintenance" / "context-manager-unified.py"
             if script_path.exists():
-                subprocess.run(["python3", str(script_path), "--force"], cwd=self.base_dir, check=True)
+                subprocess.run(["python3", str(script_path), "--quick"], cwd=self.base_dir, check=True)
+                self.logger.info("✅ Configuration mise à jour via le script unifié")
             else:
-                self.logger.error("Script manage-contexts.py non trouvé")
+                self.logger.error("Script context-manager-unified.py non trouvé")
             
             self.logger.info("✅ Étape 4 terminée")
             
@@ -403,10 +360,16 @@ class MaintenanceManager:
     def _generate_contexts_for_domain(self, data: Dict, domain: str):
         """Génère les contextes pour un domaine"""
         self.logger.info(f"Génération des contextes pour {domain}")
-        # Implémentation simplifiée - utilise le script existant
-        script_path = self.base_dir / "scripts" / "maintenance" / "generate-missing-contexts.py"
+        # Utilise le script unifié pour la génération
+        script_path = self.base_dir / "scripts" / "maintenance" / "context-manager-unified.py"
         if script_path.exists():
-            subprocess.run(["python3", str(script_path), "--domain", domain], cwd=self.base_dir)
+            self.logger.info("Génération des contextes via le script unifié...")
+            # Note: Le script unifié gère tous les domaines automatiquement
+            # On l'appelle une seule fois pour tous les domaines
+            if domain == "astronomy":  # Appeler seulement pour le premier domaine
+                subprocess.run(["python3", str(script_path), "--full"], cwd=self.base_dir)
+        else:
+            self.logger.error("Script context-manager-unified.py non trouvé")
     
     def _cleanup_duplicate_contexts(self):
         """Nettoie les contextes dupliqués et garde le plus long pour chaque bibliothèque"""
@@ -415,16 +378,12 @@ class MaintenanceManager:
         self.logger.info("  - Conservation du contexte le plus long pour chaque bibliothèque")
         self.logger.info("  - Mise à jour automatique des JSON après chaque modification")
         
-        script_path = self.base_dir / "scripts" / "maintenance" / "cleanup-duplicate-contexts.py"
+        script_path = self.base_dir / "scripts" / "maintenance" / "context-manager-unified.py"
         if script_path.exists():
-            subprocess.run(["python3", str(script_path)], cwd=self.base_dir, check=True)
+            subprocess.run(["python3", str(script_path), "--cleanup"], cwd=self.base_dir, check=True)
             self.logger.info("✅ Nettoyage avancé des contextes dupliqués terminé")
-            
-            # Mise à jour finale des JSON après le cleanup
-            self.logger.info("🔄 Mise à jour finale des JSON après cleanup...")
-            self._update_json_status_via_api()
         else:
-            self.logger.warning("Script cleanup-duplicate-contexts.py non trouvé")
+            self.logger.warning("Script context-manager-unified.py non trouvé")
     
     def _cleanup_old_logs(self):
         """Nettoie les anciens logs"""

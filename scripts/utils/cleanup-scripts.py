@@ -13,7 +13,7 @@ def cleanup_scripts():
     
     # Scripts à supprimer (redondants ou obsolètes)
     scripts_to_remove = [
-        # Scripts de gestion des contextes (remplacés par manage-contexts.py)
+        # Scripts de gestion des contextes (remplacés par context-manager-unified.py)
         "update-context-status.js",
         "update-context-auto.js", 
         "update-context-python.py",
@@ -26,7 +26,7 @@ def cleanup_scripts():
         "optimized-auto-update.py",
         "monitor-updater.py",
         
-        # Scripts de déploiement (remplacés par deploy.py)
+        # Scripts de déploiement (supprimés)
         "deploy-gcp.sh",
         "deploy-gcp-budget.sh",
         "setup-deployment.sh",
@@ -43,33 +43,27 @@ def cleanup_scripts():
     # Scripts à garder (essentiels)
     scripts_to_keep = [
         # Scripts unifiés (nouveaux)
-        "manage-contexts.py",
+        "context-manager-unified.py",
         "maintenance.py", 
-        "deploy.py",
         
         # Scripts essentiels
         "generate-programs-from-libraries.py",
         "generate-missing-contexts.py",
         "generate-contexts-with-clone.py",
         "generate-and-sync-all.py",
-        "cloud-sync-contexts.py",
-        "cost-monitor.py",
         
-        # Scripts d'installation et configuration
-        "install-dependencies.py",
-        "install_contextmaker.py",
-        "mock_contextmaker.py",
-        "install-config-updater.sh",
-        "install-service.sh",
+        # Scripts de configuration
         "setup_maintenance_service.sh",
         "service-control.sh",
         "schedule_daily_maintenance.py",
         
         # Scripts de test
         "test_maintenance.py",
+        "test-unified-scripts.py",
         
         # Scripts de données
         "update-domain-data.py",
+        "update-paths.py",
         
         # Script de nettoyage lui-même
         "cleanup-scripts.py",
@@ -123,13 +117,13 @@ def create_documentation(scripts):
 
 ## Scripts unifiés (nouveaux)
 
-### `manage-contexts.py`
+### `context-manager-unified.py`
 Script unifié pour la gestion des contextes.
 **Remplace:** update-context-status.js, update-context-auto.js, update-context-python.py, build-context.js, generate-context-module.js, update-config-from-contexts.py
 
 **Utilisation:**
 ```bash
-python3 scripts/manage-contexts.py --force
+python3 scripts/maintenance/context-manager-unified.py --force
 ```
 
 ### `maintenance.py`
@@ -139,19 +133,10 @@ Script de maintenance simplifié.
 **Utilisation:**
 ```bash
 # Maintenance complète
-python3 scripts/maintenance.py
+python3 scripts/maintenance/maintenance.py
 
 # Maintenance rapide
-python3 scripts/maintenance.py --quick
-```
-
-### `deploy.py`
-Script de déploiement unifié.
-**Remplace:** deploy-gcp.sh, deploy-gcp-budget.sh, setup-deployment.sh, setup-budget-alerts.sh
-
-**Utilisation:**
-```bash
-python3 scripts/deploy.py --project-id YOUR_PROJECT_ID
+python3 scripts/maintenance/maintenance.py --quick
 ```
 
 ## Scripts essentiels
@@ -162,44 +147,32 @@ python3 scripts/deploy.py --project-id YOUR_PROJECT_ID
 - `generate-contexts-with-clone.py` - Génère les contextes avec clonage Git
 - `generate-and-sync-all.py` - Génération et synchronisation complète
 
-### Cloud et monitoring
-- `cloud-sync-contexts.py` - Synchronisation avec le cloud
-- `cost-monitor.py` - Surveillance des coûts GCP
-
-### Installation et configuration
-- `install-dependencies.py` - Installation des dépendances
-- `install_contextmaker.py` - Installation de contextmaker
-- `mock_contextmaker.py` - Mock de contextmaker pour les tests
-- `install-config-updater.sh` - Installation du config updater
-- `install-service.sh` - Installation des services
+### Configuration et services
 - `setup_maintenance_service.sh` - Configuration du service de maintenance
 - `service-control.sh` - Contrôle des services
 - `schedule_daily_maintenance.py` - Planification de la maintenance
 
 ### Tests et données
 - `test_maintenance.py` - Tests de maintenance
+- `test-unified-scripts.py` - Tests des scripts unifiés
 - `update-domain-data.py` - Mise à jour des données de domaine
+- `update-paths.py` - Mise à jour des chemins
 
 ## Utilisation recommandée
 
 ### Maintenance quotidienne
 ```bash
-python3 scripts/maintenance.py --quick
+python3 scripts/maintenance/maintenance.py --quick
 ```
 
 ### Mise à jour des contextes
 ```bash
-python3 scripts/manage-contexts.py --force
-```
-
-### Déploiement
-```bash
-python3 scripts/deploy.py --project-id YOUR_PROJECT_ID --budget 15.0
+python3 scripts/maintenance/context-manager-unified.py --force
 ```
 
 ### Génération de contextes manquants
 ```bash
-python3 scripts/generate-missing-contexts.py --domain astronomy
+python3 scripts/maintenance/generate-missing-contexts.py --domain astronomy
 ```
 """
     

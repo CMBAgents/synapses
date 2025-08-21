@@ -16,22 +16,13 @@ def update_paths_in_file(filepath: Path):
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Anciens chemins vers nouveaux chemins
+    # Anciens chemins vers nouveaux chemins (seulement les scripts existants)
     path_mappings = {
-        'scripts/manage-contexts.py': 'scripts/core/manage-contexts.py',
         'scripts/maintenance.py': 'scripts/maintenance/maintenance.py',
-        'scripts/deploy.py': 'scripts/deployment/deploy.py',
         'scripts/generate-programs-from-libraries.py': 'scripts/core/generate-programs-from-libraries.py',
         'scripts/generate-missing-contexts.py': 'scripts/maintenance/generate-missing-contexts.py',
         'scripts/generate-contexts-with-clone.py': 'scripts/maintenance/generate-contexts-with-clone.py',
         'scripts/generate-and-sync-all.py': 'scripts/maintenance/generate-and-sync-all.py',
-        'scripts/cloud-sync-contexts.py': 'scripts/cloud/cloud-sync-contexts.py',
-        'scripts/cost-monitor.py': 'scripts/cloud/cost-monitor.py',
-        'scripts/install-dependencies.py': 'scripts/install/install-dependencies.py',
-        'scripts/install_contextmaker.py': 'scripts/install/install_contextmaker.py',
-        'scripts/mock_contextmaker.py': 'scripts/install/mock_contextmaker.py',
-        'scripts/install-config-updater.sh': 'scripts/install/install-config-updater.sh',
-        'scripts/install-service.sh': 'scripts/install/install-service.sh',
         'scripts/setup_maintenance_service.sh': 'scripts/maintenance/setup_maintenance_service.sh',
         'scripts/service-control.sh': 'scripts/maintenance/service-control.sh',
         'scripts/schedule_daily_maintenance.py': 'scripts/maintenance/schedule_daily_maintenance.py',
