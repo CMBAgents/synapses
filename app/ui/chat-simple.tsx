@@ -87,7 +87,15 @@ export default function ChatSimple({
     e.preventDefault();
 
     // Add busy indicator
+    console.log('Setting loading state - isLoading:', true);
     setIsLoading(true);
+    
+    // Set a timeout as a safety mechanism to ensure loading state is reset
+    const loadingTimeout = setTimeout(() => {
+      console.warn('Loading timeout reached, resetting loading state');
+      setIsLoading(false);
+      setIsStreaming(false);
+    }, 30000); // 30 second timeout
 
     // Add user message to list of messages
     messageId.current++;
@@ -137,6 +145,7 @@ export default function ChatSimple({
 
       // If streaming is enabled, set the streaming state
       if (useStreaming) {
+        console.log('Setting streaming state - isStreaming:', true);
         setIsStreaming(true);
       }
 
@@ -200,7 +209,11 @@ export default function ChatSimple({
         });
 
         try {
-          while (true) {
+          let streamComplete = false;
+          let consecutiveEmptyChunks = 0;
+          const maxEmptyChunks = 10; // Prevent infinite loop from empty chunks
+          
+          while (!streamComplete) {
             let done = false;
             let value: Uint8Array | undefined;
 
@@ -219,7 +232,10 @@ export default function ChatSimple({
               throw readError;
             }
 
-            if (done) break;
+            if (done) {
+              console.log('Stream reader finished');
+              break;
+            }
 
             // Check if the request has been aborted after a successful read
             if (signal.aborted) {
@@ -229,6 +245,17 @@ export default function ChatSimple({
 
             // Decode the chunk and process it
             const chunk = decoder.decode(value, { stream: true });
+            
+            // Check for empty chunks to prevent infinite loops
+            if (!chunk || chunk.trim() === '') {
+              consecutiveEmptyChunks++;
+              if (consecutiveEmptyChunks >= maxEmptyChunks) {
+                console.warn('Too many consecutive empty chunks, ending stream');
+                break;
+              }
+              continue;
+            }
+            consecutiveEmptyChunks = 0; // Reset counter for non-empty chunks
 
             // Process the chunk (format: data: {...}\n\n)
             const lines = chunk.split('\n\n').filter(line => line.trim() !== '');
@@ -236,7 +263,12 @@ export default function ChatSimple({
             for (const line of lines) {
               if (line.startsWith('data: ')) {
                 const data = line.substring(6);
-                if (data === '[DONE]') continue;
+                if (data === '[DONE]') {
+                  console.log('Received [DONE] signal, completing stream');
+                  // Mark stream as complete and break out of the outer loop
+                  streamComplete = true;
+                  break;
+                }
 
                 try {
                   const parsed = JSON.parse(data);
@@ -260,9 +292,31 @@ export default function ChatSimple({
                 }
               }
             }
+            
+            // If stream is complete, break out of the outer loop
+            if (streamComplete) break;
+          }
+        } catch (streamError) {
+          console.error('Error during streaming:', streamError);
+          // Ensure we still complete the message even if there's an error
+          if (streamingContent.trim() === '') {
+            streamingContent = 'Error occurred during streaming. Please try again.';
           }
         } finally {
           reader.releaseLock();
+          
+          // Ensure the final message content is set even if there were errors
+          if (streamingContent.trim() !== '') {
+            setCurrentMessages(prevMessages => {
+              const updatedMessages = prevMessages.map(msg =>
+                msg.id === streamingMessageId
+                  ? { ...msg, content: streamingContent }
+                  : msg
+              );
+              messagesMapRef.current[programId] = updatedMessages;
+              return updatedMessages;
+            });
+          }
         }
       } else {
         // For non-streaming API, parse the JSON response
@@ -311,7 +365,11 @@ export default function ChatSimple({
         return updatedMessages;
       });
     } finally {
+      // Clear the loading timeout
+      clearTimeout(loadingTimeout);
+      
       // Remove busy indicator and streaming state
+      console.log('Resetting loading states - isLoading:', false, 'isStreaming:', false);
       setIsLoading(false);
       setIsStreaming(false);
       abortControllerRef.current = null;
