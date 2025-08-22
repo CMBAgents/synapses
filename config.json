@@ -8,7 +8,8 @@
       "contextFiles": [],
       "combinedContextFile": "/api/context/astronomy/skyfielders-python-skyfield-context.txt",
       "docsUrl": "https://github.com/skyfielders/python-skyfield",
-      "extraSystemPrompt": "You are an expert on skyfielders/python-skyfield. Use the provided documentation to help users with this astrophysics library."
+      "extraSystemPrompt": "You are an expert on skyfielders/python-skyfield. Use the provided documentation to help users with this astrophysics library.",
+      "status": "available"
     },
     {
       "id": "dstndstn-astrometry-net",
@@ -908,7 +909,28 @@
       "contextFiles": [],
       "combinedContextFile": "/api/context/finance/quantopian-zipline-context.txt",
       "docsUrl": "https://github.com/quantopian/zipline",
-      "extraSystemPrompt": "You are an expert on quantopian/zipline. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on quantopian/zipline. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
+    },
+    {
+      "id": "biopython-biopython",
+      "name": "biopython",
+      "description": "biopython/biopython - Biochemistry library with 4200 stars",
+      "contextFiles": [],
+      "combinedContextFile": "/api/context/biochemistry/biopython-biopython-context.txt",
+      "docsUrl": "https://github.com/biopython/biopython",
+      "extraSystemPrompt": "You are an expert on biopython/biopython. Use the provided documentation to help users with this biochemistry library.",
+      "status": "soon"
+    },
+    {
+      "id": "pytorch-pytorch",
+      "name": "pytorch",
+      "description": "pytorch/pytorch - Machine Learning library with 75000 stars",
+      "contextFiles": [],
+      "combinedContextFile": "/api/context/machinelearning/pytorch-pytorch-context.txt",
+      "docsUrl": "https://github.com/pytorch/pytorch",
+      "extraSystemPrompt": "You are an expert on pytorch/pytorch. Use the provided documentation to help users with this machine learning library.",
+      "status": "soon"
     },
     {
       "id": "mlfinlab-mlfinlab",
@@ -917,7 +939,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/mlfinlab/mlfinlab",
-      "extraSystemPrompt": "You are an expert on mlfinlab/mlfinlab. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on mlfinlab/mlfinlab. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "ranaroussi-yfinance",
@@ -926,7 +949,8 @@
       "contextFiles": [],
       "combinedContextFile": "/api/context/finance/yfinance-context.txt",
       "docsUrl": "https://github.com/ranaroussi/yfinance",
-      "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "pmorissette-ffn",
@@ -935,7 +959,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/pmorissette/ffn",
-      "extraSystemPrompt": "You are an expert on pmorissette/ffn. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on pmorissette/ffn. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "quantopian-pyfolio",
@@ -944,7 +969,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/quantopian/pyfolio",
-      "extraSystemPrompt": "You are an expert on quantopian/pyfolio. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on quantopian/pyfolio. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "fmilthaler-finquant",
@@ -953,7 +979,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/fmilthaler/finquant",
-      "extraSystemPrompt": "You are an expert on fmilthaler/finquant. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on fmilthaler/finquant. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "jamesmawm-high-frequency-trading-model-with-ib",
@@ -962,7 +989,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
-      "extraSystemPrompt": "You are an expert on jamesmawm/High-Frequency-Trading-Model-with-IB. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on jamesmawm/High-Frequency-Trading-Model-with-IB. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "quantopian-empyrical",
@@ -971,7 +999,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/quantopian/empyrical",
-      "extraSystemPrompt": "You are an expert on quantopian/empyrical. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on quantopian/empyrical. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "quantopian-alphalens",
@@ -980,7 +1009,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/quantopian/alphalens",
-      "extraSystemPrompt": "You are an expert on quantopian/alphalens. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on quantopian/alphalens. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     },
     {
       "id": "quantopian-qgrid",
@@ -989,7 +1019,8 @@
       "contextFiles": [],
       "combinedContextFile": null,
       "docsUrl": "https://github.com/quantopian/qgrid",
-      "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library."
+      "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library.",
+      "status": "soon"
     }
   ],
   "defaultProgram": "",

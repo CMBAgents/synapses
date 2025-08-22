@@ -67,9 +67,12 @@ class MaintenanceManager:
         self.logger.info("=== ÉTAPE 0: Vérification et installation des dépendances ===")
         
         try:
-            # Vérifier contextmaker
+            # Vérifier et mettre à jour contextmaker
             if not self._check_contextmaker():
                 self.logger.info("Installation de contextmaker...")
+                self._install_contextmaker()
+            else:
+                self.logger.info("Mise à jour de contextmaker vers la dernière version...")
                 self._install_contextmaker()
             
             # Vérifier git
@@ -98,9 +101,9 @@ class MaintenanceManager:
     def _install_contextmaker(self):
         """Installe contextmaker via pip"""
         try:
-            self.logger.info("Installation de contextmaker via pip3...")
+            self.logger.info("Installation/mise à jour de contextmaker via pip3...")
             result = subprocess.run(
-                ["pip3", "install", "contextmaker"],
+                ["pip3", "install", "--upgrade", "contextmaker"],
                 capture_output=True,
                 text=True,
                 timeout=300  # 5 minutes timeout

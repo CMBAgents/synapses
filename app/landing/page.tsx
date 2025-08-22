@@ -11,6 +11,11 @@ export default function LandingPage() {
   const domains = getAllDomains();
 
   const handleDomainSelect = async (domainId: string) => {
+    // Only allow navigation to astronomy domain
+    if (domainId !== 'astronomy') {
+      return; // Don't navigate to disabled domains
+    }
+    
     setSelectedDomain(domainId);
     setIsAnimating(true);
     
@@ -47,16 +52,18 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
             {domains.map((domain, index) => {
               const isFinance = domain.id === 'finance';
-              const isMachineLearning = domain.id === 'machine-learning';
-              const isDisabled = isFinance || isMachineLearning; // Finance et ML sont désactivés pour l'instant
+              const isMachineLearning = domain.id === 'machinelearning';
+              const isBiochemistry = domain.id === 'biochemistry';
+              const isAstronomy = domain.id === 'astronomy';
+              const isDisabled = !isAstronomy; // Seul l'astronomie est activée
               
               return (
                 <div
                   key={domain.id}
-                  className={`relative group bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl transition-all duration-300 transform hover:scale-105 hover:bg-white/20 hover:border-white/30 shadow-lg hover:shadow-xl ${
-                    isDisabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'
+                  className={`relative group bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl transition-all duration-300 transform ${
+                    isDisabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer hover:scale-105 hover:bg-white/20 hover:border-white/30 shadow-lg hover:shadow-xl'
                   } ${selectedDomain === domain.id ? 'bg-white/20 border-white/40' : ''} ${
-                    isMachineLearning ? 'sm:col-span-2 lg:col-span-1' : ''
+                    isMachineLearning || isBiochemistry ? 'sm:col-span-2 lg:col-span-1' : ''
                   }`}
                   onClick={() => !isDisabled && handleDomainSelect(domain.id)}
                 >
@@ -69,7 +76,7 @@ export default function LandingPage() {
                       </h3>
                       {isDisabled && (
                         <div className="mt-2 sm:mt-3">
-                          <div className="bg-transparent border border-yellow-500/60 text-yellow-400 px-2 sm:px-3 py-1 rounded-full text-xs font-bold font-inter inline-block">
+                          <div className="bg-yellow-500/20 border border-yellow-500/60 text-yellow-400 px-2 sm:px-3 py-1 rounded-full text-xs font-bold font-inter inline-block">
                             Soon
                           </div>
                         </div>

@@ -1,0 +1,88 @@
+{
+  "libraries": [
+    {
+      "name": "pytorch/pytorch",
+      "github_url": "https://github.com/pytorch/pytorch",
+      "stars": 75000,
+      "rank": 1,
+      "hasContextFile": false
+    },
+    {
+      "name": "tensorflow/tensorflow",
+      "github_url": "https://github.com/tensorflow/tensorflow",
+      "stars": 180000,
+      "rank": 2,
+      "hasContextFile": false
+    },
+    {
+      "name": "scikit-learn/scikit-learn",
+      "github_url": "https://github.com/scikit-learn/scikit-learn",
+      "stars": 55000,
+      "rank": 3,
+      "hasContextFile": false
+    },
+    {
+      "name": "keras-team/keras",
+      "github_url": "https://github.com/keras-team/keras",
+      "stars": 60000,
+      "rank": 4,
+      "hasContextFile": false
+    },
+    {
+      "name": "huggingface/transformers",
+      "github_url": "https://github.com/huggingface/transformers",
+      "stars": 120000,
+      "rank": 5,
+      "hasContextFile": false
+    },
+    {
+      "name": "pandas-dev/pandas",
+      "github_url": "https://github.com/pandas-dev/pandas",
+      "stars": 38000,
+      "rank": 6,
+      "hasContextFile": false
+    },
+    {
+      "name": "numpy/numpy",
+      "github_url": "https://github.com/numpy/numpy",
+      "stars": 25000,
+      "rank": 7,
+      "hasContextFile": false
+    },
+    {
+      "name": "scipy/scipy",
+      "github_url": "https://github.com/scipy/scipy",
+      "stars": 12000,
+      "rank": 8,
+      "hasContextFile": false
+    },
+    {
+      "name": "matplotlib/matplotlib",
+      "github_url": "https://github.com/matplotlib/matplotlib",
+      "stars": 18000,
+      "rank": 9,
+      "hasContextFile": false
+    },
+    {
+      "name": "seaborn/seaborn",
+      "github_url": "https://github.com/seaborn/seaborn",
+      "stars": 11000,
+      "rank": 10,
+      "hasContextFile": false
+    }
+  ],
+  "domain": "machinelearning",
+  "description": "Top machine learning and deep learning libraries for AI, neural networks, and data science",
+  "keywords": [
+    "machine learning",
+    "deep learning",
+    "artificial intelligence",
+    "neural networks",
+    "data science",
+    "pytorch",
+    "tensorflow",
+    "scikit-learn",
+    "keras",
+    "transformers"
+  ]
+}

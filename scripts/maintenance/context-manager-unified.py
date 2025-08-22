@@ -50,7 +50,7 @@ class UnifiedContextManager:
         self.state = self.load_state()
         
         # Configuration des domaines
-        self.domains = ["astronomy", "finance"]
+        self.domains = ["astronomy", "finance", "biochemistry", "machinelearning"]
         
     def setup_logging(self):
         """Configure le logging"""
@@ -157,13 +157,25 @@ class UnifiedContextManager:
     def check_contextmaker_available(self) -> bool:
         """Vérifie si contextmaker est disponible"""
         try:
-            result = subprocess.run(
-                ["contextmaker", "--version"],
-                capture_output=True,
-                text=True
-            )
-            return result.returncode == 0
-        except FileNotFoundError:
+            import contextmaker
+            # Vérifier la version et forcer la mise à jour si nécessaire
+            import subprocess
+            try:
+                result = subprocess.run(
+                    ["pip3", "install", "--upgrade", "contextmaker"],
+                    capture_output=True,
+                    text=True,
+                    timeout=120
+                )
+                if result.returncode == 0:
+                    self.logger.info("✅ contextmaker mis à jour vers la dernière version")
+                else:
+                    self.logger.warning(f"⚠️ Mise à jour de contextmaker échouée: {result.stderr}")
+            except Exception as e:
+                self.logger.warning(f"⚠️ Impossible de mettre à jour contextmaker: {e}")
+            
+            return True
+        except ImportError:
             return False
     
     def check_git_available(self) -> bool:
@@ -278,7 +290,17 @@ class UnifiedContextManager:
                 
                 for context_file in domain_dir.glob("*.txt"):
                     # Extraire le nom de la bibliothèque du nom de fichier
-                    lib_name = context_file.stem.replace("-context", "")
+                    filename = context_file.stem
+                    
+                    # Gérer les différents formats de noms de fichiers
+                    if filename.endswith("-context"):
+                        lib_name = filename[:-9]  # Supprimer "-context"
+                    elif filename.endswith("_context"):
+                        lib_name = filename[:-9]  # Supprimer "_context"
+                    else:
+                        # Pour les fichiers sans suffixe context (comme numcosmo.txt)
+                        lib_name = filename
+                    
                     existing_contexts[domain].append(lib_name)
         
         return existing_contexts
@@ -355,9 +377,16 @@ class UnifiedContextManager:
                     self.logger.warning(f"No GitHub URL for {lib_name}")
                     continue
                 
-                # Vérifier si le contexte existe déjà
-                if lib_name in existing_libs:
-                    self.logger.info(f"Existing context for {lib_name}, skipped")
+                # Vérifier si le contexte existe déjà (comparaison plus robuste)
+                context_exists = False
+                for existing_lib in existing_libs:
+                    # Vérifier si le nom de la bibliothèque (sans namespace) correspond
+                    if existing_lib in lib_name or lib_name.endswith(existing_lib):
+                        context_exists = True
+                        self.logger.info(f"Existing context for {lib_name} (matches {existing_lib}), skipped")
+                        break
+                
+                if context_exists:
                     continue
                 
                 # Extraire les informations du repository

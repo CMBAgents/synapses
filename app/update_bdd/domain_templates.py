@@ -6,16 +6,7 @@ Facilite l'ajout de nouveaux domaines au système.
 
 # Modèles de configuration pour différents types de domaines
 DOMAIN_TEMPLATES = {
-    "web_development": {
-        "use_ascl": False,
-        "keywords": [
-            "web", "django", "flask", "fastapi", "react", "vue", "angular",
-            "express", "spring", "laravel", "rails", "aspnet", "jquery",
-            "bootstrap", "tailwind", "webpack", "vite", "nextjs", "nuxtjs"
-        ],
-        "description": "Top web development frameworks and libraries for building modern web applications",
-        "specific_libs": []
-    },
+
     
     "mobile_development": {
         "use_ascl": False,
@@ -39,16 +30,7 @@ DOMAIN_TEMPLATES = {
         "specific_libs": []
     },
     
-    "cybersecurity": {
-        "use_ascl": False,
-        "keywords": [
-            "security", "cyber", "crypto", "encryption", "penetration", "malware",
-            "forensics", "network", "vulnerability", "exploit", "reverse",
-            "nmap", "wireshark", "metasploit", "burp", "sqlmap", "hashcat"
-        ],
-        "description": "Top cybersecurity tools and libraries for security research and penetration testing",
-        "specific_libs": []
-    },
+
     
     "bioinformatics": {
         "use_ascl": False,

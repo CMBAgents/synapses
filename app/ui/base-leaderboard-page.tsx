@@ -3,10 +3,10 @@
 import { Suspense } from 'react';
 import FadeIn from "./fadein";
 import LeaderboardTable from "./leaderboardtable";
-import { loadAstronomyData, loadFinanceData } from "../utils/domain-loader";
+import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLearningData } from "../utils/domain-loader";
 
 interface BaseLeaderboardPageProps {
-  domain: 'astronomy' | 'finance';
+  domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning';
 }
 
 function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
@@ -15,6 +15,10 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
       return loadAstronomyData();
     } else if (domain === 'finance') {
       return loadFinanceData();
+    } else if (domain === 'biochemistry') {
+      return loadBiochemistryData();
+    } else if (domain === 'machinelearning') {
+      return loadMachineLearningData();
     }
     return loadAstronomyData(); // fallback
   };
@@ -24,6 +28,10 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
       return 'Astrophysics & Cosmology';
     } else if (domain === 'finance') {
       return 'Finance & Trading';
+    } else if (domain === 'biochemistry') {
+      return 'Biochemistry & Bioinformatics';
+    } else if (domain === 'machinelearning') {
+      return 'Machine Learning & AI';
     }
     return 'Domain';
   };
@@ -33,6 +41,10 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
       return 'Top 100 starred library in astrophysics and cosmology';
     } else if (domain === 'finance') {
       return 'Top 100 starred library in finance and trading';
+    } else if (domain === 'biochemistry') {
+      return 'Top 100 starred library in biochemistry and bioinformatics';
+    } else if (domain === 'machinelearning') {
+      return 'Top 100 starred library in machine learning and artificial intelligence';
     }
     return 'Top 100 starred libraries';
   };

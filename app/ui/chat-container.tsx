@@ -6,7 +6,7 @@ import ModelSelector from './model-selector';
 import { Program } from '@/app/utils/types';
 import { loadConfig } from '@/app/utils/config';
 import { preloadContext } from '@/app/utils/context';
-import { loadAstronomyData, loadFinanceData } from '@/app/utils/domain-loader';
+import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLearningData } from '@/app/utils/domain-loader';
 import { useProgramContext } from '../contexts/ProgramContext';
 
 interface ChatContainerProps {
@@ -86,6 +86,10 @@ export default function ChatContainer({
       return loadAstronomyData().libraries;
     } else if (activeProgramId === 'finance') {
       return loadFinanceData().libraries;
+    } else if (activeProgramId === 'biochemistry') {
+      return loadBiochemistryData().libraries;
+    } else if (activeProgramId === 'machinelearning') {
+      return loadMachineLearningData().libraries;
     }
     return [];
   };

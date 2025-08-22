@@ -71,7 +71,7 @@ export type DomainData = {
   keywords: string[];
 };
 
-export type Domain = 'astronomy' | 'finance';
+export type Domain = 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning';
 
 export interface ContextFile {
   name: string;

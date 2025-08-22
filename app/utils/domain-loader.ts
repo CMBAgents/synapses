@@ -1,5 +1,7 @@
 import astronomyData from '../data/astronomy-libraries.json';
 import financeData from '../data/finance-libraries.json';
+import biochemistryData from '../data/biochemistry-libraries.json';
+import machineLearningData from '../data/machinelearning-libraries.json';
 
 export type LibraryEntry = {
   rank: number;
@@ -25,12 +27,24 @@ export function loadFinanceData(): DomainData {
   return financeData as DomainData;
 }
 
-export function getDomainData(domain: 'astronomy' | 'finance'): DomainData {
+export function loadBiochemistryData(): DomainData {
+  return biochemistryData as DomainData;
+}
+
+export function loadMachineLearningData(): DomainData {
+  return machineLearningData as DomainData;
+}
+
+export function getDomainData(domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning'): DomainData {
   switch (domain) {
     case 'astronomy':
       return loadAstronomyData();
     case 'finance':
       return loadFinanceData();
+    case 'biochemistry':
+      return loadBiochemistryData();
+    case 'machinelearning':
+      return loadMachineLearningData();
     default:
       throw new Error(`Unknown domain: ${domain}`);
   }
@@ -45,8 +59,14 @@ export function getAllDomains(): Array<{id: string, name: string, description: s
       icon: ''
     },
     {
-      id: 'machine-learning',
-      name: 'Machine Learning',
+      id: 'biochemistry',
+      name: 'Biochemistry & Bioinformatics',
+      description: 'Molecular dynamics, drug discovery, and computational biology',
+      icon: ''
+    },
+    {
+      id: 'machinelearning',
+      name: 'Machine Learning & AI',
       description: 'Deep learning, neural networks, and AI model development',
       icon: ''
     },

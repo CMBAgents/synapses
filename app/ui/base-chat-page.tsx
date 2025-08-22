@@ -10,7 +10,7 @@ import { useProgramContext } from "../contexts/ProgramContext";
 
 
 interface BaseChatPageProps {
-  domain: 'astronomy' | 'finance';
+  domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning';
 }
 
 function BaseChatContent({ domain }: BaseChatPageProps) {
@@ -27,6 +27,10 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
       return loadAstronomyData();
     } else if (domain === 'finance') {
       return loadFinanceData();
+    } else if (domain === 'biochemistry') {
+      return loadBiochemistryData();
+    } else if (domain === 'machinelearning') {
+      return loadMachineLearningData();
     }
     return loadAstronomyData(); // fallback
   };
@@ -36,6 +40,10 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
       return 'Astrophysics & Cosmology';
     } else if (domain === 'finance') {
       return 'Finance & Trading';
+    } else if (domain === 'biochemistry') {
+      return 'Biochemistry & Bioinformatics';
+    } else if (domain === 'machinelearning') {
+      return 'Machine Learning & AI';
     }
     return 'Domain';
   };
@@ -46,7 +54,16 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
 
   // Function to get default program ID for the domain
   const getDefaultProgramIdForDomain = () => {
-    return domain === 'astronomy' ? 'skyfielders-python-skyfield' : 'quantopian-zipline';
+    if (domain === 'astronomy') {
+      return 'skyfielders-python-skyfield';
+    } else if (domain === 'finance') {
+      return 'quantopian-zipline';
+    } else if (domain === 'biochemistry') {
+      return 'biopython-biopython';
+    } else if (domain === 'machinelearning') {
+      return 'pytorch-pytorch';
+    }
+    return 'skyfielders-python-skyfield'; // fallback
   };
 
   // Function to map library name to program ID
@@ -149,7 +166,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
                   description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                   contextFiles: [],
                   docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
-                  extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+                  extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : domain === 'finance' ? 'finance and trading' : domain === 'biochemistry' ? 'biochemistry and bioinformatics' : 'machine learning and artificial intelligence'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : domain === 'finance' ? 'finance' : domain === 'biochemistry' ? 'biochemistry' : 'machine learning'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
                 }]}
                 defaultProgramId={activeProgramId || getDefaultProgramIdForDomain()}
                 preselectedLibrary={preselectedLibrary}
@@ -177,7 +194,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
                 description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                 contextFiles: [],
                 docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
-                extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : 'finance and trading'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : 'finance'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+                extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : domain === 'finance' ? 'finance and trading' : domain === 'biochemistry' ? 'biochemistry and bioinformatics' : 'machine learning and artificial intelligence'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : domain === 'finance' ? 'finance' : domain === 'biochemistry' ? 'biochemistry' : 'machine learning'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
               }]}
               defaultProgramId={activeProgramId || getDefaultProgramIdForDomain()}
               preselectedLibrary={preselectedLibrary}

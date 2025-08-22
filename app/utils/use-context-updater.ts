@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 
-export function useContextUpdater(domain: 'astronomy' | 'finance') {
+export function useContextUpdater(domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning') {
   useEffect(() => {
     const updateContextStatus = async () => {
       try {
@@ -31,7 +31,7 @@ export function useGlobalContextUpdater() {
   useEffect(() => {
     const updateAllContextStatus = async () => {
       try {
-        const domains = ['astronomy', 'finance'];
+        const domains = ['astronomy', 'finance', 'biochemistry', 'machinelearning'];
         
         for (const domain of domains) {
           const response = await fetch(`/api/context?domain=${domain}&action=updateLibrariesWithContextStatus`, {

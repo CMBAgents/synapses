@@ -6,7 +6,7 @@ export function useContextGenerator() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generationStatus, setGenerationStatus] = useState<string | null>(null);
 
-  const generateContextForLibrary = async (domain: 'astronomy' | 'finance', libraryName: string) => {
+  const generateContextForLibrary = async (domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning', libraryName: string) => {
     setIsGenerating(true);
     setGenerationStatus(`Generating context for ${libraryName}...`);
     
@@ -36,7 +36,7 @@ export function useContextGenerator() {
     }
   };
 
-  const generateAllMissingContexts = async (domain: 'astronomy' | 'finance') => {
+  const generateAllMissingContexts = async (domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning') => {
     setIsGenerating(true);
     setGenerationStatus(`Generating all missing contexts for ${domain}...`);
     

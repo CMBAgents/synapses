@@ -1,0 +1,88 @@
+{
+  "libraries": [
+    {
+      "name": "biopython/biopython",
+      "github_url": "https://github.com/biopython/biopython",
+      "stars": 4200,
+      "rank": 1,
+      "hasContextFile": false
+    },
+    {
+      "name": "scikit-bio/scikit-bio",
+      "github_url": "https://github.com/scikit-bio/scikit-bio",
+      "stars": 1200,
+      "rank": 2,
+      "hasContextFile": false
+    },
+    {
+      "name": "mdanalysis/mdanalysis",
+      "github_url": "https://github.com/mdanalysis/mdanalysis",
+      "stars": 800,
+      "rank": 3,
+      "hasContextFile": false
+    },
+    {
+      "name": "openmm/openmm",
+      "github_url": "https://github.com/openmm/openmm",
+      "stars": 1200,
+      "rank": 4,
+      "hasContextFile": false
+    },
+    {
+      "name": "choderalab/openmmtools",
+      "github_url": "https://github.com/choderalab/openmmtools",
+      "stars": 400,
+      "rank": 5,
+      "hasContextFile": false
+    },
+    {
+      "name": "rdkit/rdkit",
+      "github_url": "https://github.com/rdkit/rdkit",
+      "stars": 2000,
+      "rank": 6,
+      "hasContextFile": false
+    },
+    {
+      "name": "openbabel/openbabel",
+      "github_url": "https://github.com/openbabel/openbabel",
+      "stars": 1000,
+      "rank": 7,
+      "hasContextFile": false
+    },
+    {
+      "name": "gromacs/gromacs",
+      "github_url": "https://github.com/gromacs/gromacs",
+      "stars": 800,
+      "rank": 8,
+      "hasContextFile": false
+    },
+    {
+      "name": "amber-md/amber",
+      "github_url": "https://github.com/amber-md/amber",
+      "stars": 600,
+      "rank": 9,
+      "hasContextFile": false
+    },
+    {
+      "name": "vmdplugin/vmd",
+      "github_url": "https://github.com/vmdplugin/vmd",
+      "stars": 400,
+      "rank": 10,
+      "hasContextFile": false
+    }
+  ],
+  "domain": "biochemistry",
+  "description": "Top biochemistry and bioinformatics libraries for molecular dynamics, drug discovery, and computational biology",
+  "keywords": [
+    "biochemistry",
+    "bioinformatics",
+    "molecular dynamics",
+    "drug discovery",
+    "computational biology",
+    "biopython",
+    "mdanalysis",
+    "openmm",
+    "rdkit",
+    "gromacs"
+  ]
+}
