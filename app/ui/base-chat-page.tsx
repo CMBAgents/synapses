@@ -3,7 +3,7 @@
 import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'next/navigation';
 import ChatContainer from "./chat-container";
-import { loadAstronomyData, loadFinanceData } from "../utils/domain-loader";
+import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLearningData } from "../utils/domain-loader";
 import ContextUpdater from "./context-updater";
 import LibrarySelector from "./library-selector";
 import { useProgramContext } from "../contexts/ProgramContext";
