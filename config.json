@@ -327,7 +327,7 @@
       "extraSystemPrompt": "You are an expert on adrn/gala. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "cmbagents-cmbagent",
+      "id": "CMBAgents-cmbagent",
       "name": "cmbagent",
       "description": "CMBAgents/cmbagent - Astrophysics library with 136 stars",
       "contextFiles": [],
