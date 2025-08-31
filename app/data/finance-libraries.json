@@ -42,7 +42,8 @@
       "github_url": "https://github.com/fmilthaler/finquant",
       "stars": 800,
       "rank": 6,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "fmilthaler-finquant-context.txt"
     },
     {
       "name": "jamesmawm/High-Frequency-Trading-Model-with-IB",
@@ -56,14 +57,16 @@
       "github_url": "https://github.com/quantopian/empyrical",
       "stars": 1200,
       "rank": 8,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "quantopian-empyrical-context.txt"
     },
     {
       "name": "quantopian/alphalens",
       "github_url": "https://github.com/quantopian/alphalens",
       "stars": 2400,
       "rank": 9,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "quantopian-alphalens-context.txt"
     },
     {
       "name": "quantopian/qgrid",

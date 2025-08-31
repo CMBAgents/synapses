@@ -1,4 +1,5 @@
 import financeData from '../data/finance-libraries.json';
+import physicsData from '../data/physics-libraries.json';
 import astronomyData from '../data/astronomy-libraries.json';
 import machinelearningData from '../data/machinelearning-libraries.json';
 import biochemistryData from '../data/biochemistry-libraries.json';
@@ -23,6 +24,7 @@ export type DomainData = {
 // Map of domain IDs to their data
 const domainDataMap: Record<string, DomainData> = {
   'finance': financeData as DomainData,
+  'physics': physicsData as DomainData,
   'astronomy': astronomyData as DomainData,
   'machinelearning': machinelearningData as DomainData,
   'biochemistry': biochemistryData as DomainData,
@@ -31,6 +33,7 @@ const domainDataMap: Record<string, DomainData> = {
 
 // Individual loader functions for backward compatibility
 export function loadfinanceData(): DomainData { return financeData as DomainData; }
+export function loadphysicsData(): DomainData { return physicsData as DomainData; }
 export function loadastronomyData(): DomainData { return astronomyData as DomainData; }
 export function loadmachinelearningData(): DomainData { return machinelearningData as DomainData; }
 export function loadbiochemistryData(): DomainData { return biochemistryData as DomainData; }
@@ -50,6 +53,12 @@ export function getAllDomains(): Array<{id: string, name: string, description: s
     "id": "finance",
     "name": "Finance & Trading",
     "description": "Portfolio optimization, algorithmic trading, and financial analysis",
+    "icon": ""
+  },
+  {
+    "id": "physics",
+    "name": "Physics",
+    "description": "Top libraries in physics",
     "icon": ""
   },
   {

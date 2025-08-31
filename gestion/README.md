@@ -24,7 +24,6 @@ Ce dossier contient tous les fichiers de gestion et de configuration qui ne sont
 
 ### Dossiers de données
 - `logs/` - Logs du système
-- `backups/` - Sauvegardes
 - `temp/` - Fichiers temporaires
 
 ## Utilisation
@@ -35,5 +34,5 @@ Aucune modification n'est nécessaire dans votre workflow habituel.
 ## Maintenance
 
 - Les fichiers de configuration peuvent être modifiés directement dans ce dossier
-- Les logs et backups sont automatiquement gérés par les scripts
+- Les logs sont automatiquement gérés par les scripts
 - Les fichiers temporaires sont nettoyés automatiquement

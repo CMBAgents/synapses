@@ -3,7 +3,7 @@
   "bucket_name": "cmbagent-contexts",
   "region": "us-east-1",
   "sync_enabled": true,
-  "backup_enabled": true,
+  "backup_enabled": false,
   "cdn_url": null,
   "upload_url": null,
   "rate_limit": {

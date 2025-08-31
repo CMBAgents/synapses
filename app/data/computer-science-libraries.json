@@ -1,0 +1,90 @@
+{
+  "libraries": [
+    {
+      "rank": 1,
+      "name": "example-org/computer-science-library-1",
+      "github_url": "https://github.com/example-org/computer-science-library-1",
+      "stars": 8007,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 2,
+      "name": "example-org/computer-science-library-2",
+      "github_url": "https://github.com/example-org/computer-science-library-2",
+      "stars": 8779,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 3,
+      "name": "example-org/computer-science-library-3",
+      "github_url": "https://github.com/example-org/computer-science-library-3",
+      "stars": 3517,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 4,
+      "name": "example-org/computer-science-library-4",
+      "github_url": "https://github.com/example-org/computer-science-library-4",
+      "stars": 8147,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 5,
+      "name": "example-org/computer-science-library-5",
+      "github_url": "https://github.com/example-org/computer-science-library-5",
+      "stars": 8812,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 6,
+      "name": "example-org/computer-science-library-6",
+      "github_url": "https://github.com/example-org/computer-science-library-6",
+      "stars": 972,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 7,
+      "name": "example-org/computer-science-library-7",
+      "github_url": "https://github.com/example-org/computer-science-library-7",
+      "stars": 6006,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 8,
+      "name": "example-org/computer-science-library-8",
+      "github_url": "https://github.com/example-org/computer-science-library-8",
+      "stars": 358,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 9,
+      "name": "example-org/computer-science-library-9",
+      "github_url": "https://github.com/example-org/computer-science-library-9",
+      "stars": 5989,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "rank": 10,
+      "name": "example-org/computer-science-library-10",
+      "github_url": "https://github.com/example-org/computer-science-library-10",
+      "stars": 683,
+      "hasContextFile": false,
+      "contextFileName": null
+    }
+  ],
+  "domain": "Computer-Science",
+  "description": "Top libraries in computer-science with cutting-edge research and development",
+  "keywords": [
+    "computer-science",
+    "computer-science"
+  ]
+}

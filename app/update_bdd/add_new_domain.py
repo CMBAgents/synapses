@@ -117,7 +117,7 @@ def add_custom_domain(
 
 def save_domain_configs():
     """Sauvegarde la configuration des domaines dans un fichier"""
-    config_file = Path(__file__).parent / "domain_configs_backup.json"
+    config_file = Path(__file__).parent / "domain_configs.json"
     
     try:
         with open(config_file, 'w', encoding='utf-8') as f:
