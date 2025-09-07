@@ -54,11 +54,21 @@ class UnifiedContextManager:
         
     def setup_logging(self):
         """Configure le logging"""
+        # Créer le dossier logs s'il n'existe pas
+        logs_dir = self.base_dir / 'logs'
+        logs_dir.mkdir(exist_ok=True)
+        
+        # Effacer le fichier de log précédent pour éviter l'accumulation
+        log_file = logs_dir / 'unified_context_manager.log'
+        if log_file.exists():
+            log_file.unlink()
+            print(f"🧹 Fichier de log précédent effacé: {log_file}")
+        
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
             handlers=[
-                logging.FileHandler('unified_context_manager.log'),
+                logging.FileHandler(str(log_file)),
                 logging.StreamHandler()
             ]
         )
