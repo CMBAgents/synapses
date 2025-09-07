@@ -3,13 +3,13 @@ import ChatTemplate from '@/app/ui/chat-template';
 import { domainExists } from '@/app/utils/domain-loader';
 
 interface ChatDomainPageProps {
-  params: {
+  params: Promise<{
     domain: string;
-  };
+  }>;
 }
 
-export default function ChatDomainPage({ params }: ChatDomainPageProps) {
-  const { domain } = params;
+export default async function ChatDomainPage({ params }: ChatDomainPageProps) {
+  const { domain } = await params;
 
   // Check if the domain exists
   if (!domainExists(domain)) {

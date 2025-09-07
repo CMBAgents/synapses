@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-export function useContextRefresh(domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning') {
+export function useContextRefresh(domain: string) {
   const [isUpdating, setIsUpdating] = useState(false);
   const [lastUpdate, setLastUpdate] = useState<Date | null>(null);
 

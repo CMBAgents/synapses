@@ -3,7 +3,7 @@
 import { useContextRefresh } from '../utils/use-context-refresh';
 
 interface ContextUpdaterProps {
-  domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning';
+  domain: string;
   children: React.ReactNode;
 }
 
