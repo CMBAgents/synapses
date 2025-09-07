@@ -63,20 +63,6 @@
       "rank": 8,
       "hasContextFile": true,
       "contextFileName": "gromacs-gromacs-context.txt"
-    },
-    {
-      "name": "amber-md/amber",
-      "github_url": "https://github.com/amber-md/amber",
-      "stars": 600,
-      "rank": 9,
-      "hasContextFile": false
-    },
-    {
-      "name": "vmdplugin/vmd",
-      "github_url": "https://github.com/vmdplugin/vmd",
-      "stars": 400,
-      "rank": 10,
-      "hasContextFile": false
     }
   ],
   "domain": "biochemistry",

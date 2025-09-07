@@ -28,10 +28,10 @@ const domainDataMap: Record<string, DomainData> = {
 };
 
 // Individual loader functions for backward compatibility
-export function loadfinanceData(): DomainData { return financeData as DomainData; }
-export function loadastronomyData(): DomainData { return astronomyData as DomainData; }
-export function loadmachinelearningData(): DomainData { return machinelearningData as DomainData; }
-export function loadbiochemistryData(): DomainData { return biochemistryData as DomainData; }
+export function loadFinanceData(): DomainData { return financeData as DomainData; }
+export function loadAstronomyData(): DomainData { return astronomyData as DomainData; }
+export function loadMachineLearningData(): DomainData { return machinelearningData as DomainData; }
+export function loadBiochemistryData(): DomainData { return biochemistryData as DomainData; }
 
 export function getDomainData(domain: string): DomainData {
   const domainData = domainDataMap[domain];

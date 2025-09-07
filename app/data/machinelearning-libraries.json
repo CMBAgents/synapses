@@ -67,14 +67,16 @@
       "github_url": "https://github.com/matplotlib/matplotlib",
       "stars": 18000,
       "rank": 9,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "matplotlib-matplotlib-context.txt"
     },
     {
       "name": "seaborn/seaborn",
       "github_url": "https://github.com/seaborn/seaborn",
       "stars": 11000,
       "rank": 10,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "seaborn-seaborn-context.txt"
     }
   ],
   "domain": "machinelearning",

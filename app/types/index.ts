@@ -75,7 +75,7 @@ export type DomainData = {
 import { Domain } from '../config/domains';
 
 // Re-export the Domain type for use in other files
-export { Domain };
+export type { Domain };
 
 export interface ContextFile {
   name: string;

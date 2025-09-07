@@ -917,7 +917,7 @@
       "name": "frbpoppy",
       "description": "trasal/frbpoppy - Astrophysics library with 30 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/astronomy/trasal-frbpoppy-context.txt",
       "docsUrl": "https://github.com/trasal/frbpoppy",
       "extraSystemPrompt": "You are an expert on trasal/frbpoppy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -1084,24 +1084,6 @@
       "extraSystemPrompt": "You are an expert on gromacs/gromacs. Use the provided documentation to help users with this biochemistry library."
     },
     {
-      "id": "amber-md-amber",
-      "name": "amber",
-      "description": "amber-md/amber - Biochemistry library with 600 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/amber-md/amber",
-      "extraSystemPrompt": "You are an expert on amber-md/amber. Use the provided documentation to help users with this biochemistry library."
-    },
-    {
-      "id": "vmdplugin-vmd",
-      "name": "vmd",
-      "description": "vmdplugin/vmd - Biochemistry library with 400 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/vmdplugin/vmd",
-      "extraSystemPrompt": "You are an expert on vmdplugin/vmd. Use the provided documentation to help users with this biochemistry library."
-    },
-    {
       "id": "pytorch-pytorch",
       "name": "pytorch",
       "description": "pytorch/pytorch - Machinelearning library with 75000 stars",
@@ -1178,7 +1160,7 @@
       "name": "matplotlib",
       "description": "matplotlib/matplotlib - Machinelearning library with 18000 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/machinelearning/matplotlib-matplotlib-context.txt",
       "docsUrl": "https://github.com/matplotlib/matplotlib",
       "extraSystemPrompt": "You are an expert on matplotlib/matplotlib. Use the provided documentation to help users with this machinelearning library."
     },
@@ -1187,7 +1169,7 @@
       "name": "seaborn",
       "description": "seaborn/seaborn - Machinelearning library with 11000 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/machinelearning/seaborn-seaborn-context.txt",
       "docsUrl": "https://github.com/seaborn/seaborn",
       "extraSystemPrompt": "You are an expert on seaborn/seaborn. Use the provided documentation to help users with this machinelearning library."
     }
