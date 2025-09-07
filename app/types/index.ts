@@ -71,7 +71,11 @@ export type DomainData = {
   keywords: string[];
 };
 
-export type Domain = 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning';
+// Import the dynamic Domain type from the centralized configuration
+import { Domain } from '../config/domains';
+
+// Re-export the Domain type for use in other files
+export { Domain };
 
 export interface ContextFile {
   name: string;

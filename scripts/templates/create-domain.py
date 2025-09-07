@@ -13,6 +13,7 @@ Ce script :
 import sys
 import subprocess
 import re
+import json
 from pathlib import Path
 import logging
 
@@ -49,9 +50,11 @@ class DomainCreator:
         # 1. Validation et normalisation
         domain_id = validate_domain_name(domain_name)
         display_name = self.config.get_domain_display_name(domain_id)
+        description = self.config.get_domain_description(domain_id)
         
         print(f"📝 ID du domaine: {domain_id}")
         print(f"📝 Nom d'affichage: {display_name}")
+        print(f"📝 Description: {description}")
         
         # 2. Vérifier si le domaine existe déjà
         data_dir = self.config.get_path("data_dir")
@@ -104,7 +107,11 @@ class DomainCreator:
         context_dir.mkdir(parents=True, exist_ok=True)
         print(f"✅ Dossier de contexte créé: {context_dir}")
         
-        # 6. Appeler le système de maintenance
+        # 6. Mettre à jour la configuration dans config.json
+        print(f"⚙️  Mise à jour de la configuration...")
+        self.update_config_json(domain_id, display_name, description)
+        
+        # 7. Appeler le système de maintenance
         if self.config.maintenance.get("auto_call", True):
             self.maintenance_integrator.call_maintenance_system(domain_id)
         
@@ -207,6 +214,44 @@ class DomainCreator:
             
         except Exception as e:
             print(f"❌ Erreur lors de la mise à jour du script: {e}")
+    
+    def update_config_json(self, domain_id: str, display_name: str, description: str):
+        """Met à jour la section domaines dans config.json"""
+        try:
+            config_file = Path.cwd().parent.parent / "config.json"
+            
+            if not config_file.exists():
+                print(f"⚠️  Fichier config.json non trouvé: {config_file}")
+                return
+            
+            # Charger la configuration existante
+            with open(config_file, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            
+            # Initialiser la section domaines si elle n'existe pas
+            if 'domains' not in config:
+                config['domains'] = {
+                    'supported': [],
+                    'displayNames': {},
+                    'descriptions': {}
+                }
+            
+            # Ajouter le nouveau domaine s'il n'existe pas déjà
+            if domain_id not in config['domains']['supported']:
+                config['domains']['supported'].append(domain_id)
+                config['domains']['displayNames'][domain_id] = display_name
+                config['domains']['descriptions'][domain_id] = description
+                
+                # Sauvegarder la configuration
+                with open(config_file, 'w', encoding='utf-8') as f:
+                    json.dump(config, f, indent=2, ensure_ascii=False)
+                
+                print(f"✅ Domaine '{domain_id}' ajouté à config.json")
+            else:
+                print(f"✅ Domaine '{domain_id}' déjà présent dans config.json")
+                
+        except Exception as e:
+            print(f"❌ Erreur lors de la mise à jour de config.json: {e}")
 
 def main():
     """Fonction principale"""

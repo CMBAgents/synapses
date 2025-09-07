@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import ChatTemplate from '@/app/ui/chat-template';
 import { domainExists } from '@/app/utils/domain-loader';
+import { getSupportedDomains } from '@/app/config/domains';
 
 interface ChatDomainPageProps {
   params: Promise<{
@@ -21,12 +22,7 @@ export default async function ChatDomainPage({ params }: ChatDomainPageProps) {
 
 // Generate static params for all available domains
 export async function generateStaticParams() {
-  // This would be generated at build time
-  // For now, we'll return the known domains
-  return [
-    { domain: 'astronomy' },
-    { domain: 'finance' },
-    { domain: 'biochemistry' },
-    { domain: 'machinelearning' },
-  ];
+  // Get domains from centralized configuration
+  const supportedDomains = getSupportedDomains();
+  return supportedDomains.map(domain => ({ domain }));
 }

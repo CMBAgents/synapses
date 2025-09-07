@@ -1,12 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { isDomainSupported } from '@/app/config/domains';
 
 export async function POST(request: NextRequest) {
   try {
     const { domain } = await request.json();
     
-    if (!domain || !['astronomy', 'finance'].includes(domain)) {
+    if (!domain || !isDomainSupported(domain)) {
       return NextResponse.json({ error: 'Invalid domain' }, { status: 400 });
     }
 

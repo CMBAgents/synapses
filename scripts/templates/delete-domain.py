@@ -6,13 +6,16 @@ Usage: python3 delete-domain.py <domain_name>
 Ce script :
 1. Supprime le fichier JSON dans app/data/
 2. Supprime le dossier de contexte dans public/context/
-3. Met à jour le domain-loader.ts
-4. Régénère les routes
+3. Met à jour la section domaines dans config.json
+4. Met à jour le domain-loader.ts
+5. Régénère les routes
+6. Met à jour le script generate-programs-from-libraries.py
 """
 
 import sys
 import shutil
 import re
+import json
 from pathlib import Path
 import subprocess
 
@@ -92,15 +95,19 @@ class DomainDeleter:
                 print(f"❌ Erreur lors de la suppression du dossier de contexte: {e}")
                 return False
         
-        # 6. Mettre à jour le domain-loader.ts
+        # 6. Mettre à jour la configuration dans config.json
+        print(f"⚙️  Mise à jour de la configuration...")
+        self.update_config_json(domain_id)
+        
+        # 7. Mettre à jour le domain-loader.ts
         print(f"🔄 Mise à jour du domain-loader.ts...")
         self.update_domain_loader()
         
-        # 7. Régénérer les routes
+        # 8. Régénérer les routes
         print(f"🛣️  Régénération des routes...")
         self.regenerate_routes()
         
-        # 8. Mettre à jour le script generate-programs-from-libraries.py
+        # 9. Mettre à jour le script generate-programs-from-libraries.py
         print(f"🔄 Mise à jour du script de génération...")
         self.update_generate_script(domain_id)
         
@@ -202,6 +209,48 @@ class DomainDeleter:
             
         except Exception as e:
             print(f"❌ Erreur lors de la mise à jour du script: {e}")
+    
+    def update_config_json(self, domain_id: str):
+        """Met à jour la section domaines dans config.json en supprimant le domaine"""
+        try:
+            config_file = self.project_root / "config.json"
+            
+            if not config_file.exists():
+                print(f"⚠️  Fichier config.json non trouvé: {config_file}")
+                return
+            
+            # Charger la configuration existante
+            with open(config_file, 'r', encoding='utf-8') as f:
+                config = json.load(f)
+            
+            # Vérifier si la section domaines existe
+            if 'domains' not in config:
+                print(f"⚠️  Section 'domains' non trouvée dans config.json")
+                return
+            
+            # Supprimer le domaine de la liste supported
+            if domain_id in config['domains']['supported']:
+                config['domains']['supported'].remove(domain_id)
+                print(f"✅ Domaine '{domain_id}' retiré de la liste supported")
+            
+            # Supprimer le domaine des displayNames
+            if domain_id in config['domains']['displayNames']:
+                del config['domains']['displayNames'][domain_id]
+                print(f"✅ Domaine '{domain_id}' retiré des displayNames")
+            
+            # Supprimer le domaine des descriptions
+            if domain_id in config['domains']['descriptions']:
+                del config['domains']['descriptions'][domain_id]
+                print(f"✅ Domaine '{domain_id}' retiré des descriptions")
+            
+            # Sauvegarder la configuration
+            with open(config_file, 'w', encoding='utf-8') as f:
+                json.dump(config, f, indent=2, ensure_ascii=False)
+            
+            print(f"✅ Configuration config.json mise à jour (domaine '{domain_id}' supprimé)")
+                
+        except Exception as e:
+            print(f"❌ Erreur lors de la mise à jour de config.json: {e}")
     
     def list_domains(self):
         """Liste tous les domaines disponibles"""

@@ -1,8 +1,9 @@
 'use client';
 
 import { useEffect } from 'react';
+import { Domain, getSupportedDomains } from '@/app/config/domains';
 
-export function useContextUpdater(domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning') {
+export function useContextUpdater(domain: Domain) {
   useEffect(() => {
     const updateContextStatus = async () => {
       try {
@@ -31,7 +32,7 @@ export function useGlobalContextUpdater() {
   useEffect(() => {
     const updateAllContextStatus = async () => {
       try {
-        const domains = ['astronomy', 'finance', 'biochemistry', 'machinelearning'];
+        const domains = getSupportedDomains();
         
         for (const domain of domains) {
           const response = await fetch(`/api/context?domain=${domain}&action=updateLibrariesWithContextStatus`, {

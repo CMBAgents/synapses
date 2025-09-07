@@ -4,6 +4,7 @@ import path from 'path';
 import os from 'os';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import { isDomainSupported } from '@/app/config/domains';
 
 const execAsync = promisify(exec);
 
@@ -11,7 +12,7 @@ export async function POST(request: NextRequest) {
   try {
     const { domain } = await request.json();
     
-    if (!domain || !['astronomy', 'finance'].includes(domain)) {
+    if (!domain || !isDomainSupported(domain)) {
       return NextResponse.json({ error: 'Invalid domain' }, { status: 400 });
     }
 

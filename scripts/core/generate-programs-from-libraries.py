@@ -58,11 +58,18 @@ def main():
     with open('config.json', 'r') as f:
         config = json.load(f)
     
+    # Préserver la section domains si elle existe
+    domains_section = config.get('domains', {})
+    
     # Remplacer les programmes existants
     config['programs'] = all_programs
     
     # Pas de programme par défaut
     config['defaultProgram'] = ""
+    
+    # Restaurer la section domains si elle existait
+    if domains_section:
+        config['domains'] = domains_section
     
     # Sauvegarder la nouvelle configuration
     with open('config.json', 'w') as f:

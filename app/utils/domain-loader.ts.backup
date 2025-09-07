@@ -2,6 +2,7 @@ import financeData from '../data/finance-libraries.json';
 import astronomyData from '../data/astronomy-libraries.json';
 import machinelearningData from '../data/machinelearning-libraries.json';
 import biochemistryData from '../data/biochemistry-libraries.json';
+import { getSupportedDomains, getDomainDisplayName, getDomainDescription } from '../config/domains';
 
 export type LibraryEntry = {
   rank: number;
@@ -42,32 +43,13 @@ export function getDomainData(domain: string): DomainData {
 }
 
 export function getAllDomains(): Array<{id: string, name: string, description: string, icon: string}> {
-  return [
-  {
-    "id": "finance",
-    "name": "Finance & Trading",
-    "description": "Portfolio optimization, algorithmic trading, and financial analysis",
-    "icon": ""
-  },
-  {
-    "id": "astronomy",
-    "name": "Astrophysics & Cosmology",
-    "description": "Celestial observations, gravitational waves, and cosmic microwave background analysis",
-    "icon": ""
-  },
-  {
-    "id": "machinelearning",
-    "name": "Machine Learning & AI",
-    "description": "Deep learning, neural networks, and AI model development",
-    "icon": ""
-  },
-  {
-    "id": "biochemistry",
-    "name": "Biochemistry & Bioinformatics",
-    "description": "Molecular dynamics, drug discovery, and computational biology",
-    "icon": ""
-  }
-];
+  const supportedDomains = getSupportedDomains();
+  return supportedDomains.map(domain => ({
+    id: domain,
+    name: getDomainDisplayName(domain),
+    description: getDomainDescription(domain),
+    icon: ""
+  }));
 }
 
 // Function to check if a domain exists

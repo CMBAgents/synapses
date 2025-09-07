@@ -49,8 +49,8 @@ class UnifiedContextManager:
         # Load state
         self.state = self.load_state()
         
-        # Configuration des domaines
-        self.domains = ["astronomy", "finance", "biochemistry", "machinelearning"]
+        # Configuration des domaines - chargée depuis domain-config.json
+        self.domains = self.load_domains_config()
         
     def setup_logging(self):
         """Configure le logging"""
@@ -97,6 +97,23 @@ class UnifiedContextManager:
                 json.dump(self.state, f, indent=2)
         except Exception as e:
             self.logger.error(f"Erreur sauvegarde état: {e}")
+    
+    def load_domains_config(self) -> List[str]:
+        """Charge la configuration des domaines depuis config.json"""
+        try:
+            config_file = self.base_dir / "config.json"
+            if config_file.exists():
+                with open(config_file, 'r', encoding='utf-8') as f:
+                    config = json.load(f)
+                    domains = config.get('domains', {}).get('supported', [])
+                    self.logger.info(f"Domaines chargés depuis config.json: {domains}")
+                    return domains
+            else:
+                self.logger.warning("Fichier config.json non trouvé, utilisation des domaines par défaut")
+                return ["astronomy", "finance", "biochemistry", "machinelearning"]
+        except Exception as e:
+            self.logger.error(f"Erreur chargement configuration domaines: {e}")
+            return ["astronomy", "finance", "biochemistry", "machinelearning"]
     
     def get_file_hash(self, filepath: Path) -> str:
         """Calcule le hash MD5 d'un fichier"""

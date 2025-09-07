@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { isDomainSupported } from '@/app/config/domains';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,7 +10,7 @@ export async function GET(request: NextRequest) {
     const action = searchParams.get('action');
     const fileName = searchParams.get('fileName');
 
-    if (!domain || !['astronomy', 'finance'].includes(domain)) {
+    if (!domain || !isDomainSupported(domain)) {
       return NextResponse.json({ error: 'Invalid domain' }, { status: 400 });
     }
 

@@ -40,6 +40,21 @@ class DomainSystemConfig:
         """Retourne le nom d'affichage d'un domaine"""
         return self.domain_mappings.get(domain_id, domain_id.title())
     
+    def get_domain_description(self, domain_id: str) -> str:
+        """Retourne la description d'un domaine"""
+        # Vérifier d'abord les domaines spéciaux
+        if domain_id == 'astronomy':
+            return 'Celestial observations, gravitational waves, and cosmic microwave background analysis'
+        elif domain_id == 'biochemistry':
+            return 'Molecular dynamics, drug discovery, and computational biology'
+        elif domain_id == 'finance':
+            return 'Portfolio optimization, algorithmic trading, and financial analysis'
+        elif domain_id == 'machinelearning':
+            return 'Deep learning, neural networks, and AI model development'
+        
+        # Pour les nouveaux domaines, utiliser une description générique
+        return f'Top libraries in {domain_id} with cutting-edge research and development'
+    
     def is_special_domain(self, domain_id: str) -> bool:
         """Vérifie si un domaine a des règles spéciales"""
         return domain_id in self.special_domains

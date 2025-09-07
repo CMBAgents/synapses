@@ -1,4 +1,24 @@
 {
+  "domains": {
+    "supported": [
+      "astronomy",
+      "finance",
+      "biochemistry",
+      "machinelearning"
+    ],
+    "displayNames": {
+      "astronomy": "Astrophysics & Cosmology",
+      "finance": "Finance & Trading",
+      "biochemistry": "Biochemistry & Bioinformatics",
+      "machinelearning": "Machine Learning & AI"
+    },
+    "descriptions": {
+      "astronomy": "Celestial observations, gravitational waves, and cosmic microwave background analysis",
+      "finance": "Portfolio optimization, algorithmic trading, and financial analysis",
+      "biochemistry": "Molecular dynamics, drug discovery, and computational biology",
+      "machinelearning": "Deep learning, neural networks, and AI model development"
+    }
+  },
   "systemPrompt": "You provide expert help on using the {PROGRAM_NAME} Python package.\nWhen showing code examples, use Python 3.11+ syntax, follow best practices and use line length of 79 characters.\n\nOnly answer questions related to {PROGRAM_ID} based on the provided documentation.\nIf you don't know the answer or if it's not covered in the documentation, say so, but you can use general knowledge and cosmology expertise to help with less specific queries.\n\nWhen explaining mathematical concepts or equations, use LaTeX syntax (e.g., $\\alpha^2$ for inline math or $$E = mc^2$$ for display math). Properly format all mathematical expressions, variables, and equations using LaTeX notation.",
   "programs": [
     {

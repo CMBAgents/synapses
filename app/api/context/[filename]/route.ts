@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { getSupportedDomains } from '@/app/config/domains';
 
 export async function GET(
   request: NextRequest,
@@ -16,7 +17,7 @@ export async function GET(
     }
 
     // Chercher le fichier dans les domaines disponibles
-    const domains = ['astronomy', 'finance'];
+    const domains = getSupportedDomains();
     let filePath = null;
     let foundDomain = null;
 
