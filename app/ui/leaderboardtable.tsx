@@ -24,10 +24,16 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
   const getDomain = () => {
     if (pathname.includes('/leaderboard/astronomy')) return 'astronomy';
     if (pathname.includes('/leaderboard/finance')) return 'finance';
+    if (pathname.includes('/leaderboard/biochemistry')) return 'biochemistry';
+    if (pathname.includes('/leaderboard/machinelearning')) return 'machinelearning';
     if (pathname.includes('/chat/astronomy')) return 'astronomy';
     if (pathname.includes('/chat/finance')) return 'finance';
+    if (pathname.includes('/chat/biochemistry')) return 'biochemistry';
+    if (pathname.includes('/chat/machinelearning')) return 'machinelearning';
     if (pathname.includes('astronomy')) return 'astronomy';
     if (pathname.includes('finance')) return 'finance';
+    if (pathname.includes('biochemistry')) return 'biochemistry';
+    if (pathname.includes('machinelearning')) return 'machinelearning';
     return 'astronomy'; // fallback
   };
   

@@ -14,7 +14,7 @@
       "stars": 750,
       "rank": 2,
       "hasContextFile": true,
-      "contextFileName": "dstndstn-astrometry.net-context.txt"
+      "contextFileName": "dstndstn-astrometry-net-context.txt"
     },
     {
       "name": "astropy/astroquery",
@@ -85,7 +85,8 @@
       "github_url": "https://github.com/lesgourg/class_public",
       "stars": 267,
       "rank": 11,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "lesgourg-class-public-context.txt"
     },
     {
       "name": "spacepy/spacepy",
@@ -228,7 +229,8 @@
       "github_url": "https://github.com/mperrin/poppy",
       "stars": 184,
       "rank": 29,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "mperrin-poppy-context.txt"
     },
     {
       "name": "pypeit/pypeit",

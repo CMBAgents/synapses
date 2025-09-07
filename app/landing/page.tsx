@@ -11,11 +11,6 @@ export default function LandingPage() {
   const domains = getAllDomains();
 
   const handleDomainSelect = async (domainId: string) => {
-    // Only allow navigation to astronomy domain
-    if (domainId !== 'astronomy') {
-      return; // Don't navigate to disabled domains
-    }
-    
     setSelectedDomain(domainId);
     setIsAnimating(true);
     
@@ -55,7 +50,7 @@ export default function LandingPage() {
               const isMachineLearning = domain.id === 'machinelearning';
               const isBiochemistry = domain.id === 'biochemistry';
               const isAstronomy = domain.id === 'astronomy';
-              const isDisabled = !isAstronomy; // Seul l'astronomie est activée
+              const isDisabled = false; // Tous les domaines sont maintenant activés
               
               return (
                 <div
@@ -74,13 +69,6 @@ export default function LandingPage() {
                       <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-jersey text-white">
                         {domain.name}
                       </h3>
-                      {isDisabled && (
-                        <div className="mt-2 sm:mt-3">
-                          <div className="bg-yellow-500/20 border border-yellow-500/60 text-yellow-400 px-2 sm:px-3 py-1 rounded-full text-xs font-bold font-inter inline-block">
-                            Soon
-                          </div>
-                        </div>
-                      )}
                     </div>
 
                     {/* Selection Indicator */}
