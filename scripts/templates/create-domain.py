@@ -12,6 +12,7 @@ Ce script :
 
 import sys
 import subprocess
+import re
 from pathlib import Path
 import logging
 
@@ -111,6 +112,10 @@ class DomainCreator:
         print(f"🛣️  Génération des routes...")
         self.generate_routes()
         
+        # 7. Mettre à jour le script generate-programs-from-libraries.py
+        print(f"🔄 Mise à jour du script de génération...")
+        self.update_generate_script(domain_id)
+        
         print(f"\n🎉 Domaine '{domain_name}' créé avec succès!")
         print(f"📁 Fichier de données: {json_file}")
         print(f"🌐 Routes disponibles: /chat/{domain_id} et /leaderboard/{domain_id}")
@@ -135,6 +140,73 @@ class DomainCreator:
                     print(f"Erreurs: {result.stderr}")
         except Exception as e:
             print(f"❌ Erreur lors de la génération des routes: {e}")
+    
+    def update_generate_script(self, domain_id: str):
+        """Met à jour le script generate-programs-from-libraries.py pour inclure le nouveau domaine"""
+        try:
+            script_path = self.project_root / "scripts" / "core" / "generate-programs-from-libraries.py"
+            
+            if not script_path.exists():
+                print(f"⚠️  Script generate-programs-from-libraries.py non trouvé: {script_path}")
+                return
+            
+            # Lire le contenu actuel
+            with open(script_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Vérifier si le domaine est déjà présent
+            if f"{domain_id}-libraries.json" in content:
+                print(f"✅ Domaine '{domain_id}' déjà présent dans le script")
+                return
+            
+            # Créer les lignes à ajouter
+            domain_display_name = self.config.get_domain_display_name(domain_id)
+            
+            # Ajouter l'import du fichier JSON
+            import_line = f"    with open('app/data/{domain_id}-libraries.json', 'r') as f:\n"
+            import_line += f"        {domain_id}_data = json.load(f)\n"
+            
+            # Ajouter la création des programmes
+            program_line = f"    # Créer les programmes pour {domain_display_name}\n"
+            program_line += f"    {domain_id}_programs = [create_program_from_library(lib, '{domain_id}') \n"
+            program_line += f"                         for lib in {domain_id}_data['libraries']]\n"
+            
+            # Trouver l'endroit pour insérer les imports (après le dernier with open)
+            import_pattern = r"(    with open\('app/data/[^']+\.json', 'r'\) as f:\n        \w+_data = json\.load\(f\)\n)"
+            import_match = list(re.finditer(import_pattern, content))
+            
+            if import_match:
+                last_import = import_match[-1]
+                insert_pos = last_import.end()
+                content = content[:insert_pos] + "\n" + import_line + content[insert_pos:]
+            
+            # Trouver l'endroit pour insérer la création des programmes (après le dernier programme)
+            program_pattern = r"(    \w+_programs = \[create_program_from_library\(lib, '[^']+'\) \n                         for lib in \w+_data\['libraries'\]\]\n)"
+            program_match = list(re.finditer(program_pattern, content))
+            
+            if program_match:
+                last_program = program_match[-1]
+                insert_pos = last_program.end()
+                content = content[:insert_pos] + "\n" + program_line + content[insert_pos:]
+            
+            # Mettre à jour la ligne all_programs
+            all_programs_pattern = r"(all_programs = [^+]+ \+ [^+]+ \+ [^+]+ \+ [^+]+)"
+            all_programs_replacement = f"all_programs = astronomy_programs + finance_programs + biochemistry_programs + machinelearning_programs + {domain_id}_programs"
+            content = re.sub(all_programs_pattern, all_programs_replacement, content)
+            
+            # Mettre à jour les prints
+            print_pattern = r"(    print\(f\"   - Machine Learning: \{len\(machinelearning_programs\)\} programmes\"\)\n)"
+            print_replacement = f"    print(f\"   - Machine Learning: {{len(machinelearning_programs)}} programmes\")\n    print(f\"   - {domain_display_name}: {{len({domain_id}_programs)}} programmes\")\n"
+            content = re.sub(print_pattern, print_replacement, content)
+            
+            # Sauvegarder le fichier modifié
+            with open(script_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            
+            print(f"✅ Script generate-programs-from-libraries.py mis à jour avec le domaine '{domain_id}'")
+            
+        except Exception as e:
+            print(f"❌ Erreur lors de la mise à jour du script: {e}")
 
 def main():
     """Fonction principale"""

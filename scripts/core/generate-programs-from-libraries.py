@@ -29,6 +29,12 @@ def main():
     with open('app/data/finance-libraries.json', 'r') as f:
         finance_data = json.load(f)
     
+    with open('app/data/biochemistry-libraries.json', 'r') as f:
+        biochemistry_data = json.load(f)
+    
+    with open('app/data/machinelearning-libraries.json', 'r') as f:
+        machinelearning_data = json.load(f)
+    
     # Créer les programmes pour l'astrophysique
     astronomy_programs = [create_program_from_library(lib, 'astronomy') 
                          for lib in astronomy_data['libraries']]
@@ -37,8 +43,16 @@ def main():
     finance_programs = [create_program_from_library(lib, 'finance') 
                        for lib in finance_data['libraries']]
     
+    # Créer les programmes pour la biochimie
+    biochemistry_programs = [create_program_from_library(lib, 'biochemistry') 
+                            for lib in biochemistry_data['libraries']]
+    
+    # Créer les programmes pour le machine learning
+    machinelearning_programs = [create_program_from_library(lib, 'machinelearning') 
+                               for lib in machinelearning_data['libraries']]
+    
     # Combiner tous les programmes
-    all_programs = astronomy_programs + finance_programs
+    all_programs = astronomy_programs + finance_programs + biochemistry_programs + machinelearning_programs
     
     # Charger la configuration existante
     with open('config.json', 'r') as f:
@@ -57,6 +71,8 @@ def main():
     print(f"✅ Généré {len(all_programs)} programmes:")
     print(f"   - Astronomy: {len(astronomy_programs)} programmes")
     print(f"   - Finance: {len(finance_programs)} programmes")
+    print(f"   - Biochemistry: {len(biochemistry_programs)} programmes")
+    print(f"   - Machine Learning: {len(machinelearning_programs)} programmes")
     print(f"   - Programme par défaut: Aucun")
     print(f"\n📁 Configuration sauvegardée dans: config.json")
 

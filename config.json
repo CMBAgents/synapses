@@ -15,7 +15,7 @@
       "name": "astrometry.net",
       "description": "dstndstn/astrometry.net - Astrophysics library with 750 stars",
       "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/dstndstn-astrometry.net-context.txt",
+      "combinedContextFile": "/api/context/astronomy/dstndstn-astrometry-net-context.txt",
       "docsUrl": "https://github.com/dstndstn/astrometry.net",
       "extraSystemPrompt": "You are an expert on dstndstn/astrometry.net. Use the provided documentation to help users with this astrophysics library."
     },
@@ -96,7 +96,7 @@
       "name": "class_public",
       "description": "lesgourg/class_public - Astrophysics library with 267 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/astronomy/lesgourg-class-public-context.txt",
       "docsUrl": "https://github.com/lesgourg/class_public",
       "extraSystemPrompt": "You are an expert on lesgourg/class_public. Use the provided documentation to help users with this astrophysics library."
     },
@@ -990,6 +990,186 @@
       "combinedContextFile": null,
       "docsUrl": "https://github.com/quantopian/qgrid",
       "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "biopython-biopython",
+      "name": "biopython",
+      "description": "biopython/biopython - Biochemistry library with 4200 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/biopython/biopython",
+      "extraSystemPrompt": "You are an expert on biopython/biopython. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "scikit-bio-scikit-bio",
+      "name": "scikit-bio",
+      "description": "scikit-bio/scikit-bio - Biochemistry library with 1200 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/scikit-bio/scikit-bio",
+      "extraSystemPrompt": "You are an expert on scikit-bio/scikit-bio. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "mdanalysis-mdanalysis",
+      "name": "mdanalysis",
+      "description": "mdanalysis/mdanalysis - Biochemistry library with 800 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/mdanalysis/mdanalysis",
+      "extraSystemPrompt": "You are an expert on mdanalysis/mdanalysis. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "openmm-openmm",
+      "name": "openmm",
+      "description": "openmm/openmm - Biochemistry library with 1200 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/openmm/openmm",
+      "extraSystemPrompt": "You are an expert on openmm/openmm. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "choderalab-openmmtools",
+      "name": "openmmtools",
+      "description": "choderalab/openmmtools - Biochemistry library with 400 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/choderalab/openmmtools",
+      "extraSystemPrompt": "You are an expert on choderalab/openmmtools. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "rdkit-rdkit",
+      "name": "rdkit",
+      "description": "rdkit/rdkit - Biochemistry library with 2000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/rdkit/rdkit",
+      "extraSystemPrompt": "You are an expert on rdkit/rdkit. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "openbabel-openbabel",
+      "name": "openbabel",
+      "description": "openbabel/openbabel - Biochemistry library with 1000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/openbabel/openbabel",
+      "extraSystemPrompt": "You are an expert on openbabel/openbabel. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "gromacs-gromacs",
+      "name": "gromacs",
+      "description": "gromacs/gromacs - Biochemistry library with 800 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/gromacs/gromacs",
+      "extraSystemPrompt": "You are an expert on gromacs/gromacs. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "amber-md-amber",
+      "name": "amber",
+      "description": "amber-md/amber - Biochemistry library with 600 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/amber-md/amber",
+      "extraSystemPrompt": "You are an expert on amber-md/amber. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "vmdplugin-vmd",
+      "name": "vmd",
+      "description": "vmdplugin/vmd - Biochemistry library with 400 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/vmdplugin/vmd",
+      "extraSystemPrompt": "You are an expert on vmdplugin/vmd. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "pytorch-pytorch",
+      "name": "pytorch",
+      "description": "pytorch/pytorch - Machinelearning library with 75000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/pytorch/pytorch",
+      "extraSystemPrompt": "You are an expert on pytorch/pytorch. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "tensorflow-tensorflow",
+      "name": "tensorflow",
+      "description": "tensorflow/tensorflow - Machinelearning library with 180000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/tensorflow/tensorflow",
+      "extraSystemPrompt": "You are an expert on tensorflow/tensorflow. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "scikit-learn-scikit-learn",
+      "name": "scikit-learn",
+      "description": "scikit-learn/scikit-learn - Machinelearning library with 55000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/scikit-learn/scikit-learn",
+      "extraSystemPrompt": "You are an expert on scikit-learn/scikit-learn. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "keras-team-keras",
+      "name": "keras",
+      "description": "keras-team/keras - Machinelearning library with 60000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/keras-team/keras",
+      "extraSystemPrompt": "You are an expert on keras-team/keras. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "huggingface-transformers",
+      "name": "transformers",
+      "description": "huggingface/transformers - Machinelearning library with 120000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/huggingface/transformers",
+      "extraSystemPrompt": "You are an expert on huggingface/transformers. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "pandas-dev-pandas",
+      "name": "pandas",
+      "description": "pandas-dev/pandas - Machinelearning library with 38000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/pandas-dev/pandas",
+      "extraSystemPrompt": "You are an expert on pandas-dev/pandas. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "numpy-numpy",
+      "name": "numpy",
+      "description": "numpy/numpy - Machinelearning library with 25000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/numpy/numpy",
+      "extraSystemPrompt": "You are an expert on numpy/numpy. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "scipy-scipy",
+      "name": "scipy",
+      "description": "scipy/scipy - Machinelearning library with 12000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/scipy/scipy",
+      "extraSystemPrompt": "You are an expert on scipy/scipy. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "matplotlib-matplotlib",
+      "name": "matplotlib",
+      "description": "matplotlib/matplotlib - Machinelearning library with 18000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/matplotlib/matplotlib",
+      "extraSystemPrompt": "You are an expert on matplotlib/matplotlib. Use the provided documentation to help users with this machinelearning library."
+    },
+    {
+      "id": "seaborn-seaborn",
+      "name": "seaborn",
+      "description": "seaborn/seaborn - Machinelearning library with 11000 stars",
+      "contextFiles": [],
+      "combinedContextFile": null,
+      "docsUrl": "https://github.com/seaborn/seaborn",
+      "extraSystemPrompt": "You are an expert on seaborn/seaborn. Use the provided documentation to help users with this machinelearning library."
     }
   ],
   "defaultProgram": "",

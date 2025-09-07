@@ -12,6 +12,7 @@ Ce script :
 
 import sys
 import shutil
+import re
 from pathlib import Path
 import subprocess
 
@@ -99,11 +100,15 @@ class DomainDeleter:
         print(f"🛣️  Régénération des routes...")
         self.regenerate_routes()
         
+        # 8. Mettre à jour le script generate-programs-from-libraries.py
+        print(f"🔄 Mise à jour du script de génération...")
+        self.update_generate_script(domain_id)
+        
         print(f"\n🎉 Domaine '{domain_name}' supprimé avec succès!")
         print(f"📁 Fichiers supprimés:")
         print(f"   - {json_file}")
         print(f"   - {context_folder}")
-        print(f"🔄 Routes mises à jour automatiquement")
+        print(f"🔄 Routes et scripts mis à jour automatiquement")
         
         return True
     
@@ -151,6 +156,52 @@ class DomainDeleter:
                     print(f"Erreurs: {result.stderr}")
         except Exception as e:
             print(f"❌ Erreur lors de la régénération des routes: {e}")
+    
+    def update_generate_script(self, domain_id: str):
+        """Met à jour le script generate-programs-from-libraries.py pour retirer le domaine supprimé"""
+        try:
+            script_path = self.project_root / "scripts" / "core" / "generate-programs-from-libraries.py"
+            
+            if not script_path.exists():
+                print(f"⚠️  Script generate-programs-from-libraries.py non trouvé: {script_path}")
+                return
+            
+            # Lire le contenu actuel
+            with open(script_path, 'r', encoding='utf-8') as f:
+                content = f.read()
+            
+            # Vérifier si le domaine est présent
+            if f"{domain_id}-libraries.json" not in content:
+                print(f"✅ Domaine '{domain_id}' déjà absent du script")
+                return
+            
+            # Supprimer l'import du fichier JSON
+            import_pattern = rf"    with open\('app/data/{domain_id}-libraries\.json', 'r'\) as f:\n        {domain_id}_data = json\.load\(f\)\n"
+            content = re.sub(import_pattern, "", content)
+            
+            # Supprimer la création des programmes
+            program_pattern = rf"    # Créer les programmes pour .+\n    {domain_id}_programs = \[create_program_from_library\(lib, '{domain_id}'\) \n                         for lib in {domain_id}_data\['libraries'\]\]\n"
+            content = re.sub(program_pattern, "", content)
+            
+            # Retirer le domaine de la ligne all_programs
+            all_programs_pattern = rf" \+ {domain_id}_programs"
+            content = re.sub(all_programs_pattern, "", content)
+            
+            # Supprimer le print du domaine
+            print_pattern = rf"    print\(f\"   - .+: \{{len\({domain_id}_programs\)\}} programmes\"\)\n"
+            content = re.sub(print_pattern, "", content)
+            
+            # Nettoyer les lignes vides multiples
+            content = re.sub(r'\n\s*\n\s*\n', '\n\n', content)
+            
+            # Sauvegarder le fichier modifié
+            with open(script_path, 'w', encoding='utf-8') as f:
+                f.write(content)
+            
+            print(f"✅ Script generate-programs-from-libraries.py mis à jour (domaine '{domain_id}' retiré)")
+            
+        except Exception as e:
+            print(f"❌ Erreur lors de la mise à jour du script: {e}")
     
     def list_domains(self):
         """Liste tous les domaines disponibles"""

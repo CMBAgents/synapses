@@ -2,7 +2,6 @@ import financeData from '../data/finance-libraries.json';
 import astronomyData from '../data/astronomy-libraries.json';
 import machinelearningData from '../data/machinelearning-libraries.json';
 import biochemistryData from '../data/biochemistry-libraries.json';
-import computerscienceData from '../data/computer-science-libraries.json';
 
 export type LibraryEntry = {
   rank: number;
@@ -29,10 +28,10 @@ const domainDataMap: Record<string, DomainData> = {
 };
 
 // Individual loader functions for backward compatibility
-export function loadFinanceData(): DomainData { return financeData as DomainData; }
-export function loadAstronomyData(): DomainData { return astronomyData as DomainData; }
-export function loadMachineLearningData(): DomainData { return machinelearningData as DomainData; }
-export function loadBiochemistryData(): DomainData { return biochemistryData as DomainData; }
+export function loadfinanceData(): DomainData { return financeData as DomainData; }
+export function loadastronomyData(): DomainData { return astronomyData as DomainData; }
+export function loadmachinelearningData(): DomainData { return machinelearningData as DomainData; }
+export function loadbiochemistryData(): DomainData { return biochemistryData as DomainData; }
 
 export function getDomainData(domain: string): DomainData {
   const domainData = domainDataMap[domain];
@@ -66,12 +65,6 @@ export function getAllDomains(): Array<{id: string, name: string, description: s
     "id": "biochemistry",
     "name": "Biochemistry & Bioinformatics",
     "description": "Molecular dynamics, drug discovery, and computational biology",
-    "icon": ""
-  },
-  {
-    "id": "computer-science",
-    "name": "Computer-Science",
-    "description": "Top libraries in computer-science",
     "icon": ""
   }
 ];
