@@ -4,6 +4,7 @@ import { Suspense } from 'react';
 import FadeIn from "./fadein";
 import LeaderboardTable from "./leaderboardtable";
 import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLearningData } from "../utils/domain-loader";
+import { getDomainDisplayName, getDomainDescription } from "../config/domains";
 
 interface BaseLeaderboardPageProps {
   domain: 'astronomy' | 'finance' | 'biochemistry' | 'machinelearning';
@@ -24,29 +25,11 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
   };
 
   const getDomainTitle = () => {
-    if (domain === 'astronomy') {
-      return 'Astrophysics & Cosmology';
-    } else if (domain === 'finance') {
-      return 'Finance & Trading';
-    } else if (domain === 'biochemistry') {
-      return 'Biochemistry & Bioinformatics';
-    } else if (domain === 'machinelearning') {
-      return 'Machine Learning & AI';
-    }
-    return 'Domain';
+    return getDomainDisplayName(domain);
   };
 
-  const getDomainDescription = () => {
-    if (domain === 'astronomy') {
-      return 'Top 100 starred library in astrophysics and cosmology';
-    } else if (domain === 'finance') {
-      return 'Top 100 starred library in finance and trading';
-    } else if (domain === 'biochemistry') {
-      return 'Top 100 starred library in biochemistry and bioinformatics';
-    } else if (domain === 'machinelearning') {
-      return 'Top 100 starred library in machine learning and artificial intelligence';
-    }
-    return 'Top 100 starred libraries';
+  const getDomainDescriptionText = () => {
+    return getDomainDescription(domain);
   };
 
   const getChatUrl = () => {
@@ -83,7 +66,7 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
               
               <div className="text-center flex-1 mx-2 sm:mx-4">
                 <p className="text-sm sm:text-base md:text-lg italic font-semibold text-white font-inter">
-                  {getDomainDescription()}
+                  {getDomainDescriptionText()}
                 </p>
                 <p className="text-white/70 max-w-3xl mx-auto font-inter text-xs sm:text-sm md:text-base">
                   Libraries with the same number of stars get attributed the same rank.

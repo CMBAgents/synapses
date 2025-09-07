@@ -7,6 +7,7 @@ import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLe
 import ContextUpdater from "./context-updater";
 import LibrarySelector from "./library-selector";
 import { useProgramContext } from "../contexts/ProgramContext";
+import { getDomainDisplayName, getDomainDescription } from "../config/domains";
 
 
 interface BaseChatPageProps {
@@ -36,16 +37,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
   };
 
   const getDomainTitle = () => {
-    if (domain === 'astronomy') {
-      return 'Astrophysics & Cosmology';
-    } else if (domain === 'finance') {
-      return 'Finance & Trading';
-    } else if (domain === 'biochemistry') {
-      return 'Biochemistry & Bioinformatics';
-    } else if (domain === 'machinelearning') {
-      return 'Machine Learning & AI';
-    }
-    return 'Domain';
+    return getDomainDisplayName(domain);
   };
 
   const getLeaderboardUrl = () => {
