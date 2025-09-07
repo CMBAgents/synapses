@@ -28,14 +28,16 @@
       "github_url": "https://github.com/pmorissette/ffn",
       "stars": 1200,
       "rank": 4,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "pmorissette-ffn-context.txt"
     },
     {
       "name": "quantopian/pyfolio",
       "github_url": "https://github.com/quantopian/pyfolio",
       "stars": 4800,
       "rank": 5,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "pyfolio-context.txt"
     },
     {
       "name": "fmilthaler/finquant",
@@ -50,7 +52,8 @@
       "github_url": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
       "stars": 1200,
       "rank": 7,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "jamesmawm-High-Frequency-Trading-Model-with-IB-context.txt"
     },
     {
       "name": "quantopian/empyrical",
@@ -73,7 +76,8 @@
       "github_url": "https://github.com/quantopian/qgrid",
       "stars": 1000,
       "rank": 10,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "qgrid-context.txt"
     }
   ],
   "domain": "finance",

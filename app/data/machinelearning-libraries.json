@@ -5,42 +5,48 @@
       "github_url": "https://github.com/pytorch/pytorch",
       "stars": 75000,
       "rank": 1,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "pytorch-pytorch-context.txt"
     },
     {
       "name": "tensorflow/tensorflow",
       "github_url": "https://github.com/tensorflow/tensorflow",
       "stars": 180000,
       "rank": 2,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "tensorflow-tensorflow-context.txt"
     },
     {
       "name": "scikit-learn/scikit-learn",
       "github_url": "https://github.com/scikit-learn/scikit-learn",
       "stars": 55000,
       "rank": 3,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "scikit-learn-scikit-learn-context.txt"
     },
     {
       "name": "keras-team/keras",
       "github_url": "https://github.com/keras-team/keras",
       "stars": 60000,
       "rank": 4,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "keras-team-keras-context.txt"
     },
     {
       "name": "huggingface/transformers",
       "github_url": "https://github.com/huggingface/transformers",
       "stars": 120000,
       "rank": 5,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "huggingface-transformers-context.txt"
     },
     {
       "name": "pandas-dev/pandas",
       "github_url": "https://github.com/pandas-dev/pandas",
       "stars": 38000,
       "rank": 6,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "pandas-dev-pandas-context.txt"
     },
     {
       "name": "numpy/numpy",

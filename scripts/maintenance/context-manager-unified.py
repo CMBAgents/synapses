@@ -262,18 +262,25 @@ class UnifiedContextManager:
             
             result = contextmaker.make(
                 library_name=package_name,
-                output_path=str(repo_dir / "temp_context.txt"),
+                output_path=str(repo_dir),
                 input_path=str(repo_dir),
                 rough=True,
+                extension='txt'
             )
             
-            if result and (repo_dir / "temp_context.txt").exists():
-                # Lire le contenu généré
-                with open(repo_dir / "temp_context.txt", 'r', encoding='utf-8') as f:
-                    content = f.read()
-                
-                # Nettoyer le fichier temporaire
-                (repo_dir / "temp_context.txt").unlink()
+            if result:
+                # Le fichier généré sera nommé {package_name}.txt
+                generated_file = repo_dir / f"{package_name}.txt"
+                if generated_file.exists():
+                    # Lire le contenu généré
+                    with open(generated_file, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    
+                    # Nettoyer le fichier temporaire
+                    generated_file.unlink()
+                else:
+                    self.logger.error(f"Generated file not found: {generated_file}")
+                    return None
                 
                 self.logger.info(f"✅ Context file generated for {package_name}")
                 return content
@@ -603,89 +610,64 @@ class UnifiedContextManager:
     # ============================================================================
     
     def update_library_metadata(self):
-        """Met à jour les métadonnées des bibliothèques"""
+        """Met à jour les métadonnées des bibliothèques pour tous les domaines"""
         self.logger.info("📝 Mise à jour des métadonnées des bibliothèques...")
         
         try:
             # Scanner les fichiers de contexte
             context_files = self.scan_context_files()
             
-            # Charger les données existantes
-            astronomy_data = self.load_astronomy_data()
-            finance_data = self.load_finance_data()
-            
-            # Mettre à jour les bibliothèques astronomy
-            for lib in astronomy_data["libraries"]:
-                lib_name = lib["name"].replace("/", "-")
+            # Mettre à jour tous les domaines
+            for domain in self.domains:
+                self.logger.info(f"  Mise à jour du domaine: {domain}")
                 
-                # Chercher le fichier de contexte correspondant
-                has_context = False
-                context_filename = None
+                # Charger les données du domaine
+                domain_data = self.load_domain_data(domain)
                 
-                for file_info in context_files.get("astronomy", []):
-                    filename = file_info["filename"]
+                # Mettre à jour les bibliothèques du domaine
+                for lib in domain_data["libraries"]:
+                    lib_name = lib["name"].replace("/", "-")
                     
-                    # Extraire les parties du nom pour des correspondances flexibles
-                    lib_parts = lib["name"].split("/")
-                    lib_short = lib_parts[-1]  # Dernière partie
-                    lib_first = lib_parts[0]   # Première partie
+                    # Chercher le fichier de contexte correspondant
+                    has_context = False
+                    context_filename = None
                     
-                    # Vérifier si le fichier correspond à cette bibliothèque
-                    if (filename == f"{lib_name}-context.txt" or 
-                        filename == f"{lib_name}.txt" or
-                        filename.startswith(f"{lib_name}-") and filename.endswith(".txt") or
-                        filename == f"{lib_short}-context.txt" or
-                        filename == f"{lib_short}.txt" or
-                        filename == f"{lib_first}-context.txt" or
-                        filename == f"{lib_first}.txt"):
-                        has_context = True
-                        context_filename = filename
-                        break
-                
-                lib["hasContextFile"] = has_context
-                if has_context:
-                    lib["contextFileName"] = context_filename
-            
-            # Mettre à jour les bibliothèques finance
-            for lib in finance_data["libraries"]:
-                lib_name = lib["name"].replace("/", "-")
-                
-                # Chercher le fichier de contexte correspondant
-                has_context = False
-                context_filename = None
-                
-                for file_info in context_files.get("finance", []):
-                    filename = file_info["filename"]
+                    for file_info in context_files.get(domain, []):
+                        filename = file_info["filename"]
+                        
+                        # Extraire les parties du nom pour des correspondances flexibles
+                        lib_parts = lib["name"].split("/")
+                        lib_short = lib_parts[-1]  # Dernière partie
+                        lib_first = lib_parts[0]   # Première partie
+                        
+                        # Vérifier si le fichier correspond à cette bibliothèque
+                        if (filename == f"{lib_name}-context.txt" or 
+                            filename == f"{lib_name}.txt" or
+                            filename.startswith(f"{lib_name}-") and filename.endswith(".txt") or
+                            filename == f"{lib_short}-context.txt" or
+                            filename == f"{lib_short}.txt" or
+                            filename == f"{lib_first}-context.txt" or
+                            filename == f"{lib_first}.txt"):
+                            has_context = True
+                            context_filename = filename
+                            break
                     
-                    # Extraire les parties du nom pour des correspondances flexibles
-                    lib_parts = lib["name"].split("/")
-                    lib_short = lib_parts[-1]  # Dernière partie
-                    lib_first = lib_parts[0]   # Première partie
-                    
-                    # Vérifier si le fichier correspond à cette bibliothèque
-                    if (filename == f"{lib_name}-context.txt" or 
-                        filename == f"{lib_name}.txt" or
-                        filename.startswith(f"{lib_name}-") and filename.endswith(".txt") or
-                        filename == f"{lib_short}-context.txt" or
-                        filename == f"{lib_short}.txt" or
-                        filename == f"{lib_first}-context.txt" or
-                        filename == f"{lib_first}.txt"):
-                        has_context = True
-                        context_filename = filename
-                        break
+                    lib["hasContextFile"] = has_context
+                    if has_context:
+                        lib["contextFileName"] = context_filename
+                    else:
+                        # Supprimer la propriété si elle existe
+                        if "contextFileName" in lib:
+                            del lib["contextFileName"]
                 
-                lib["hasContextFile"] = has_context
-                if has_context:
-                    lib["contextFileName"] = context_filename
+                # Sauvegarder le domaine
+                domain_file = self.data_dir / f"{domain}-libraries.json"
+                with open(domain_file, 'w') as f:
+                    json.dump(domain_data, f, indent=2)
+                
+                self.logger.info(f"  ✅ {domain}: {len(domain_data['libraries'])} bibliothèques mises à jour")
             
-            # Sauvegarder
-            with open(self.data_dir / "astronomy-libraries.json", 'w') as f:
-                json.dump(astronomy_data, f, indent=2)
-            
-            with open(self.data_dir / "finance-libraries.json", 'w') as f:
-                json.dump(finance_data, f, indent=2)
-            
-            self.logger.info("✅ Métadonnées des bibliothèques mises à jour")
+            self.logger.info("✅ Métadonnées des bibliothèques mises à jour pour tous les domaines")
             
         except Exception as e:
             self.logger.error(f"❌ Erreur mise à jour métadonnées: {e}")
@@ -710,21 +692,21 @@ class UnifiedContextManager:
         
         return context_files
     
+    def load_domain_data(self, domain: str) -> Dict:
+        """Charge les données d'un domaine"""
+        domain_json = self.data_dir / f"{domain}-libraries.json"
+        if domain_json.exists():
+            with open(domain_json, 'r') as f:
+                return json.load(f)
+        return {"libraries": [], "domain": domain}
+    
     def load_astronomy_data(self) -> Dict:
         """Charge les données astronomy"""
-        astronomy_json = self.data_dir / "astronomy-libraries.json"
-        if astronomy_json.exists():
-            with open(astronomy_json, 'r') as f:
-                return json.load(f)
-        return {"libraries": [], "domain": "astronomy"}
+        return self.load_domain_data("astronomy")
     
     def load_finance_data(self) -> Dict:
         """Charge les données finance"""
-        finance_json = self.data_dir / "finance-libraries.json"
-        if finance_json.exists():
-            with open(finance_json, 'r') as f:
-                return json.load(f)
-        return {"libraries": [], "domain": "finance"}
+        return self.load_domain_data("finance")
 
     # ============================================================================
     # 5. GÉNÉRATION DU MODULE EMBEDDED-CONTEXT.TS
