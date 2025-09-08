@@ -49,10 +49,18 @@
       "contextFileName": "rdkit-context.txt"
     },
     {
+      "name": "schrodinger/pymol-open-source",
+      "github_url": "https://github.com/schrodinger/pymol-open-source",
+      "stars": 1500,
+      "rank": 7,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
       "name": "openbabel/openbabel",
       "github_url": "https://github.com/openbabel/openbabel",
       "stars": 1000,
-      "rank": 7,
+      "rank": 8,
       "hasContextFile": true,
       "contextFileName": "openbabel-context.txt"
     },
@@ -60,9 +68,17 @@
       "name": "gromacs/gromacs",
       "github_url": "https://github.com/gromacs/gromacs",
       "stars": 800,
-      "rank": 8,
+      "rank": 9,
       "hasContextFile": true,
       "contextFileName": "gromacs-gromacs-context.txt"
+    },
+    {
+      "name": "rbvi/ChimeraX",
+      "github_url": "https://github.com/rbvi/ChimeraX",
+      "stars": 800,
+      "rank": 10,
+      "hasContextFile": false,
+      "contextFileName": null
     }
   ],
   "domain": "biochemistry",
@@ -73,10 +89,14 @@
     "molecular dynamics",
     "drug discovery",
     "computational biology",
+    "molecular visualization",
+    "protein structure",
     "biopython",
     "mdanalysis",
     "openmm",
     "rdkit",
-    "gromacs"
+    "gromacs",
+    "pymol",
+    "chimerax"
   ]
 }
