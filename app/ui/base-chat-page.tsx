@@ -3,11 +3,11 @@
 import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams, useParams } from 'next/navigation';
 import ChatContainer from "./chat-container";
-import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLearningData } from "../utils/domain-loader";
+import { getDomainData } from "../utils/domain-loader";
 import ContextUpdater from "./context-updater";
 import LibrarySelector from "./library-selector";
 import { useProgramContext } from "../contexts/ProgramContext";
-import { getDomainDisplayName, getDomainDescription } from "../config/domains";
+import { getDomainDisplayName, getDomainDescription, getDomainDefaultProgram, getDomainSpecializedDescription, getDomainShortName } from "../config/domains";
 
 
 interface BaseChatPageProps {
@@ -23,17 +23,8 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
   // Get programId from URL params if available
   const urlProgramId = params.programId as string;
 
-  const getDomainData = () => {
-    if (domain === 'astronomy') {
-      return loadAstronomyData();
-    } else if (domain === 'finance') {
-      return loadFinanceData();
-    } else if (domain === 'biochemistry') {
-      return loadBiochemistryData();
-    } else if (domain === 'machinelearning') {
-      return loadMachineLearningData();
-    }
-    return loadAstronomyData(); // fallback
+  const getDomainDataForPage = () => {
+    return getDomainData(domain);
   };
 
   const getDomainTitle = () => {
@@ -46,16 +37,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
 
   // Function to get default program ID for the domain
   const getDefaultProgramIdForDomain = () => {
-    if (domain === 'astronomy') {
-      return 'skyfielders-python-skyfield';
-    } else if (domain === 'finance') {
-      return 'quantopian-zipline';
-    } else if (domain === 'biochemistry') {
-      return 'biopython-biopython';
-    } else if (domain === 'machinelearning') {
-      return 'pytorch-pytorch';
-    }
-    return 'skyfielders-python-skyfield'; // fallback
+    return getDomainDefaultProgram(domain);
   };
 
   // Function to map library name to program ID
@@ -80,7 +62,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
       programId = getProgramIdFromLibraryName(preselectedLibrary);
     } else {
       // Fallback: use the first available program from the domain
-      const domainData = getDomainData();
+      const domainData = getDomainDataForPage();
       if (domainData.libraries.length > 0) {
         // Use the first library as fallback
         programId = getProgramIdFromLibraryName(domainData.libraries[0].name);
@@ -98,7 +80,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
       setActiveProgramId(programId);
     } else {
       // Fallback: use the first available program from the domain
-      const domainData = getDomainData();
+      const domainData = getDomainDataForPage();
       if (domainData.libraries.length > 0) {
         const fallbackProgramId = getProgramIdFromLibraryName(domainData.libraries[0].name);
         setActiveProgramId(fallbackProgramId);
@@ -108,7 +90,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
     }
   };
 
-  const domainData = getDomainData();
+  const domainData = getDomainDataForPage();
 
   return (
     <ContextUpdater domain={domain}>
@@ -158,7 +140,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
                   description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                   contextFiles: [],
                   docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
-                  extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : domain === 'finance' ? 'finance and trading' : domain === 'biochemistry' ? 'biochemistry and bioinformatics' : 'machine learning and artificial intelligence'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : domain === 'finance' ? 'finance' : domain === 'biochemistry' ? 'biochemistry' : 'machine learning'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+                  extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${getDomainSpecializedDescription(domain)}. You have access to information about ${domainData.libraries.length} top ${getDomainShortName(domain)} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
                 }]}
                 defaultProgramId={activeProgramId || getDefaultProgramIdForDomain()}
                 preselectedLibrary={preselectedLibrary}
@@ -186,7 +168,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
                 description: selectedLibrary ? `Expert on ${selectedLibrary.name}` : domainData.description,
                 contextFiles: [],
                 docsUrl: selectedLibrary ? selectedLibrary.github_url : '',
-                extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${domain === 'astronomy' ? 'astrophysics and cosmology' : domain === 'finance' ? 'finance and trading' : domain === 'biochemistry' ? 'biochemistry and bioinformatics' : 'machine learning and artificial intelligence'}. You have access to information about ${domainData.libraries.length} top ${domain === 'astronomy' ? 'astrophysics' : domain === 'finance' ? 'finance' : domain === 'biochemistry' ? 'biochemistry' : 'machine learning'} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
+                extraSystemPrompt: selectedLibrary ? `You are an expert on ${selectedLibrary.name}. Use the provided documentation to help users with this library.` : `You are an AI assistant specialized in ${getDomainSpecializedDescription(domain)}. You have access to information about ${domainData.libraries.length} top ${getDomainShortName(domain)} libraries including: ${domainData.libraries.slice(0, 5).map(lib => lib.name).join(', ')} and more.`
               }]}
               defaultProgramId={activeProgramId || getDefaultProgramIdForDomain()}
               preselectedLibrary={preselectedLibrary}

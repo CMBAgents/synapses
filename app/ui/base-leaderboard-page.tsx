@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import FadeIn from "./fadein";
 import LeaderboardTable from "./leaderboardtable";
-import { loadAstronomyData, loadFinanceData, loadBiochemistryData, loadMachineLearningData } from "../utils/domain-loader";
+import { getDomainData } from "../utils/domain-loader";
 import { getDomainDisplayName, getDomainDescription } from "../config/domains";
 
 interface BaseLeaderboardPageProps {
@@ -11,17 +11,8 @@ interface BaseLeaderboardPageProps {
 }
 
 function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
-  const getDomainData = () => {
-    if (domain === 'astronomy') {
-      return loadAstronomyData();
-    } else if (domain === 'finance') {
-      return loadFinanceData();
-    } else if (domain === 'biochemistry') {
-      return loadBiochemistryData();
-    } else if (domain === 'machinelearning') {
-      return loadMachineLearningData();
-    }
-    return loadAstronomyData(); // fallback
+  const getDomainDataForPage = () => {
+    return getDomainData(domain);
   };
 
   const getDomainTitle = () => {
@@ -36,7 +27,7 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
     return `/chat/${domain}`;
   };
 
-  const domainData = getDomainData();
+  const domainData = getDomainDataForPage();
 
   return (
     <main 

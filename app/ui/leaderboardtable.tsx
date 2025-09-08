@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from 'next/navigation';
+import { getSupportedDomains } from '@/app/config/domains';
 
 type LibraryEntry = {
   rank: number;
@@ -20,21 +21,26 @@ export default function LeaderboardTable({ title, libraries }: LeaderboardTableP
   const router = useRouter();
   const pathname = usePathname();
   
-  // Déterminer le domaine basé sur le pathname
+  // Déterminer le domaine basé sur le pathname de manière générale
   const getDomain = () => {
-    if (pathname.includes('/leaderboard/astronomy')) return 'astronomy';
-    if (pathname.includes('/leaderboard/finance')) return 'finance';
-    if (pathname.includes('/leaderboard/biochemistry')) return 'biochemistry';
-    if (pathname.includes('/leaderboard/machinelearning')) return 'machinelearning';
-    if (pathname.includes('/chat/astronomy')) return 'astronomy';
-    if (pathname.includes('/chat/finance')) return 'finance';
-    if (pathname.includes('/chat/biochemistry')) return 'biochemistry';
-    if (pathname.includes('/chat/machinelearning')) return 'machinelearning';
-    if (pathname.includes('astronomy')) return 'astronomy';
-    if (pathname.includes('finance')) return 'finance';
-    if (pathname.includes('biochemistry')) return 'biochemistry';
-    if (pathname.includes('machinelearning')) return 'machinelearning';
-    return 'astronomy'; // fallback
+    const supportedDomains = getSupportedDomains();
+    
+    // Vérifier d'abord les routes spécifiques /leaderboard/ et /chat/
+    for (const domain of supportedDomains) {
+      if (pathname.includes(`/leaderboard/${domain}`) || pathname.includes(`/chat/${domain}`)) {
+        return domain;
+      }
+    }
+    
+    // Vérifier ensuite les occurrences générales dans le pathname
+    for (const domain of supportedDomains) {
+      if (pathname.includes(domain)) {
+        return domain;
+      }
+    }
+    
+    // Fallback vers le premier domaine supporté
+    return supportedDomains[0] || 'astronomy';
   };
   
   const handleLibraryClick = (libraryName: string) => {

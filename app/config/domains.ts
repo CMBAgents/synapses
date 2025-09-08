@@ -36,3 +36,36 @@ export function getDomainDisplayName(domain: Domain): string {
 export function getDomainDescription(domain: Domain): string {
   return config.domains.descriptions[domain as keyof typeof config.domains.descriptions] || `Top libraries in ${domain}`;
 }
+
+/**
+ * Obtient le programme par défaut pour un domaine
+ */
+export function getDomainDefaultProgram(domain: Domain): string {
+  return config.domains.defaultPrograms[domain as keyof typeof config.domains.defaultPrograms] || '';
+}
+
+/**
+ * Obtient la description spécialisée pour l'IA d'un domaine
+ */
+export function getDomainSpecializedDescription(domain: Domain): string {
+  const descriptions: Record<string, string> = {
+    'astronomy': 'astrophysics and cosmology',
+    'finance': 'finance and trading',
+    'biochemistry': 'biochemistry and bioinformatics',
+    'machinelearning': 'machine learning and artificial intelligence'
+  };
+  return descriptions[domain] || domain;
+}
+
+/**
+ * Obtient le nom court du domaine pour l'IA
+ */
+export function getDomainShortName(domain: Domain): string {
+  const shortNames: Record<string, string> = {
+    'astronomy': 'astrophysics',
+    'finance': 'finance',
+    'biochemistry': 'biochemistry',
+    'machinelearning': 'machine learning'
+  };
+  return shortNames[domain] || domain;
+}
