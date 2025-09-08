@@ -1072,6 +1072,15 @@
       "extraSystemPrompt": "You are an expert on rdkit/rdkit. Use the provided documentation to help users with this biochemistry library."
     },
     {
+      "id": "schrodinger-pymol-open-source",
+      "name": "pymol-open-source",
+      "description": "schrodinger/pymol-open-source - Biochemistry library with 1500 stars",
+      "contextFiles": [],
+      "combinedContextFile": "/api/context/biochemistry/schrodinger-pymol-open-source-context.txt",
+      "docsUrl": "https://github.com/schrodinger/pymol-open-source",
+      "extraSystemPrompt": "You are an expert on schrodinger/pymol-open-source. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
       "id": "openbabel-openbabel",
       "name": "openbabel",
       "description": "openbabel/openbabel - Biochemistry library with 1000 stars",
@@ -1088,6 +1097,15 @@
       "combinedContextFile": "/api/context/biochemistry/gromacs-gromacs-context.txt",
       "docsUrl": "https://github.com/gromacs/gromacs",
       "extraSystemPrompt": "You are an expert on gromacs/gromacs. Use the provided documentation to help users with this biochemistry library."
+    },
+    {
+      "id": "rbvi-chimerax",
+      "name": "ChimeraX",
+      "description": "rbvi/ChimeraX - Biochemistry library with 800 stars",
+      "contextFiles": [],
+      "combinedContextFile": "/api/context/biochemistry/rbvi-ChimeraX-context.txt",
+      "docsUrl": "https://github.com/rbvi/ChimeraX",
+      "extraSystemPrompt": "You are an expert on rbvi/ChimeraX. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "pytorch-pytorch",

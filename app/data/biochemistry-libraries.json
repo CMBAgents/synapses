@@ -53,8 +53,8 @@
       "github_url": "https://github.com/schrodinger/pymol-open-source",
       "stars": 1500,
       "rank": 7,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "schrodinger-pymol-open-source-context.txt"
     },
     {
       "name": "openbabel/openbabel",
@@ -77,8 +77,8 @@
       "github_url": "https://github.com/rbvi/ChimeraX",
       "stars": 800,
       "rank": 10,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "rbvi-ChimeraX-context.txt"
     }
   ],
   "domain": "biochemistry",

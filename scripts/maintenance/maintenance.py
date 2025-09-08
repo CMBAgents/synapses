@@ -186,6 +186,33 @@ class MaintenanceManager:
             self.logger.error(f"❌ Erreur dans l'étape 2: {e}")
             raise
     
+    def step2_5_fix_context_names(self):
+        """Étape 2.5: Correction des noms de fichiers de contexte"""
+        self.logger.info("=== ÉTAPE 2.5: Correction des noms de contexte ===")
+        
+        try:
+            # Utiliser le script de correction des noms
+            script_path = self.base_dir / "scripts" / "utils" / "fix-context-names.py"
+            if script_path.exists():
+                self.logger.info("Exécution du correcteur de noms de contexte...")
+                result = subprocess.run(["python3", str(script_path)], cwd=self.base_dir, 
+                                      capture_output=True, text=True, check=True)
+                self.logger.info("✅ Correction des noms de contexte terminée")
+                if result.stdout:
+                    self.logger.info("📋 Résultats de la correction:")
+                    for line in result.stdout.strip().split('\n'):
+                        if line.strip() and ('✅' in line or '📝' in line):
+                            self.logger.info(f"   {line}")
+            else:
+                self.logger.warning("Script fix-context-names.py non trouvé, passage de l'étape")
+            
+        except subprocess.CalledProcessError as e:
+            self.logger.error(f"❌ Erreur lors de la correction des noms: {e.stderr}")
+            # Ne pas faire échouer la maintenance pour cette étape
+        except Exception as e:
+            self.logger.error(f"❌ Erreur dans l'étape 2.5: {e}")
+            # Ne pas faire échouer la maintenance pour cette étape
+    
     # Les méthodes _update_json_status_via_api, _check_server_status et _update_domain_via_api 
     # ont été supprimées car remplacées par l'utilisation directe de update-json-status.py
     
@@ -285,6 +312,9 @@ class MaintenanceManager:
         self.logger.info("🚀 Début de la maintenance rapide")
         
         try:
+            # Étape 2.5: Correction des noms de contexte
+            self.step2_5_fix_context_names()
+            
             # Étape 3: Génération contextes
             self.step3_generate_missing_contexts()
             

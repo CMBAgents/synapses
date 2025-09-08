@@ -413,12 +413,32 @@ class UnifiedContextManager:
                 
                 # Vérifier si le contexte existe déjà (comparaison plus robuste)
                 context_exists = False
-                for existing_lib in existing_libs:
-                    # Vérifier si le nom de la bibliothèque (sans namespace) correspond
-                    if existing_lib in lib_name or lib_name.endswith(existing_lib):
-                        context_exists = True
-                        self.logger.info(f"Existing context for {lib_name} (matches {existing_lib}), skipped")
-                        break
+                
+                # Cas spéciaux de correspondance
+                special_mappings = {
+                    "mperrin-poppy": "spacetelescope-popp",
+                    "trasal-frbpoppy": "trasal-frbpopp", 
+                    "rbvi-ChimeraX": "rbvi-Chimera",
+                    "schrodinger-pymol-open-source": "schrodinger-pymol-open-sourc",
+                }
+                
+                # Vérifier d'abord les correspondances spéciales
+                if lib_name in special_mappings:
+                    expected_match = special_mappings[lib_name]
+                    for existing_lib in existing_libs:
+                        if expected_match in existing_lib:
+                            context_exists = True
+                            self.logger.info(f"Existing context for {lib_name} (matches {existing_lib}), skipped")
+                            break
+                
+                # Si pas de correspondance spéciale, utiliser la logique générique
+                if not context_exists:
+                    for existing_lib in existing_libs:
+                        # Vérifier si le nom de la bibliothèque (sans namespace) correspond
+                        if existing_lib in lib_name or lib_name.endswith(existing_lib):
+                            context_exists = True
+                            self.logger.info(f"Existing context for {lib_name} (matches {existing_lib}), skipped")
+                            break
                 
                 if context_exists:
                     continue
@@ -635,28 +655,44 @@ class UnifiedContextManager:
                     # Créer une liste des noms de fichiers de contexte disponibles
                     available_context_files = [file_info["filename"] for file_info in context_files.get(domain, [])]
                     
-                    # Essayer plusieurs patterns de correspondance
-                    patterns = [
-                        # Pattern exact avec tirets
-                        f"{lib_name.replace('/', '-').replace('_', '-').replace('.', '-')}-context.txt",
-                        # Pattern avec seulement le nom du repo
-                        f"{lib_name.split('/')[-1]}-context.txt",
-                        # Pattern avec remplacement des underscores
-                        f"{lib_name.replace('/', '-').replace('_', '-')}-context.txt",
-                        # Pattern avec remplacement des points
-                        f"{lib_name.replace('/', '-').replace('.', '-')}-context.txt",
-                        # Pattern simplifié (juste le nom du repo)
-                        f"{lib_name.split('/')[-1].replace('_', '-')}-context.txt",
-                        # Pattern avec tirets pour tous les séparateurs
-                        f"{lib_name.replace('/', '-').replace('_', '-').replace('.', '-')}-context.txt",
-                    ]
+                    # Cas spéciaux de correspondance
+                    special_mappings = {
+                        "mperrin/poppy": "spacetelescope-poppy-context.txt",
+                        "trasal/frbpoppy": "trasal-frbpoppy-context.txt",
+                        "rbvi/ChimeraX": "rbvi-ChimeraX-context.txt",
+                        "schrodinger/pymol-open-source": "schrodinger-pymol-open-source-context.txt",
+                    }
                     
-                    # Chercher le fichier correspondant
-                    for pattern in patterns:
-                        if pattern in available_context_files:
+                    # Vérifier d'abord les correspondances spéciales
+                    if lib_name in special_mappings:
+                        expected_file = special_mappings[lib_name]
+                        if expected_file in available_context_files:
                             has_context = True
-                            context_filename = pattern
-                            break
+                            context_filename = expected_file
+                    
+                    # Si pas de correspondance spéciale, essayer les patterns génériques
+                    if not has_context:
+                        patterns = [
+                            # Pattern exact avec tirets
+                            f"{lib_name.replace('/', '-').replace('_', '-').replace('.', '-')}-context.txt",
+                            # Pattern avec seulement le nom du repo
+                            f"{lib_name.split('/')[-1]}-context.txt",
+                            # Pattern avec remplacement des underscores
+                            f"{lib_name.replace('/', '-').replace('_', '-')}-context.txt",
+                            # Pattern avec remplacement des points
+                            f"{lib_name.replace('/', '-').replace('.', '-')}-context.txt",
+                            # Pattern simplifié (juste le nom du repo)
+                            f"{lib_name.split('/')[-1].replace('_', '-')}-context.txt",
+                            # Pattern avec tirets pour tous les séparateurs
+                            f"{lib_name.replace('/', '-').replace('_', '-').replace('.', '-')}-context.txt",
+                        ]
+                        
+                        # Chercher le fichier correspondant
+                        for pattern in patterns:
+                            if pattern in available_context_files:
+                                has_context = True
+                                context_filename = pattern
+                                break
                     
                     # Si aucun pattern ne correspond, chercher par similarité
                     if not has_context:

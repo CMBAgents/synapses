@@ -18,6 +18,21 @@ def normalize_library_name(library_name):
 
 def find_context_file_for_library(library_name, context_files):
     """Trouve le fichier de contexte correspondant à une bibliothèque"""
+    
+    # Cas spéciaux de correspondance
+    special_mappings = {
+        "mperrin/poppy": "spacetelescope-poppy-context.txt",
+        "trasal/frbpoppy": "trasal-frbpoppy-context.txt",
+        "rbvi/ChimeraX": "rbvi-ChimeraX-context.txt",
+        "schrodinger/pymol-open-source": "schrodinger-pymol-open-source-context.txt",
+    }
+    
+    # Vérifier d'abord les correspondances spéciales
+    if library_name in special_mappings:
+        expected_file = special_mappings[library_name]
+        if expected_file in context_files:
+            return expected_file
+    
     # Essayer plusieurs patterns de correspondance
     patterns = [
         # Pattern exact avec tirets
