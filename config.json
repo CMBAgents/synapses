@@ -41,7 +41,7 @@
       "name": "astrometry.net",
       "description": "dstndstn/astrometry.net - Astrophysics library with 750 stars",
       "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/dstndstn-astrometry.net-context.txt",
+      "combinedContextFile": "/api/context/astronomy/dstndstn-astrometry-net-context.txt",
       "docsUrl": "https://github.com/dstndstn/astrometry.net",
       "extraSystemPrompt": "You are an expert on dstndstn/astrometry.net. Use the provided documentation to help users with this astrophysics library."
     },
@@ -122,7 +122,7 @@
       "name": "class_public",
       "description": "lesgourg/class_public - Astrophysics library with 267 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/astronomy/lesgourg-class-public-context.txt",
       "docsUrl": "https://github.com/lesgourg/class_public",
       "extraSystemPrompt": "You are an expert on lesgourg/class_public. Use the provided documentation to help users with this astrophysics library."
     },
@@ -284,7 +284,7 @@
       "name": "poppy",
       "description": "mperrin/poppy - Astrophysics library with 184 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/astronomy/mperrin-poppy-context.txt",
       "docsUrl": "https://github.com/mperrin/poppy",
       "extraSystemPrompt": "You are an expert on mperrin/poppy. Use the provided documentation to help users with this astrophysics library."
     },
