@@ -284,7 +284,7 @@
       "name": "poppy",
       "description": "mperrin/poppy - Astrophysics library with 184 stars",
       "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/mperrin-poppy-context.txt",
+      "combinedContextFile": "/api/context/astronomy/spacetelescope-poppy-context.txt",
       "docsUrl": "https://github.com/mperrin/poppy",
       "extraSystemPrompt": "You are an expert on mperrin/poppy. Use the provided documentation to help users with this astrophysics library."
     },
@@ -1148,7 +1148,7 @@
       "name": "numpy",
       "description": "numpy/numpy - Machinelearning library with 25000 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/machinelearning/numpy-numpy-context.txt",
       "docsUrl": "https://github.com/numpy/numpy",
       "extraSystemPrompt": "You are an expert on numpy/numpy. Use the provided documentation to help users with this machinelearning library."
     },
@@ -1157,7 +1157,7 @@
       "name": "scipy",
       "description": "scipy/scipy - Machinelearning library with 12000 stars",
       "contextFiles": [],
-      "combinedContextFile": null,
+      "combinedContextFile": "/api/context/machinelearning/scipy-scipy-context.txt",
       "docsUrl": "https://github.com/scipy/scipy",
       "extraSystemPrompt": "You are an expert on scipy/scipy. Use the provided documentation to help users with this machinelearning library."
     },

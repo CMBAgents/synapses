@@ -53,14 +53,16 @@
       "github_url": "https://github.com/numpy/numpy",
       "stars": 25000,
       "rank": 7,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "numpy-numpy-context.txt"
     },
     {
       "name": "scipy/scipy",
       "github_url": "https://github.com/scipy/scipy",
       "stars": 12000,
       "rank": 8,
-      "hasContextFile": false
+      "hasContextFile": true,
+      "contextFileName": "scipy-scipy-context.txt"
     },
     {
       "name": "matplotlib/matplotlib",

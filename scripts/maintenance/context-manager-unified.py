@@ -626,31 +626,47 @@ class UnifiedContextManager:
                 
                 # Mettre à jour les bibliothèques du domaine
                 for lib in domain_data["libraries"]:
-                    lib_name = lib["name"].replace("/", "-")
+                    lib_name = lib["name"]
                     
                     # Chercher le fichier de contexte correspondant
                     has_context = False
                     context_filename = None
                     
-                    for file_info in context_files.get(domain, []):
-                        filename = file_info["filename"]
-                        
-                        # Extraire les parties du nom pour des correspondances flexibles
-                        lib_parts = lib["name"].split("/")
-                        lib_short = lib_parts[-1]  # Dernière partie
-                        lib_first = lib_parts[0]   # Première partie
-                        
-                        # Vérifier si le fichier correspond à cette bibliothèque
-                        if (filename == f"{lib_name}-context.txt" or 
-                            filename == f"{lib_name}.txt" or
-                            filename.startswith(f"{lib_name}-") and filename.endswith(".txt") or
-                            filename == f"{lib_short}-context.txt" or
-                            filename == f"{lib_short}.txt" or
-                            filename == f"{lib_first}-context.txt" or
-                            filename == f"{lib_first}.txt"):
+                    # Créer une liste des noms de fichiers de contexte disponibles
+                    available_context_files = [file_info["filename"] for file_info in context_files.get(domain, [])]
+                    
+                    # Essayer plusieurs patterns de correspondance
+                    patterns = [
+                        # Pattern exact avec tirets
+                        f"{lib_name.replace('/', '-').replace('_', '-').replace('.', '-')}-context.txt",
+                        # Pattern avec seulement le nom du repo
+                        f"{lib_name.split('/')[-1]}-context.txt",
+                        # Pattern avec remplacement des underscores
+                        f"{lib_name.replace('/', '-').replace('_', '-')}-context.txt",
+                        # Pattern avec remplacement des points
+                        f"{lib_name.replace('/', '-').replace('.', '-')}-context.txt",
+                        # Pattern simplifié (juste le nom du repo)
+                        f"{lib_name.split('/')[-1].replace('_', '-')}-context.txt",
+                        # Pattern avec tirets pour tous les séparateurs
+                        f"{lib_name.replace('/', '-').replace('_', '-').replace('.', '-')}-context.txt",
+                    ]
+                    
+                    # Chercher le fichier correspondant
+                    for pattern in patterns:
+                        if pattern in available_context_files:
                             has_context = True
-                            context_filename = filename
+                            context_filename = pattern
                             break
+                    
+                    # Si aucun pattern ne correspond, chercher par similarité
+                    if not has_context:
+                        lib_repo = lib_name.split('/')[-1].lower()
+                        for filename in available_context_files:
+                            context_name = filename.replace('-context.txt', '').lower()
+                            if lib_repo in context_name or context_name in lib_repo:
+                                has_context = True
+                                context_filename = filename
+                                break
                     
                     lib["hasContextFile"] = has_context
                     if has_context:
