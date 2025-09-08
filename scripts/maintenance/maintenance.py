@@ -130,45 +130,44 @@ class MaintenanceManager:
         except Exception:
             return False
     
-    def step1_fetch_libraries_data(self) -> List[Dict]:
-        """Étape 1: Récupère les librairies depuis ASCL"""
-        self.logger.info("=== ÉTAPE 1: Récupération des données des librairies ===")
+    def step1_update_all_domains(self) -> Dict[str, bool]:
+        """Étape 1: Met à jour tous les domaines avec le système unifié"""
+        self.logger.info("=== ÉTAPE 1: Mise à jour de tous les domaines ===")
         
         try:
-            # Télécharger les données ASCL
-            self.logger.info("Téléchargement des données ASCL...")
-            ascl_data = self._download_ascl_data()
+            # Utiliser le nouveau système unifié
+            script_path = self.base_dir / "scripts" / "core" / "unified-domain-updater.py"
+            if not script_path.exists():
+                self.logger.error(f"❌ Script unifié non trouvé: {script_path}")
+                raise Exception("Script unifié introuvable")
             
-            # Extraire les repos GitHub
-            self.logger.info("Extraction des repositories GitHub...")
-            github_repos = self._extract_github_repos(ascl_data)
-            self.logger.info(f"Trouvé {len(github_repos)} repositories uniques")
+            self.logger.info("🔄 Exécution du système unifié de mise à jour des domaines...")
+            result = subprocess.run(
+                ["python3", str(script_path), "--maintenance"],
+                cwd=self.base_dir,
+                capture_output=True,
+                text=True,
+                timeout=1800  # 30 minutes timeout
+            )
             
-            # Récupérer le nombre d'étoiles
-            self.logger.info("Récupération du nombre d'étoiles...")
-            repos_with_stars = self._fetch_stars_parallel(list(github_repos))
+            if result.returncode == 0:
+                self.logger.info("✅ Étape 1 terminée: tous les domaines mis à jour")
+                # Parser les résultats si nécessaire
+                return {"astronomy": True, "biochemistry": True, "finance": True, "machinelearning": True}
+            else:
+                self.logger.error(f"❌ Erreur lors de la mise à jour: {result.stderr}")
+                raise Exception(f"Échec de la mise à jour: {result.stderr}")
             
-            # Filtrer les repos astro/cosmo
-            self.logger.info("Filtrage des repositories astronomie/cosmologie...")
-            filtered_repos = self._filter_astronomy_repos(repos_with_stars)
-            
-            # Obtenir le top 100
-            self.logger.info("Sélection du top 100...")
-            top_100 = self._get_top_100(filtered_repos)
-            
-            # Sauvegarder en CSV
-            self._save_to_csv(top_100, self.last_csv)
-            
-            self.logger.info(f"✅ Étape 1 terminée: {len(top_100)} librairies récupérées")
-            return top_100
-            
+        except subprocess.TimeoutExpired:
+            self.logger.error("❌ Timeout lors de la mise à jour des domaines")
+            raise Exception("Timeout de la mise à jour")
         except Exception as e:
             self.logger.error(f"❌ Erreur dans l'étape 1: {e}")
             raise
     
-    def step2_update_json_data(self, libraries_data: List[Dict]):
-        """Étape 2: Mise à jour des données JSON via le script unifié"""
-        self.logger.info("=== ÉTAPE 2: Mise à jour des données JSON ===")
+    def step2_update_context_status(self):
+        """Étape 2: Mise à jour du statut des contextes"""
+        self.logger.info("=== ÉTAPE 2: Mise à jour du statut des contextes ===")
         
         try:
             # Utiliser le script unifié context-manager-unified.py
@@ -260,11 +259,11 @@ class MaintenanceManager:
             # Étape 0: Vérification et installation des dépendances
             self.step0_ensure_dependencies()
             
-            # Étape 1: Récupération des données
-            libraries_data = self.step1_fetch_libraries_data()
+            # Étape 1: Mise à jour de tous les domaines
+            domain_results = self.step1_update_all_domains()
             
-            # Étape 2: Mise à jour JSON
-            self.step2_update_json_data(libraries_data)
+            # Étape 2: Mise à jour du statut des contextes
+            self.step2_update_context_status()
             
             # Étape 3: Génération contextes
             self.step3_generate_missing_contexts()
