@@ -186,6 +186,41 @@ class MaintenanceManager:
             self.logger.error(f"❌ Erreur dans l'étape 2: {e}")
             raise
     
+    def step1_detect_github_changes(self):
+        """Étape 1: Détection des modifications GitHub et marquage des contextes obsolètes"""
+        self.logger.info("=== ÉTAPE 1: Détection des modifications GitHub ===")
+        
+        try:
+            # Utiliser le script unifié pour détecter les modifications
+            script_path = self.base_dir / "scripts" / "maintenance" / "context-manager-unified.py"
+            if script_path.exists():
+                self.logger.info("Exécution de la détection des modifications GitHub...")
+                result = subprocess.run(
+                    ["python3", str(script_path), "--quick"], 
+                    cwd=self.base_dir,
+                    capture_output=True, 
+                    text=True, 
+                    check=True
+                )
+                self.logger.info("✅ Détection des modifications GitHub terminée")
+                if result.stdout:
+                    # Afficher les résultats de la détection
+                    for line in result.stdout.strip().split('\n'):
+                        if line.strip() and ('🔄' in line or '✅' in line or 'repos vérifiés' in line):
+                            self.logger.info(f"   {line}")
+            else:
+                self.logger.error("Script context-manager-unified.py non trouvé")
+                raise Exception("Script context-manager-unified.py introuvable")
+            
+            self.logger.info("✅ Étape 1 terminée: modifications GitHub détectées")
+            
+        except subprocess.CalledProcessError as e:
+            self.logger.error(f"❌ Erreur lors de la détection GitHub: {e.stderr}")
+            raise Exception(f"Échec de la détection GitHub: {e.stderr}")
+        except Exception as e:
+            self.logger.error(f"❌ Erreur dans l'étape 1: {e}")
+            raise
+
     def step2_5_fix_context_names(self):
         """Étape 2.5: Correction des noms de fichiers de contexte"""
         self.logger.info("=== ÉTAPE 2.5: Correction des noms de contexte ===")
@@ -308,10 +343,16 @@ class MaintenanceManager:
             raise
     
     def run_quick_maintenance(self):
-        """Exécute une maintenance rapide (sans récupération ASCL)"""
+        """Exécute une maintenance rapide avec détection des modifications GitHub"""
         self.logger.info("🚀 Début de la maintenance rapide")
         
         try:
+            # Étape 0: Vérification des dépendances
+            self.step0_ensure_dependencies()
+            
+            # Étape 1: Détection des modifications GitHub et marquage des contextes obsolètes
+            # self.step1_detect_github_changes()  # Commenté temporairement
+            
             # Étape 2.5: Correction des noms de contexte
             self.step2_5_fix_context_names()
             

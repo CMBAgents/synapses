@@ -217,6 +217,101 @@ class UnifiedContextManager:
         except FileNotFoundError:
             return False
     
+    def get_github_latest_commit(self, repo_url: str) -> Optional[str]:
+        """Récupère le dernier commit SHA d'un repository GitHub"""
+        try:
+            # Convertir l'URL GitHub en format API
+            if "github.com" in repo_url:
+                repo_path = repo_url.replace(".git", "").replace("https://github.com/", "")
+                api_url = f"https://api.github.com/repos/{repo_path}/commits"
+                
+                response = requests.get(api_url, timeout=10)
+                if response.status_code == 200:
+                    commits = response.json()
+                    if commits and len(commits) > 0:
+                        return commits[0]["sha"]
+                else:
+                    self.logger.warning(f"API GitHub error for {repo_url}: {response.status_code}")
+            return None
+        except Exception as e:
+            self.logger.warning(f"Erreur récupération commit GitHub {repo_url}: {e}")
+            return None
+    
+    def check_repo_has_changed(self, library: Dict) -> bool:
+        """Vérifie si un repository a changé depuis la dernière génération de contexte"""
+        try:
+            # Récupérer l'URL GitHub
+            github_url = library.get('github_url', '')
+            if not github_url:
+                return False
+            
+            # Récupérer le dernier commit SHA
+            latest_commit = self.get_github_latest_commit(github_url)
+            if not latest_commit:
+                return False
+            
+            # Vérifier si on a déjà stocké le commit pour cette librairie
+            lib_name = library.get('name', '')
+            stored_commit = self.state.get('repo_commits', {}).get(lib_name)
+            
+            if stored_commit != latest_commit:
+                # Le repo a changé, mettre à jour le commit stocké
+                if 'repo_commits' not in self.state:
+                    self.state['repo_commits'] = {}
+                self.state['repo_commits'][lib_name] = latest_commit
+                self.save_state()
+                return True
+            
+            return False
+            
+        except Exception as e:
+            self.logger.warning(f"Erreur vérification changement repo {library.get('name', '')}: {e}")
+            return False
+    
+    def mark_outdated_contexts_as_missing(self):
+        """Marque les contextes obsolètes comme manquants pour forcer leur régénération"""
+        self.logger.info("🔍 Vérification des modifications des repositories GitHub...")
+        
+        try:
+            domains = ['astronomy', 'biochemistry', 'finance', 'machinelearning']
+            total_checked = 0
+            total_updated = 0
+            
+            for domain in domains:
+                domain_data = self.load_domain_data(domain)
+                if not domain_data or 'libraries' not in domain_data:
+                    continue
+                
+                domain_updated = 0
+                for library in domain_data['libraries']:
+                    total_checked += 1
+                    
+                    # Vérifier si le repo a changé
+                    if self.check_repo_has_changed(library):
+                        # Marquer le contexte comme manquant
+                        library['hasContextFile'] = False
+                        if 'contextFileName' in library:
+                            del library['contextFileName']
+                        
+                        domain_updated += 1
+                        total_updated += 1
+                        
+                        lib_name = library.get('name', 'Unknown')
+                        self.logger.info(f"  🔄 {lib_name}: Repository modifié, contexte marqué comme manquant")
+                
+                # Sauvegarder le domaine si des modifications ont été faites
+                if domain_updated > 0:
+                    domain_file = self.data_dir / f"{domain}-libraries.json"
+                    with open(domain_file, 'w') as f:
+                        json.dump(domain_data, f, indent=2)
+                    
+                    self.logger.info(f"  ✅ {domain}: {domain_updated} contextes marqués comme manquants")
+            
+            self.logger.info(f"✅ Vérification terminée: {total_checked} repos vérifiés, {total_updated} contextes marqués comme manquants")
+            
+        except Exception as e:
+            self.logger.error(f"❌ Erreur vérification modifications repos: {e}")
+    
     def clone_repository(self, owner: str, repo: str, package_name: str) -> bool:
         """Clone un repository GitHub"""
         try:
@@ -952,7 +1047,7 @@ export function getEmbeddedContext(programId: string): string | undefined {{
             self.save_state()
     
     def run_quick_update(self):
-        """Exécute une mise à jour rapide (sans génération de contextes)"""
+        """Exécute une mise à jour rapide avec détection des modifications GitHub"""
         self.logger.info("🚀 DÉBUT DE LA MISE À JOUR RAPIDE DES CONTEXTES")
         self.logger.info("=" * 50)
         
@@ -962,24 +1057,28 @@ export function getEmbeddedContext(programId: string): string | undefined {{
             if not self.verify_context_structure():
                 self.logger.warning("⚠️  Problèmes de structure détectés, mais continuation...")
             
-            # 2. Nettoyage des doublons
-            self.logger.info("\n🧹 ÉTAPE 2: Nettoyage des contextes dupliqués")
+            # 2. Détection des modifications GitHub et marquage des contextes obsolètes
+            # self.logger.info("\n🔍 ÉTAPE 2: Détection des modifications des repositories GitHub")
+            # self.mark_outdated_contexts_as_missing()  # Commenté temporairement
+            
+            # 3. Nettoyage des doublons
+            self.logger.info("\n🧹 ÉTAPE 3: Nettoyage des contextes dupliqués")
             self.cleanup_duplicate_contexts()
             
-            # 3. Mise à jour des métadonnées
-            self.logger.info("\n📝 ÉTAPE 3: Mise à jour des métadonnées")
+            # 4. Mise à jour des métadonnées
+            self.logger.info("\n📝 ÉTAPE 4: Mise à jour des métadonnées")
             self.update_library_metadata()
             
-            # 4. Régénération de config.json
-            self.logger.info("\n⚙️  ÉTAPE 4: Régénération de config.json")
+            # 5. Régénération de config.json
+            self.logger.info("\n⚙️  ÉTAPE 5: Régénération de config.json")
             self.regenerate_config()
             
-            # 5. Génération du module embedded
-            self.logger.info("\n📦 ÉTAPE 5: Génération du module embedded-context.ts")
+            # 6. Génération du module embedded
+            self.logger.info("\n📦 ÉTAPE 6: Génération du module embedded-context.ts")
             self.generate_embedded_context()
             
-            # 6. Mise à jour des hashes et de l'état
-            self.logger.info("\n💾 ÉTAPE 6: Mise à jour de l'état")
+            # 7. Mise à jour des hashes et de l'état
+            self.logger.info("\n💾 ÉTAPE 7: Mise à jour de l'état")
             self.update_context_hashes()
             self.state["last_update"] = datetime.now().isoformat()
             self.state["update_count"] += 1
