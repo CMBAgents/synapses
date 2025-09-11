@@ -189,3 +189,4 @@ updater_state.json
 docs/
 
 backup_old_system/
+.env.local

@@ -441,23 +441,19 @@ class UnifiedDomainUpdater:
         # Ajouter les bibliothèques spécifiques
         for lib_name in self.domains['astronomy'].specific_libs:
             if not any(lib['name'] == lib_name for lib in libraries):
-                # Utiliser des valeurs connues pour éviter les appels API
-                known_stars = {
-                    'CMBAgents/cmbagent': 136,
-                    'cmbant/camb': 228,
-                    'cmbant/getdist': 165,
-                    'CobayaSampler/cobaya': 147
-                }
-                stars = known_stars.get(lib_name, 100)
-                
-                libraries.append({
-                    'name': lib_name,
-                    'github_url': f'https://github.com/{lib_name}',
-                    'stars': stars,
-                    'rank': 0,
-                    'hasContextFile': False,
-                    'contextFileName': None
-                })
+                # Récupérer les étoiles en temps réel via scraping
+                stars = self.ascl_scraper.get_github_stars_scraping(lib_name)
+                if stars >= 0:
+                    libraries.append({
+                        'name': lib_name,
+                        'github_url': f'https://github.com/{lib_name}',
+                        'stars': stars,
+                        'rank': 0,
+                        'hasContextFile': False,
+                        'contextFileName': None
+                    })
+                else:
+                    logger.warning(f"⚠️ Impossible de récupérer les étoiles pour {lib_name}")
         
         # Trier par étoiles et assigner les rangs
         libraries.sort(key=lambda x: x['stars'], reverse=True)

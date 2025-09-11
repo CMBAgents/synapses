@@ -142,13 +142,27 @@ class MaintenanceManager:
                 raise Exception("Script unifié introuvable")
             
             self.logger.info("🔄 Exécution du système unifié de mise à jour des domaines...")
-            result = subprocess.run(
-                ["python3", str(script_path), "--maintenance"],
-                cwd=self.base_dir,
-                capture_output=True,
-                text=True,
-                timeout=1800  # 30 minutes timeout
-            )
+            
+            # Vérifier si un token GitHub est disponible
+            github_token = os.getenv('GITHUB_TOKEN')
+            if github_token:
+                self.logger.info("✅ Token GitHub détecté, utilisation de l'API avec authentification")
+                result = subprocess.run(
+                    ["python3", str(script_path), "--maintenance", "--token", github_token],
+                    cwd=self.base_dir,
+                    capture_output=True,
+                    text=True,
+                    timeout=1800  # 30 minutes timeout
+                )
+            else:
+                self.logger.warning("⚠️ Aucun token GitHub détecté, utilisation de l'API sans authentification (limite: 60 req/h)")
+                result = subprocess.run(
+                    ["python3", str(script_path), "--maintenance"],
+                    cwd=self.base_dir,
+                    capture_output=True,
+                    text=True,
+                    timeout=1800  # 30 minutes timeout
+                )
             
             if result.returncode == 0:
                 self.logger.info("✅ Étape 1 terminée: tous les domaines mis à jour")
