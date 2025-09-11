@@ -11,13 +11,12 @@ Usage:
 
 import requests
 import json
-import csv
-import os
 import sys
 import time
 import argparse
+import re
 from pathlib import Path
-from typing import Dict, List, Set, Tuple, Optional
+from typing import Dict, List, Set, Optional
 from dataclasses import dataclass
 import logging
 
@@ -85,7 +84,7 @@ class GitHubAPIClient:
             response = self.session.get(url)
             response.raise_for_status()
             return response.json()
-        except:
+        except Exception:
             return {'rate': {'remaining': 0, 'limit': 60}}
 
 class ASCLScraper:
@@ -232,6 +231,181 @@ class UnifiedDomainUpdater:
                 max_libraries=10
             )
         }
+    
+    def add_domain_automatically(self, domain_name: str, display_name: str, description: str, 
+                                keywords: List[str], specific_libs: List[str], use_ascl: bool = False):
+        """
+        Automatise complètement l'ajout d'un nouveau domaine.
+        Met à jour tous les fichiers de configuration et génère les données.
+        """
+        logger.info(f"🚀 Ajout automatique du domaine '{domain_name}'...")
+        
+        try:
+            # 1. AUTOMATISER : Mise à jour du script unifié
+            self._update_unified_script(domain_name, display_name, description, keywords, specific_libs, use_ascl)
+            
+            # 2. AUTOMATISER : Mise à jour de config.json
+            self._update_config_json(domain_name, display_name, description)
+            
+            # 3. AUTOMATISER : Mise à jour de domains.ts
+            self._update_domains_ts(domain_name, display_name, description)
+            
+            # 4. AUTOMATISER : Génération des données
+            logger.info(f"📊 Génération des données pour le domaine '{domain_name}'...")
+            self._add_domain_to_config(domain_name, display_name, description, keywords, specific_libs, use_ascl)
+            self.update_domain(domain_name)
+            
+            # 5. AUTOMATISER : Génération des routes
+            logger.info("🛣️ Génération des routes...")
+            self._generate_domain_routes()
+            
+            # 6. AUTOMATISER : Génération des contextes
+            logger.info("📚 Génération des contextes...")
+            self._generate_contexts(domain_name)
+            
+            logger.info(f"✅ Domaine '{domain_name}' ajouté avec succès !")
+            
+        except Exception as e:
+            logger.error(f"❌ Erreur lors de l'ajout du domaine '{domain_name}': {e}")
+            raise
+    
+    def _update_unified_script(self, domain_name: str, display_name: str, description: str, 
+                              keywords: List[str], specific_libs: List[str], use_ascl: bool):
+        """Met à jour le script unifié avec la nouvelle configuration de domaine"""
+        script_path = Path(__file__)
+        content = script_path.read_text()
+        
+        # Créer la nouvelle configuration de domaine
+        domain_config = f"""            '{domain_name}': DomainConfig(
+                name='{domain_name}',
+                display_name='{display_name}',
+                description='{description}',
+                keywords={keywords},
+                specific_libs={specific_libs},
+                use_ascl={use_ascl},
+                max_libraries=10
+            ),"""
+        
+        # Trouver la fin de la section domains et insérer la nouvelle configuration
+        pattern = r"(\s+)\}\s*$"
+        replacement = f"\\1{domain_config}\n\\1}}"
+        
+        new_content = re.sub(pattern, replacement, content, flags=re.MULTILINE)
+        
+        if new_content != content:
+            script_path.write_text(new_content)
+            logger.info(f"✅ Script unifié mis à jour avec le domaine '{domain_name}'")
+        else:
+            logger.warning(f"⚠️ Impossible de mettre à jour le script unifié pour '{domain_name}'")
+    
+    def _update_config_json(self, domain_name: str, display_name: str, description: str):
+        """Met à jour config.json avec le nouveau domaine"""
+        config_path = Path("config.json")
+        
+        if not config_path.exists():
+            logger.error("❌ Fichier config.json introuvable")
+            return
+        
+        config = json.loads(config_path.read_text())
+        
+        # Ajouter le domaine dans supported
+        if 'domains' not in config:
+            config['domains'] = {}
+        if 'supported' not in config['domains']:
+            config['domains']['supported'] = []
+        
+        if domain_name not in config['domains']['supported']:
+            config['domains']['supported'].append(domain_name)
+        
+        # Ajouter les mappings
+        if 'displayNames' not in config['domains']:
+            config['domains']['displayNames'] = {}
+        config['domains']['displayNames'][domain_name] = display_name
+        
+        if 'descriptions' not in config['domains']:
+            config['domains']['descriptions'] = {}
+        config['domains']['descriptions'][domain_name] = description
+        
+        if 'defaultPrograms' not in config['domains']:
+            config['domains']['defaultPrograms'] = {}
+        config['domains']['defaultPrograms'][domain_name] = []
+        
+        # Sauvegarder
+        config_path.write_text(json.dumps(config, indent=2))
+        logger.info(f"✅ config.json mis à jour avec le domaine '{domain_name}'")
+    
+    def _update_domains_ts(self, domain_name: str, display_name: str, description: str):
+        """Met à jour domains.ts avec le nouveau domaine"""
+        domains_ts_path = Path("app/config/domains.ts")
+        
+        if not domains_ts_path.exists():
+            logger.error("❌ Fichier domains.ts introuvable")
+            return
+        
+        content = domains_ts_path.read_text()
+        
+        # Ajouter dans domain_mappings
+        mapping_entry = f"  '{domain_name}': '{display_name}',"
+        if f"'{domain_name}':" not in content:
+            # Trouver la fin de domain_mappings et ajouter
+            pattern = r"(export const domain_mappings = \{[^}]+)(\s+\};)"
+            replacement = f"\\1{mapping_entry}\n\\2"
+            content = re.sub(pattern, replacement, content)
+        
+        # Ajouter dans descriptions
+        desc_entry = f"  '{domain_name}': '{description}',"
+        if f"'{domain_name}':" not in content or "descriptions" not in content:
+            # Trouver la fin de descriptions et ajouter
+            pattern = r"(export const descriptions = \{[^}]+)(\s+\};)"
+            replacement = f"\\1{desc_entry}\n\\2"
+            content = re.sub(pattern, replacement, content)
+        
+        domains_ts_path.write_text(content)
+        logger.info(f"✅ domains.ts mis à jour avec le domaine '{domain_name}'")
+    
+    def _add_domain_to_config(self, domain_name: str, display_name: str, description: str, 
+                             keywords: List[str], specific_libs: List[str], use_ascl: bool):
+        """Ajoute le domaine à la configuration interne"""
+        self.domains[domain_name] = DomainConfig(
+            name=domain_name,
+            display_name=display_name,
+            description=description,
+            keywords=keywords,
+            specific_libs=specific_libs,
+            use_ascl=use_ascl,
+            max_libraries=10
+        )
+    
+    def _generate_domain_routes(self):
+        """Génère les routes pour les domaines"""
+        try:
+            import subprocess
+            result = subprocess.run([
+                "python3", "scripts/templates/generate-domain-routes.py"
+            ], capture_output=True, text=True, cwd=Path.cwd())
+            
+            if result.returncode == 0:
+                logger.info("✅ Routes générées avec succès")
+            else:
+                logger.error(f"❌ Erreur génération routes: {result.stderr}")
+        except Exception as e:
+            logger.error(f"❌ Erreur lors de la génération des routes: {e}")
+    
+    def _generate_contexts(self, domain_name: str):
+        """Génère les contextes pour le nouveau domaine"""
+        try:
+            import subprocess
+            result = subprocess.run([
+                "python3", "-c", 
+                f"import requests; requests.post('http://localhost:3000/api/generate-all-contexts', json={{'domain': '{domain_name}'}})"
+            ], capture_output=True, text=True, cwd=Path.cwd())
+            
+            if result.returncode == 0:
+                logger.info(f"✅ Contextes générés pour le domaine '{domain_name}'")
+            else:
+                logger.warning(f"⚠️ Génération contextes échouée: {result.stderr}")
+        except Exception as e:
+            logger.warning(f"⚠️ Erreur génération contextes: {e}")
     
     def update_astronomy_domain(self) -> List[Dict]:
         """Met à jour le domaine astronomy en utilisant ASCL (méthode existante)"""
@@ -459,12 +633,21 @@ Exemples d'utilisation:
   python3 unified-domain-updater.py --domain finance
   python3 unified-domain-updater.py --all
   python3 unified-domain-updater.py --maintenance
+  
+  # Ajouter un nouveau domaine automatiquement:
+  python3 unified-domain-updater.py --add-domain physics --display-name "Physics & Quantum" --description "Top physics and quantum computing libraries" --keywords "physics,quantum,quantum computing,quantum mechanics" --specific-libs "qiskit/qiskit,rigetti/pyquil,quantumlib/Cirq,google/quantum"
         """
     )
     
     parser.add_argument('--domain', help='Domaine à mettre à jour')
     parser.add_argument('--all', action='store_true', help='Mettre à jour tous les domaines')
     parser.add_argument('--maintenance', action='store_true', help='Mode maintenance (mise à jour complète)')
+    parser.add_argument('--add-domain', help='Ajouter un nouveau domaine automatiquement')
+    parser.add_argument('--display-name', help='Nom d\'affichage du nouveau domaine')
+    parser.add_argument('--description', help='Description du nouveau domaine')
+    parser.add_argument('--keywords', help='Mots-clés séparés par des virgules')
+    parser.add_argument('--specific-libs', help='Bibliothèques spécifiques séparées par des virgules')
+    parser.add_argument('--use-ascl', action='store_true', help='Utiliser ASCL pour ce domaine')
     parser.add_argument('--token', help='Token GitHub pour l\'API (optionnel)')
     parser.add_argument('--verbose', '-v', action='store_true', help='Mode verbeux')
     
@@ -476,7 +659,29 @@ Exemples d'utilisation:
     # Initialiser le système
     updater = UnifiedDomainUpdater(args.token)
     
-    if args.maintenance or args.all:
+    if args.add_domain:
+        # Ajouter un nouveau domaine automatiquement
+        if not args.display_name or not args.description or not args.keywords or not args.specific_libs:
+            logger.error("❌ Pour ajouter un domaine, vous devez fournir: --display-name, --description, --keywords, --specific-libs")
+            sys.exit(1)
+        
+        keywords = [k.strip() for k in args.keywords.split(',')]
+        specific_libs = [lib.strip() for lib in args.specific_libs.split(',')]
+        
+        try:
+            updater.add_domain_automatically(
+                domain_name=args.add_domain,
+                display_name=args.display_name,
+                description=args.description,
+                keywords=keywords,
+                specific_libs=specific_libs,
+                use_ascl=args.use_ascl
+            )
+            logger.info(f"✅ Domaine '{args.add_domain}' ajouté avec succès !")
+        except Exception as e:
+            logger.error(f"❌ Erreur lors de l'ajout du domaine: {e}")
+            sys.exit(1)
+    elif args.maintenance or args.all:
         # Mise à jour complète
         updater.update_all_domains()
     elif args.domain:
