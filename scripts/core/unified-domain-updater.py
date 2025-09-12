@@ -168,14 +168,23 @@ class UnifiedDomainUpdater:
                 name='astronomy',
                 display_name='Astrophysics & Cosmology',
                 description='Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis',
-                keywords=['astronomy', 'cosmology', 'astrophysics', 'gravitational waves', 'CMB', 'healpy', 'astropy'],
+                keywords=['astronomy', 'cosmology', 'astrophysics', 'gravitational waves', 'CMB', 'healpy', 'astropy', 'pixell', 'galaxy', 'stellar', 'exoplanet', 'radio astronomy', 'solar', 'planetary', 'stellar evolution', 'black hole', 'neutron star', 'supernova', 'dark matter', 'dark energy'],
                 specific_libs=[
                     'CMBAgents/cmbagent',
                     'cmbant/camb', 
                     'cmbant/getdist',
-                    'CobayaSampler/cobaya'
+                    'CobayaSampler/cobaya',
+                    'simonsobs/pixell',
+                    'astropy/astropy',
+                    'astropy/photutils',
+                    'astropy/astroquery',
+                    'dstndstn/astrometry.net',
+                    'einsteinpy/einsteinpy',
+                    'lightkurve/lightkurve',
+                    'gwpy/gwpy',
+                    'healpy/healpy'
                 ],
-                use_ascl=True,
+                use_ascl=False,
                 max_libraries=100
             ),
             'biochemistry': DomainConfig(
@@ -484,8 +493,8 @@ class UnifiedDomainUpdater:
         libraries = []
         
         # Rechercher avec les mots-clés du domaine
-        for keyword in domain_config.keywords[:5]:  # Limiter à 5 mots-clés pour éviter les limites
-            query = f"{keyword} language:python stars:>50"
+        for keyword in domain_config.keywords[:10]:  # Augmenter à 10 mots-clés
+            query = f"{keyword} language:python stars:>20"  # Réduire le seuil d'étoiles
             logger.info(f"🔍 Recherche: {query}")
             
             repos = self.github_client.search_repositories(query, per_page=30)
@@ -543,25 +552,87 @@ class UnifiedDomainUpdater:
         return libraries
     
     def save_domain_json(self, domain_name: str, libraries: List[Dict]):
-        """Sauvegarde les bibliothèques dans le fichier JSON du domaine"""
+        """Sauvegarde les bibliothèques dans le fichier JSON du domaine en préservant les informations existantes"""
         if domain_name not in self.domains:
             return
         
         domain_config = self.domains[domain_name]
+        json_path = self.data_dir / f"{domain_name}-libraries.json"
         
+        # Charger les données existantes si le fichier existe
+        existing_libraries = {}
+        if json_path.exists():
+            try:
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    existing_data = json.load(f)
+                    # Créer un dictionnaire des bibliothèques existantes
+                    for lib in existing_data.get('libraries', []):
+                        existing_libraries[lib['name']] = lib
+                logger.info(f"📚 Chargé {len(existing_libraries)} bibliothèques existantes")
+            except Exception as e:
+                logger.warning(f"⚠️ Erreur lors du chargement des données existantes: {e}")
+        
+        # Fusionner les nouvelles données avec les données existantes
+        merged_libraries = []
+        for lib in libraries:
+            lib_name = lib['name']
+            
+            # Normaliser le nom pour la comparaison (insensible à la casse)
+            lib_name_normalized = lib_name.lower()
+            
+            # Chercher une correspondance dans les bibliothèques existantes (insensible à la casse)
+            matching_existing = None
+            for existing_name, existing_lib in existing_libraries.items():
+                if existing_name.lower() == lib_name_normalized:
+                    matching_existing = (existing_name, existing_lib)
+                    break
+            
+            if matching_existing:
+                # Préserver les informations existantes (hasContextFile, contextFileName, etc.)
+                existing_name, existing_lib = matching_existing
+                merged_lib = {
+                    'name': lib['name'],
+                    'github_url': lib['github_url'],
+                    'stars': lib['stars'],  # Mettre à jour le nombre d'étoiles
+                    'rank': lib['rank'],    # Mettre à jour le rang
+                    'hasContextFile': existing_lib.get('hasContextFile', False),  # Préserver
+                    'contextFileName': existing_lib.get('contextFileName', None),  # Préserver
+                }
+                
+                # Préserver d'autres champs existants si présents
+                for key in ['description', 'lastUpdated', 'tags']:
+                    if key in existing_lib:
+                        merged_lib[key] = existing_lib[key]
+                
+                logger.info(f"🔄 Mis à jour: {lib_name} (était {existing_name}) - {lib['stars']} ⭐ (rang {lib['rank']}) - Context préservé: {existing_lib.get('hasContextFile', False)}")
+            else:
+                # Nouvelle bibliothèque
+                merged_lib = {
+                    'name': lib['name'],
+                    'github_url': lib['github_url'],
+                    'stars': lib['stars'],
+                    'rank': lib['rank'],
+                    'hasContextFile': False,
+                    'contextFileName': None
+                }
+                logger.info(f"🆕 Nouvelle: {lib_name} - {lib['stars']} ⭐ (rang {lib['rank']})")
+            
+            merged_libraries.append(merged_lib)
+        
+        # Créer les données finales
         domain_data = {
-            'libraries': libraries,
+            'libraries': merged_libraries,
             'domain': domain_name,
             'description': domain_config.description,
             'keywords': domain_config.keywords
         }
         
-        json_path = self.data_dir / f"{domain_name}-libraries.json"
-        
+        # Sauvegarder
         with open(json_path, 'w', encoding='utf-8') as f:
             json.dump(domain_data, f, indent=2, ensure_ascii=False)
         
         logger.info(f"💾 Fichier sauvegardé: {json_path}")
+        logger.info(f"📊 Résumé: {len(merged_libraries)} bibliothèques total")
     
     def update_domain(self, domain_name: str):
         """Met à jour un domaine spécifique"""

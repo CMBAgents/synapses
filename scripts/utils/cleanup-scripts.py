@@ -43,8 +43,7 @@ def cleanup_scripts():
     # Scripts à garder (essentiels)
     scripts_to_keep = [
         # Scripts unifiés (nouveaux)
-        "context-manager-unified.py",
-        "maintenance.py", 
+        "maintenance_modular.py", 
         
         # Scripts essentiels
         "generate-programs-from-libraries.py",
@@ -126,17 +125,17 @@ Script unifié pour la gestion des contextes.
 python3 scripts/maintenance/context-manager-unified.py --force
 ```
 
-### `maintenance.py`
-Script de maintenance simplifié.
-**Remplace:** daily_maintenance.py, optimized-auto-update.py, monitor-updater.py
+### `maintenance_modular.py`
+Script de maintenance modulaire.
+**Remplace:** maintenance.py, context-manager-unified.py, daily_maintenance.py, optimized-auto-update.py, monitor-updater.py
 
 **Utilisation:**
 ```bash
 # Maintenance complète
-python3 scripts/maintenance/maintenance.py
+python3 scripts/maintenance/maintenance_modular.py --mode full
 
 # Maintenance rapide
-python3 scripts/maintenance/maintenance.py --quick
+python3 scripts/maintenance/maintenance_modular.py --mode quick
 ```
 
 ## Scripts essentiels
@@ -162,12 +161,12 @@ python3 scripts/maintenance/maintenance.py --quick
 
 ### Maintenance quotidienne
 ```bash
-python3 scripts/maintenance/maintenance.py --quick
+python3 scripts/maintenance/maintenance_modular.py --mode quick
 ```
 
 ### Mise à jour des contextes
 ```bash
-python3 scripts/maintenance/context-manager-unified.py --force
+python3 scripts/maintenance/maintenance_modular.py --mode full
 ```
 
 ### Génération de contextes manquants

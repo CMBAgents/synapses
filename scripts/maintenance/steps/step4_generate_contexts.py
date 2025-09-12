@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""
+Étape 4 CORRIGÉE: Génération des contextes manquants UNIQUEMENT
+"""
+
+import subprocess
+import sys
+from pathlib import Path
+
+def generate_missing_contexts():
+    """Génère les contextes manquants pour toutes les bibliothèques"""
+    print("🔄 Génération des contextes manquants...")
+    
+    try:
+        import contextmaker
+        import json
+        import shutil
+        from pathlib import Path
+        
+        # Vérifier que contextmaker est disponible
+        try:
+            import contextmaker
+        except ImportError:
+            print("❌ contextmaker n'est pas installé")
+            return False
+        
+        # Charger les données existantes
+        existing_contexts = get_existing_contexts()
+        libraries_data = load_libraries_data()
+        
+        print(f"📚 Contextes existants: {existing_contexts}")
+        print(f"📚 Bibliothèques trouvées: {list(libraries_data.keys())}")
+        
+        total_generated = 0
+        
+        for domain, libraries in libraries_data.items():
+            print(f"🔄 Traitement du domaine: {domain}")
+            
+            existing_libs = existing_contexts.get(domain, [])
+            
+            for lib in libraries:
+                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-')
+                github_url = lib.get('github_url', '')
+                
+                if not github_url or lib_name in existing_libs:
+                    continue
+                
+                # Vérifier si le contexte existe déjà
+                context_file = f"{lib_name}-context.txt"
+                context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
+                
+                if context_path.exists():
+                    continue
+                
+                print(f"🔄 Génération du contexte pour {lib_name}...")
+                
+                # Cloner le repository
+                repo_dir = Path(__file__).parent.parent.parent.parent / "temp" / "repos" / lib_name
+                if repo_dir.exists():
+                    shutil.rmtree(repo_dir)
+                
+                repo_dir.mkdir(parents=True, exist_ok=True)
+                
+                # Cloner le repo
+                clone_result = subprocess.run([
+                    'git', 'clone', '--depth', '1', github_url, str(repo_dir)
+                ], capture_output=True, text=True, timeout=300)
+                
+                if clone_result.returncode != 0:
+                    print(f"❌ Erreur clonage {lib_name}: {clone_result.stderr}")
+                    continue
+                
+                # Générer le contexte avec contextmaker
+                try:
+                    result = contextmaker.make(
+                        library_name=lib_name,
+                        output_path=str(repo_dir),
+                        rough=True,
+                    )
+                    
+                    if result and (repo_dir / f"{lib_name}-context.txt").exists():
+                        # Copier le contexte généré
+                        context_path.parent.mkdir(parents=True, exist_ok=True)
+                        shutil.copy2(repo_dir / f"{lib_name}-context.txt", context_path)
+                        
+                        # Mettre à jour les métadonnées
+                        lib['hasContextFile'] = True
+                        lib['contextFileName'] = context_file
+                        
+                        total_generated += 1
+                        print(f"✅ Contexte généré pour {lib_name}")
+                    else:
+                        print(f"❌ Échec génération contexte pour {lib_name}")
+                        
+                except Exception as e:
+                    print(f"❌ Erreur contextmaker pour {lib_name}: {e}")
+                
+                # Nettoyer le repo temporaire
+                if repo_dir.exists():
+                    shutil.rmtree(repo_dir)
+        
+        # Sauvegarder les métadonnées mises à jour
+        for domain, libraries in libraries_data.items():
+            domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            with open(domain_file, 'w', encoding='utf-8') as f:
+                json.dump({"libraries": libraries}, f, indent=2, ensure_ascii=False)
+        
+        print(f"✅ {total_generated} contextes générés")
+        return True
+        
+    except Exception as e:
+        print(f"❌ Erreur lors de la génération des contextes: {e}")
+        return False
+
+def get_existing_contexts():
+    """Récupère la liste des contextes existants"""
+    existing = {}
+    context_dir = Path(__file__).parent.parent.parent.parent / "public" / "context"
+    
+    for domain_dir in context_dir.iterdir():
+        if domain_dir.is_dir():
+            domain = domain_dir.name
+            existing[domain] = []
+            for context_file in domain_dir.glob("*-context.txt"):
+                lib_name = context_file.stem.replace("-context", "")
+                existing[domain].append(lib_name)
+    
+    return existing
+
+def load_libraries_data():
+    """Charge les données de toutes les bibliothèques"""
+    libraries_data = {}
+    data_dir = Path(__file__).parent.parent.parent.parent / "app" / "data"
+    
+    for domain in ['astronomy', 'biochemistry', 'finance', 'machinelearning']:
+        domain_file = data_dir / f"{domain}-libraries.json"
+        if domain_file.exists():
+            with open(domain_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                if 'libraries' in data:
+                    libraries_data[domain] = data['libraries']
+    
+    return libraries_data
+
+def main():
+    """Point d'entrée principal"""
+    print("=== ÉTAPE 4: Génération des contextes manquants ===")
+    
+    try:
+        if generate_missing_contexts():
+            print("✅ Étape 4 terminée")
+        else:
+            print("❌ Étape 4 échouée")
+            sys.exit(1)
+        
+    except Exception as e:
+        print(f"❌ Erreur dans l'étape 4: {e}")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

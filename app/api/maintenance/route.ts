@@ -14,13 +14,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Invalid maintenance type' }, { status: 400 });
     }
 
-    // Chemin vers le script de maintenance
-    const scriptPath = path.join(process.cwd(), 'scripts', 'maintenance', 'maintenance.py');
+    // Chemin vers le script de maintenance modulaire
+    const scriptPath = path.join(process.cwd(), 'scripts', 'maintenance', 'maintenance_modular.py');
     
     // Exécuter la maintenance en arrière-plan
-    const command = type === 'quick' 
-      ? `python3 "${scriptPath}" --quick`
-      : `python3 "${scriptPath}"`;
+    const command = `python3 "${scriptPath}" --mode ${type}`;
     
     // Exécuter la maintenance de manière asynchrone
     execAsync(command, { cwd: process.cwd() })
