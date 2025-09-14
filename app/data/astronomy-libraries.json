@@ -405,7 +405,7 @@
       "stars": 86,
       "rank": 51,
       "hasContextFile": true,
-      "contextFileName": "astrocv.txt"
+      "contextFileName": "astrocv-context.txt"
     },
     {
       "name": "spacetelescope/astronify",
@@ -645,7 +645,7 @@
       "stars": 44,
       "rank": 78,
       "hasContextFile": true,
-      "contextFileName": "numcosmo.txt"
+      "contextFileName": "numcosmo-context.txt"
     },
     {
       "name": "amrex-astro/maestroex",
@@ -762,7 +762,7 @@
       "stars": 32,
       "rank": 96,
       "hasContextFile": true,
-      "contextFileName": "weirdestgalaxies.txt"
+      "contextFileName": "weirdestgalaxies-context.txt"
     },
     {
       "name": "mtazzari/galario",
@@ -770,7 +770,7 @@
       "stars": 32,
       "rank": 96,
       "hasContextFile": true,
-      "contextFileName": "galario.txt"
+      "contextFileName": "galario-context.txt"
     },
     {
       "name": "cosmodesi/pycorr",
@@ -786,7 +786,7 @@
       "stars": 32,
       "rank": 98,
       "hasContextFile": true,
-      "contextFileName": "rmextract.txt"
+      "contextFileName": "rmextract-context.txt"
     },
     {
       "name": "trasal/frbpoppy",

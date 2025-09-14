@@ -40,20 +40,29 @@ def generate_missing_contexts():
             existing_libs = existing_contexts.get(domain, [])
             
             for lib in libraries:
-                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
                 github_url = lib.get('github_url', '')
                 
-                if not github_url or lib_name in existing_libs:
+                # Utiliser les métadonnées existantes au lieu de reconstruire
+                if not github_url or lib.get('hasContextFile', False):
                     continue
                 
-                # Vérifier si le contexte existe déjà
-                context_file = f"{lib_name}-context.txt"
-                context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
+                # Utiliser le nom de fichier existant ou construire un nom par défaut
+                context_file_name = lib.get('contextFileName')
+                if context_file_name:
+                    # Vérifier si le fichier existe déjà
+                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    if context_path.exists():
+                        continue
+                else:
+                    # Fallback : construire le nom si pas de métadonnée
+                    lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
+                    context_file_name = f"{lib_name}-context.txt"
+                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    if context_path.exists():
+                        continue
                 
-                if context_path.exists():
-                    continue
-                
-                print(f"🔄 Génération du contexte pour {lib_name}...")
+                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
+                print(f"🔄 Génération du contexte pour {lib.get('name', lib_name)}...")
                 
                 # Cloner le repository
                 repo_dir = Path(__file__).parent.parent.parent.parent / "temp" / "repos" / lib_name
@@ -88,7 +97,7 @@ def generate_missing_contexts():
                         
                         # Mettre à jour les métadonnées
                         lib['hasContextFile'] = True
-                        lib['contextFileName'] = context_file
+                        lib['contextFileName'] = context_file_name
                         
                         total_generated += 1
                         print(f"✅ Contexte généré pour {lib_name}")

@@ -142,8 +142,17 @@ def detect_github_changes(github_token=None):
                     domain_updated += 1
                     total_updated += 1
             
-            # Sauvegarder les modifications du domaine
+            # Sauvegarder les modifications du domaine (préserver les métadonnées)
             if domain_updated > 0:
+                # Préserver les métadonnées existantes si elles existent
+                if 'domain' not in domain_data:
+                    domain_data['domain'] = domain
+                if 'description' not in domain_data:
+                    # Charger la description depuis config.json ou utiliser une par défaut
+                    domain_data['description'] = f"Top {domain} libraries"
+                if 'keywords' not in domain_data:
+                    domain_data['keywords'] = []
+                
                 with open(domain_file, 'w', encoding='utf-8') as f:
                     json.dump(domain_data, f, indent=2, ensure_ascii=False)
                 print(f"   📝 {domain}: {domain_updated} contextes marqués pour régénération")
