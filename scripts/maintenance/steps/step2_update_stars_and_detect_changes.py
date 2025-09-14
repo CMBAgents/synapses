@@ -10,6 +10,10 @@ import os
 from pathlib import Path
 from github import Github
 import time
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement
+load_dotenv('.env.local')
 
 def update_stars_for_domain(domain_name: str, github_token: str = None):
     """Met à jour les étoiles pour un domaine spécifique"""
@@ -22,8 +26,10 @@ def update_stars_for_domain(domain_name: str, github_token: str = None):
         return False
     
     with open(json_path, 'r', encoding='utf-8') as f:
-        libraries = json.load(f)
+        data = json.load(f)
     
+    # Extraire la liste des bibliothèques
+    libraries = data.get('libraries', [])
     if not libraries:
         print(f"⚠️ Aucune bibliothèque trouvée pour {domain_name}")
         return False
@@ -39,6 +45,11 @@ def update_stars_for_domain(domain_name: str, github_token: str = None):
     
     for lib in libraries:
         try:
+            # Vérifier que lib est un dictionnaire
+            if not isinstance(lib, dict):
+                print(f"   ⚠️ Élément inattendu dans {domain_name}: {type(lib)}")
+                continue
+                
             # Extraire le nom du repo depuis l'URL GitHub
             github_url = lib.get('github_url', '')
             if not github_url or 'github.com' not in github_url:
@@ -72,8 +83,10 @@ def update_stars_for_domain(domain_name: str, github_token: str = None):
     
     # Sauvegarder les modifications
     if updated_count > 0:
+        # Mettre à jour la liste des bibliothèques dans les données
+        data['libraries'] = libraries
         with open(json_path, 'w', encoding='utf-8') as f:
-            json.dump(libraries, f, indent=2, ensure_ascii=False)
+            json.dump(data, f, indent=2, ensure_ascii=False)
         print(f"✅ {updated_count} bibliothèques mises à jour pour {domain_name}")
     
     if error_count > 0:
@@ -81,7 +94,7 @@ def update_stars_for_domain(domain_name: str, github_token: str = None):
     
     return updated_count > 0
 
-def detect_github_changes():
+def detect_github_changes(github_token=None):
     """Détecte les modifications GitHub et marque les contextes obsolètes"""
     print("🔍 Détection des modifications GitHub...")
     
@@ -91,12 +104,16 @@ def detect_github_changes():
         from datetime import datetime
         
         # Charger l'état des commits
-        state_file = Path(__file__).parent.parent.parent.parent / "context_manager_state.json"
+        state_file = Path(__file__).parent.parent.parent / "context_manager_state.json"
         if state_file.exists():
             with open(state_file, 'r') as f:
                 state = json.load(f)
         else:
-            state = {"repo_commits": {}}
+            state = {}
+        
+        # S'assurer que repo_commits existe
+        if 'repo_commits' not in state:
+            state['repo_commits'] = {}
         
         domains = ['astronomy', 'biochemistry', 'finance', 'machinelearning']
         total_checked = 0
@@ -118,7 +135,7 @@ def detect_github_changes():
                 total_checked += 1
                 
                 # Vérifier si le repo a changé
-                if check_repo_has_changed(library, state):
+                if check_repo_has_changed(library, state, github_token):
                     # Marquer le contexte comme manquant
                     library['hasContextFile'] = False
                     library['contextFileName'] = None
@@ -133,8 +150,10 @@ def detect_github_changes():
         
         # Sauvegarder l'état
         state['last_check'] = datetime.now().isoformat()
+        # print(f"🔍 Debug: Sauvegarde du state avec {len(state.get('repo_commits', {}))} commits stockés")
         with open(state_file, 'w') as f:
             json.dump(state, f, indent=2)
+        print(f"✅ State sauvegardé avec {len(state.get('repo_commits', {}))} commits")
         
         print(f"✅ {total_checked} repos vérifiés, {total_updated} contextes marqués pour régénération")
         return True
@@ -143,7 +162,7 @@ def detect_github_changes():
         print(f"❌ Erreur lors de la détection GitHub: {e}")
         return False
 
-def check_repo_has_changed(library, state):
+def check_repo_has_changed(library, state, github_token=None):
     """Vérifie si un repository a changé depuis la dernière génération de contexte"""
     try:
         # Récupérer l'URL GitHub
@@ -152,7 +171,7 @@ def check_repo_has_changed(library, state):
             return False
         
         # Récupérer le dernier commit SHA
-        latest_commit = get_github_latest_commit(github_url)
+        latest_commit = get_github_latest_commit(github_url, github_token)
         if not latest_commit:
             return False
         
@@ -160,11 +179,14 @@ def check_repo_has_changed(library, state):
         lib_name = library.get('name', '')
         stored_commit = state.get('repo_commits', {}).get(lib_name)
         
-        if stored_commit != latest_commit:
-            # Le repo a changé, mettre à jour le commit stocké
-            if 'repo_commits' not in state:
-                state['repo_commits'] = {}
-            state['repo_commits'][lib_name] = latest_commit
+        # Toujours sauvegarder le commit actuel (pour référence future)
+        if 'repo_commits' not in state:
+            state['repo_commits'] = {}
+        state['repo_commits'][lib_name] = latest_commit
+        # print(f"🔍 Debug: Commit stocké pour {lib_name}: {latest_commit[:8]}...")
+        
+        # Vérifier s'il y a eu un changement
+        if stored_commit is not None and stored_commit != latest_commit:
             return True
         
         return False
@@ -173,7 +195,7 @@ def check_repo_has_changed(library, state):
         print(f"⚠️ Erreur vérification changement repo {library.get('name', '')}: {e}")
         return False
 
-def get_github_latest_commit(repo_url):
+def get_github_latest_commit(repo_url, github_token=None):
     """Récupère le dernier commit SHA d'un repository GitHub"""
     try:
         import requests
@@ -182,7 +204,11 @@ def get_github_latest_commit(repo_url):
             repo_path = repo_url.replace(".git", "").replace("https://github.com/", "")
             api_url = f"https://api.github.com/repos/{repo_path}/commits"
             
-            response = requests.get(api_url, timeout=10)
+            headers = {}
+            if github_token:
+                headers['Authorization'] = f'token {github_token}'
+            
+            response = requests.get(api_url, headers=headers, timeout=10)
             if response.status_code == 200:
                 commits = response.json()
                 if commits and len(commits) > 0:
@@ -202,9 +228,13 @@ def main():
         # Récupérer le token GitHub
         github_token = os.getenv('GITHUB_TOKEN')
         if github_token:
-            print("✅ Token GitHub détecté")
+            print("✅ Token GitHub détecté et configuré")
         else:
             print("⚠️ Aucun token GitHub, utilisation de l'API sans authentification")
+            print("🔍 Variables d'environnement disponibles:")
+            for key, value in os.environ.items():
+                if 'GITHUB' in key.upper() or 'TOKEN' in key.upper():
+                    print(f"   {key}: {'***' if len(value) > 8 else value}")
         
         # Domaines à mettre à jour
         domains = ['astronomy', 'biochemistry', 'finance', 'machinelearning']
@@ -217,7 +247,7 @@ def main():
         print(f"📊 {total_updated}/{len(domains)} domaines mis à jour")
         
         # Détecter les modifications GitHub
-        detect_github_changes()
+        detect_github_changes(github_token)
         
         print("✅ Étape 2 terminée")
         

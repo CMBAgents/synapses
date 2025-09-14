@@ -3,7 +3,7 @@
     {
       "name": "quantopian/zipline",
       "github_url": "https://github.com/quantopian/zipline",
-      "stars": 15800,
+      "stars": 18932,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "quantopian-zipline-context.txt"
@@ -18,7 +18,7 @@
     {
       "name": "ranaroussi/yfinance",
       "github_url": "https://github.com/ranaroussi/yfinance",
-      "stars": 8500,
+      "stars": 19033,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "yfinance-context.txt"
@@ -26,7 +26,7 @@
     {
       "name": "pmorissette/ffn",
       "github_url": "https://github.com/pmorissette/ffn",
-      "stars": 1200,
+      "stars": 2338,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "pmorissette-ffn-context.txt"
@@ -34,7 +34,7 @@
     {
       "name": "quantopian/pyfolio",
       "github_url": "https://github.com/quantopian/pyfolio",
-      "stars": 4800,
+      "stars": 6061,
       "rank": 5,
       "hasContextFile": true,
       "contextFileName": "pyfolio-context.txt"
@@ -42,7 +42,7 @@
     {
       "name": "fmilthaler/finquant",
       "github_url": "https://github.com/fmilthaler/finquant",
-      "stars": 800,
+      "stars": 1621,
       "rank": 6,
       "hasContextFile": true,
       "contextFileName": "fmilthaler-finquant-context.txt"
@@ -50,7 +50,7 @@
     {
       "name": "jamesmawm/High-Frequency-Trading-Model-with-IB",
       "github_url": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
-      "stars": 1200,
+      "stars": 2705,
       "rank": 7,
       "hasContextFile": true,
       "contextFileName": "jamesmawm-High-Frequency-Trading-Model-with-IB-context.txt"
@@ -58,7 +58,7 @@
     {
       "name": "quantopian/empyrical",
       "github_url": "https://github.com/quantopian/empyrical",
-      "stars": 1200,
+      "stars": 1406,
       "rank": 8,
       "hasContextFile": true,
       "contextFileName": "quantopian-empyrical-context.txt"
@@ -66,7 +66,7 @@
     {
       "name": "quantopian/alphalens",
       "github_url": "https://github.com/quantopian/alphalens",
-      "stars": 2400,
+      "stars": 3881,
       "rank": 9,
       "hasContextFile": true,
       "contextFileName": "quantopian-alphalens-context.txt"
@@ -74,7 +74,7 @@
     {
       "name": "quantopian/qgrid",
       "github_url": "https://github.com/quantopian/qgrid",
-      "stars": 1000,
+      "stars": 3078,
       "rank": 10,
       "hasContextFile": true,
       "contextFileName": "qgrid-context.txt"

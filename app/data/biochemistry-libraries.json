@@ -3,7 +3,7 @@
     {
       "name": "biopython/biopython",
       "github_url": "https://github.com/biopython/biopython",
-      "stars": 4200,
+      "stars": 4728,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "biopython-biopython-context.txt"
@@ -11,7 +11,7 @@
     {
       "name": "scikit-bio/scikit-bio",
       "github_url": "https://github.com/scikit-bio/scikit-bio",
-      "stars": 1200,
+      "stars": 972,
       "rank": 2,
       "hasContextFile": true,
       "contextFileName": "scikit-bio-scikit-bio-context.txt"
@@ -19,7 +19,7 @@
     {
       "name": "mdanalysis/mdanalysis",
       "github_url": "https://github.com/mdanalysis/mdanalysis",
-      "stars": 800,
+      "stars": 1457,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "mdanalysis-context.txt"
@@ -27,7 +27,7 @@
     {
       "name": "openmm/openmm",
       "github_url": "https://github.com/openmm/openmm",
-      "stars": 1200,
+      "stars": 1671,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "openmm-openmm-context.txt"
@@ -35,7 +35,7 @@
     {
       "name": "choderalab/openmmtools",
       "github_url": "https://github.com/choderalab/openmmtools",
-      "stars": 400,
+      "stars": 290,
       "rank": 5,
       "hasContextFile": true,
       "contextFileName": "choderalab-openmmtools-context.txt"
@@ -43,7 +43,7 @@
     {
       "name": "rdkit/rdkit",
       "github_url": "https://github.com/rdkit/rdkit",
-      "stars": 2000,
+      "stars": 3065,
       "rank": 6,
       "hasContextFile": true,
       "contextFileName": "rdkit-context.txt"
@@ -51,7 +51,7 @@
     {
       "name": "schrodinger/pymol-open-source",
       "github_url": "https://github.com/schrodinger/pymol-open-source",
-      "stars": 1500,
+      "stars": 1462,
       "rank": 7,
       "hasContextFile": true,
       "contextFileName": "schrodinger-pymol-open-source-context.txt"
@@ -59,7 +59,7 @@
     {
       "name": "openbabel/openbabel",
       "github_url": "https://github.com/openbabel/openbabel",
-      "stars": 1000,
+      "stars": 1222,
       "rank": 8,
       "hasContextFile": true,
       "contextFileName": "openbabel-context.txt"
@@ -67,7 +67,7 @@
     {
       "name": "gromacs/gromacs",
       "github_url": "https://github.com/gromacs/gromacs",
-      "stars": 800,
+      "stars": 814,
       "rank": 9,
       "hasContextFile": true,
       "contextFileName": "gromacs-gromacs-context.txt"
@@ -75,7 +75,7 @@
     {
       "name": "rbvi/ChimeraX",
       "github_url": "https://github.com/rbvi/ChimeraX",
-      "stars": 800,
+      "stars": 205,
       "rank": 10,
       "hasContextFile": true,
       "contextFileName": "rbvi-ChimeraX-context.txt"

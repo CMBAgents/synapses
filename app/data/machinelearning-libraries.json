@@ -3,7 +3,7 @@
     {
       "name": "pytorch/pytorch",
       "github_url": "https://github.com/pytorch/pytorch",
-      "stars": 75000,
+      "stars": 93161,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "pytorch-pytorch-context.txt"
@@ -11,7 +11,7 @@
     {
       "name": "tensorflow/tensorflow",
       "github_url": "https://github.com/tensorflow/tensorflow",
-      "stars": 180000,
+      "stars": 191633,
       "rank": 2,
       "hasContextFile": true,
       "contextFileName": "tensorflow-tensorflow-context.txt"
@@ -19,7 +19,7 @@
     {
       "name": "scikit-learn/scikit-learn",
       "github_url": "https://github.com/scikit-learn/scikit-learn",
-      "stars": 55000,
+      "stars": 63336,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "scikit-learn-scikit-learn-context.txt"
@@ -27,7 +27,7 @@
     {
       "name": "keras-team/keras",
       "github_url": "https://github.com/keras-team/keras",
-      "stars": 60000,
+      "stars": 63403,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "keras-team-keras-context.txt"
@@ -35,7 +35,7 @@
     {
       "name": "huggingface/transformers",
       "github_url": "https://github.com/huggingface/transformers",
-      "stars": 120000,
+      "stars": 149751,
       "rank": 5,
       "hasContextFile": true,
       "contextFileName": "huggingface-transformers-context.txt"
@@ -43,7 +43,7 @@
     {
       "name": "pandas-dev/pandas",
       "github_url": "https://github.com/pandas-dev/pandas",
-      "stars": 38000,
+      "stars": 46568,
       "rank": 6,
       "hasContextFile": true,
       "contextFileName": "pandas-dev-pandas-context.txt"
@@ -51,7 +51,7 @@
     {
       "name": "numpy/numpy",
       "github_url": "https://github.com/numpy/numpy",
-      "stars": 25000,
+      "stars": 30394,
       "rank": 7,
       "hasContextFile": true,
       "contextFileName": "numpy-numpy-context.txt"
@@ -59,7 +59,7 @@
     {
       "name": "scipy/scipy",
       "github_url": "https://github.com/scipy/scipy",
-      "stars": 12000,
+      "stars": 14021,
       "rank": 8,
       "hasContextFile": true,
       "contextFileName": "scipy-scipy-context.txt"
@@ -67,7 +67,7 @@
     {
       "name": "matplotlib/matplotlib",
       "github_url": "https://github.com/matplotlib/matplotlib",
-      "stars": 18000,
+      "stars": 21692,
       "rank": 9,
       "hasContextFile": true,
       "contextFileName": "matplotlib-matplotlib-context.txt"
@@ -75,7 +75,7 @@
     {
       "name": "seaborn/seaborn",
       "github_url": "https://github.com/seaborn/seaborn",
-      "stars": 11000,
+      "stars": 39,
       "rank": 10,
       "hasContextFile": true,
       "contextFileName": "seaborn-seaborn-context.txt"
