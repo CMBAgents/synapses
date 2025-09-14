@@ -20,6 +20,7 @@ from typing import Dict, List, Set, Optional
 from dataclasses import dataclass
 import logging
 
+
 # Configuration du logging
 logging.basicConfig(
     level=logging.INFO,
@@ -37,6 +38,7 @@ class DomainConfig:
     specific_libs: List[str]
     use_ascl: bool
     max_libraries: int = 100
+    forbidden_libs: List[str] = None  # Librairies à ignorer lors de la génération
 
 class GitHubAPIClient:
     """Client pour l'API GitHub avec gestion des limites de taux"""
@@ -162,6 +164,7 @@ class UnifiedDomainUpdater:
         self.data_dir = Path("app/data")
         self.data_dir.mkdir(parents=True, exist_ok=True)
         
+        
         # Configuration des domaines
         self.domains = {
             'astronomy': DomainConfig(
@@ -185,59 +188,38 @@ class UnifiedDomainUpdater:
                     'healpy/healpy'
                 ],
                 use_ascl=False,
-                max_libraries=100
+                max_libraries=100,
+                forbidden_libs=[]
             ),
             'biochemistry': DomainConfig(
                 name='biochemistry',
                 display_name='Biochemistry & Bioinformatics',
                 description='Top biochemistry and bioinformatics libraries for molecular dynamics, drug discovery, and computational biology',
                 keywords=['biochemistry', 'bioinformatics', 'molecular dynamics', 'drug discovery', 'computational biology', 'biopython', 'mdanalysis', 'openmm', 'rdkit', 'gromacs'],
-                specific_libs=[
-                    'biopython/biopython',
-                    'scikit-bio/scikit-bio',
-                    'mdanalysis/mdanalysis',
-                    'openmm/openmm',
-                    'rdkit/rdkit',
-                    'openbabel/openbabel',
-                    'gromacs/gromacs'
-                ],
+                specific_libs=[],
                 use_ascl=False,
-                max_libraries=10
+                max_libraries=10,
+                forbidden_libs=[]
             ),
             'finance': DomainConfig(
                 name='finance',
                 display_name='Finance & Trading',
                 description='Top finance and trading libraries for portfolio optimization, algorithmic trading, and financial analysis',
                 keywords=['finance', 'trading', 'portfolio', 'quantitative', 'zipline', 'yfinance', 'pyfolio', 'empyrical', 'alphalens', 'mlfinlab'],
-                specific_libs=[
-                    'quantopian/zipline',
-                    'ranaroussi/yfinance',
-                    'quantopian/pyfolio',
-                    'quantopian/empyrical',
-                    'quantopian/alphalens',
-                    'mlfinlab/mlfinlab'
-                ],
+                specific_libs=[],
                 use_ascl=False,
-                max_libraries=10
+                max_libraries=10,
+                forbidden_libs=[]
             ),
             'machinelearning': DomainConfig(
                 name='machinelearning',
                 display_name='Machine Learning & AI',
                 description='Top machine learning and deep learning libraries for AI, neural networks, and data science',
                 keywords=['machine learning', 'deep learning', 'artificial intelligence', 'neural networks', 'data science', 'pytorch', 'tensorflow', 'scikit-learn', 'keras', 'transformers'],
-                specific_libs=[
-                    'pytorch/pytorch',
-                    'tensorflow/tensorflow',
-                    'scikit-learn/scikit-learn',
-                    'keras-team/keras',
-                    'huggingface/transformers',
-                    'pandas-dev/pandas',
-                    'numpy/numpy',
-                    'scipy/scipy',
-                    'matplotlib/matplotlib'
-                ],
+                specific_libs=[],
                 use_ascl=False,
-                max_libraries=10
+                max_libraries=10,
+                forbidden_libs=['numpy/numpy', 'scipy/scipy']
             )
         }
     
@@ -503,8 +485,13 @@ class UnifiedDomainUpdater:
                 if len(libraries) >= domain_config.max_libraries:
                     break
                 
-                # Éviter les doublons
+                # Éviter les doublons et les librairies interdites
                 repo_name = repo['full_name']
+                
+                if repo_name in (domain_config.forbidden_libs or []):
+                    logger.info(f"🚫 Librairie interdite ignorée: {repo_name}")
+                    continue
+                    
                 if not any(lib['name'] == repo_name for lib in libraries):
                     libraries.append({
                         'name': repo_name,
@@ -518,8 +505,12 @@ class UnifiedDomainUpdater:
             # Pause pour respecter les limites de taux
             time.sleep(1)
         
-        # Ajouter les bibliothèques spécifiques
+        # Ajouter les bibliothèques spécifiques (en ignorant les interdites)
         for lib_name in domain_config.specific_libs:
+            if lib_name in (domain_config.forbidden_libs or []):
+                logger.info(f"🚫 Librairie spécifique interdite ignorée: {lib_name}")
+                continue
+                
             if not any(lib['name'] == lib_name for lib in libraries):
                 # Rechercher la bibliothèque spécifique
                 query = f"repo:{lib_name}"
