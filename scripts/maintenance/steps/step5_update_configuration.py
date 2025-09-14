@@ -165,7 +165,11 @@ def generate_embedded_context():
                     context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
                     if context_path.exists():
                         with open(context_path, 'r', encoding='utf-8') as f:
-                            context_content = f.read().replace('`', '\\`').replace('${', '\\${')
+                            context_content = f.read()
+                            # Escape all special characters that could cause syntax errors in TypeScript template literals
+                            context_content = context_content.replace('\\', '\\\\')  # Escape backslashes first
+                            context_content = context_content.replace('`', '\\`')    # Escape backticks
+                            context_content = context_content.replace('${', '\\${')  # Escape template literal expressions
                         
                         embedded_content += f"    '{lib_name}': `{context_content}`,\n"
             
