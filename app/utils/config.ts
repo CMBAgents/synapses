@@ -132,8 +132,8 @@ export function getProgramById(programId?: string): Program | Record<string, Pro
     return programsRecord;
   }
 
-  // Otherwise, return the specific program
-  return config.programs.find(program => program.id === programId);
+  // Otherwise, return the specific program (case-insensitive search)
+  return config.programs.find(program => program.id.toLowerCase() === programId.toLowerCase());
 }
 
 /**
