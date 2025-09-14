@@ -111,11 +111,26 @@ def generate_missing_contexts():
                 if repo_dir.exists():
                     shutil.rmtree(repo_dir)
         
-        # Sauvegarder les métadonnées mises à jour
+        # Sauvegarder les métadonnées mises à jour (préserver domain, description, keywords)
         for domain, libraries in libraries_data.items():
             domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            
+            # Charger les métadonnées existantes
+            existing_data = {}
+            if domain_file.exists():
+                with open(domain_file, 'r', encoding='utf-8') as f:
+                    existing_data = json.load(f)
+            
+            # Préserver les métadonnées existantes
+            updated_data = {
+                "libraries": libraries,
+                "domain": existing_data.get("domain", domain),
+                "description": existing_data.get("description", f"Top {domain} libraries"),
+                "keywords": existing_data.get("keywords", [])
+            }
+            
             with open(domain_file, 'w', encoding='utf-8') as f:
-                json.dump({"libraries": libraries}, f, indent=2, ensure_ascii=False)
+                json.dump(updated_data, f, indent=2, ensure_ascii=False)
         
         print(f"✅ {total_generated} contextes générés")
         return True

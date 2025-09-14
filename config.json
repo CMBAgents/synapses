@@ -30,1175 +30,1255 @@
     {
       "id": "skyfielders-python-skyfield",
       "name": "python-skyfield",
-      "description": "skyfielders/python-skyfield - Astrophysics library with 1570 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/skyfielders-python-skyfield-context.txt",
+      "description": "skyfielders/python-skyfield - astronomy library with 1599 stars",
+      "contextFiles": [
+        "skyfielders-python-skyfield-context.txt"
+      ],
       "docsUrl": "https://github.com/skyfielders/python-skyfield",
       "extraSystemPrompt": "You are an expert on skyfielders/python-skyfield. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "dstndstn-astrometry-net",
       "name": "astrometry.net",
-      "description": "dstndstn/astrometry.net - Astrophysics library with 750 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/dstndstn-astrometry-net-context.txt",
+      "description": "dstndstn/astrometry.net - astronomy library with 759 stars",
+      "contextFiles": [
+        "dstndstn-astrometry-net-context.txt"
+      ],
       "docsUrl": "https://github.com/dstndstn/astrometry.net",
       "extraSystemPrompt": "You are an expert on dstndstn/astrometry.net. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-astroquery",
       "name": "astroquery",
-      "description": "astropy/astroquery - Astrophysics library with 739 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-astroquery-context.txt",
+      "description": "astropy/astroquery - astronomy library with 745 stars",
+      "contextFiles": [
+        "astropy-astroquery-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/astroquery",
       "extraSystemPrompt": "You are an expert on astropy/astroquery. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "einsteinpy-einsteinpy",
       "name": "einsteinpy",
-      "description": "einsteinpy/einsteinpy - Astrophysics library with 650 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/einsteinpy-einsteinpy-context.txt",
+      "description": "einsteinpy/einsteinpy - astronomy library with 660 stars",
+      "contextFiles": [
+        "einsteinpy-einsteinpy-context.txt"
+      ],
       "docsUrl": "https://github.com/einsteinpy/einsteinpy",
       "extraSystemPrompt": "You are an expert on einsteinpy/einsteinpy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "lightkurve-lightkurve",
       "name": "lightkurve",
-      "description": "lightkurve/lightkurve - Astrophysics library with 459 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/lightkurve-lightkurve-context.txt",
+      "description": "lightkurve/lightkurve - astronomy library with 463 stars",
+      "contextFiles": [
+        "lightkurve-lightkurve-context.txt"
+      ],
       "docsUrl": "https://github.com/lightkurve/lightkurve",
       "extraSystemPrompt": "You are an expert on lightkurve/lightkurve. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "gwpy-gwpy",
       "name": "gwpy",
-      "description": "gwpy/gwpy - Astrophysics library with 378 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/gwpy-gwpy-context.txt",
+      "description": "gwpy/gwpy - astronomy library with 376 stars",
+      "contextFiles": [
+        "gwpy-gwpy-context.txt"
+      ],
       "docsUrl": "https://github.com/gwpy/gwpy",
       "extraSystemPrompt": "You are an expert on gwpy/gwpy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "gwastro-pycbc",
       "name": "pycbc",
-      "description": "gwastro/pycbc - Astrophysics library with 346 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/gwastro-pycbc-context.txt",
+      "description": "gwastro/pycbc - astronomy library with 354 stars",
+      "contextFiles": [
+        "gwastro-pycbc-context.txt"
+      ],
       "docsUrl": "https://github.com/gwastro/pycbc",
       "extraSystemPrompt": "You are an expert on gwastro/pycbc. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "amrex-astro-castro",
       "name": "castro",
-      "description": "amrex-astro/castro - Astrophysics library with 322 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/amrex-astro-castro-context.txt",
+      "description": "amrex-astro/castro - astronomy library with 320 stars",
+      "contextFiles": [
+        "amrex-astro-castro-context.txt"
+      ],
       "docsUrl": "https://github.com/amrex-astro/castro",
       "extraSystemPrompt": "You are an expert on amrex-astro/castro. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "healpy-healpy",
       "name": "healpy",
-      "description": "healpy/healpy - Astrophysics library with 285 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/healpy-healpy-context.txt",
+      "description": "healpy/healpy - astronomy library with 287 stars",
+      "contextFiles": [
+        "healpy-healpy-context.txt"
+      ],
       "docsUrl": "https://github.com/healpy/healpy",
       "extraSystemPrompt": "You are an expert on healpy/healpy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-photutils",
       "name": "photutils",
-      "description": "astropy/photutils - Astrophysics library with 276 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-photutils-context.txt",
+      "description": "astropy/photutils - astronomy library with 281 stars",
+      "contextFiles": [
+        "astropy-photutils-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/photutils",
       "extraSystemPrompt": "You are an expert on astropy/photutils. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "lesgourg-class-public",
       "name": "class_public",
-      "description": "lesgourg/class_public - Astrophysics library with 267 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/lesgourg-class-public-context.txt",
+      "description": "lesgourg/class_public - astronomy library with 276 stars",
+      "contextFiles": [
+        "lesgourg-class-public-context.txt"
+      ],
       "docsUrl": "https://github.com/lesgourg/class_public",
       "extraSystemPrompt": "You are an expert on lesgourg/class_public. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "spacepy-spacepy",
       "name": "spacepy",
-      "description": "spacepy/spacepy - Astrophysics library with 253 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/spacepy-spacepy-context.txt",
+      "description": "spacepy/spacepy - astronomy library with 255 stars",
+      "contextFiles": [
+        "spacepy-spacepy-context.txt"
+      ],
       "docsUrl": "https://github.com/spacepy/spacepy",
       "extraSystemPrompt": "You are an expert on spacepy/spacepy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "scottransom-presto",
       "name": "presto",
-      "description": "scottransom/presto - Astrophysics library with 250 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/scottransom-presto-context.txt",
+      "description": "scottransom/presto - astronomy library with 257 stars",
+      "contextFiles": [
+        "scottransom-presto-context.txt"
+      ],
       "docsUrl": "https://github.com/scottransom/presto",
       "extraSystemPrompt": "You are an expert on scottransom/presto. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "galsim-developers-galsim",
       "name": "galsim",
-      "description": "galsim-developers/galsim - Astrophysics library with 247 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/galsim-developers-galsim-context.txt",
+      "description": "galsim-developers/galsim - astronomy library with 249 stars",
+      "contextFiles": [
+        "galsim-developers-galsim-context.txt"
+      ],
       "docsUrl": "https://github.com/galsim-developers/galsim",
       "extraSystemPrompt": "You are an expert on galsim-developers/galsim. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "jobovy-galpy",
       "name": "galpy",
-      "description": "jobovy/galpy - Astrophysics library with 246 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/jobovy-galpy-context.txt",
+      "description": "jobovy/galpy - astronomy library with 247 stars",
+      "contextFiles": [
+        "jobovy-galpy-context.txt"
+      ],
       "docsUrl": "https://github.com/jobovy/galpy",
       "extraSystemPrompt": "You are an expert on jobovy/galpy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "radis-radis",
       "name": "radis",
-      "description": "radis/radis - Astrophysics library with 245 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/radis-radis-context.txt",
+      "description": "radis/radis - astronomy library with 248 stars",
+      "contextFiles": [
+        "radis-radis-context.txt"
+      ],
       "docsUrl": "https://github.com/radis/radis",
       "extraSystemPrompt": "You are an expert on radis/radis. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "spacetelescope-poppy",
       "name": "poppy",
-      "description": "spacetelescope/poppy - Astrophysics library with 243 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/spacetelescope-poppy-context.txt",
+      "description": "spacetelescope/poppy - astronomy library with 250 stars",
+      "contextFiles": [
+        "spacetelescope-poppy-context.txt"
+      ],
       "docsUrl": "https://github.com/spacetelescope/poppy",
       "extraSystemPrompt": "You are an expert on spacetelescope/poppy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "minaskar-zeus",
       "name": "zeus",
-      "description": "minaskar/zeus - Astrophysics library with 237 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/minaskar-zeus-context.txt",
+      "description": "minaskar/zeus - astronomy library with 239 stars",
+      "contextFiles": [
+        "minaskar-zeus-context.txt"
+      ],
       "docsUrl": "https://github.com/minaskar/zeus",
       "extraSystemPrompt": "You are an expert on minaskar/zeus. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cmbant-camb",
       "name": "camb",
-      "description": "cmbant/camb - Astrophysics library with 228 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/cmbant-camb-context.txt",
+      "description": "cmbant/camb - astronomy library with 231 stars",
+      "contextFiles": [
+        "cmbant-camb-context.txt"
+      ],
       "docsUrl": "https://github.com/cmbant/camb",
       "extraSystemPrompt": "You are an expert on cmbant/camb. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "tardis-sn-tardis",
       "name": "tardis",
-      "description": "tardis-sn/tardis - Astrophysics library with 220 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/tardis-sn-tardis-context.txt",
+      "description": "tardis-sn/tardis - astronomy library with 223 stars",
+      "contextFiles": [
+        "tardis-sn-tardis-context.txt"
+      ],
       "docsUrl": "https://github.com/tardis-sn/tardis",
       "extraSystemPrompt": "You are an expert on tardis-sn/tardis. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-astroplan",
       "name": "astroplan",
-      "description": "astropy/astroplan - Astrophysics library with 209 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-astroplan-context.txt",
+      "description": "astropy/astroplan - astronomy library with 210 stars",
+      "contextFiles": [
+        "astropy-astroplan-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/astroplan",
       "extraSystemPrompt": "You are an expert on astropy/astroplan. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "johannesbuchner-pymultinest",
       "name": "pymultinest",
-      "description": "johannesbuchner/pymultinest - Astrophysics library with 205 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/johannesbuchner-pymultinest-context.txt",
+      "description": "johannesbuchner/pymultinest - astronomy library with 207 stars",
+      "contextFiles": [
+        "johannesbuchner-pymultinest-context.txt"
+      ],
       "docsUrl": "https://github.com/johannesbuchner/pymultinest",
       "extraSystemPrompt": "You are an expert on johannesbuchner/pymultinest. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "henrysky-astronn",
       "name": "astronn",
-      "description": "henrysky/astronn - Astrophysics library with 201 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/henrysky-astronn-context.txt",
+      "description": "henrysky/astronn - astronomy library with 204 stars",
+      "contextFiles": [
+        "henrysky-astronn-context.txt"
+      ],
       "docsUrl": "https://github.com/henrysky/astronn",
       "extraSystemPrompt": "You are an expert on henrysky/astronn. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "sep-developers-sep",
       "name": "sep",
-      "description": "sep-developers/sep - Astrophysics library with 201 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/sep-developers-sep-context.txt",
+      "description": "sep-developers/sep - astronomy library with 201 stars",
+      "contextFiles": [
+        "sep-developers-sep-context.txt"
+      ],
       "docsUrl": "https://github.com/sep-developers/sep",
       "extraSystemPrompt": "You are an expert on sep-developers/sep. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astro-informatics-s2fft",
       "name": "s2fft",
-      "description": "astro-informatics/s2fft - Astrophysics library with 198 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astro-informatics-s2fft-context.txt",
+      "description": "astro-informatics/s2fft - astronomy library with 205 stars",
+      "contextFiles": [
+        "astro-informatics-s2fft-context.txt"
+      ],
       "docsUrl": "https://github.com/astro-informatics/s2fft",
       "extraSystemPrompt": "You are an expert on astro-informatics/s2fft. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "stingraysoftware-stingray",
       "name": "stingray",
-      "description": "stingraysoftware/stingray - Astrophysics library with 198 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/stingraysoftware-stingray-context.txt",
+      "description": "stingraysoftware/stingray - astronomy library with 203 stars",
+      "contextFiles": [
+        "stingraysoftware-stingray-context.txt"
+      ],
       "docsUrl": "https://github.com/stingraysoftware/stingray",
       "extraSystemPrompt": "You are an expert on stingraysoftware/stingray. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "johannesbuchner-ultranest",
       "name": "ultranest",
-      "description": "johannesbuchner/ultranest - Astrophysics library with 187 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/johannesbuchner-ultranest-context.txt",
+      "description": "johannesbuchner/ultranest - astronomy library with 188 stars",
+      "contextFiles": [
+        "johannesbuchner-ultranest-context.txt"
+      ],
       "docsUrl": "https://github.com/johannesbuchner/ultranest",
       "extraSystemPrompt": "You are an expert on johannesbuchner/ultranest. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-specutils",
       "name": "specutils",
-      "description": "astropy/specutils - Astrophysics library with 186 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-specutils-context.txt",
+      "description": "astropy/specutils - astronomy library with 191 stars",
+      "contextFiles": [
+        "astropy-specutils-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/specutils",
       "extraSystemPrompt": "You are an expert on astropy/specutils. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "mperrin-poppy",
       "name": "poppy",
-      "description": "mperrin/poppy - Astrophysics library with 184 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/spacetelescope-poppy-context.txt",
+      "description": "mperrin/poppy - astronomy library with 184 stars",
+      "contextFiles": [
+        "spacetelescope-poppy-context.txt"
+      ],
       "docsUrl": "https://github.com/mperrin/poppy",
       "extraSystemPrompt": "You are an expert on mperrin/poppy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "pypeit-pypeit",
       "name": "pypeit",
-      "description": "pypeit/pypeit - Astrophysics library with 183 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/pypeit-pypeit-context.txt",
+      "description": "pypeit/pypeit - astronomy library with 185 stars",
+      "contextFiles": [
+        "pypeit-pypeit-context.txt"
+      ],
       "docsUrl": "https://github.com/pypeit/pypeit",
       "extraSystemPrompt": "You are an expert on pypeit/pypeit. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "sczesla-pyastronomy",
       "name": "pyastronomy",
-      "description": "sczesla/pyastronomy - Astrophysics library with 166 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/sczesla-pyastronomy-context.txt",
+      "description": "sczesla/pyastronomy - astronomy library with 167 stars",
+      "contextFiles": [
+        "sczesla-pyastronomy-context.txt"
+      ],
       "docsUrl": "https://github.com/sczesla/pyastronomy",
       "extraSystemPrompt": "You are an expert on sczesla/pyastronomy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cmbant-getdist",
       "name": "getdist",
-      "description": "cmbant/getdist - Astrophysics library with 165 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/cmbant-getdist-context.txt",
+      "description": "cmbant/getdist - astronomy library with 165 stars",
+      "contextFiles": [
+        "cmbant-getdist-context.txt"
+      ],
       "docsUrl": "https://github.com/cmbant/getdist",
       "extraSystemPrompt": "You are an expert on cmbant/getdist. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "quatrope-astroalign",
       "name": "astroalign",
-      "description": "quatrope/astroalign - Astrophysics library with 151 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/quatrope-astroalign-context.txt",
+      "description": "quatrope/astroalign - astronomy library with 152 stars",
+      "contextFiles": [
+        "quatrope-astroalign-context.txt"
+      ],
       "docsUrl": "https://github.com/quatrope/astroalign",
       "extraSystemPrompt": "You are an expert on quatrope/astroalign. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cobayasampler-cobaya",
       "name": "cobaya",
-      "description": "CobayaSampler/cobaya - Astrophysics library with 147 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/CobayaSampler-cobaya-context.txt",
+      "description": "CobayaSampler/cobaya - astronomy library with 153 stars",
+      "contextFiles": [
+        "CobayaSampler-cobaya-context.txt"
+      ],
       "docsUrl": "https://github.com/CobayaSampler/cobaya",
       "extraSystemPrompt": "You are an expert on CobayaSampler/cobaya. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "polymathicai-astroclip",
       "name": "astroclip",
-      "description": "polymathicai/astroclip - Astrophysics library with 146 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/polymathicai-astroclip-context.txt",
+      "description": "polymathicai/astroclip - astronomy library with 148 stars",
+      "contextFiles": [
+        "polymathicai-astroclip-context.txt"
+      ],
       "docsUrl": "https://github.com/polymathicai/astroclip",
       "extraSystemPrompt": "You are an expert on polymathicai/astroclip. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "adrn-gala",
       "name": "gala",
-      "description": "adrn/gala - Astrophysics library with 141 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/adrn-gala-context.txt",
+      "description": "adrn/gala - astronomy library with 141 stars",
+      "contextFiles": [
+        "adrn-gala-context.txt"
+      ],
       "docsUrl": "https://github.com/adrn/gala",
       "extraSystemPrompt": "You are an expert on adrn/gala. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cmbagents-cmbagent",
       "name": "cmbagent",
-      "description": "CMBAgents/cmbagent - Astrophysics library with 136 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/CMBAgents-cmbagent-context.txt",
+      "description": "CMBAgents/cmbagent - astronomy library with 146 stars",
+      "contextFiles": [
+        "CMBAgents-cmbagent-context.txt"
+      ],
       "docsUrl": "https://github.com/CMBAgents/cmbagent",
       "extraSystemPrompt": "You are an expert on CMBAgents/cmbagent. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "deepsphere-deepsphere-cosmo-tf1",
       "name": "deepsphere-cosmo-tf1",
-      "description": "deepsphere/deepsphere-cosmo-tf1 - Astrophysics library with 133 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/deepsphere-deepsphere-cosmo-tf1-context.txt",
+      "description": "deepsphere/deepsphere-cosmo-tf1 - astronomy library with 133 stars",
+      "contextFiles": [
+        "deepsphere-deepsphere-cosmo-tf1-context.txt"
+      ],
       "docsUrl": "https://github.com/deepsphere/deepsphere-cosmo-tf1",
       "extraSystemPrompt": "You are an expert on deepsphere/deepsphere-cosmo-tf1. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "skypyproject-skypy",
       "name": "skypy",
-      "description": "skypyproject/skypy - Astrophysics library with 125 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/skypyproject-skypy-context.txt",
+      "description": "skypyproject/skypy - astronomy library with 127 stars",
+      "contextFiles": [
+        "skypyproject-skypy-context.txt"
+      ],
       "docsUrl": "https://github.com/skypyproject/skypy",
       "extraSystemPrompt": "You are an expert on skypyproject/skypy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-reproject",
       "name": "reproject",
-      "description": "astropy/reproject - Astrophysics library with 116 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-reproject-context.txt",
+      "description": "astropy/reproject - astronomy library with 117 stars",
+      "contextFiles": [
+        "astropy-reproject-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/reproject",
       "extraSystemPrompt": "You are an expert on astropy/reproject. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-halotools",
       "name": "halotools",
-      "description": "astropy/halotools - Astrophysics library with 115 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-halotools-context.txt",
+      "description": "astropy/halotools - astronomy library with 116 stars",
+      "contextFiles": [
+        "astropy-halotools-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/halotools",
       "extraSystemPrompt": "You are an expert on astropy/halotools. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "galacticdynamics-oxford-agama",
       "name": "agama",
-      "description": "galacticdynamics-oxford/agama - Astrophysics library with 103 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/galacticdynamics-oxford-agama-context.txt",
+      "description": "galacticdynamics-oxford/agama - astronomy library with 107 stars",
+      "contextFiles": [
+        "galacticdynamics-oxford-agama-context.txt"
+      ],
       "docsUrl": "https://github.com/galacticdynamics-oxford/agama",
       "extraSystemPrompt": "You are an expert on galacticdynamics-oxford/agama. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "lwang-astro-petar",
       "name": "petar",
-      "description": "lwang-astro/petar - Astrophysics library with 101 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/lwang-astro-petar-context.txt",
+      "description": "lwang-astro/petar - astronomy library with 101 stars",
+      "contextFiles": [
+        "lwang-astro-petar-context.txt"
+      ],
       "docsUrl": "https://github.com/lwang-astro/petar",
       "extraSystemPrompt": "You are an expert on lwang-astro/petar. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "michellelochner-astronomaly",
       "name": "astronomaly",
-      "description": "michellelochner/astronomaly - Astrophysics library with 100 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/michellelochner-astronomaly-context.txt",
+      "description": "michellelochner/astronomaly - astronomy library with 101 stars",
+      "contextFiles": [
+        "michellelochner-astronomaly-context.txt"
+      ],
       "docsUrl": "https://github.com/michellelochner/astronomaly",
       "extraSystemPrompt": "You are an expert on michellelochner/astronomaly. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "radio-astro-tools-spectral-cube",
       "name": "spectral-cube",
-      "description": "radio-astro-tools/spectral-cube - Astrophysics library with 99 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/radio-astro-tools-spectral-cube-context.txt",
+      "description": "radio-astro-tools/spectral-cube - astronomy library with 102 stars",
+      "contextFiles": [
+        "radio-astro-tools-spectral-cube-context.txt"
+      ],
       "docsUrl": "https://github.com/radio-astro-tools/spectral-cube",
       "extraSystemPrompt": "You are an expert on radio-astro-tools/spectral-cube. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "amrex-astro-nyx",
-      "name": "nyx",
-      "description": "amrex-astro/nyx - Astrophysics library with 96 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/amrex-astro/nyx",
-      "extraSystemPrompt": "You are an expert on amrex-astro/nyx. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
       "id": "autostronomy-astrophot",
       "name": "astrophot",
-      "description": "autostronomy/astrophot - Astrophysics library with 94 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/autostronomy-astrophot-context.txt",
+      "description": "autostronomy/astrophot - astronomy library with 97 stars",
+      "contextFiles": [
+        "autostronomy-astrophot-context.txt"
+      ],
       "docsUrl": "https://github.com/autostronomy/astrophot",
       "extraSystemPrompt": "You are an expert on autostronomy/astrophot. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "radioastronomysoftwaregroup-pyuvdata",
       "name": "pyuvdata",
-      "description": "radioastronomysoftwaregroup/pyuvdata - Astrophysics library with 92 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/radioastronomysoftwaregroup-pyuvdata-context.txt",
+      "description": "radioastronomysoftwaregroup/pyuvdata - astronomy library with 91 stars",
+      "contextFiles": [
+        "radioastronomysoftwaregroup-pyuvdata-context.txt"
+      ],
       "docsUrl": "https://github.com/radioastronomysoftwaregroup/pyuvdata",
       "extraSystemPrompt": "You are an expert on radioastronomysoftwaregroup/pyuvdata. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-ccdproc",
       "name": "ccdproc",
-      "description": "astropy/ccdproc - Astrophysics library with 90 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-ccdproc-context.txt",
+      "description": "astropy/ccdproc - astronomy library with 91 stars",
+      "contextFiles": [
+        "astropy-ccdproc-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/ccdproc",
       "extraSystemPrompt": "You are an expert on astropy/ccdproc. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astroml-gatspy",
       "name": "gatspy",
-      "description": "astroml/gatspy - Astrophysics library with 87 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astroml-gatspy-context.txt",
+      "description": "astroml/gatspy - astronomy library with 87 stars",
+      "contextFiles": [
+        "astroml-gatspy-context.txt"
+      ],
       "docsUrl": "https://github.com/astroml/gatspy",
       "extraSystemPrompt": "You are an expert on astroml/gatspy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astrocv-astrocv",
       "name": "astrocv",
-      "description": "astrocv/astrocv - Astrophysics library with 85 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astrocv.txt",
+      "description": "astrocv/astrocv - astronomy library with 86 stars",
+      "contextFiles": [
+        "astrocv-context.txt"
+      ],
       "docsUrl": "https://github.com/astrocv/astrocv",
       "extraSystemPrompt": "You are an expert on astrocv/astrocv. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "spacetelescope-astronify",
       "name": "astronify",
-      "description": "spacetelescope/astronify - Astrophysics library with 82 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/spacetelescope-astronify-context.txt",
+      "description": "spacetelescope/astronify - astronomy library with 82 stars",
+      "contextFiles": [
+        "spacetelescope-astronify-context.txt"
+      ],
       "docsUrl": "https://github.com/spacetelescope/astronify",
       "extraSystemPrompt": "You are an expert on spacetelescope/astronify. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astrorama-sourcextractorplusplus",
       "name": "sourcextractorplusplus",
-      "description": "astrorama/sourcextractorplusplus - Astrophysics library with 81 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astrorama-sourcextractorplusplus-context.txt",
+      "description": "astrorama/sourcextractorplusplus - astronomy library with 82 stars",
+      "contextFiles": [
+        "astrorama-sourcextractorplusplus-context.txt"
+      ],
       "docsUrl": "https://github.com/astrorama/sourcextractorplusplus",
       "extraSystemPrompt": "You are an expert on astrorama/sourcextractorplusplus. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-pyvo",
       "name": "pyvo",
-      "description": "astropy/pyvo - Astrophysics library with 79 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-pyvo-context.txt",
+      "description": "astropy/pyvo - astronomy library with 79 stars",
+      "contextFiles": [
+        "astropy-pyvo-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/pyvo",
       "extraSystemPrompt": "You are an expert on astropy/pyvo. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-astroscrappy",
       "name": "astroscrappy",
-      "description": "astropy/astroscrappy - Astrophysics library with 77 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-astroscrappy-context.txt",
+      "description": "astropy/astroscrappy - astronomy library with 77 stars",
+      "contextFiles": [
+        "astropy-astroscrappy-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/astroscrappy",
       "extraSystemPrompt": "You are an expert on astropy/astroscrappy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "sncosmo-sncosmo",
       "name": "sncosmo",
-      "description": "sncosmo/sncosmo - Astrophysics library with 77 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/sncosmo-sncosmo-context.txt",
+      "description": "sncosmo/sncosmo - astronomy library with 79 stars",
+      "contextFiles": [
+        "sncosmo-sncosmo-context.txt"
+      ],
       "docsUrl": "https://github.com/sncosmo/sncosmo",
       "extraSystemPrompt": "You are an expert on sncosmo/sncosmo. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "alessiospuriomancini-cosmopower",
       "name": "cosmopower",
-      "description": "alessiospuriomancini/cosmopower - Astrophysics library with 72 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/alessiospuriomancini-cosmopower-context.txt",
+      "description": "alessiospuriomancini/cosmopower - astronomy library with 74 stars",
+      "contextFiles": [
+        "alessiospuriomancini-cosmopower-context.txt"
+      ],
       "docsUrl": "https://github.com/alessiospuriomancini/cosmopower",
       "extraSystemPrompt": "You are an expert on alessiospuriomancini/cosmopower. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astro-informatics-harmonic",
       "name": "harmonic",
-      "description": "astro-informatics/harmonic - Astrophysics library with 69 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astro-informatics-harmonic-context.txt",
+      "description": "astro-informatics/harmonic - astronomy library with 69 stars",
+      "contextFiles": [
+        "astro-informatics-harmonic-context.txt"
+      ],
       "docsUrl": "https://github.com/astro-informatics/harmonic",
       "extraSystemPrompt": "You are an expert on astro-informatics/harmonic. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astropy-spisea",
       "name": "spisea",
-      "description": "astropy/spisea - Astrophysics library with 66 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astropy-spisea-context.txt",
+      "description": "astropy/spisea - astronomy library with 67 stars",
+      "contextFiles": [
+        "astropy-spisea-context.txt"
+      ],
       "docsUrl": "https://github.com/astropy/spisea",
       "extraSystemPrompt": "You are an expert on astropy/spisea. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astroua-turbustat",
       "name": "turbustat",
-      "description": "astroua/turbustat - Astrophysics library with 66 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astroua-turbustat-context.txt",
+      "description": "astroua/turbustat - astronomy library with 67 stars",
+      "contextFiles": [
+        "astroua-turbustat-context.txt"
+      ],
       "docsUrl": "https://github.com/astroua/turbustat",
       "extraSystemPrompt": "You are an expert on astroua/turbustat. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "pynucastro-pynucastro",
       "name": "pynucastro",
-      "description": "pynucastro/pynucastro - Astrophysics library with 63 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/pynucastro-pynucastro-context.txt",
+      "description": "pynucastro/pynucastro - astronomy library with 63 stars",
+      "contextFiles": [
+        "pynucastro-pynucastro-context.txt"
+      ],
       "docsUrl": "https://github.com/pynucastro/pynucastro",
       "extraSystemPrompt": "You are an expert on pynucastro/pynucastro. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "artificialstellarpopulations-artpop",
       "name": "artpop",
-      "description": "artificialstellarpopulations/artpop - Astrophysics library with 61 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/artificialstellarpopulations-artpop-context.txt",
+      "description": "artificialstellarpopulations/artpop - astronomy library with 62 stars",
+      "contextFiles": [
+        "artificialstellarpopulations-artpop-context.txt"
+      ],
       "docsUrl": "https://github.com/artificialstellarpopulations/artpop",
       "extraSystemPrompt": "You are an expert on artificialstellarpopulations/artpop. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cmateu-galstreams",
       "name": "galstreams",
-      "description": "cmateu/galstreams - Astrophysics library with 58 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/cmateu-galstreams-context.txt",
+      "description": "cmateu/galstreams - astronomy library with 58 stars",
+      "contextFiles": [
+        "cmateu-galstreams-context.txt"
+      ],
       "docsUrl": "https://github.com/cmateu/galstreams",
       "extraSystemPrompt": "You are an expert on cmateu/galstreams. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "smith42-astroddpm",
       "name": "astroddpm",
-      "description": "smith42/astroddpm - Astrophysics library with 57 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/smith42-astroddpm-context.txt",
+      "description": "smith42/astroddpm - astronomy library with 57 stars",
+      "contextFiles": [
+        "smith42-astroddpm-context.txt"
+      ],
       "docsUrl": "https://github.com/smith42/astroddpm",
       "extraSystemPrompt": "You are an expert on smith42/astroddpm. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astrosmili-smili",
       "name": "smili",
-      "description": "astrosmili/smili - Astrophysics library with 52 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astrosmili-smili-context.txt",
+      "description": "astrosmili/smili - astronomy library with 52 stars",
+      "contextFiles": [
+        "astrosmili-smili-context.txt"
+      ],
       "docsUrl": "https://github.com/astrosmili/smili",
       "extraSystemPrompt": "You are an expert on astrosmili/smili. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "lofar-astron-pybdsf",
       "name": "pybdsf",
-      "description": "lofar-astron/pybdsf - Astrophysics library with 52 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/lofar-astron-pybdsf-context.txt",
+      "description": "lofar-astron/pybdsf - astronomy library with 53 stars",
+      "contextFiles": [
+        "lofar-astron-pybdsf-context.txt"
+      ],
       "docsUrl": "https://github.com/lofar-astron/pybdsf",
       "extraSystemPrompt": "You are an expert on lofar-astron/pybdsf. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "stellar-group-octotiger",
       "name": "octotiger",
-      "description": "stellar-group/octotiger - Astrophysics library with 52 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/stellar-group-octotiger-context.txt",
+      "description": "stellar-group/octotiger - astronomy library with 53 stars",
+      "contextFiles": [
+        "stellar-group-octotiger-context.txt"
+      ],
       "docsUrl": "https://github.com/stellar-group/octotiger",
       "extraSystemPrompt": "You are an expert on stellar-group/octotiger. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "simonsobs-pixell",
       "name": "pixell",
-      "description": "simonsobs/pixell - Astrophysics library with 51 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/pixell-context.txt",
+      "description": "simonsobs/pixell - astronomy library with 51 stars",
+      "contextFiles": [
+        "pixell-context.txt"
+      ],
       "docsUrl": "https://github.com/simonsobs/pixell",
       "extraSystemPrompt": "You are an expert on simonsobs/pixell. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "quokka-astro-quokka",
       "name": "quokka",
-      "description": "quokka-astro/quokka - Astrophysics library with 50 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/quokka-astro-quokka-context.txt",
+      "description": "quokka-astro/quokka - astronomy library with 55 stars",
+      "contextFiles": [
+        "quokka-astro-quokka-context.txt"
+      ],
       "docsUrl": "https://github.com/quokka-astro/quokka",
       "extraSystemPrompt": "You are an expert on quokka-astro/quokka. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "dartoon-galight",
       "name": "galight",
-      "description": "dartoon/galight - Astrophysics library with 49 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/dartoon-galight-context.txt",
+      "description": "dartoon/galight - astronomy library with 49 stars",
+      "contextFiles": [
+        "dartoon-galight-context.txt"
+      ],
       "docsUrl": "https://github.com/dartoon/galight",
       "extraSystemPrompt": "You are an expert on dartoon/galight. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "threeml-astromodels",
       "name": "astromodels",
-      "description": "threeml/astromodels - Astrophysics library with 49 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/threeml-astromodels-context.txt",
+      "description": "threeml/astromodels - astronomy library with 49 stars",
+      "contextFiles": [
+        "threeml-astromodels-context.txt"
+      ],
       "docsUrl": "https://github.com/threeml/astromodels",
       "extraSystemPrompt": "You are an expert on threeml/astromodels. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "pmelchior-skymapper",
       "name": "skymapper",
-      "description": "pmelchior/skymapper - Astrophysics library with 48 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/pmelchior-skymapper-context.txt",
+      "description": "pmelchior/skymapper - astronomy library with 50 stars",
+      "contextFiles": [
+        "pmelchior-skymapper-context.txt"
+      ],
       "docsUrl": "https://github.com/pmelchior/skymapper",
       "extraSystemPrompt": "You are an expert on pmelchior/skymapper. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astroaccelerateorg-astro-accelerate",
       "name": "astro-accelerate",
-      "description": "astroaccelerateorg/astro-accelerate - Astrophysics library with 47 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astroaccelerateorg-astro-accelerate-context.txt",
+      "description": "astroaccelerateorg/astro-accelerate - astronomy library with 50 stars",
+      "contextFiles": [
+        "astroaccelerateorg-astro-accelerate-context.txt"
+      ],
       "docsUrl": "https://github.com/astroaccelerateorg/astro-accelerate",
       "extraSystemPrompt": "You are an expert on astroaccelerateorg/astro-accelerate. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "roban-cosmolopy",
       "name": "cosmolopy",
-      "description": "roban/cosmolopy - Astrophysics library with 46 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/roban-cosmolopy-context.txt",
+      "description": "roban/cosmolopy - astronomy library with 47 stars",
+      "contextFiles": [
+        "roban-cosmolopy-context.txt"
+      ],
       "docsUrl": "https://github.com/roban/cosmolopy",
       "extraSystemPrompt": "You are an expert on roban/cosmolopy. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "sncosmo-extinction",
       "name": "extinction",
-      "description": "sncosmo/extinction - Astrophysics library with 46 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/sncosmo-extinction-context.txt",
+      "description": "sncosmo/extinction - astronomy library with 46 stars",
+      "contextFiles": [
+        "sncosmo-extinction-context.txt"
+      ],
       "docsUrl": "https://github.com/sncosmo/extinction",
       "extraSystemPrompt": "You are an expert on sncosmo/extinction. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cosmostatgw-gwfast",
       "name": "gwfast",
-      "description": "cosmostatgw/gwfast - Astrophysics library with 45 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/cosmostatgw-gwfast-context.txt",
+      "description": "cosmostatgw/gwfast - astronomy library with 46 stars",
+      "contextFiles": [
+        "cosmostatgw-gwfast-context.txt"
+      ],
       "docsUrl": "https://github.com/cosmostatgw/gwfast",
       "extraSystemPrompt": "You are an expert on cosmostatgw/gwfast. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "zoglauer-megalib",
       "name": "megalib",
-      "description": "zoglauer/megalib - Astrophysics library with 45 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/zoglauer-megalib-context.txt",
+      "description": "zoglauer/megalib - astronomy library with 46 stars",
+      "contextFiles": [
+        "zoglauer-megalib-context.txt"
+      ],
       "docsUrl": "https://github.com/zoglauer/megalib",
       "extraSystemPrompt": "You are an expert on zoglauer/megalib. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cosmolattice-cosmolattice",
       "name": "cosmolattice",
-      "description": "cosmolattice/cosmolattice - Astrophysics library with 44 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/cosmolattice-cosmolattice-context.txt",
+      "description": "cosmolattice/cosmolattice - astronomy library with 44 stars",
+      "contextFiles": [
+        "cosmolattice-cosmolattice-context.txt"
+      ],
       "docsUrl": "https://github.com/cosmolattice/cosmolattice",
       "extraSystemPrompt": "You are an expert on cosmolattice/cosmolattice. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "dendrograms-astrodendro",
       "name": "astrodendro",
-      "description": "dendrograms/astrodendro - Astrophysics library with 44 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/dendrograms-astrodendro-context.txt",
+      "description": "dendrograms/astrodendro - astronomy library with 46 stars",
+      "contextFiles": [
+        "dendrograms-astrodendro-context.txt"
+      ],
       "docsUrl": "https://github.com/dendrograms/astrodendro",
       "extraSystemPrompt": "You are an expert on dendrograms/astrodendro. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "hpc4cmb-toast",
       "name": "toast",
-      "description": "hpc4cmb/toast - Astrophysics library with 44 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/hpc4cmb-toast-context.txt",
+      "description": "hpc4cmb/toast - astronomy library with 44 stars",
+      "contextFiles": [
+        "hpc4cmb-toast-context.txt"
+      ],
       "docsUrl": "https://github.com/hpc4cmb/toast",
       "extraSystemPrompt": "You are an expert on hpc4cmb/toast. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "numcosmo-numcosmo",
       "name": "numcosmo",
-      "description": "numcosmo/numcosmo - Astrophysics library with 44 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/numcosmo.txt",
+      "description": "numcosmo/numcosmo - astronomy library with 44 stars",
+      "contextFiles": [
+        "numcosmo-context.txt"
+      ],
       "docsUrl": "https://github.com/numcosmo/numcosmo",
       "extraSystemPrompt": "You are an expert on numcosmo/numcosmo. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "amrex-astro-maestroex",
-      "name": "maestroex",
-      "description": "amrex-astro/maestroex - Astrophysics library with 43 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/amrex-astro/maestroex",
-      "extraSystemPrompt": "You are an expert on amrex-astro/maestroex. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
       "id": "punzo-slicerastro",
       "name": "slicerastro",
-      "description": "punzo/slicerastro - Astrophysics library with 42 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/punzo-slicerastro-context.txt",
+      "description": "punzo/slicerastro - astronomy library with 42 stars",
+      "contextFiles": [
+        "punzo-slicerastro-context.txt"
+      ],
       "docsUrl": "https://github.com/punzo/slicerastro",
       "extraSystemPrompt": "You are an expert on punzo/slicerastro. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astrocatalogs-astrocats",
       "name": "astrocats",
-      "description": "astrocatalogs/astrocats - Astrophysics library with 40 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astrocatalogs-astrocats-context.txt",
+      "description": "astrocatalogs/astrocats - astronomy library with 40 stars",
+      "contextFiles": [
+        "astrocatalogs-astrocats-context.txt"
+      ],
       "docsUrl": "https://github.com/astrocatalogs/astrocats",
       "extraSystemPrompt": "You are an expert on astrocatalogs/astrocats. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astromatic-swarp",
       "name": "swarp",
-      "description": "astromatic/swarp - Astrophysics library with 40 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astromatic-swarp-context.txt",
+      "description": "astromatic/swarp - astronomy library with 40 stars",
+      "contextFiles": [
+        "astromatic-swarp-context.txt"
+      ],
       "docsUrl": "https://github.com/astromatic/swarp",
       "extraSystemPrompt": "You are an expert on astromatic/swarp. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "astromatic-visiomatic",
       "name": "visiomatic",
-      "description": "astromatic/visiomatic - Astrophysics library with 40 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/astromatic-visiomatic-context.txt",
+      "description": "astromatic/visiomatic - astronomy library with 40 stars",
+      "contextFiles": [
+        "astromatic-visiomatic-context.txt"
+      ],
       "docsUrl": "https://github.com/astromatic/visiomatic",
       "extraSystemPrompt": "You are an expert on astromatic/visiomatic. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "elisej-astroabc",
       "name": "astroabc",
-      "description": "elisej/astroabc - Astrophysics library with 40 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/elisej-astroabc-context.txt",
+      "description": "elisej/astroabc - astronomy library with 40 stars",
+      "contextFiles": [
+        "elisej-astroabc-context.txt"
+      ],
       "docsUrl": "https://github.com/elisej/astroabc",
       "extraSystemPrompt": "You are an expert on elisej/astroabc. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "daniel-muthukrishna-astrodash",
-      "name": "astrodash",
-      "description": "daniel-muthukrishna/astrodash - Astrophysics library with 39 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/daniel-muthukrishna/astrodash",
-      "extraSystemPrompt": "You are an expert on daniel-muthukrishna/astrodash. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
       "id": "nuclear-multimessenger-astronomy-nmma",
       "name": "nmma",
-      "description": "nuclear-multimessenger-astronomy/nmma - Astrophysics library with 38 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/nuclear-multimessenger-astronomy-nmma-context.txt",
+      "description": "nuclear-multimessenger-astronomy/nmma - astronomy library with 40 stars",
+      "contextFiles": [
+        "nuclear-multimessenger-astronomy-nmma-context.txt"
+      ],
       "docsUrl": "https://github.com/nuclear-multimessenger-astronomy/nmma",
       "extraSystemPrompt": "You are an expert on nuclear-multimessenger-astronomy/nmma. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "clwainwright-cosmotransitions",
       "name": "cosmotransitions",
-      "description": "clwainwright/cosmotransitions - Astrophysics library with 36 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/clwainwright-cosmotransitions-context.txt",
+      "description": "clwainwright/cosmotransitions - astronomy library with 36 stars",
+      "contextFiles": [
+        "clwainwright-cosmotransitions-context.txt"
+      ],
       "docsUrl": "https://github.com/clwainwright/cosmotransitions",
       "extraSystemPrompt": "You are an expert on clwainwright/cosmotransitions. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "galacticusorg-galacticus",
       "name": "galacticus",
-      "description": "galacticusorg/galacticus - Astrophysics library with 36 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/galacticusorg-galacticus-context.txt",
+      "description": "galacticusorg/galacticus - astronomy library with 36 stars",
+      "contextFiles": [
+        "galacticusorg-galacticus-context.txt"
+      ],
       "docsUrl": "https://github.com/galacticusorg/galacticus",
       "extraSystemPrompt": "You are an expert on galacticusorg/galacticus. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "yuliang419-astronet-triage",
       "name": "astronet-triage",
-      "description": "yuliang419/astronet-triage - Astrophysics library with 36 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/yuliang419-astronet-triage-context.txt",
+      "description": "yuliang419/astronet-triage - astronomy library with 38 stars",
+      "contextFiles": [
+        "yuliang419-astronet-triage-context.txt"
+      ],
       "docsUrl": "https://github.com/yuliang419/astronet-triage",
       "extraSystemPrompt": "You are an expert on yuliang419/astronet-triage. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "dsavransky-exosims",
       "name": "exosims",
-      "description": "dsavransky/exosims - Astrophysics library with 34 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/dsavransky-exosims-context.txt",
+      "description": "dsavransky/exosims - astronomy library with 34 stars",
+      "contextFiles": [
+        "dsavransky-exosims-context.txt"
+      ],
       "docsUrl": "https://github.com/dsavransky/exosims",
       "extraSystemPrompt": "You are an expert on dsavransky/exosims. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "smith42-astropt",
-      "name": "astropt",
-      "description": "smith42/astropt - Astrophysics library with 34 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/smith42/astropt",
-      "extraSystemPrompt": "You are an expert on smith42/astropt. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
       "id": "amrex-astro-maestro",
       "name": "maestro",
-      "description": "amrex-astro/maestro - Astrophysics library with 33 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/amrex-astro-maestro-context.txt",
+      "description": "amrex-astro/maestro - astronomy library with 33 stars",
+      "contextFiles": [
+        "amrex-astro-maestro-context.txt"
+      ],
       "docsUrl": "https://github.com/amrex-astro/maestro",
       "extraSystemPrompt": "You are an expert on amrex-astro/maestro. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "dalya-weirdestgalaxies",
       "name": "weirdestgalaxies",
-      "description": "dalya/weirdestgalaxies - Astrophysics library with 32 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/weirdestgalaxies.txt",
+      "description": "dalya/weirdestgalaxies - astronomy library with 32 stars",
+      "contextFiles": [
+        "weirdestgalaxies-context.txt"
+      ],
       "docsUrl": "https://github.com/dalya/weirdestgalaxies",
       "extraSystemPrompt": "You are an expert on dalya/weirdestgalaxies. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "mtazzari-galario",
       "name": "galario",
-      "description": "mtazzari/galario - Astrophysics library with 32 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/galario.txt",
+      "description": "mtazzari/galario - astronomy library with 32 stars",
+      "contextFiles": [
+        "galario-context.txt"
+      ],
       "docsUrl": "https://github.com/mtazzari/galario",
       "extraSystemPrompt": "You are an expert on mtazzari/galario. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "cosmodesi-pycorr",
       "name": "pycorr",
-      "description": "cosmodesi/pycorr - Astrophysics library with 31 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/cosmodesi-pycorr-context.txt",
+      "description": "cosmodesi/pycorr - astronomy library with 33 stars",
+      "contextFiles": [
+        "cosmodesi-pycorr-context.txt"
+      ],
       "docsUrl": "https://github.com/cosmodesi/pycorr",
       "extraSystemPrompt": "You are an expert on cosmodesi/pycorr. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "lofar-astron-rmextract",
       "name": "rmextract",
-      "description": "lofar-astron/rmextract - Astrophysics library with 31 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/rmextract.txt",
+      "description": "lofar-astron/rmextract - astronomy library with 32 stars",
+      "contextFiles": [
+        "rmextract-context.txt"
+      ],
       "docsUrl": "https://github.com/lofar-astron/rmextract",
       "extraSystemPrompt": "You are an expert on lofar-astron/rmextract. Use the provided documentation to help users with this astrophysics library."
     },
     {
       "id": "trasal-frbpoppy",
       "name": "frbpoppy",
-      "description": "trasal/frbpoppy - Astrophysics library with 30 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/astronomy/trasal-frbpoppy-context.txt",
+      "description": "trasal/frbpoppy - astronomy library with 30 stars",
+      "contextFiles": [
+        "trasal-frbpoppy-context.txt"
+      ],
       "docsUrl": "https://github.com/trasal/frbpoppy",
       "extraSystemPrompt": "You are an expert on trasal/frbpoppy. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "quantopian-zipline",
-      "name": "zipline",
-      "description": "quantopian/zipline - Finance library with 15800 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/quantopian-zipline-context.txt",
-      "docsUrl": "https://github.com/quantopian/zipline",
-      "extraSystemPrompt": "You are an expert on quantopian/zipline. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "mlfinlab-mlfinlab",
-      "name": "mlfinlab",
-      "description": "mlfinlab/mlfinlab - Finance library with 4200 stars",
-      "contextFiles": [],
-      "combinedContextFile": null,
-      "docsUrl": "https://github.com/mlfinlab/mlfinlab",
-      "extraSystemPrompt": "You are an expert on mlfinlab/mlfinlab. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "ranaroussi-yfinance",
-      "name": "yfinance",
-      "description": "ranaroussi/yfinance - Finance library with 8500 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/yfinance-context.txt",
-      "docsUrl": "https://github.com/ranaroussi/yfinance",
-      "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "pmorissette-ffn",
-      "name": "ffn",
-      "description": "pmorissette/ffn - Finance library with 1200 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/pmorissette-ffn-context.txt",
-      "docsUrl": "https://github.com/pmorissette/ffn",
-      "extraSystemPrompt": "You are an expert on pmorissette/ffn. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "quantopian-pyfolio",
-      "name": "pyfolio",
-      "description": "quantopian/pyfolio - Finance library with 4800 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/pyfolio-context.txt",
-      "docsUrl": "https://github.com/quantopian/pyfolio",
-      "extraSystemPrompt": "You are an expert on quantopian/pyfolio. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "fmilthaler-finquant",
-      "name": "finquant",
-      "description": "fmilthaler/finquant - Finance library with 800 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/fmilthaler-finquant-context.txt",
-      "docsUrl": "https://github.com/fmilthaler/finquant",
-      "extraSystemPrompt": "You are an expert on fmilthaler/finquant. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "jamesmawm-high-frequency-trading-model-with-ib",
-      "name": "High-Frequency-Trading-Model-with-IB",
-      "description": "jamesmawm/High-Frequency-Trading-Model-with-IB - Finance library with 1200 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/jamesmawm-High-Frequency-Trading-Model-with-IB-context.txt",
-      "docsUrl": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
-      "extraSystemPrompt": "You are an expert on jamesmawm/High-Frequency-Trading-Model-with-IB. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "quantopian-empyrical",
-      "name": "empyrical",
-      "description": "quantopian/empyrical - Finance library with 1200 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/quantopian-empyrical-context.txt",
-      "docsUrl": "https://github.com/quantopian/empyrical",
-      "extraSystemPrompt": "You are an expert on quantopian/empyrical. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "quantopian-alphalens",
-      "name": "alphalens",
-      "description": "quantopian/alphalens - Finance library with 2400 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/quantopian-alphalens-context.txt",
-      "docsUrl": "https://github.com/quantopian/alphalens",
-      "extraSystemPrompt": "You are an expert on quantopian/alphalens. Use the provided documentation to help users with this finance library."
-    },
-    {
-      "id": "quantopian-qgrid",
-      "name": "qgrid",
-      "description": "quantopian/qgrid - Finance library with 1000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/finance/qgrid-context.txt",
-      "docsUrl": "https://github.com/quantopian/qgrid",
-      "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library."
-    },
-    {
       "id": "biopython-biopython",
       "name": "biopython",
-      "description": "biopython/biopython - Biochemistry library with 4200 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/biopython-biopython-context.txt",
+      "description": "biopython/biopython - biochemistry library with 4729 stars",
+      "contextFiles": [
+        "biopython-biopython-context.txt"
+      ],
       "docsUrl": "https://github.com/biopython/biopython",
       "extraSystemPrompt": "You are an expert on biopython/biopython. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "scikit-bio-scikit-bio",
       "name": "scikit-bio",
-      "description": "scikit-bio/scikit-bio - Biochemistry library with 1200 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/scikit-bio-scikit-bio-context.txt",
+      "description": "scikit-bio/scikit-bio - biochemistry library with 972 stars",
+      "contextFiles": [
+        "scikit-bio-scikit-bio-context.txt"
+      ],
       "docsUrl": "https://github.com/scikit-bio/scikit-bio",
       "extraSystemPrompt": "You are an expert on scikit-bio/scikit-bio. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "mdanalysis-mdanalysis",
       "name": "mdanalysis",
-      "description": "mdanalysis/mdanalysis - Biochemistry library with 800 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/mdanalysis-context.txt",
+      "description": "mdanalysis/mdanalysis - biochemistry library with 1457 stars",
+      "contextFiles": [
+        "mdanalysis-context.txt"
+      ],
       "docsUrl": "https://github.com/mdanalysis/mdanalysis",
       "extraSystemPrompt": "You are an expert on mdanalysis/mdanalysis. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "openmm-openmm",
       "name": "openmm",
-      "description": "openmm/openmm - Biochemistry library with 1200 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/openmm-openmm-context.txt",
+      "description": "openmm/openmm - biochemistry library with 1671 stars",
+      "contextFiles": [
+        "openmm-openmm-context.txt"
+      ],
       "docsUrl": "https://github.com/openmm/openmm",
       "extraSystemPrompt": "You are an expert on openmm/openmm. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "choderalab-openmmtools",
       "name": "openmmtools",
-      "description": "choderalab/openmmtools - Biochemistry library with 400 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/choderalab-openmmtools-context.txt",
+      "description": "choderalab/openmmtools - biochemistry library with 290 stars",
+      "contextFiles": [
+        "choderalab-openmmtools-context.txt"
+      ],
       "docsUrl": "https://github.com/choderalab/openmmtools",
       "extraSystemPrompt": "You are an expert on choderalab/openmmtools. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "rdkit-rdkit",
       "name": "rdkit",
-      "description": "rdkit/rdkit - Biochemistry library with 2000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/rdkit-context.txt",
+      "description": "rdkit/rdkit - biochemistry library with 3065 stars",
+      "contextFiles": [
+        "rdkit-context.txt"
+      ],
       "docsUrl": "https://github.com/rdkit/rdkit",
       "extraSystemPrompt": "You are an expert on rdkit/rdkit. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "schrodinger-pymol-open-source",
       "name": "pymol-open-source",
-      "description": "schrodinger/pymol-open-source - Biochemistry library with 1500 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/schrodinger-pymol-open-source-context.txt",
+      "description": "schrodinger/pymol-open-source - biochemistry library with 1462 stars",
+      "contextFiles": [
+        "schrodinger-pymol-open-source-context.txt"
+      ],
       "docsUrl": "https://github.com/schrodinger/pymol-open-source",
       "extraSystemPrompt": "You are an expert on schrodinger/pymol-open-source. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "openbabel-openbabel",
       "name": "openbabel",
-      "description": "openbabel/openbabel - Biochemistry library with 1000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/openbabel-context.txt",
+      "description": "openbabel/openbabel - biochemistry library with 1222 stars",
+      "contextFiles": [
+        "openbabel-context.txt"
+      ],
       "docsUrl": "https://github.com/openbabel/openbabel",
       "extraSystemPrompt": "You are an expert on openbabel/openbabel. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "gromacs-gromacs",
       "name": "gromacs",
-      "description": "gromacs/gromacs - Biochemistry library with 800 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/gromacs-gromacs-context.txt",
+      "description": "gromacs/gromacs - biochemistry library with 814 stars",
+      "contextFiles": [
+        "gromacs-gromacs-context.txt"
+      ],
       "docsUrl": "https://github.com/gromacs/gromacs",
       "extraSystemPrompt": "You are an expert on gromacs/gromacs. Use the provided documentation to help users with this biochemistry library."
     },
     {
       "id": "rbvi-chimerax",
       "name": "ChimeraX",
-      "description": "rbvi/ChimeraX - Biochemistry library with 800 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/biochemistry/rbvi-ChimeraX-context.txt",
+      "description": "rbvi/ChimeraX - biochemistry library with 205 stars",
+      "contextFiles": [
+        "rbvi-ChimeraX-context.txt"
+      ],
       "docsUrl": "https://github.com/rbvi/ChimeraX",
       "extraSystemPrompt": "You are an expert on rbvi/ChimeraX. Use the provided documentation to help users with this biochemistry library."
     },
     {
+      "id": "quantopian-zipline",
+      "name": "zipline",
+      "description": "quantopian/zipline - finance library with 18932 stars",
+      "contextFiles": [
+        "quantopian-zipline-context.txt"
+      ],
+      "docsUrl": "https://github.com/quantopian/zipline",
+      "extraSystemPrompt": "You are an expert on quantopian/zipline. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "ranaroussi-yfinance",
+      "name": "yfinance",
+      "description": "ranaroussi/yfinance - finance library with 19034 stars",
+      "contextFiles": [
+        "yfinance-context.txt"
+      ],
+      "docsUrl": "https://github.com/ranaroussi/yfinance",
+      "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "pmorissette-ffn",
+      "name": "ffn",
+      "description": "pmorissette/ffn - finance library with 2338 stars",
+      "contextFiles": [
+        "pmorissette-ffn-context.txt"
+      ],
+      "docsUrl": "https://github.com/pmorissette/ffn",
+      "extraSystemPrompt": "You are an expert on pmorissette/ffn. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "quantopian-pyfolio",
+      "name": "pyfolio",
+      "description": "quantopian/pyfolio - finance library with 6061 stars",
+      "contextFiles": [
+        "pyfolio-context.txt"
+      ],
+      "docsUrl": "https://github.com/quantopian/pyfolio",
+      "extraSystemPrompt": "You are an expert on quantopian/pyfolio. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "fmilthaler-finquant",
+      "name": "finquant",
+      "description": "fmilthaler/finquant - finance library with 1621 stars",
+      "contextFiles": [
+        "fmilthaler-finquant-context.txt"
+      ],
+      "docsUrl": "https://github.com/fmilthaler/finquant",
+      "extraSystemPrompt": "You are an expert on fmilthaler/finquant. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "jamesmawm-high-frequency-trading-model-with-ib",
+      "name": "High-Frequency-Trading-Model-with-IB",
+      "description": "jamesmawm/High-Frequency-Trading-Model-with-IB - finance library with 2705 stars",
+      "contextFiles": [
+        "jamesmawm-High-Frequency-Trading-Model-with-IB-context.txt"
+      ],
+      "docsUrl": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
+      "extraSystemPrompt": "You are an expert on jamesmawm/High-Frequency-Trading-Model-with-IB. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "quantopian-empyrical",
+      "name": "empyrical",
+      "description": "quantopian/empyrical - finance library with 1406 stars",
+      "contextFiles": [
+        "quantopian-empyrical-context.txt"
+      ],
+      "docsUrl": "https://github.com/quantopian/empyrical",
+      "extraSystemPrompt": "You are an expert on quantopian/empyrical. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "quantopian-alphalens",
+      "name": "alphalens",
+      "description": "quantopian/alphalens - finance library with 3881 stars",
+      "contextFiles": [
+        "quantopian-alphalens-context.txt"
+      ],
+      "docsUrl": "https://github.com/quantopian/alphalens",
+      "extraSystemPrompt": "You are an expert on quantopian/alphalens. Use the provided documentation to help users with this finance library."
+    },
+    {
+      "id": "quantopian-qgrid",
+      "name": "qgrid",
+      "description": "quantopian/qgrid - finance library with 3078 stars",
+      "contextFiles": [
+        "qgrid-context.txt"
+      ],
+      "docsUrl": "https://github.com/quantopian/qgrid",
+      "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library."
+    },
+    {
       "id": "pytorch-pytorch",
       "name": "pytorch",
-      "description": "pytorch/pytorch - Machinelearning library with 75000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/pytorch-pytorch-context.txt",
+      "description": "pytorch/pytorch - machinelearning library with 93164 stars",
+      "contextFiles": [
+        "pytorch-pytorch-context.txt"
+      ],
       "docsUrl": "https://github.com/pytorch/pytorch",
       "extraSystemPrompt": "You are an expert on pytorch/pytorch. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "tensorflow-tensorflow",
       "name": "tensorflow",
-      "description": "tensorflow/tensorflow - Machinelearning library with 180000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/tensorflow-tensorflow-context.txt",
+      "description": "tensorflow/tensorflow - machinelearning library with 191633 stars",
+      "contextFiles": [
+        "tensorflow-tensorflow-context.txt"
+      ],
       "docsUrl": "https://github.com/tensorflow/tensorflow",
       "extraSystemPrompt": "You are an expert on tensorflow/tensorflow. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "scikit-learn-scikit-learn",
       "name": "scikit-learn",
-      "description": "scikit-learn/scikit-learn - Machinelearning library with 55000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/scikit-learn-scikit-learn-context.txt",
+      "description": "scikit-learn/scikit-learn - machinelearning library with 63339 stars",
+      "contextFiles": [
+        "scikit-learn-scikit-learn-context.txt"
+      ],
       "docsUrl": "https://github.com/scikit-learn/scikit-learn",
       "extraSystemPrompt": "You are an expert on scikit-learn/scikit-learn. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "keras-team-keras",
       "name": "keras",
-      "description": "keras-team/keras - Machinelearning library with 60000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/keras-team-keras-context.txt",
+      "description": "keras-team/keras - machinelearning library with 63404 stars",
+      "contextFiles": [
+        "keras-team-keras-context.txt"
+      ],
       "docsUrl": "https://github.com/keras-team/keras",
       "extraSystemPrompt": "You are an expert on keras-team/keras. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "huggingface-transformers",
       "name": "transformers",
-      "description": "huggingface/transformers - Machinelearning library with 120000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/huggingface-transformers-context.txt",
+      "description": "huggingface/transformers - machinelearning library with 149757 stars",
+      "contextFiles": [
+        "huggingface-transformers-context.txt"
+      ],
       "docsUrl": "https://github.com/huggingface/transformers",
       "extraSystemPrompt": "You are an expert on huggingface/transformers. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "pandas-dev-pandas",
       "name": "pandas",
-      "description": "pandas-dev/pandas - Machinelearning library with 38000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/pandas-dev-pandas-context.txt",
+      "description": "pandas-dev/pandas - machinelearning library with 46571 stars",
+      "contextFiles": [
+        "pandas-dev-pandas-context.txt"
+      ],
       "docsUrl": "https://github.com/pandas-dev/pandas",
       "extraSystemPrompt": "You are an expert on pandas-dev/pandas. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "numpy-numpy",
       "name": "numpy",
-      "description": "numpy/numpy - Machinelearning library with 25000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/numpy-numpy-context.txt",
+      "description": "numpy/numpy - machinelearning library with 30395 stars",
+      "contextFiles": [
+        "numpy-numpy-context.txt"
+      ],
       "docsUrl": "https://github.com/numpy/numpy",
       "extraSystemPrompt": "You are an expert on numpy/numpy. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "scipy-scipy",
       "name": "scipy",
-      "description": "scipy/scipy - Machinelearning library with 12000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/scipy-scipy-context.txt",
+      "description": "scipy/scipy - machinelearning library with 14021 stars",
+      "contextFiles": [
+        "scipy-scipy-context.txt"
+      ],
       "docsUrl": "https://github.com/scipy/scipy",
       "extraSystemPrompt": "You are an expert on scipy/scipy. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "matplotlib-matplotlib",
       "name": "matplotlib",
-      "description": "matplotlib/matplotlib - Machinelearning library with 18000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/matplotlib-matplotlib-context.txt",
+      "description": "matplotlib/matplotlib - machinelearning library with 21694 stars",
+      "contextFiles": [
+        "matplotlib-matplotlib-context.txt"
+      ],
       "docsUrl": "https://github.com/matplotlib/matplotlib",
       "extraSystemPrompt": "You are an expert on matplotlib/matplotlib. Use the provided documentation to help users with this machinelearning library."
     },
     {
       "id": "seaborn-seaborn",
       "name": "seaborn",
-      "description": "seaborn/seaborn - Machinelearning library with 11000 stars",
-      "contextFiles": [],
-      "combinedContextFile": "/api/context/machinelearning/seaborn-seaborn-context.txt",
+      "description": "seaborn/seaborn - machinelearning library with 39 stars",
+      "contextFiles": [
+        "seaborn-seaborn-context.txt"
+      ],
       "docsUrl": "https://github.com/seaborn/seaborn",
       "extraSystemPrompt": "You are an expert on seaborn/seaborn. Use the provided documentation to help users with this machinelearning library."
     }
   ],
-  "defaultProgram": "",
+  "defaultProgram": "skyfielders-python-skyfield",
   "showContextLink": true,
   "simpleMode": true,
   "greeting": "How can I help you?",

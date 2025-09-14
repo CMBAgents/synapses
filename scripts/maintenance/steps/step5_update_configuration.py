@@ -31,15 +31,22 @@ def update_library_metadata():
                 
             domain_updated = 0
             for lib in data['libraries']:
-                # Vérifier si le contexte existe
-                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
-                context_file = f"{lib_name}-context.txt"
-                context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
+                # Utiliser le nom de fichier existant ou construire un nom par défaut
+                context_file_name = lib.get('contextFileName')
+                if context_file_name:
+                    # Vérifier le fichier existant
+                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    has_context = context_path.exists()
+                else:
+                    # Fallback : construire le nom si pas de métadonnée
+                    lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
+                    context_file_name = f"{lib_name}-context.txt"
+                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    has_context = context_path.exists()
                 
-                has_context = context_path.exists()
                 if lib.get('hasContextFile', False) != has_context:
                     lib['hasContextFile'] = has_context
-                    lib['contextFileName'] = context_file if has_context else None
+                    lib['contextFileName'] = context_file_name if has_context else None
                     domain_updated += 1
             
             if domain_updated > 0:
@@ -77,7 +84,7 @@ def regenerate_config():
             if 'libraries' in data:
                 for lib in data['libraries']:
                     if lib.get('hasContextFile', False) and lib.get('contextFileName'):
-                        program_id = lib['name'].replace('/', '-')
+                        program_id = lib['name'].replace('/', '-').replace('_', '-').replace('.', '-').lower()
                         # Gérer le cas où contextFileName est null
                         context_files = [lib['contextFileName']] if lib.get('contextFileName') else []
                         

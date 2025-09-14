@@ -11,7 +11,7 @@
     {
       "name": "dstndstn/astrometry.net",
       "github_url": "https://github.com/dstndstn/astrometry.net",
-      "stars": 758,
+      "stars": 759,
       "rank": 2,
       "hasContextFile": true,
       "contextFileName": "dstndstn-astrometry-net-context.txt"
@@ -99,7 +99,7 @@
     {
       "name": "scottransom/presto",
       "github_url": "https://github.com/scottransom/presto",
-      "stars": 256,
+      "stars": 257,
       "rank": 13,
       "hasContextFile": true,
       "contextFileName": "scottransom-presto-context.txt"

@@ -2,6 +2,8 @@
 import subprocess
 import sys
 import argparse
+import os
+import glob
 from pathlib import Path
 
 class FixedModularMaintenance:
@@ -25,6 +27,35 @@ class FixedModularMaintenance:
             "quick": ["step0", "step2", "step3", "step4", "step5", "step6"],  # Avec mise à jour étoiles
             "full": ["step0", "step1", "step2", "step3", "step4", "step5", "step6"]  # Avec mise à jour complète
         }
+    
+    def cleanup_old_logs(self):
+        """Nettoie tous les anciens fichiers de logs (garde seulement les 10 plus récents)"""
+        logs_dir = self.base_dir / "logs"
+        if not logs_dir.exists():
+            return
+        
+        # Récupérer tous les fichiers de log
+        log_files = list(logs_dir.glob("*.log"))
+        
+        if len(log_files) <= 10:
+            print("✅ Aucun ancien log à nettoyer")
+            return
+        
+        # Trier par date de modification (plus récent en premier)
+        log_files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
+        
+        # Supprimer les anciens (garder les 10 plus récents)
+        old_logs = log_files[10:]
+        
+        if old_logs:
+            print("🧹 Nettoyage des anciens logs...")
+            for log_file in old_logs:
+                try:
+                    log_file.unlink()
+                    print(f"   🗑️ Supprimé: {log_file.name}")
+                except Exception as e:
+                    print(f"   ⚠️ Erreur suppression {log_file.name}: {e}")
+            print("✅ Anciens logs nettoyés")
     
     def run_step(self, step_name: str) -> bool:
         """Exécute une étape spécifique"""
@@ -66,6 +97,9 @@ class FixedModularMaintenance:
             print(f"❌ Mode inconnu: {mode}")
             print(f"Modes disponibles: {list(self.modes.keys())}")
             return False
+        
+        # Nettoyer les anciens logs au début
+        self.cleanup_old_logs()
         
         steps = self.modes[mode]
         print(f"🚀 Début de la maintenance {mode}")
