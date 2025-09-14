@@ -5,6 +5,7 @@
 
 import subprocess
 import sys
+import json
 from pathlib import Path
 
 def generate_missing_contexts():
@@ -39,7 +40,7 @@ def generate_missing_contexts():
             existing_libs = existing_contexts.get(domain, [])
             
             for lib in libraries:
-                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-')
+                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
                 github_url = lib.get('github_url', '')
                 
                 if not github_url or lib_name in existing_libs:
@@ -78,10 +79,12 @@ def generate_missing_contexts():
                         rough=True,
                     )
                     
-                    if result and (repo_dir / f"{lib_name}-context.txt").exists():
-                        # Copier le contexte généré
+                    # contextmaker génère {lib_name}.txt, pas {lib_name}-context.txt
+                    generated_file = repo_dir / f"{lib_name}.txt"
+                    if result and generated_file.exists():
+                        # Copier le contexte généré vers le nom standardisé
                         context_path.parent.mkdir(parents=True, exist_ok=True)
-                        shutil.copy2(repo_dir / f"{lib_name}-context.txt", context_path)
+                        shutil.copy2(generated_file, context_path)
                         
                         # Mettre à jour les métadonnées
                         lib['hasContextFile'] = True

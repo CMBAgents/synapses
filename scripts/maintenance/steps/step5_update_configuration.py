@@ -32,7 +32,7 @@ def update_library_metadata():
             domain_updated = 0
             for lib in data['libraries']:
                 # Vérifier si le contexte existe
-                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-')
+                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
                 context_file = f"{lib_name}-context.txt"
                 context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
                 
@@ -78,22 +78,36 @@ def regenerate_config():
                 for lib in data['libraries']:
                     if lib.get('hasContextFile', False) and lib.get('contextFileName'):
                         program_id = lib['name'].replace('/', '-')
+                        # Gérer le cas où contextFileName est null
+                        context_files = [lib['contextFileName']] if lib.get('contextFileName') else []
+                        
                         programs.append({
                             "id": program_id,
                             "name": lib['name'].split('/')[-1],
                             "description": f"{lib['name']} - {domain} library with {lib.get('stars', 0)} stars",
-                            "contextFiles": [lib['contextFileName']],
+                            "contextFiles": context_files,
                             "docsUrl": lib.get('github_url', ''),
                             "extraSystemPrompt": None
                         })
         
-        # Charger le config existant et mettre à jour les programmes
+        # Charger le config existant et préserver les extraSystemPrompt
         config_file = Path(__file__).parent.parent.parent.parent / "config.json"
+        existing_extra_prompts = {}
         if config_file.exists():
             with open(config_file, 'r', encoding='utf-8') as f:
                 config = json.load(f)
+                # Préserver les extraSystemPrompt existants
+                if 'programs' in config:
+                    for prog in config['programs']:
+                        if 'extraSystemPrompt' in prog and prog['extraSystemPrompt'] is not None:
+                            existing_extra_prompts[prog['id']] = prog['extraSystemPrompt']
         else:
             config = {}
+        
+        # Restaurer les extraSystemPrompt existants
+        for program in programs:
+            if program['id'] in existing_extra_prompts:
+                program['extraSystemPrompt'] = existing_extra_prompts[program['id']]
         
         config['programs'] = programs
         config['defaultProgram'] = programs[0]['id'] if programs else 'default'
@@ -137,7 +151,7 @@ def generate_embedded_context():
             
             for lib in data['libraries']:
                 if lib.get('hasContextFile', False) and lib.get('contextFileName'):
-                    lib_name = lib.get('name', '').replace('/', '-').replace('_', '-')
+                    lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
                     context_file = lib.get('contextFileName', '')
                     
                     # Lire le contenu du contexte
