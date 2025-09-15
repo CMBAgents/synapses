@@ -29,6 +29,7 @@ python3 scripts/core/unified-domain-updater.py \
 3. ✅ Generates domain data via GitHub API
 4. ✅ Creates Next.js routes
 5. ✅ Generates context files
+6. ✅ **NEW**: Automatically works with embedded context system
 
 ## Example Scripts
 
@@ -49,3 +50,49 @@ python3 scripts/core/unified-domain-updater.py --domain astronomy
 # Update all domains
 python3 scripts/core/unified-domain-updater.py --all
 ```
+
+## Embedded Context System
+
+The system now includes a **dynamic embedded context system** that automatically works with new domains:
+
+### How It Works
+
+1. **Automatic Loading**: When a domain is added, the system automatically looks for `embedded-context-{domain}.ts` files
+2. **Lazy Loading**: Contexts are only loaded when needed, improving performance
+3. **Smart Caching**: Loaded contexts are cached to avoid repeated loading
+4. **Pattern Recognition**: Programs are automatically associated with the correct domain
+
+### Creating Embedded Context Files
+
+For each domain, create a file `app/utils/embedded-context-{domain}.ts`:
+
+```typescript
+// Generated embedded context module for {Domain}
+export const embeddedContexts = {
+  '{domain}': {
+    'program-1': `# Documentation for program 1
+Content here...
+`,
+    'program-2': `# Documentation for program 2
+Content here...
+`,
+    // ... more programs
+  }
+};
+```
+
+### Available Functions
+
+- `loadEmbeddedContext(domain)` - Load context for a domain
+- `getEmbeddedContext(domain, programId)` - Get specific program context
+- `getAvailablePrograms(domain)` - List all programs in a domain
+- `preloadAllContexts()` - Preload all contexts
+- `getLoadedDomains()` - List loaded domains
+- `isDomainLoaded(domain)` - Check if domain is loaded
+
+### Benefits
+
+✅ **No Code Changes Required** - New domains work automatically
+✅ **Performance Optimized** - Lazy loading and caching
+✅ **Error Resilient** - Graceful handling of missing domains
+✅ **Extensible** - Easy to add new domains without touching existing code

@@ -1,6 +1,7 @@
 import { getProgramById } from './config';
 import { Program } from './types';
-import { getEmbeddedContext as getEmbeddedContextFromModule } from './embedded-context';
+import { getEmbeddedContext as getEmbeddedContextFromModule, loadEmbeddedContext } from './embedded-context';
+import { Domain } from '@/app/config/domains';
 
 // Cache for storing loaded context to avoid repeated lookups
 const combinedContextCache: Record<string, string> = {};
@@ -20,6 +21,53 @@ function isUrl(str: string): boolean {
   } catch (e) {
     return false;
   }
+}
+
+/**
+ * Get domain from program ID by checking the program configuration
+ * @param programId The program ID
+ * @returns The domain for the program
+ */
+function getDomainFromProgramId(programId: string): Domain {
+  const program = getProgramById(programId) as Program;
+  if (!program) {
+    console.error(`Program not found: ${programId}`);
+    return 'astronomy'; // Default fallback
+  }
+  
+  // Try to find the domain by checking which domain's context files contain this program
+  // This is more robust than hardcoded heuristics
+  const supportedDomains = getSupportedDomains();
+  
+  for (const domain of supportedDomains) {
+    // Check if the program ID matches patterns for this domain
+    // This could be improved by adding domain metadata to the program configuration
+    if (isProgramInDomain(programId, domain)) {
+      return domain;
+    }
+  }
+  
+  // Default fallback
+  return 'astronomy';
+}
+
+/**
+ * Check if a program belongs to a specific domain based on heuristics
+ * @param programId The program ID
+ * @param domain The domain to check
+ * @returns True if the program likely belongs to this domain
+ */
+function isProgramInDomain(programId: string, domain: Domain): boolean {
+  // Define domain-specific patterns
+  const domainPatterns: Record<Domain, string[]> = {
+    'astronomy': ['skyfield', 'astropy', 'astrometry', 'einsteinpy', 'lightkurve', 'gwpy', 'pycbc', 'castro', 'healpy', 'photutils', 'class', 'spacepy', 'presto', 'galsim', 'galpy', 'radis', 'poppy', 'zeus', 'camb', 'tardis', 'astroplan', 'pymultinest', 'astronn', 'sep', 's2fft', 'stingray', 'ultranest', 'specutils', 'pypeit', 'pyastronomy', 'getdist', 'astroalign', 'cobaya', 'astroclip', 'gala', 'cmbagent', 'deepsphere', 'skypy', 'reproject', 'halotools', 'agama', 'petar', 'astronomaly', 'spectral-cube', 'astrophot', 'pyuvdata', 'ccdproc', 'gatspy', 'astrocv', 'astronify', 'sourcextractorplusplus', 'pyvo', 'astroscrappy', 'sncosmo', 'cosmopower', 'harmonic', 'spisea', 'turbustat', 'pynucastro', 'artpop', 'galstreams', 'astroddpm', 'smili', 'pybdsf', 'octotiger', 'pixell', 'quokka', 'galight', 'astromodels', 'skymapper', 'astro-accelerate', 'cosmolopy', 'extinction', 'gwfast', 'megalib', 'cosmolattice', 'astrodendro', 'toast', 'numcosmo', 'slicerastro', 'astrocats', 'swarp', 'visiomatic', 'astroabc', 'nmma', 'cosmotransitions', 'galacticus', 'astronet-triage', 'exosims', 'maestro', 'weirdestgalaxies', 'galario', 'pycorr', 'rmextract', 'frbpoppy'],
+    'biochemistry': ['biopython', 'scikit-bio', 'mdanalysis', 'openmm', 'openmmtools', 'rdkit', 'pymol', 'openbabel', 'gromacs', 'chimerax'],
+    'finance': ['quantopian', 'yfinance', 'ffn', 'pyfolio', 'finquant', 'empyrical', 'alphalens', 'qgrid'],
+    'machinelearning': ['pytorch', 'tensorflow', 'scikit-learn', 'keras', 'transformers', 'pandas', 'numpy', 'scipy', 'matplotlib', 'seaborn']
+  };
+  
+  const patterns = domainPatterns[domain] || [];
+  return patterns.some(pattern => programId.toLowerCase().includes(pattern.toLowerCase()));
 }
 
 /**
@@ -131,7 +179,9 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
     }
 
     // Use embedded context as fallback or if no URL is provided
-    const contextContent = getEmbeddedContextFromModule(programId);
+    // First, determine the domain from the program
+    const domain = getDomainFromProgramId(programId);
+    const contextContent = await getEmbeddedContextFromModule(domain, programId);
 
     if (!contextContent) {
       console.error(`No embedded context found for program: ${programId}`);
@@ -182,7 +232,8 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
   console.log(`Loading embedded context for program: ${program.id}`);
 
   // Get the embedded context for this program
-  const contextContent = getEmbeddedContextFromModule(program.id);
+  const domain = getDomainFromProgramId(program.id);
+  const contextContent = await getEmbeddedContextFromModule(domain, program.id);
 
   if (!contextContent) {
     console.error(`No embedded context found for program: ${program.id}`);
@@ -202,9 +253,9 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
  * @param programId The ID of the program
  * @returns The embedded context content or undefined if not found
  */
-export function getEmbeddedContext(programId: string): string | undefined {
-  // Re-export from embedded-context.ts
-  return getEmbeddedContextFromModule(programId);
+export async function getEmbeddedContext(programId: string): Promise<string | undefined> {
+  const domain = getDomainFromProgramId(programId);
+  return await getEmbeddedContextFromModule(domain, programId);
 }
 
 /**
