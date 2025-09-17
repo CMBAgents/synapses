@@ -5,10 +5,10 @@ import { isDomainSupported } from '@/app/config/domains';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { filename: string } }
+  { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
-    const { filename } = params;
+    const { filename } = await params;
     const { searchParams } = new URL(request.url);
     const domain = searchParams.get('domain');
 
@@ -57,10 +57,9 @@ export async function GET(
     });
 
   } catch (error) {
-    console.error(`Error loading context file ${params.filename}:`, error);
+    console.error(`Error loading context file:`, error);
     return NextResponse.json({ 
-      error: 'Internal server error',
-      filename: params.filename 
+      error: 'Internal server error'
     }, { status: 500 });
   }
 }
@@ -68,10 +67,10 @@ export async function GET(
 // Handle HEAD requests for checking file existence
 export async function HEAD(
   request: NextRequest,
-  { params }: { params: { filename: string } }
+  { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
-    const { filename } = params;
+    const { filename } = await params;
     const { searchParams } = new URL(request.url);
     const domain = searchParams.get('domain');
 
@@ -112,7 +111,7 @@ export async function HEAD(
     });
 
   } catch (error) {
-    console.error(`Error checking context file ${params.filename}:`, error);
+    console.error(`Error checking context file:`, error);
     return new NextResponse(null, { status: 500 });
   }
 }

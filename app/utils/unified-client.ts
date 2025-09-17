@@ -348,14 +348,8 @@ async function createVertexAIChatCompletion(
       });
       
       // Get the generative model
-      const model = vertexAI.getGenerativeModel({
+      const model = vertexAI.preview.getGenerativeModel({
         model: modelName,
-        generationConfig: {
-          temperature: options.temperature || 0.7,
-          maxOutputTokens: options.max_completion_tokens || 4096,
-          topP: options.top_p || 0.8,
-          topK: options.top_k || 40,
-        },
       });
       
       // Convert messages to the format expected by Gemini
@@ -421,14 +415,8 @@ async function createVertexAIChatCompletion(
       });
       
       // Get the generative model
-      const model = vertexAIWithCredentials.getGenerativeModel({
+      const model = vertexAIWithCredentials.preview.getGenerativeModel({
         model: modelName,
-        generationConfig: {
-          temperature: options.temperature || 0.7,
-          maxOutputTokens: options.max_completion_tokens || 4096,
-          topP: options.top_p || 0.8,
-          topK: options.top_k || 40,
-        },
       });
       
       // Convert messages to the format expected by Gemini

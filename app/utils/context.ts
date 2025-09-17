@@ -289,15 +289,15 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
     }
   }
 
-  console.log(`Loading embedded context for program: ${program.id}`);
+  console.log(`Loading context from file for program: ${program.id}`);
 
-  // Get the embedded context for this program
+  // Get the context from file for this program
   const domain = getDomainFromProgramId(program.id);
-  const contextContent = await getEmbeddedContextFromModule(domain, program.id);
+  const contextContent = await loadContextFromFile(program.id, domain);
 
   if (!contextContent) {
-    console.error(`No embedded context found for program: ${program.id}`);
-    return `Context could not be loaded. No embedded context found for program: ${program.id}.`;
+    console.error(`No context file found for program: ${program.id}`);
+    return `Context could not be loaded. No context file found for program: ${program.id}.`;
   }
 
   console.log(`Successfully loaded embedded context for ${program.id} (${contextContent.length} bytes)`);
@@ -315,7 +315,8 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
  */
 export async function getEmbeddedContext(programId: string): Promise<string | undefined> {
   const domain = getDomainFromProgramId(programId);
-  return await getEmbeddedContextFromModule(domain, programId);
+  const result = await loadContextFromFile(programId, domain);
+  return result || undefined;
 }
 
 /**
