@@ -131,8 +131,8 @@ def regenerate_config():
         return False
 
 def generate_embedded_context():
-    """Génère le module embedded-context.ts"""
-    print("📦 Génération du module embedded-context.ts...")
+    """Génère les modules embedded-context-{domain}.ts pour chaque domaine"""
+    print("📦 Génération des modules embedded-context-{domain}.ts...")
     
     try:
         import json
@@ -146,16 +146,21 @@ def generate_embedded_context():
                 with open(domain_file, 'r', encoding='utf-8') as f:
                     domains_data[domain] = json.load(f)
         
-        # Générer le contenu du module
-        embedded_content = "// Generated embedded context module\n"
-        embedded_content += "export const embeddedContexts = {\n"
+        total_generated = 0
         
+        # Générer un fichier séparé pour chaque domaine
         for domain, data in domains_data.items():
             if 'libraries' not in data:
                 continue
-                
+            
+            print(f"   📦 Génération du module pour le domaine: {domain}")
+            
+            # Générer le contenu du module pour ce domaine
+            embedded_content = f"// Generated embedded context module for {domain.title()} domain\n"
+            embedded_content += "export const embeddedContexts = {\n"
             embedded_content += f"  {domain}: {{\n"
             
+            domain_generated = 0
             for lib in data['libraries']:
                 if lib.get('hasContextFile', False) and lib.get('contextFileName'):
                     lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
@@ -164,27 +169,33 @@ def generate_embedded_context():
                     # Lire le contenu du contexte
                     context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
                     if context_path.exists():
-                        with open(context_path, 'r', encoding='utf-8') as f:
-                            context_content = f.read()
-                            # Escape all special characters that could cause syntax errors in TypeScript template literals
-                            context_content = context_content.replace('\\', '\\\\')  # Escape backslashes first
-                            context_content = context_content.replace('`', '\\`')    # Escape backticks
-                            context_content = context_content.replace('${', '\\${')  # Escape template literal expressions
-                        
-                        embedded_content += f"    '{lib_name}': `{context_content}`,\n"
+                        try:
+                            with open(context_path, 'r', encoding='utf-8') as f:
+                                context_content = f.read()
+                                # Escape all special characters that could cause syntax errors in TypeScript template literals
+                                context_content = context_content.replace('\\', '\\\\')  # Escape backslashes first
+                                context_content = context_content.replace('`', '\\`')    # Escape backticks
+                                context_content = context_content.replace('${', '\\${')  # Escape template literal expressions
+                            
+                            embedded_content += f"    '{lib_name}': `{context_content}`,\n"
+                            domain_generated += 1
+                        except Exception as e:
+                            print(f"      ⚠️ Erreur lecture contexte {lib_name}: {e}")
             
             embedded_content += "  },\n"
+            embedded_content += "};\n"
+            
+            # Sauvegarder le module pour ce domaine
+            embedded_file = Path(__file__).parent.parent.parent.parent / "app" / "utils" / f"embedded-context-{domain}.ts"
+            embedded_file.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(embedded_file, 'w', encoding='utf-8') as f:
+                f.write(embedded_content)
+            
+            print(f"   ✅ embedded-context-{domain}.ts généré ({domain_generated} contextes)")
+            total_generated += domain_generated
         
-        embedded_content += "};\n"
-        
-        # Sauvegarder le module
-        embedded_file = Path(__file__).parent.parent.parent.parent / "app" / "utils" / "embedded-context.ts"
-        embedded_file.parent.mkdir(parents=True, exist_ok=True)
-        
-        with open(embedded_file, 'w', encoding='utf-8') as f:
-            f.write(embedded_content)
-        
-        print("✅ embedded-context.ts généré")
+        print(f"✅ {total_generated} contextes intégrés générés dans {len(domains_data)} domaines")
         return True
         
     except Exception as e:
