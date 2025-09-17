@@ -177,6 +177,7 @@ function ChatTemplateContent({ domain }: ChatTemplateProps) {
                 libraries={domainData.libraries}
                 preselectedLibrary={preselectedLibrary}
                 simplified={true}
+                domain={domain}
                 onLibrarySelect={handleLibrarySelect}
               />
             </div>

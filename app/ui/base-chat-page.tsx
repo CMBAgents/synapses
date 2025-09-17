@@ -154,6 +154,7 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
                 libraries={domainData.libraries}
                 preselectedLibrary={preselectedLibrary}
                 simplified={true}
+                domain={domain}
                 onLibrarySelect={handleLibrarySelect}
               />
             </div>

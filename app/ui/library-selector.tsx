@@ -9,6 +9,7 @@ interface LibrarySelectorProps {
   preselectedLibrary?: string;
   className?: string;
   simplified?: boolean;
+  domain?: string;
 }
 
 export default function LibrarySelector({ 
@@ -16,7 +17,8 @@ export default function LibrarySelector({
   onLibrarySelect, 
   preselectedLibrary,
   className = "",
-  simplified = false
+  simplified = false,
+  domain = 'astronomy'
 }: LibrarySelectorProps) {
   const [libraryInput, setLibraryInput] = useState(preselectedLibrary || "");
   const [selectedLibrary, setSelectedLibrary] = useState<string>(preselectedLibrary || "");
@@ -190,7 +192,7 @@ export default function LibrarySelector({
             {isRecognized ? (
               hasContext ? (
                 <a 
-                  href={`/api/context/${matchedLibrary.contextFileName}`}
+                  href={`/api/context/${matchedLibrary.contextFileName}?domain=${domain}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center px-3 py-2 bg-transparent border border-green-400/50 rounded-lg text-green-400 hover:bg-green-400/10 transition-colors cursor-pointer text-sm font-medium"
@@ -316,7 +318,7 @@ export default function LibrarySelector({
                     <div className="flex items-center mb-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
                       <a 
-                        href={`/api/context/${matchedLibrary.contextFileName}`}
+                        href={`/api/context/${matchedLibrary.contextFileName}?domain=${domain}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-xs text-green-400 hover:text-green-300 transition-colors cursor-pointer flex items-center"
