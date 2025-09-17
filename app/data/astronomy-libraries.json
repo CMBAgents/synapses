@@ -229,8 +229,7 @@
       "github_url": "https://github.com/mperrin/poppy",
       "stars": 184,
       "rank": 29,
-      "hasContextFile": true,
-      "contextFileName": "spacetelescope-poppy-context.txt"
+      "hasContextFile": false
     },
     {
       "name": "pypeit/pypeit",

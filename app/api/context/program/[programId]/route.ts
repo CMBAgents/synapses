@@ -64,7 +64,7 @@ export async function GET(_request: NextRequest, context: { params: Promise<{ pr
     }
 
     // Return the context as plain text
-    return new Response(contextContent, {
+    return new Response(await contextContent, {
       status: 200,
       headers: {
         'Content-Type': 'text/markdown'

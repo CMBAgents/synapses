@@ -1,13 +1,15 @@
 import { getProgramById } from './config';
 import { Program } from './types';
-import { getEmbeddedContext as getEmbeddedContextFromModule, loadEmbeddedContext } from './embedded-context';
-import { Domain } from '@/app/config/domains';
+import { Domain, getSupportedDomains } from '@/app/config/domains';
 
 // Cache for storing loaded context to avoid repeated lookups
 const combinedContextCache: Record<string, string> = {};
 
 // Cache for storing URL-based context to avoid repeated fetches
 const urlContextCache: Record<string, string> = {};
+
+// Cache for storing loaded context files to avoid repeated file reads
+const fileContextCache: Record<string, string> = {};
 
 // Track pending fetches to avoid duplicate requests
 // Using any type to avoid TypeScript issues with Promise types
@@ -20,6 +22,63 @@ function isUrl(str: string): boolean {
     return true;
   } catch (e) {
     return false;
+  }
+}
+
+/**
+ * Load context directly from .txt file via API (more efficient than embedded contexts)
+ * @param programId The program ID
+ * @param domain The domain for the program
+ * @returns The context content or null if file not found
+ */
+async function loadContextFromFile(programId: string, domain: Domain): Promise<string | null> {
+  // Check cache first
+  if (fileContextCache[programId]) {
+    return fileContextCache[programId];
+  }
+
+  try {
+    // Get the program to find the context file name
+    const program = getProgramById(programId) as Program;
+    if (!program) {
+      console.error(`Program not found: ${programId}`);
+      return null;
+    }
+
+    // Try to get context file name from program configuration
+    let contextFileName: string | null = null;
+    
+    if (program.contextFiles && program.contextFiles.length > 0) {
+      // Use the first context file
+      contextFileName = program.contextFiles[0];
+    } else {
+      // Fallback: construct filename from program ID
+      contextFileName = `${programId}-context.txt`;
+    }
+
+    // Make API request to load the context file using the optimized endpoint
+    const response = await fetch(`/api/context/${encodeURIComponent(contextFileName)}?domain=${domain}`);
+    
+    if (!response.ok) {
+      console.log(`Context file not found: ${contextFileName} (${response.status})`);
+      return null;
+    }
+
+    const contextContent = await response.text();
+    if (!contextContent) {
+      console.log(`No content in context file: ${contextFileName}`);
+      return null;
+    }
+
+    // Cache the result
+    fileContextCache[programId] = contextContent;
+    
+    console.log(`Loaded context from file: ${contextFileName} (${contextContent.length} bytes)`);
+    return contextContent;
+
+  } catch (error) {
+    console.error(`Error loading context file for ${programId}:`, error);
+    return null;
   }
 }
 
@@ -178,18 +237,19 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
       }
     }
 
-    // Use embedded context as fallback or if no URL is provided
-    // First, determine the domain from the program
+    // Try to load context directly from .txt file first (more efficient)
     const domain = getDomainFromProgramId(programId);
-    const contextContent = await getEmbeddedContextFromModule(domain, programId);
+    const contextContent = await loadContextFromFile(programId, domain);
 
-    if (!contextContent) {
-      console.error(`No embedded context found for program: ${programId}`);
-      return `Context could not be loaded. No embedded context found for program: ${programId}.`;
+    if (contextContent) {
+      console.log(`Using direct file context for ${programId} (${contextContent.length} bytes)`);
+      return contextContent;
     }
 
-    console.log(`Using embedded context for ${programId} (${contextContent.length} bytes)`);
-    return contextContent;
+    // No fallback - context files are required
+
+    console.error(`No context found for program: ${programId}`);
+    return `Context could not be loaded. No context found for program: ${programId}.`;
   }
 
   // Convert single file to array for consistent handling

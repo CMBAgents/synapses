@@ -217,9 +217,10 @@ def main():
         if not regenerate_config():
             success = False
         
-        # Génération de embedded-context.ts
-        if not generate_embedded_context():
-            success = False
+        # Génération de embedded-context.ts (DISABLED - using direct file loading)
+        # if not generate_embedded_context():
+        #     success = False
+        print("📦 Contextes intégrés désactivés - utilisation des fichiers .txt directs")
         
         if success:
             print("✅ Étape 5 terminée")
