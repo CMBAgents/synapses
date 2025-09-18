@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 
 def cleanup_temp_repos():
     """Nettoie les repositories temporaires"""
-    temp_dir = Path(__file__).parent.parent.parent.parent / "temp" / "repos"
+    temp_dir = Path(__file__).parent.parent.parent / "temp" / "repos"
     if temp_dir.exists():
         shutil.rmtree(temp_dir)
         temp_dir.mkdir(parents=True, exist_ok=True)
@@ -18,7 +18,7 @@ def cleanup_temp_repos():
 
 def cleanup_old_logs():
     """Nettoie les anciens logs (garder seulement 7 jours)"""
-    logs_dir = Path(__file__).parent.parent.parent.parent / "logs"
+    logs_dir = Path(__file__).parent.parent.parent / "logs"
     if not logs_dir.exists():
         return
     

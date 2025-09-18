@@ -3,7 +3,7 @@
     {
       "name": "biopython/biopython",
       "github_url": "https://github.com/biopython/biopython",
-      "stars": 4729,
+      "stars": 4739,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "biopython-biopython-context.txt"
@@ -19,7 +19,7 @@
     {
       "name": "mdanalysis/mdanalysis",
       "github_url": "https://github.com/mdanalysis/mdanalysis",
-      "stars": 1457,
+      "stars": 1458,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "mdanalysis-context.txt"
@@ -27,7 +27,7 @@
     {
       "name": "openmm/openmm",
       "github_url": "https://github.com/openmm/openmm",
-      "stars": 1671,
+      "stars": 1674,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "openmm-openmm-context.txt"
@@ -43,7 +43,7 @@
     {
       "name": "rdkit/rdkit",
       "github_url": "https://github.com/rdkit/rdkit",
-      "stars": 3065,
+      "stars": 3070,
       "rank": 6,
       "hasContextFile": true,
       "contextFileName": "rdkit-context.txt"
@@ -51,7 +51,7 @@
     {
       "name": "schrodinger/pymol-open-source",
       "github_url": "https://github.com/schrodinger/pymol-open-source",
-      "stars": 1462,
+      "stars": 1466,
       "rank": 7,
       "hasContextFile": true,
       "contextFileName": "schrodinger-pymol-open-source-context.txt"
@@ -59,7 +59,7 @@
     {
       "name": "openbabel/openbabel",
       "github_url": "https://github.com/openbabel/openbabel",
-      "stars": 1222,
+      "stars": 1225,
       "rank": 8,
       "hasContextFile": true,
       "contextFileName": "openbabel-context.txt"
@@ -67,7 +67,7 @@
     {
       "name": "gromacs/gromacs",
       "github_url": "https://github.com/gromacs/gromacs",
-      "stars": 814,
+      "stars": 815,
       "rank": 9,
       "hasContextFile": true,
       "contextFileName": "gromacs-gromacs-context.txt"

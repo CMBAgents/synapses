@@ -9,7 +9,7 @@ from pathlib import Path
 class FixedModularMaintenance:
     def __init__(self, base_dir: str = "."):
         self.base_dir = Path(base_dir)
-        self.steps_dir = self.base_dir / "scripts" / "maintenance" / "steps"
+        self.steps_dir = self.base_dir / "maintenance" / "steps"
         
         # Définir toutes les étapes disponibles (SANS redondance)
         self.all_steps = {

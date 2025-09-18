@@ -20,7 +20,7 @@ def update_stars_for_domain(domain_name: str, github_token: str = None):
     print(f"🔄 Mise à jour des étoiles pour le domaine {domain_name}...")
     
     # Charger le fichier JSON du domaine
-    json_path = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain_name}-libraries.json"
+    json_path = Path(__file__).parent.parent.parent / "app" / "data" / f"{domain_name}-libraries.json"
     if not json_path.exists():
         print(f"⚠️ Fichier {json_path} non trouvé")
         return False
@@ -120,7 +120,7 @@ def detect_github_changes(github_token=None):
         total_updated = 0
         
         for domain in domains:
-            domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            domain_file = Path(__file__).parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
             if not domain_file.exists():
                 continue
                 

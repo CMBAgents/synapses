@@ -18,18 +18,18 @@ def update_paths_in_file(filepath: Path):
     
     # Anciens chemins vers nouveaux chemins (seulement les scripts existants)
     path_mappings = {
-        'scripts/maintenance.py': 'scripts/maintenance/maintenance.py',
-        'scripts/generate-programs-from-libraries.py': 'scripts/core/generate-programs-from-libraries.py',
-        'scripts/generate-missing-contexts.py': 'scripts/maintenance/generate-missing-contexts.py',
-        'scripts/generate-contexts-with-clone.py': 'scripts/maintenance/generate-contexts-with-clone.py',
-        'scripts/generate-and-sync-all.py': 'scripts/maintenance/generate-and-sync-all.py',
-        'scripts/setup_maintenance_service.sh': 'scripts/maintenance/setup_maintenance_service.sh',
-        'scripts/service-control.sh': 'scripts/maintenance/service-control.sh',
-        'scripts/schedule_daily_maintenance.py': 'scripts/maintenance/schedule_daily_maintenance.py',
-        'scripts/test_maintenance.py': 'scripts/utils/test_maintenance.py',
-        'scripts/test-unified-scripts.py': 'scripts/utils/test-unified-scripts.py',
-        'scripts/update-domain-data.py': 'scripts/utils/update-domain-data.py',
-        'scripts/cleanup-scripts.py': 'scripts/utils/cleanup-scripts.py',
+        'maintenance/maintenance.py': 'maintenance/maintenance/maintenance.py',
+        'maintenance/generate-programs-from-libraries.py': 'maintenance/core/generate-programs-from-libraries.py',
+        'maintenance/generate-missing-contexts.py': 'maintenance/maintenance/generate-missing-contexts.py',
+        'maintenance/generate-contexts-with-clone.py': 'maintenance/maintenance/generate-contexts-with-clone.py',
+        'maintenance/generate-and-sync-all.py': 'maintenance/maintenance/generate-and-sync-all.py',
+        'maintenance/setup_maintenance_service.sh': 'maintenance/maintenance/setup_maintenance_service.sh',
+        'maintenance/service-control.sh': 'maintenance/maintenance/service-control.sh',
+        'maintenance/schedule_daily_maintenance.py': 'maintenance/maintenance/schedule_daily_maintenance.py',
+        'maintenance/test_maintenance.py': 'maintenance/utils/test_maintenance.py',
+        'maintenance/test-unified-scripts.py': 'maintenance/utils/test-unified-scripts.py',
+        'maintenance/update-domain-data.py': 'maintenance/utils/update-domain-data.py',
+        'maintenance/cleanup-scripts.py': 'maintenance/utils/cleanup-scripts.py',
     }
     
     updated_content = content
@@ -58,7 +58,7 @@ def main():
     ]
     
     # Ajouter tous les fichiers Python et shell dans scripts
-    for script_file in base_dir.rglob("scripts/**/*"):
+    for script_file in base_dir.rglob("maintenance/**/*"):
         if script_file.is_file() and script_file.suffix in ['.py', '.sh', '.js', '.ts']:
             files_to_update.append(str(script_file))
     

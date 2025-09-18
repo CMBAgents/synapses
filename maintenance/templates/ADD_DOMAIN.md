@@ -5,7 +5,7 @@
 Add a new domain automatically with one command:
 
 ```bash
-python3 scripts/core/unified-domain-updater.py \
+python3 maintenance/unified-domain-updater.py \
   --add-domain physics \
   --display-name "Physics & Quantum Computing" \
   --description "Top physics and quantum computing libraries" \
@@ -36,7 +36,7 @@ python3 scripts/core/unified-domain-updater.py \
 Run the example script for pre-configured domains:
 
 ```bash
-python3 scripts/core/add-domain-example.py
+# Le fichier add-domain-example.py a été supprimé car non utilisé
 ```
 
 ## Manual Domain Updates
@@ -45,10 +45,10 @@ Update existing domains:
 
 ```bash
 # Update specific domain
-python3 scripts/core/unified-domain-updater.py --domain astronomy
+python3 maintenance/unified-domain-updater.py --domain astronomy
 
 # Update all domains
-python3 scripts/core/unified-domain-updater.py --all
+python3 maintenance/unified-domain-updater.py --all
 ```
 
 ## Embedded Context System

@@ -122,7 +122,7 @@ Script unifié pour la gestion des contextes.
 
 **Utilisation:**
 ```bash
-python3 scripts/maintenance/context-manager-unified.py --force
+python3 maintenance/context-manager-unified.py --force
 ```
 
 ### `maintenance_modular.py`
@@ -132,10 +132,10 @@ Script de maintenance modulaire.
 **Utilisation:**
 ```bash
 # Maintenance complète
-python3 scripts/maintenance/maintenance_modular.py --mode full
+python3 maintenance/maintenance_modular.py --mode full
 
 # Maintenance rapide
-python3 scripts/maintenance/maintenance_modular.py --mode quick
+python3 maintenance/maintenance_modular.py --mode quick
 ```
 
 ## Scripts essentiels
@@ -161,24 +161,24 @@ python3 scripts/maintenance/maintenance_modular.py --mode quick
 
 ### Maintenance quotidienne
 ```bash
-python3 scripts/maintenance/maintenance_modular.py --mode quick
+python3 maintenance/maintenance_modular.py --mode quick
 ```
 
 ### Mise à jour des contextes
 ```bash
-python3 scripts/maintenance/maintenance_modular.py --mode full
+python3 maintenance/maintenance_modular.py --mode full
 ```
 
 ### Génération de contextes manquants
 ```bash
-python3 scripts/maintenance/generate-missing-contexts.py --domain astronomy
+python3 maintenance/generate-missing-contexts.py --domain astronomy
 ```
 """
     
-    with open("scripts/README.md", "w") as f:
+    with open("maintenance/README.md", "w") as f:
         f.write(doc_content)
     
-    print(f"\n📝 Documentation créée: scripts/README.md")
+    print(f"\n📝 Documentation créée: maintenance/README.md")
 
 if __name__ == "__main__":
     cleanup_scripts()

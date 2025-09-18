@@ -14,7 +14,7 @@ def main():
     
     try:
         # Utiliser le système unifié
-        script_path = Path(__file__).parent.parent.parent / "core" / "unified-domain-updater.py"
+        script_path = Path(__file__).parent.parent / "unified-domain-updater.py"
         if not script_path.exists():
             print(f"❌ Script unifié non trouvé: {script_path}")
             sys.exit(1)
@@ -27,7 +27,7 @@ def main():
             print("✅ Token GitHub détecté, utilisation de l'API avec authentification")
             result = subprocess.run(
                 ["python3", str(script_path), "--maintenance", "--token", github_token],
-                cwd=Path(__file__).parent.parent.parent.parent,
+                cwd=Path(__file__).parent.parent.parent,
                 capture_output=True,
                 text=True,
                 timeout=1800  # 30 minutes timeout
@@ -36,7 +36,7 @@ def main():
             print("⚠️ Aucun token GitHub détecté, utilisation de l'API sans authentification (limite: 60 req/h)")
             result = subprocess.run(
                 ["python3", str(script_path), "--maintenance"],
-                cwd=Path(__file__).parent.parent.parent.parent,
+                cwd=Path(__file__).parent.parent.parent,
                 capture_output=True,
                 text=True,
                 timeout=1800  # 30 minutes timeout

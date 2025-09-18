@@ -30,7 +30,7 @@
     {
       "id": "skyfielders-python-skyfield",
       "name": "python-skyfield",
-      "description": "skyfielders/python-skyfield - astronomy library with 1599 stars",
+      "description": "skyfielders/python-skyfield - astronomy library with 1600 stars",
       "contextFiles": [
         "skyfielders-python-skyfield-context.txt"
       ],
@@ -40,7 +40,7 @@
     {
       "id": "dstndstn-astrometry-net",
       "name": "astrometry.net",
-      "description": "dstndstn/astrometry.net - astronomy library with 759 stars",
+      "description": "dstndstn/astrometry.net - astronomy library with 761 stars",
       "contextFiles": [
         "dstndstn-astrometry-net-context.txt"
       ],
@@ -50,7 +50,7 @@
     {
       "id": "astropy-astroquery",
       "name": "astroquery",
-      "description": "astropy/astroquery - astronomy library with 745 stars",
+      "description": "astropy/astroquery - astronomy library with 746 stars",
       "contextFiles": [
         "astropy-astroquery-context.txt"
       ],
@@ -70,7 +70,7 @@
     {
       "id": "lightkurve-lightkurve",
       "name": "lightkurve",
-      "description": "lightkurve/lightkurve - astronomy library with 463 stars",
+      "description": "lightkurve/lightkurve - astronomy library with 464 stars",
       "contextFiles": [
         "lightkurve-lightkurve-context.txt"
       ],
@@ -90,7 +90,7 @@
     {
       "id": "gwastro-pycbc",
       "name": "pycbc",
-      "description": "gwastro/pycbc - astronomy library with 354 stars",
+      "description": "gwastro/pycbc - astronomy library with 355 stars",
       "contextFiles": [
         "gwastro-pycbc-context.txt"
       ],
@@ -120,7 +120,7 @@
     {
       "id": "astropy-photutils",
       "name": "photutils",
-      "description": "astropy/photutils - astronomy library with 281 stars",
+      "description": "astropy/photutils - astronomy library with 283 stars",
       "contextFiles": [
         "astropy-photutils-context.txt"
       ],
@@ -140,7 +140,7 @@
     {
       "id": "spacepy-spacepy",
       "name": "spacepy",
-      "description": "spacepy/spacepy - astronomy library with 255 stars",
+      "description": "spacepy/spacepy - astronomy library with 256 stars",
       "contextFiles": [
         "spacepy-spacepy-context.txt"
       ],
@@ -220,7 +220,7 @@
     {
       "id": "tardis-sn-tardis",
       "name": "tardis",
-      "description": "tardis-sn/tardis - astronomy library with 223 stars",
+      "description": "tardis-sn/tardis - astronomy library with 224 stars",
       "contextFiles": [
         "tardis-sn-tardis-context.txt"
       ],
@@ -290,7 +290,7 @@
     {
       "id": "johannesbuchner-ultranest",
       "name": "ultranest",
-      "description": "johannesbuchner/ultranest - astronomy library with 188 stars",
+      "description": "johannesbuchner/ultranest - astronomy library with 189 stars",
       "contextFiles": [
         "johannesbuchner-ultranest-context.txt"
       ],
@@ -340,7 +340,7 @@
     {
       "id": "cmbant-getdist",
       "name": "getdist",
-      "description": "cmbant/getdist - astronomy library with 165 stars",
+      "description": "cmbant/getdist - astronomy library with 166 stars",
       "contextFiles": [
         "cmbant-getdist-context.txt"
       ],
@@ -350,7 +350,7 @@
     {
       "id": "quatrope-astroalign",
       "name": "astroalign",
-      "description": "quatrope/astroalign - astronomy library with 152 stars",
+      "description": "quatrope/astroalign - astronomy library with 153 stars",
       "contextFiles": [
         "quatrope-astroalign-context.txt"
       ],
@@ -370,7 +370,7 @@
     {
       "id": "polymathicai-astroclip",
       "name": "astroclip",
-      "description": "polymathicai/astroclip - astronomy library with 148 stars",
+      "description": "polymathicai/astroclip - astronomy library with 149 stars",
       "contextFiles": [
         "polymathicai-astroclip-context.txt"
       ],
@@ -390,7 +390,7 @@
     {
       "id": "cmbagents-cmbagent",
       "name": "cmbagent",
-      "description": "CMBAgents/cmbagent - astronomy library with 146 stars",
+      "description": "CMBAgents/cmbagent - astronomy library with 147 stars",
       "contextFiles": [
         "CMBAgents-cmbagent-context.txt"
       ],
@@ -440,7 +440,7 @@
     {
       "id": "galacticdynamics-oxford-agama",
       "name": "agama",
-      "description": "galacticdynamics-oxford/agama - astronomy library with 107 stars",
+      "description": "galacticdynamics-oxford/agama - astronomy library with 108 stars",
       "contextFiles": [
         "galacticdynamics-oxford-agama-context.txt"
       ],
@@ -450,7 +450,7 @@
     {
       "id": "lwang-astro-petar",
       "name": "petar",
-      "description": "lwang-astro/petar - astronomy library with 101 stars",
+      "description": "lwang-astro/petar - astronomy library with 102 stars",
       "contextFiles": [
         "lwang-astro-petar-context.txt"
       ],
@@ -540,7 +540,7 @@
     {
       "id": "astrorama-sourcextractorplusplus",
       "name": "sourcextractorplusplus",
-      "description": "astrorama/sourcextractorplusplus - astronomy library with 82 stars",
+      "description": "astrorama/sourcextractorplusplus - astronomy library with 83 stars",
       "contextFiles": [
         "astrorama-sourcextractorplusplus-context.txt"
       ],
@@ -580,7 +580,7 @@
     {
       "id": "alessiospuriomancini-cosmopower",
       "name": "cosmopower",
-      "description": "alessiospuriomancini/cosmopower - astronomy library with 74 stars",
+      "description": "alessiospuriomancini/cosmopower - astronomy library with 75 stars",
       "contextFiles": [
         "alessiospuriomancini-cosmopower-context.txt"
       ],
@@ -610,7 +610,7 @@
     {
       "id": "astroua-turbustat",
       "name": "turbustat",
-      "description": "astroua/turbustat - astronomy library with 67 stars",
+      "description": "astroua/turbustat - astronomy library with 68 stars",
       "contextFiles": [
         "astroua-turbustat-context.txt"
       ],
@@ -690,7 +690,7 @@
     {
       "id": "simonsobs-pixell",
       "name": "pixell",
-      "description": "simonsobs/pixell - astronomy library with 51 stars",
+      "description": "simonsobs/pixell - astronomy library with 52 stars",
       "contextFiles": [
         "pixell-context.txt"
       ],
@@ -700,7 +700,7 @@
     {
       "id": "quokka-astro-quokka",
       "name": "quokka",
-      "description": "quokka-astro/quokka - astronomy library with 55 stars",
+      "description": "quokka-astro/quokka - astronomy library with 57 stars",
       "contextFiles": [
         "quokka-astro-quokka-context.txt"
       ],
@@ -900,7 +900,7 @@
     {
       "id": "galacticusorg-galacticus",
       "name": "galacticus",
-      "description": "galacticusorg/galacticus - astronomy library with 36 stars",
+      "description": "galacticusorg/galacticus - astronomy library with 37 stars",
       "contextFiles": [
         "galacticusorg-galacticus-context.txt"
       ],
@@ -990,7 +990,7 @@
     {
       "id": "biopython-biopython",
       "name": "biopython",
-      "description": "biopython/biopython - biochemistry library with 4729 stars",
+      "description": "biopython/biopython - biochemistry library with 4739 stars",
       "contextFiles": [
         "biopython-biopython-context.txt"
       ],
@@ -1010,7 +1010,7 @@
     {
       "id": "mdanalysis-mdanalysis",
       "name": "mdanalysis",
-      "description": "mdanalysis/mdanalysis - biochemistry library with 1457 stars",
+      "description": "mdanalysis/mdanalysis - biochemistry library with 1458 stars",
       "contextFiles": [
         "mdanalysis-context.txt"
       ],
@@ -1020,7 +1020,7 @@
     {
       "id": "openmm-openmm",
       "name": "openmm",
-      "description": "openmm/openmm - biochemistry library with 1671 stars",
+      "description": "openmm/openmm - biochemistry library with 1674 stars",
       "contextFiles": [
         "openmm-openmm-context.txt"
       ],
@@ -1040,7 +1040,7 @@
     {
       "id": "rdkit-rdkit",
       "name": "rdkit",
-      "description": "rdkit/rdkit - biochemistry library with 3065 stars",
+      "description": "rdkit/rdkit - biochemistry library with 3070 stars",
       "contextFiles": [
         "rdkit-context.txt"
       ],
@@ -1050,7 +1050,7 @@
     {
       "id": "schrodinger-pymol-open-source",
       "name": "pymol-open-source",
-      "description": "schrodinger/pymol-open-source - biochemistry library with 1462 stars",
+      "description": "schrodinger/pymol-open-source - biochemistry library with 1466 stars",
       "contextFiles": [
         "schrodinger-pymol-open-source-context.txt"
       ],
@@ -1060,7 +1060,7 @@
     {
       "id": "openbabel-openbabel",
       "name": "openbabel",
-      "description": "openbabel/openbabel - biochemistry library with 1222 stars",
+      "description": "openbabel/openbabel - biochemistry library with 1225 stars",
       "contextFiles": [
         "openbabel-context.txt"
       ],
@@ -1070,7 +1070,7 @@
     {
       "id": "gromacs-gromacs",
       "name": "gromacs",
-      "description": "gromacs/gromacs - biochemistry library with 814 stars",
+      "description": "gromacs/gromacs - biochemistry library with 815 stars",
       "contextFiles": [
         "gromacs-gromacs-context.txt"
       ],
@@ -1090,7 +1090,7 @@
     {
       "id": "quantopian-zipline",
       "name": "zipline",
-      "description": "quantopian/zipline - finance library with 18932 stars",
+      "description": "quantopian/zipline - finance library with 18943 stars",
       "contextFiles": [
         "quantopian-zipline-context.txt"
       ],
@@ -1100,7 +1100,7 @@
     {
       "id": "ranaroussi-yfinance",
       "name": "yfinance",
-      "description": "ranaroussi/yfinance - finance library with 19034 stars",
+      "description": "ranaroussi/yfinance - finance library with 19069 stars",
       "contextFiles": [
         "yfinance-context.txt"
       ],
@@ -1110,7 +1110,7 @@
     {
       "id": "pmorissette-ffn",
       "name": "ffn",
-      "description": "pmorissette/ffn - finance library with 2338 stars",
+      "description": "pmorissette/ffn - finance library with 2339 stars",
       "contextFiles": [
         "pmorissette-ffn-context.txt"
       ],
@@ -1120,7 +1120,7 @@
     {
       "id": "quantopian-pyfolio",
       "name": "pyfolio",
-      "description": "quantopian/pyfolio - finance library with 6061 stars",
+      "description": "quantopian/pyfolio - finance library with 6069 stars",
       "contextFiles": [
         "pyfolio-context.txt"
       ],
@@ -1140,7 +1140,7 @@
     {
       "id": "jamesmawm-high-frequency-trading-model-with-ib",
       "name": "High-Frequency-Trading-Model-with-IB",
-      "description": "jamesmawm/High-Frequency-Trading-Model-with-IB - finance library with 2705 stars",
+      "description": "jamesmawm/High-Frequency-Trading-Model-with-IB - finance library with 2706 stars",
       "contextFiles": [
         "jamesmawm-High-Frequency-Trading-Model-with-IB-context.txt"
       ],
@@ -1160,7 +1160,7 @@
     {
       "id": "quantopian-alphalens",
       "name": "alphalens",
-      "description": "quantopian/alphalens - finance library with 3881 stars",
+      "description": "quantopian/alphalens - finance library with 3887 stars",
       "contextFiles": [
         "quantopian-alphalens-context.txt"
       ],
@@ -1180,7 +1180,7 @@
     {
       "id": "pytorch-pytorch",
       "name": "pytorch",
-      "description": "pytorch/pytorch - machinelearning library with 93164 stars",
+      "description": "pytorch/pytorch - machinelearning library with 93261 stars",
       "contextFiles": [
         "pytorch-pytorch-context.txt"
       ],
@@ -1190,7 +1190,7 @@
     {
       "id": "tensorflow-tensorflow",
       "name": "tensorflow",
-      "description": "tensorflow/tensorflow - machinelearning library with 191633 stars",
+      "description": "tensorflow/tensorflow - machinelearning library with 191679 stars",
       "contextFiles": [
         "tensorflow-tensorflow-context.txt"
       ],
@@ -1200,7 +1200,7 @@
     {
       "id": "scikit-learn-scikit-learn",
       "name": "scikit-learn",
-      "description": "scikit-learn/scikit-learn - machinelearning library with 63339 stars",
+      "description": "scikit-learn/scikit-learn - machinelearning library with 63364 stars",
       "contextFiles": [
         "scikit-learn-scikit-learn-context.txt"
       ],
@@ -1210,7 +1210,7 @@
     {
       "id": "keras-team-keras",
       "name": "keras",
-      "description": "keras-team/keras - machinelearning library with 63404 stars",
+      "description": "keras-team/keras - machinelearning library with 63409 stars",
       "contextFiles": [
         "keras-team-keras-context.txt"
       ],
@@ -1220,7 +1220,7 @@
     {
       "id": "huggingface-transformers",
       "name": "transformers",
-      "description": "huggingface/transformers - machinelearning library with 149757 stars",
+      "description": "huggingface/transformers - machinelearning library with 149947 stars",
       "contextFiles": [
         "huggingface-transformers-context.txt"
       ],
@@ -1230,7 +1230,7 @@
     {
       "id": "pandas-dev-pandas",
       "name": "pandas",
-      "description": "pandas-dev/pandas - machinelearning library with 46571 stars",
+      "description": "pandas-dev/pandas - machinelearning library with 46603 stars",
       "contextFiles": [
         "pandas-dev-pandas-context.txt"
       ],
@@ -1238,29 +1238,9 @@
       "extraSystemPrompt": "You are an expert on pandas-dev/pandas. Use the provided documentation to help users with this machinelearning library."
     },
     {
-      "id": "numpy-numpy",
-      "name": "numpy",
-      "description": "numpy/numpy - machinelearning library with 30395 stars",
-      "contextFiles": [
-        "numpy-numpy-context.txt"
-      ],
-      "docsUrl": "https://github.com/numpy/numpy",
-      "extraSystemPrompt": "You are an expert on numpy/numpy. Use the provided documentation to help users with this machinelearning library."
-    },
-    {
-      "id": "scipy-scipy",
-      "name": "scipy",
-      "description": "scipy/scipy - machinelearning library with 14021 stars",
-      "contextFiles": [
-        "scipy-scipy-context.txt"
-      ],
-      "docsUrl": "https://github.com/scipy/scipy",
-      "extraSystemPrompt": "You are an expert on scipy/scipy. Use the provided documentation to help users with this machinelearning library."
-    },
-    {
       "id": "matplotlib-matplotlib",
       "name": "matplotlib",
-      "description": "matplotlib/matplotlib - machinelearning library with 21694 stars",
+      "description": "matplotlib/matplotlib - machinelearning library with 21706 stars",
       "contextFiles": [
         "matplotlib-matplotlib-context.txt"
       ],

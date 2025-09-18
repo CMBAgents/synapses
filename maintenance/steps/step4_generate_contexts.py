@@ -50,14 +50,14 @@ def generate_missing_contexts():
                 context_file_name = lib.get('contextFileName')
                 if context_file_name:
                     # Vérifier si le fichier existe déjà
-                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    context_path = Path(__file__).parent.parent.parent / "public" / "context" / domain / context_file_name
                     if context_path.exists():
                         continue
                 else:
                     # Fallback : construire le nom si pas de métadonnée
                     lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
                     context_file_name = f"{lib_name}-context.txt"
-                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    context_path = Path(__file__).parent.parent.parent / "public" / "context" / domain / context_file_name
                     if context_path.exists():
                         continue
                 
@@ -65,7 +65,7 @@ def generate_missing_contexts():
                 print(f"🔄 Génération du contexte pour {lib.get('name', lib_name)}...")
                 
                 # Cloner le repository
-                repo_dir = Path(__file__).parent.parent.parent.parent / "temp" / "repos" / lib_name
+                repo_dir = Path(__file__).parent.parent.parent / "temp" / "repos" / lib_name
                 if repo_dir.exists():
                     shutil.rmtree(repo_dir)
                 
@@ -113,7 +113,7 @@ def generate_missing_contexts():
         
         # Sauvegarder les métadonnées mises à jour (préserver domain, description, keywords)
         for domain, libraries in libraries_data.items():
-            domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            domain_file = Path(__file__).parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
             
             # Charger les métadonnées existantes
             existing_data = {}
@@ -142,7 +142,7 @@ def generate_missing_contexts():
 def get_existing_contexts():
     """Récupère la liste des contextes existants"""
     existing = {}
-    context_dir = Path(__file__).parent.parent.parent.parent / "public" / "context"
+    context_dir = Path(__file__).parent.parent.parent / "public" / "context"
     
     for domain_dir in context_dir.iterdir():
         if domain_dir.is_dir():
@@ -157,7 +157,7 @@ def get_existing_contexts():
 def load_libraries_data():
     """Charge les données de toutes les bibliothèques"""
     libraries_data = {}
-    data_dir = Path(__file__).parent.parent.parent.parent / "app" / "data"
+    data_dir = Path(__file__).parent.parent.parent / "app" / "data"
     
     for domain in ['astronomy', 'biochemistry', 'finance', 'machinelearning']:
         domain_file = data_dir / f"{domain}-libraries.json"

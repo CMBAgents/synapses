@@ -13,7 +13,7 @@ def main():
     
     try:
         # Utiliser le script de correction des noms
-        script_path = Path(__file__).parent.parent.parent / "utils" / "fix-context-names.py"
+        script_path = Path(__file__).parent.parent / "fix-context-names.py"
         if not script_path.exists():
             print("⚠️ Script fix-context-names.py non trouvé, passage de l'étape")
             return
@@ -21,7 +21,7 @@ def main():
         print("Exécution du correcteur de noms de contexte...")
         result = subprocess.run(
             ["python3", str(script_path)], 
-            cwd=Path(__file__).parent.parent.parent.parent,
+            cwd=Path(__file__).parent.parent.parent,
             capture_output=True, 
             text=True, 
             check=True

@@ -3,7 +3,7 @@
     {
       "name": "pytorch/pytorch",
       "github_url": "https://github.com/pytorch/pytorch",
-      "stars": 93164,
+      "stars": 93261,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "pytorch-pytorch-context.txt"
@@ -11,7 +11,7 @@
     {
       "name": "tensorflow/tensorflow",
       "github_url": "https://github.com/tensorflow/tensorflow",
-      "stars": 191633,
+      "stars": 191679,
       "rank": 2,
       "hasContextFile": true,
       "contextFileName": "tensorflow-tensorflow-context.txt"
@@ -19,7 +19,7 @@
     {
       "name": "scikit-learn/scikit-learn",
       "github_url": "https://github.com/scikit-learn/scikit-learn",
-      "stars": 63339,
+      "stars": 63364,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "scikit-learn-scikit-learn-context.txt"
@@ -27,7 +27,7 @@
     {
       "name": "keras-team/keras",
       "github_url": "https://github.com/keras-team/keras",
-      "stars": 63404,
+      "stars": 63409,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "keras-team-keras-context.txt"
@@ -35,7 +35,7 @@
     {
       "name": "huggingface/transformers",
       "github_url": "https://github.com/huggingface/transformers",
-      "stars": 149757,
+      "stars": 149947,
       "rank": 5,
       "hasContextFile": true,
       "contextFileName": "huggingface-transformers-context.txt"
@@ -43,7 +43,7 @@
     {
       "name": "pandas-dev/pandas",
       "github_url": "https://github.com/pandas-dev/pandas",
-      "stars": 46571,
+      "stars": 46603,
       "rank": 6,
       "hasContextFile": true,
       "contextFileName": "pandas-dev-pandas-context.txt"
@@ -51,7 +51,7 @@
     {
       "name": "matplotlib/matplotlib",
       "github_url": "https://github.com/matplotlib/matplotlib",
-      "stars": 21694,
+      "stars": 21706,
       "rank": 7,
       "hasContextFile": true,
       "contextFileName": "matplotlib-matplotlib-context.txt"

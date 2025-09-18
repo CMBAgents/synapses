@@ -3,7 +3,7 @@
     {
       "name": "quantopian/zipline",
       "github_url": "https://github.com/quantopian/zipline",
-      "stars": 18932,
+      "stars": 18943,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "quantopian-zipline-context.txt"
@@ -18,7 +18,7 @@
     {
       "name": "ranaroussi/yfinance",
       "github_url": "https://github.com/ranaroussi/yfinance",
-      "stars": 19034,
+      "stars": 19069,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "yfinance-context.txt"
@@ -26,7 +26,7 @@
     {
       "name": "pmorissette/ffn",
       "github_url": "https://github.com/pmorissette/ffn",
-      "stars": 2338,
+      "stars": 2339,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "pmorissette-ffn-context.txt"
@@ -34,7 +34,7 @@
     {
       "name": "quantopian/pyfolio",
       "github_url": "https://github.com/quantopian/pyfolio",
-      "stars": 6061,
+      "stars": 6069,
       "rank": 5,
       "hasContextFile": true,
       "contextFileName": "pyfolio-context.txt"
@@ -50,7 +50,7 @@
     {
       "name": "jamesmawm/High-Frequency-Trading-Model-with-IB",
       "github_url": "https://github.com/jamesmawm/High-Frequency-Trading-Model-with-IB",
-      "stars": 2705,
+      "stars": 2706,
       "rank": 7,
       "hasContextFile": true,
       "contextFileName": "jamesmawm-High-Frequency-Trading-Model-with-IB-context.txt"
@@ -66,7 +66,7 @@
     {
       "name": "quantopian/alphalens",
       "github_url": "https://github.com/quantopian/alphalens",
-      "stars": 3881,
+      "stars": 3887,
       "rank": 9,
       "hasContextFile": true,
       "contextFileName": "quantopian-alphalens-context.txt"

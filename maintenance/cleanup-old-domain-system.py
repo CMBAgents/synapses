@@ -20,34 +20,34 @@ def cleanup_old_files():
     files_to_remove = [
         # Anciens scripts de mise à jour
         "app/update_bdd/get100.py",
-        "scripts/utils/update-domain-data.py",
+        "maintenance/utils/update-domain-data.py",
         
         # Anciens scripts de création de domaine (remplacés par le système unifié)
-        "scripts/templates/create-domain.py",
-        "scripts/templates/delete-domain.py",
-        "scripts/templates/domain-utils.py",
-        "scripts/templates/domain-config.json",
+        "maintenance/templates/create-domain.py",
+        "maintenance/templates/delete-domain.py",
+        "maintenance/templates/domain-utils.py",
+        "maintenance/templates/domain-config.json",
         
         # Anciens scripts de maintenance obsolètes
-        "scripts/maintenance/daily_maintenance.py",
-        "scripts/maintenance/optimized-auto-update.py",
-        "scripts/maintenance/monitor-updater.py",
+        "maintenance/maintenance/daily_maintenance.py",
+        "maintenance/maintenance/optimized-auto-update.py",
+        "maintenance/maintenance/monitor-updater.py",
         
         # Fichiers CSV temporaires (garder seulement les derniers)
         "app/update_bdd/top_astronomy_cosmology_repos.csv",
         "app/update_bdd/avantdernier.csv",
         
         # Anciens scripts de test
-        "scripts/utils/test_maintenance.py",
-        "scripts/utils/test-unified-scripts.py",
+        "maintenance/utils/test_maintenance.py",
+        "maintenance/utils/test-unified-scripts.py",
     ]
     
     # Dossiers à nettoyer (mais pas supprimer complètement)
     dirs_to_clean = [
         "app/update_bdd/__pycache__",
-        "scripts/templates/__pycache__",
-        "scripts/maintenance/__pycache__",
-        "scripts/utils/__pycache__",
+        "maintenance/templates/__pycache__",
+        "maintenance/maintenance/__pycache__",
+        "maintenance/utils/__pycache__",
         "temp/repos",
         "temp/contexts",
     ]
@@ -140,11 +140,11 @@ def main():
         # Afficher ce qui serait supprimé
         files_to_remove = [
             "app/update_bdd/get100.py",
-            "scripts/utils/update-domain-data.py",
-            "scripts/templates/create-domain.py",
-            "scripts/templates/delete-domain.py",
-            "scripts/templates/domain-utils.py",
-            "scripts/templates/domain-config.json",
+            "maintenance/utils/update-domain-data.py",
+            "maintenance/templates/create-domain.py",
+            "maintenance/templates/delete-domain.py",
+            "maintenance/templates/domain-utils.py",
+            "maintenance/templates/domain-config.json",
         ]
         
         for file_path in files_to_remove:

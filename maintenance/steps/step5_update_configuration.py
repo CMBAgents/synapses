@@ -19,7 +19,7 @@ def update_library_metadata():
         total_updated = 0
         
         for domain in domains:
-            domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            domain_file = Path(__file__).parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
             if not domain_file.exists():
                 continue
                 
@@ -35,13 +35,13 @@ def update_library_metadata():
                 context_file_name = lib.get('contextFileName')
                 if context_file_name:
                     # Vérifier le fichier existant
-                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    context_path = Path(__file__).parent.parent.parent / "public" / "context" / domain / context_file_name
                     has_context = context_path.exists()
                 else:
                     # Fallback : construire le nom si pas de métadonnée
                     lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
                     context_file_name = f"{lib_name}-context.txt"
-                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file_name
+                    context_path = Path(__file__).parent.parent.parent / "public" / "context" / domain / context_file_name
                     has_context = context_path.exists()
                 
                 if lib.get('hasContextFile', False) != has_context:
@@ -73,7 +73,7 @@ def regenerate_config():
         # Charger les données des domaines
         domains_data = {}
         for domain in ['astronomy', 'biochemistry', 'finance', 'machinelearning']:
-            domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            domain_file = Path(__file__).parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
             if domain_file.exists():
                 with open(domain_file, 'r', encoding='utf-8') as f:
                     domains_data[domain] = json.load(f)
@@ -98,7 +98,7 @@ def regenerate_config():
                         })
         
         # Charger le config existant et préserver les extraSystemPrompt
-        config_file = Path(__file__).parent.parent.parent.parent / "config.json"
+        config_file = Path(__file__).parent.parent.parent / "config.json"
         existing_extra_prompts = {}
         if config_file.exists():
             with open(config_file, 'r', encoding='utf-8') as f:
@@ -141,7 +141,7 @@ def generate_embedded_context():
         # Charger les données des domaines
         domains_data = {}
         for domain in ['astronomy', 'biochemistry', 'finance', 'machinelearning']:
-            domain_file = Path(__file__).parent.parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
+            domain_file = Path(__file__).parent.parent.parent / "app" / "data" / f"{domain}-libraries.json"
             if domain_file.exists():
                 with open(domain_file, 'r', encoding='utf-8') as f:
                     domains_data[domain] = json.load(f)
@@ -167,7 +167,7 @@ def generate_embedded_context():
                     context_file = lib.get('contextFileName', '')
                     
                     # Lire le contenu du contexte
-                    context_path = Path(__file__).parent.parent.parent.parent / "public" / "context" / domain / context_file
+                    context_path = Path(__file__).parent.parent.parent / "public" / "context" / domain / context_file
                     if context_path.exists():
                         try:
                             with open(context_path, 'r', encoding='utf-8') as f:
@@ -186,7 +186,7 @@ def generate_embedded_context():
             embedded_content += "};\n"
             
             # Sauvegarder le module pour ce domaine
-            embedded_file = Path(__file__).parent.parent.parent.parent / "app" / "utils" / f"embedded-context-{domain}.ts"
+            embedded_file = Path(__file__).parent.parent.parent / "app" / "utils" / f"embedded-context-{domain}.ts"
             embedded_file.parent.mkdir(parents=True, exist_ok=True)
             
             with open(embedded_file, 'w', encoding='utf-8') as f:

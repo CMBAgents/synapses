@@ -372,7 +372,7 @@ class UnifiedDomainUpdater:
         try:
             import subprocess
             result = subprocess.run([
-                "python3", "scripts/templates/generate-domain-routes.py"
+                "python3", "maintenance/templates/generate-domain-routes.py"
             ], capture_output=True, text=True, cwd=Path.cwd())
             
             if result.returncode == 0:
