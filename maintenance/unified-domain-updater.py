@@ -205,11 +205,11 @@ class UnifiedDomainUpdater:
                 name='finance',
                 display_name='Finance & Trading',
                 description='Top finance and trading libraries for portfolio optimization, algorithmic trading, and financial analysis',
-                keywords=['finance', 'trading', 'portfolio', 'quantitative', 'zipline', 'yfinance', 'pyfolio', 'empyrical', 'alphalens', 'mlfinlab'],
+                keywords=['finance', 'trading', 'portfolio', 'quantitative', 'zipline', 'yfinance', 'pyfolio', 'empyrical', 'alphalens'],
                 specific_libs=[],
                 use_ascl=False,
                 max_libraries=10,
-                forbidden_libs=[]
+                forbidden_libs=['mlfinlab/mlfinlab']
             ),
             'machinelearning': DomainConfig(
                 name='machinelearning',
