@@ -8,12 +8,82 @@ const combinedContextCache: Record<string, string> = {};
 // Cache for storing URL-based context to avoid repeated fetches
 const urlContextCache: Record<string, string> = {};
 
-// Cache for storing loaded context files to avoid repeated file reads
-const fileContextCache: Record<string, string> = {};
+// Cache for storing loaded context files - ONLY ONE AT A TIME
+let fileContextCache: { programId: string; content: string } | null = null;
+
+// Memory management - no size limits, but only one context at a time
+const MAX_CACHE_ENTRIES = 1; // Only 1 context file in cache
+
+// Track cache usage (for monitoring only)
+let currentCacheSize = 0;
+
+// Cleanup interval
+let cleanupInterval: NodeJS.Timeout | null = null;
+
+/**
+ * Clear all caches to free memory
+ */
+export function clearAllCaches(): void {
+  // Clear single context cache
+  if (fileContextCache) {
+    const size = Buffer.byteLength(fileContextCache.content, 'utf8');
+    currentCacheSize -= size;
+    fileContextCache = null;
+  }
+  
+  Object.keys(urlContextCache).forEach(key => {
+    const size = Buffer.byteLength(urlContextCache[key], 'utf8');
+    currentCacheSize -= size;
+    delete urlContextCache[key];
+  });
+  
+  Object.keys(combinedContextCache).forEach(key => {
+    const size = Buffer.byteLength(combinedContextCache[key], 'utf8');
+    currentCacheSize -= size;
+    delete combinedContextCache[key];
+  });
+  
+  console.log('All caches cleared to free memory');
+}
+
+/**
+ * Start periodic cache cleanup (disabled since we have no size limits)
+ */
+function startCacheCleanup(): void {
+  // Disabled - no size limits, only one context at a time
+  console.log('Cache cleanup disabled - using single context cache without size limits');
+}
 
 // Track pending fetches to avoid duplicate requests
 // Using any type to avoid TypeScript issues with Promise types
 const pendingFetches: Record<string, any> = {};
+
+/**
+ * Manage cache size by removing oldest entries when limit is reached
+ * NOTE: This is now simplified since we only cache one context at a time
+ */
+function manageCacheSize(cache: Record<string, string>, key: string, content: string) {
+  const contentSize = Buffer.byteLength(content, 'utf8');
+  
+  // If adding this content would exceed entry limit, clean up
+  if (Object.keys(cache).length >= MAX_CACHE_ENTRIES) {
+    
+    // Remove oldest entries (simple FIFO)
+    const keys = Object.keys(cache);
+    const entriesToRemove = Math.max(1, Math.floor(keys.length / 2)); // Remove half
+    
+    for (let i = 0; i < entriesToRemove; i++) {
+      const oldestKey = keys[i];
+      const removedSize = Buffer.byteLength(cache[oldestKey], 'utf8');
+      currentCacheSize -= removedSize;
+      delete cache[oldestKey];
+    }
+  }
+  
+  // Add new content
+  cache[key] = content;
+  currentCacheSize += contentSize;
+}
 
 // Function to check if a string is a URL
 function isUrl(str: string): boolean {
@@ -32,9 +102,9 @@ function isUrl(str: string): boolean {
  * @returns The context content or null if file not found
  */
 async function loadContextFromFile(programId: string, domain: Domain): Promise<string | null> {
-  // Check cache first
-  if (fileContextCache[programId]) {
-    return fileContextCache[programId];
+  // Check cache first - only if it's the same program
+  if (fileContextCache && fileContextCache.programId === programId) {
+    return fileContextCache.content;
   }
 
   try {
@@ -57,7 +127,9 @@ async function loadContextFromFile(programId: string, domain: Domain): Promise<s
     }
 
     // Make API request to load the context file using the optimized endpoint
-    const response = await fetch(`/api/context/${encodeURIComponent(contextFileName)}?domain=${domain}`);
+    // Use absolute URL to avoid relative path issues
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/context/${encodeURIComponent(contextFileName)}?domain=${domain}`);
     
     if (!response.ok) {
       console.log(`Context file not found: ${contextFileName} (${response.status})`);
@@ -70,8 +142,17 @@ async function loadContextFromFile(programId: string, domain: Domain): Promise<s
       return null;
     }
 
-    // Cache the result
-    fileContextCache[programId] = contextContent;
+    // Cache the result - REPLACE previous context (only one at a time)
+    if (fileContextCache) {
+      const oldSize = Buffer.byteLength(fileContextCache.content, 'utf8');
+      currentCacheSize -= oldSize;
+    }
+    
+    fileContextCache = {
+      programId: programId,
+      content: contextContent
+    };
+    currentCacheSize += Buffer.byteLength(contextContent, 'utf8');
     
     console.log(`Loaded context from file: ${contextFileName} (${contextContent.length} bytes)`);
     return contextContent;
@@ -178,8 +259,8 @@ async function fetchContextFromUrl(url: string): Promise<{ content: string; wasF
         content = await response.text();
       }
 
-      // Cache the content
-      urlContextCache[url] = content;
+      // Cache the content with memory management
+      manageCacheSize(urlContextCache, url, content);
       console.log(`Successfully fetched context from URL: ${url} (${content.length} bytes)`);
 
       // Remove from pending fetches
@@ -302,8 +383,8 @@ export async function loadContext(contextFiles: string[] | string, programId?: s
 
   console.log(`Successfully loaded embedded context for ${program.id} (${contextContent.length} bytes)`);
 
-  // Cache the content
-  combinedContextCache[cacheKey] = contextContent;
+  // Cache the content with memory management
+  manageCacheSize(combinedContextCache, cacheKey, contextContent);
   return contextContent;
 }
 
@@ -320,37 +401,29 @@ export async function getEmbeddedContext(programId: string): Promise<string | un
 }
 
 /**
- * Preload context for a program
+ * Get current cache info for debugging
+ */
+export function getCacheInfo() {
+  return {
+    hasContext: !!fileContextCache,
+    currentProgram: fileContextCache?.programId || null,
+    contextSize: fileContextCache ? Buffer.byteLength(fileContextCache.content, 'utf8') : 0,
+    totalCacheSize: currentCacheSize,
+    maxCacheSize: 'unlimited', // No size limits
+    maxEntries: MAX_CACHE_ENTRIES
+  };
+}
+
+/**
+ * Preload context for a program (DISABLED to save memory)
  * This is useful for preloading context when a tab becomes active
  * @param programId The ID of the program
  * @returns A promise that resolves when the context is loaded
  */
 export async function preloadContext(programId: string): Promise<void> {
-  try {
-    const program = getProgramById(programId) as Program;
-
-    // For dynamic programs (astronomy, finance) that don't exist in config.json,
-    // we don't need to preload context since they don't have contextFiles
-    if (!program) {
-      // Don't log error for dynamic programs that are expected to not exist in config
-      if (programId === 'astronomy' || programId === 'finance') {
-        return;
-      }
-      console.error(`Program not found for preloading: ${programId}`);
-      return;
-    }
-
-    // If the program has a combinedContextFile that is a URL, preload it
-    if (program.combinedContextFile && isUrl(program.combinedContextFile)) {
-      // Fetch the context, but only log if it was actually fetched (not cached)
-      const { wasFetched } = await fetchContextFromUrl(program.combinedContextFile);
-      if (wasFetched) {
-        console.log(`Preloaded context for program: ${programId}`);
-      }
-    }
-  } catch (error) {
-    console.error(`Error preloading context for program ${programId}:`, error);
-  }
+  // Disabled to save memory - contexts will be loaded on-demand
+  console.log(`Preloading disabled for memory optimization: ${programId}`);
+  return;
 }
 
 /**

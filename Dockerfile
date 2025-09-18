@@ -1,4 +1,4 @@
-# Dockerfile for GCP Cloud Run
+# Dockerfile for GCP Cloud Run - Optimized for memory
 FROM node:18-alpine
 
 # Set working directory
@@ -32,6 +32,14 @@ RUN apk add --no-cache curl
 
 # Build the application
 RUN npm run build
+
+# Clean up build dependencies to save space
+RUN npm prune --production && \
+    apk del gcc musl-dev linux-headers python3-dev
+
+# Set memory optimization environment variables
+ENV NODE_OPTIONS="--max-old-space-size=400"
+ENV NEXT_PUBLIC_BASE_URL="https://cmbagent-info-602105671882.europe-west1.run.app"
 
 # Expose port
 EXPOSE 8080
