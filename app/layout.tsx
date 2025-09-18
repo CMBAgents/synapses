@@ -4,6 +4,7 @@ import "./globals.css";
 import CopyScript from "./ui/copy-script";
 import MaintenanceProvider from "./ui/maintenance-provider";
 import MaintenanceNotification from "./ui/maintenance-notification";
+import Credits from "./ui/credits";
 import { ProgramProvider } from "./contexts/ProgramContext";
 
 // Import fonts for headings
@@ -85,6 +86,7 @@ export default function RootLayout({
           {children}
         </ProgramProvider>
         <CopyScript />
+        <Credits />
       </body>
     </html>
   );

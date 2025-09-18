@@ -6,6 +6,7 @@ import ChatContainer from "./chat-container";
 import { getDomainData } from "../utils/domain-loader";
 import ContextUpdater from "./context-updater";
 import LibrarySelector from "./library-selector";
+import Credits from "./credits";
 import { useProgramContext } from "../contexts/ProgramContext";
 import { getDomainDisplayName, getDomainDescription, getDomainDefaultProgram, getDomainSpecializedDescription, getDomainShortName } from "../config/domains";
 
@@ -175,6 +176,11 @@ function BaseChatContent({ domain }: BaseChatPageProps) {
               preselectedLibrary={preselectedLibrary}
               showModelSelectorOnly={false}
             />
+          </div>
+
+          {/* Footer with credits */}
+          <div className="w-full mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <Credits variant="inline" className="text-center" />
           </div>
         </div>
       </main>

@@ -49,26 +49,10 @@
       "contextFileName": "pandas-dev-pandas-context.txt"
     },
     {
-      "name": "numpy/numpy",
-      "github_url": "https://github.com/numpy/numpy",
-      "stars": 30395,
-      "rank": 7,
-      "hasContextFile": true,
-      "contextFileName": "numpy-numpy-context.txt"
-    },
-    {
-      "name": "scipy/scipy",
-      "github_url": "https://github.com/scipy/scipy",
-      "stars": 14021,
-      "rank": 8,
-      "hasContextFile": true,
-      "contextFileName": "scipy-scipy-context.txt"
-    },
-    {
       "name": "matplotlib/matplotlib",
       "github_url": "https://github.com/matplotlib/matplotlib",
       "stars": 21694,
-      "rank": 9,
+      "rank": 7,
       "hasContextFile": true,
       "contextFileName": "matplotlib-matplotlib-context.txt"
     },
@@ -76,7 +60,7 @@
       "name": "seaborn/seaborn",
       "github_url": "https://github.com/seaborn/seaborn",
       "stars": 39,
-      "rank": 10,
+      "rank": 8,
       "hasContextFile": true,
       "contextFileName": "seaborn-seaborn-context.txt"
     }

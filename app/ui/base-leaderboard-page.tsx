@@ -3,6 +3,7 @@
 import { Suspense } from 'react';
 import FadeIn from "./fadein";
 import LeaderboardTable from "./leaderboardtable";
+import Credits from "./credits";
 import { getDomainData } from "../utils/domain-loader";
 import { getDomainDisplayName, getDomainDescription } from "../config/domains";
 
@@ -83,6 +84,9 @@ function BaseLeaderboardContent({ domain }: BaseLeaderboardPageProps) {
             </div>
           </FadeIn>
         </div>
+
+        {/* Credits */}
+        <Credits variant="minimal" />
       </div>
     </main>
   );
