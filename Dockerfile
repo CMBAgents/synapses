@@ -24,9 +24,8 @@ COPY . .
 RUN mkdir -p temp/repos temp/contexts public/context
 
 # Set permissions for all Python and shell scripts in subdirectories
-RUN find maintenance -name "*.py" -exec chmod +x {} \; && \
-    find mcp-server -name "*.py" -exec chmod +x {} \; && \
-    find . -name "*.sh" -exec chmod +x {} \;
+RUN find scripts -name "*.py" -exec chmod +x {} \; && \
+    find scripts -name "*.sh" -exec chmod +x {} \;
 
 # Install curl for health check
 RUN apk add --no-cache curl
