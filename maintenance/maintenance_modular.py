@@ -2,8 +2,6 @@
 import subprocess
 import sys
 import argparse
-import os
-import glob
 from pathlib import Path
 
 class FixedModularMaintenance:
@@ -22,10 +20,10 @@ class FixedModularMaintenance:
             "step6": "step6_cleanup.py"
         }
         
-        # Définir les modes CORRIGÉS
+        # Deux modes de maintenance
         self.modes = {
-            "quick": ["step0", "step2", "step3", "step4", "step5", "step6"],  # Avec mise à jour étoiles
-            "full": ["step0", "step1", "step2", "step3", "step4", "step5", "step6"]  # Avec mise à jour complète
+            "quick": ["step0", "step2", "step3", "step4", "step5", "step6"],  # Mise à jour étoiles + génération contextes
+            "full": ["step0", "step1", "step3", "step4", "step5", "step6"]  # Découverte + étoiles + génération contextes
         }
     
     def cleanup_old_logs(self):
@@ -136,8 +134,8 @@ class FixedModularMaintenance:
             print(f"  - {mode}: {', '.join(steps)}")
         
         print("\n🔍 LOGIQUE DES MODES:")
-        print("  - quick: Mise à jour des étoiles + détection GitHub + génération des contextes manquants")
-        print("  - full:  Mise à jour complète des domaines + mise à jour des étoiles + détection GitHub + génération des contextes manquants")
+        print("  - quick: Mise à jour des étoiles + détection GitHub + génération des contextes manquants (quotidien)")
+        print("  - full:  Découverte nouvelles bibliothèques + mise à jour étoiles + génération contextes (hebdomadaire)")
 
 def main():
     """Point d'entrée principal"""
