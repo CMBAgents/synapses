@@ -191,3 +191,4 @@ docs/
 backup_old_system/
 .env.local
 embedded-context-*.ts
+ancienne version/

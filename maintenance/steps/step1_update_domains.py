@@ -8,6 +8,21 @@ import sys
 import os
 from pathlib import Path
 
+# Charger les variables d'environnement depuis .env.local
+def load_env_file():
+    """Charge les variables d'environnement depuis .env.local"""
+    env_file = Path(__file__).parent.parent.parent / '.env.local'
+    if env_file.exists():
+        with open(env_file, 'r') as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ[key] = value
+
+# Charger les variables d'environnement
+load_env_file()
+
 def main():
     """Point d'entrée principal"""
     print("=== ÉTAPE 1: Mise à jour de tous les domaines ===")
