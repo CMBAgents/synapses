@@ -21,12 +21,41 @@ from dataclasses import dataclass
 import logging
 
 
-# Configuration du logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+# Configuration du logging avec FileHandler
+def setup_logging():
+    """Configure le système de logging avec fichier et console"""
+    # Créer le dossier de logs s'il n'existe pas
+    logs_dir = Path(__file__).parent / "logs"
+    logs_dir.mkdir(exist_ok=True)
+    
+    # Nom du fichier de log avec timestamp
+    from datetime import datetime
+    log_filename = logs_dir / f"unified_domain_updater_{datetime.now().strftime('%Y%m%d')}.log"
+    
+    # Configuration du logging
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
+        handlers=[
+            # Handler pour fichier
+            logging.FileHandler(log_filename, encoding='utf-8'),
+            # Handler pour console
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+    
+    # Logger spécifique pour ce module
+    logger = logging.getLogger(__name__)
+    
+    # Logger pour les requêtes API (niveau INFO pour voir les appels)
+    api_logger = logging.getLogger('github_api')
+    api_logger.setLevel(logging.INFO)
+    
+    logger.info(f"Logging configuré - Fichier: {log_filename}")
+    return logger, api_logger
+
+# Initialiser le logging
+logger, api_logger = setup_logging()
 
 @dataclass
 class DomainConfig:
@@ -68,6 +97,7 @@ class GitHubAPIClient:
             'per_page': per_page
         }
         
+        api_logger.info(f"🔍 Recherche GitHub: {query}")
         try:
             response = self.session.get(url, params=params)
             response.raise_for_status()
@@ -131,6 +161,7 @@ class ASCLScraper:
         
         time.sleep(random.uniform(0.1, 0.5))  # Éviter le rate limiting
         
+        api_logger.info(f"📊 Scraping étoiles pour: {repo_path}")
         url = f"https://github.com/{repo_path}"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
