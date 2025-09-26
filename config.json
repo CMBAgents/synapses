@@ -188,16 +188,6 @@
       "extraSystemPrompt": "You are an expert on radis/radis. Use the provided documentation to help users with this astrophysics library."
     },
     {
-      "id": "spacetelescope-poppy",
-      "name": "poppy",
-      "description": "spacetelescope/poppy - astronomy library with 250 stars",
-      "contextFiles": [
-        "spacetelescope-poppy-context.txt"
-      ],
-      "docsUrl": "https://github.com/spacetelescope/poppy",
-      "extraSystemPrompt": "You are an expert on spacetelescope/poppy. Use the provided documentation to help users with this astrophysics library."
-    },
-    {
       "id": "minaskar-zeus",
       "name": "zeus",
       "description": "minaskar/zeus - astronomy library with 239 stars",
@@ -312,7 +302,7 @@
       "name": "poppy",
       "description": "mperrin/poppy - astronomy library with 184 stars",
       "contextFiles": [
-        "spacetelescope-poppy-context.txt"
+        "mperrin-poppy-context.txt"
       ],
       "docsUrl": "https://github.com/mperrin/poppy",
       "extraSystemPrompt": "You are an expert on mperrin/poppy. Use the provided documentation to help users with this astrophysics library."
@@ -522,7 +512,7 @@
       "name": "astrocv",
       "description": "astrocv/astrocv - astronomy library with 86 stars",
       "contextFiles": [
-        "astrocv-context.txt"
+        "astrocv-astrocv-context.txt"
       ],
       "docsUrl": "https://github.com/astrocv/astrocv",
       "extraSystemPrompt": "You are an expert on astrocv/astrocv. Use the provided documentation to help users with this astrophysics library."
@@ -692,7 +682,7 @@
       "name": "pixell",
       "description": "simonsobs/pixell - astronomy library with 52 stars",
       "contextFiles": [
-        "pixell-context.txt"
+        "simonsobs-pixell-context.txt"
       ],
       "docsUrl": "https://github.com/simonsobs/pixell",
       "extraSystemPrompt": "You are an expert on simonsobs/pixell. Use the provided documentation to help users with this astrophysics library."
@@ -822,7 +812,7 @@
       "name": "numcosmo",
       "description": "numcosmo/numcosmo - astronomy library with 44 stars",
       "contextFiles": [
-        "numcosmo-context.txt"
+        "numcosmo-numcosmo-context.txt"
       ],
       "docsUrl": "https://github.com/numcosmo/numcosmo",
       "extraSystemPrompt": "You are an expert on numcosmo/numcosmo. Use the provided documentation to help users with this astrophysics library."
@@ -942,7 +932,7 @@
       "name": "weirdestgalaxies",
       "description": "dalya/weirdestgalaxies - astronomy library with 32 stars",
       "contextFiles": [
-        "weirdestgalaxies-context.txt"
+        "dalya-weirdestgalaxies-context.txt"
       ],
       "docsUrl": "https://github.com/dalya/weirdestgalaxies",
       "extraSystemPrompt": "You are an expert on dalya/weirdestgalaxies. Use the provided documentation to help users with this astrophysics library."
@@ -952,7 +942,7 @@
       "name": "galario",
       "description": "mtazzari/galario - astronomy library with 32 stars",
       "contextFiles": [
-        "galario-context.txt"
+        "mtazzari-galario-context.txt"
       ],
       "docsUrl": "https://github.com/mtazzari/galario",
       "extraSystemPrompt": "You are an expert on mtazzari/galario. Use the provided documentation to help users with this astrophysics library."
@@ -972,7 +962,7 @@
       "name": "rmextract",
       "description": "lofar-astron/rmextract - astronomy library with 32 stars",
       "contextFiles": [
-        "rmextract-context.txt"
+        "lofar-astron-rmextract-context.txt"
       ],
       "docsUrl": "https://github.com/lofar-astron/rmextract",
       "extraSystemPrompt": "You are an expert on lofar-astron/rmextract. Use the provided documentation to help users with this astrophysics library."
@@ -1012,7 +1002,7 @@
       "name": "mdanalysis",
       "description": "mdanalysis/mdanalysis - biochemistry library with 1458 stars",
       "contextFiles": [
-        "mdanalysis-context.txt"
+        "mdanalysis-mdanalysis-context.txt"
       ],
       "docsUrl": "https://github.com/mdanalysis/mdanalysis",
       "extraSystemPrompt": "You are an expert on mdanalysis/mdanalysis. Use the provided documentation to help users with this biochemistry library."
@@ -1042,7 +1032,7 @@
       "name": "rdkit",
       "description": "rdkit/rdkit - biochemistry library with 3070 stars",
       "contextFiles": [
-        "rdkit-context.txt"
+        "rdkit-rdkit-context.txt"
       ],
       "docsUrl": "https://github.com/rdkit/rdkit",
       "extraSystemPrompt": "You are an expert on rdkit/rdkit. Use the provided documentation to help users with this biochemistry library."
@@ -1062,7 +1052,7 @@
       "name": "openbabel",
       "description": "openbabel/openbabel - biochemistry library with 1225 stars",
       "contextFiles": [
-        "openbabel-context.txt"
+        "openbabel-openbabel-context.txt"
       ],
       "docsUrl": "https://github.com/openbabel/openbabel",
       "extraSystemPrompt": "You are an expert on openbabel/openbabel. Use the provided documentation to help users with this biochemistry library."
@@ -1102,7 +1092,7 @@
       "name": "yfinance",
       "description": "ranaroussi/yfinance - finance library with 19069 stars",
       "contextFiles": [
-        "yfinance-context.txt"
+        "ranaroussi-yfinance-context.txt"
       ],
       "docsUrl": "https://github.com/ranaroussi/yfinance",
       "extraSystemPrompt": "You are an expert on ranaroussi/yfinance. Use the provided documentation to help users with this finance library."
@@ -1122,7 +1112,7 @@
       "name": "pyfolio",
       "description": "quantopian/pyfolio - finance library with 6069 stars",
       "contextFiles": [
-        "pyfolio-context.txt"
+        "quantopian-pyfolio-context.txt"
       ],
       "docsUrl": "https://github.com/quantopian/pyfolio",
       "extraSystemPrompt": "You are an expert on quantopian/pyfolio. Use the provided documentation to help users with this finance library."
@@ -1172,7 +1162,7 @@
       "name": "qgrid",
       "description": "quantopian/qgrid - finance library with 3078 stars",
       "contextFiles": [
-        "qgrid-context.txt"
+        "quantopian-qgrid-context.txt"
       ],
       "docsUrl": "https://github.com/quantopian/qgrid",
       "extraSystemPrompt": "You are an expert on quantopian/qgrid. Use the provided documentation to help users with this finance library."

@@ -133,8 +133,8 @@
       "github_url": "https://github.com/spacetelescope/poppy",
       "stars": 250,
       "rank": 17,
-      "hasContextFile": true,
-      "contextFileName": "spacetelescope-poppy-context.txt"
+      "hasContextFile": false,
+      "contextFileName": null
     },
     {
       "name": "minaskar/zeus",
@@ -230,7 +230,7 @@
       "stars": 184,
       "rank": 29,
       "hasContextFile": true,
-      "contextFileName": "spacetelescope-poppy-context.txt"
+      "contextFileName": "mperrin-poppy-context.txt"
     },
     {
       "name": "pypeit/pypeit",
@@ -405,7 +405,7 @@
       "stars": 86,
       "rank": 51,
       "hasContextFile": true,
-      "contextFileName": "astrocv-context.txt"
+      "contextFileName": "astrocv-astrocv-context.txt"
     },
     {
       "name": "spacetelescope/astronify",
@@ -541,7 +541,7 @@
       "stars": 52,
       "rank": 68,
       "hasContextFile": true,
-      "contextFileName": "pixell-context.txt"
+      "contextFileName": "simonsobs-pixell-context.txt"
     },
     {
       "name": "quokka-astro/quokka",
@@ -645,7 +645,7 @@
       "stars": 44,
       "rank": 78,
       "hasContextFile": true,
-      "contextFileName": "numcosmo-context.txt"
+      "contextFileName": "numcosmo-numcosmo-context.txt"
     },
     {
       "name": "amrex-astro/maestroex",
@@ -763,7 +763,7 @@
       "stars": 32,
       "rank": 96,
       "hasContextFile": true,
-      "contextFileName": "weirdestgalaxies-context.txt"
+      "contextFileName": "dalya-weirdestgalaxies-context.txt"
     },
     {
       "name": "mtazzari/galario",
@@ -771,7 +771,7 @@
       "stars": 32,
       "rank": 96,
       "hasContextFile": true,
-      "contextFileName": "galario-context.txt"
+      "contextFileName": "mtazzari-galario-context.txt"
     },
     {
       "name": "cosmodesi/pycorr",
@@ -787,7 +787,7 @@
       "stars": 32,
       "rank": 98,
       "hasContextFile": true,
-      "contextFileName": "rmextract-context.txt"
+      "contextFileName": "lofar-astron-rmextract-context.txt"
     },
     {
       "name": "trasal/frbpoppy",

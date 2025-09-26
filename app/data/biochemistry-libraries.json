@@ -22,7 +22,7 @@
       "stars": 1458,
       "rank": 3,
       "hasContextFile": true,
-      "contextFileName": "mdanalysis-context.txt"
+      "contextFileName": "mdanalysis-mdanalysis-context.txt"
     },
     {
       "name": "openmm/openmm",
@@ -46,7 +46,7 @@
       "stars": 3070,
       "rank": 6,
       "hasContextFile": true,
-      "contextFileName": "rdkit-context.txt"
+      "contextFileName": "rdkit-rdkit-context.txt"
     },
     {
       "name": "schrodinger/pymol-open-source",
@@ -62,7 +62,7 @@
       "stars": 1225,
       "rank": 8,
       "hasContextFile": true,
-      "contextFileName": "openbabel-context.txt"
+      "contextFileName": "openbabel-openbabel-context.txt"
     },
     {
       "name": "gromacs/gromacs",

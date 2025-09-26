@@ -14,7 +14,7 @@
       "stars": 19069,
       "rank": 1,
       "hasContextFile": true,
-      "contextFileName": "yfinance-context.txt"
+      "contextFileName": "ranaroussi-yfinance-context.txt"
     },
     {
       "name": "pmorissette/ffn",
@@ -30,7 +30,7 @@
       "stars": 6069,
       "rank": 3,
       "hasContextFile": true,
-      "contextFileName": "pyfolio-context.txt"
+      "contextFileName": "quantopian-pyfolio-context.txt"
     },
     {
       "name": "fmilthaler/finquant",
@@ -70,7 +70,7 @@
       "stars": 3078,
       "rank": 7,
       "hasContextFile": true,
-      "contextFileName": "qgrid-context.txt"
+      "contextFileName": "quantopian-qgrid-context.txt"
     }
   ],
   "domain": "finance",
