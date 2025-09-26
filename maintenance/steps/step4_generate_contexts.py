@@ -13,17 +13,9 @@ def generate_missing_contexts():
     print("🔄 Génération des contextes manquants...")
     
     try:
-        import contextmaker
         import json
         import shutil
         from pathlib import Path
-        
-        # Vérifier que contextmaker est disponible
-        try:
-            import contextmaker
-        except ImportError:
-            print("❌ contextmaker n'est pas installé")
-            return False
         
         # Charger les données existantes
         existing_contexts = get_existing_contexts()
@@ -55,13 +47,14 @@ def generate_missing_contexts():
                         continue
                 else:
                     # Fallback : construire le nom si pas de métadonnée
-                    lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
+                    lib_name = lib.get('name', '').split('/')[-1]
                     context_file_name = f"{lib_name}-context.txt"
                     context_path = Path(__file__).parent.parent.parent / "public" / "context" / domain / context_file_name
                     if context_path.exists():
                         continue
                 
-                lib_name = lib.get('name', '').replace('/', '-').replace('_', '-').replace('.', '-')
+                # Extraire le nom du repository (après le dernier /)
+                lib_name = lib.get('name', '').split('/')[-1]
                 print(f"🔄 Génération du contexte pour {lib.get('name', lib_name)}...")
                 
                 # Cloner le repository
@@ -80,21 +73,25 @@ def generate_missing_contexts():
                     print(f"❌ Erreur clonage {lib_name}: {clone_result.stderr}")
                     continue
                 
-                # Générer le contexte avec contextmaker
+                # Générer le contexte avec contextmaker via Python (fonctionne partout)
                 try:
-                    result = contextmaker.make(
+                    # Utiliser contextmaker via Python (fonctionne en local et Docker)
+                    from contextmaker import make
+                    
+                    result = make(
                         library_name=lib_name,
-                        output_path=str(repo_dir),
-                        rough=True,
+                        input_path=str(repo_dir),
+                        output_path=str(context_path),
+                        rough=True
                     )
                     
-                    # contextmaker génère {lib_name}.txt, pas {lib_name}-context.txt
-                    generated_file = repo_dir / f"{lib_name}.txt"
-                    if result and generated_file.exists():
-                        # Copier le contexte généré vers le nom standardisé
-                        context_path.parent.mkdir(parents=True, exist_ok=True)
-                        shutil.copy2(generated_file, context_path)
-                        
+                    # Vérifier si le fichier a été généré
+                    if context_path.exists():
+                        result = type('Result', (), {'returncode': 0})()
+                    else:
+                        result = type('Result', (), {'returncode': 1, 'stderr': 'File not created'})()
+                    
+                    if result.returncode == 0 and context_path.exists():
                         # Mettre à jour les métadonnées
                         lib['hasContextFile'] = True
                         lib['contextFileName'] = context_file_name
@@ -102,8 +99,10 @@ def generate_missing_contexts():
                         total_generated += 1
                         print(f"✅ Contexte généré pour {lib_name}")
                     else:
-                        print(f"❌ Échec génération contexte pour {lib_name}")
+                        print(f"❌ Échec génération contexte pour {lib_name}: {result.stderr}")
                         
+                except subprocess.TimeoutExpired:
+                    print(f"❌ Timeout contextmaker pour {lib_name}")
                 except Exception as e:
                     print(f"❌ Erreur contextmaker pour {lib_name}: {e}")
                 

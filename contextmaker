@@ -23,6 +23,7 @@ def main():
     parser = argparse.ArgumentParser(description='contextmaker - Extract documentation from repositories')
     parser.add_argument('repo_name', nargs='?', help='Repository name (e.g., "username/repo")')
     parser.add_argument('--output', '-o', help='Output file path')
+    parser.add_argument('--input-path', help='Input repository path')
     parser.add_argument('--version', '-v', action='store_true', help='Show version')
     
     args = parser.parse_args()
@@ -45,7 +46,7 @@ def main():
     
     try:
         # Call the real contextmaker.make function
-        make(args.repo_name, output_path=args.output)
+        make(args.repo_name, output_path=args.output, input_path=args.input_path)
         print(f"✅ Context generated successfully: {args.output}")
     except Exception as e:
         print(f"❌ Error generating context: {e}")
