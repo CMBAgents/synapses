@@ -240,7 +240,7 @@ class UnifiedDomainUpdater:
                 specific_libs=[],
                 use_ascl=False,
                 max_libraries=10,
-                forbidden_libs=['mlfinlab/mlfinlab']
+                forbidden_libs=['mlfinlab/mlfinlab', 'ranaroussi/yfinance']
             ),
             'machinelearning': DomainConfig(
                 name='machinelearning',
