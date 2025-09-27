@@ -6,6 +6,7 @@
 import subprocess
 import sys
 import json
+import os
 from pathlib import Path
 
 def generate_missing_contexts():
@@ -75,27 +76,31 @@ def generate_missing_contexts():
                 
                 # Générer le contexte avec contextmaker via Python (fonctionne partout)
                 try:
-                    # Configurer l'environnement pour jupytext
-                    import os
-                    os.environ['PATH'] = '/Library/Frameworks/Python.framework/Versions/3.12/bin:' + os.environ.get('PATH', '')
+                    # Générer dans temp/contexts/ d'abord
+                    temp_contexts_dir = Path(__file__).parent.parent.parent / "temp" / "contexts"
+                    temp_contexts_dir.mkdir(parents=True, exist_ok=True)
                     
-                    # Utiliser contextmaker via Python (fonctionne en local et Docker)
-                    from contextmaker import make
+                    # Utiliser contextmaker en ligne de commande (comme pour skyfield)
+                    result = subprocess.run([
+                        'contextmaker', lib_name, 
+                        '--output', str(temp_contexts_dir),
+                        '--input_path', str(repo_dir),
+                        '--rough'
+                    ], capture_output=True, text=True, timeout=300, 
+                    env={**os.environ, 'PATH': '/Library/Frameworks/Python.framework/Versions/3.12/bin:' + os.environ.get('PATH', '')})
                     
-                    result = make(
-                        library_name=lib_name,
-                        input_path=str(repo_dir),
-                        output_path=str(context_path),
-                        rough=True
-                    )
+                    # Chercher le fichier généré dans temp/contexts/
+                    generated_file = temp_contexts_dir / f"{lib_name}.txt"
                     
-                    # Vérifier si le fichier a été généré
-                    if context_path.exists():
-                        result = type('Result', (), {'returncode': 0})()
+                    if result.returncode == 0 and generated_file.exists():
+                        # Copier le fichier vers le domaine final
+                        generated_file.rename(context_path)
+                        success = True
                     else:
-                        result = type('Result', (), {'returncode': 1, 'stderr': 'File not created'})()
+                        success = False
+                        print(f"❌ Échec contextmaker pour {lib_name}: {result.stderr}")
                     
-                    if result.returncode == 0 and context_path.exists():
+                    if success and context_path.exists():
                         # Mettre à jour les métadonnées
                         lib['hasContextFile'] = True
                         lib['contextFileName'] = context_file_name
