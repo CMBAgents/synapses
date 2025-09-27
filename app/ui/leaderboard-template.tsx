@@ -38,9 +38,9 @@ function LeaderboardTemplateContent({ domain }: LeaderboardTemplateProps) {
   const getDomainDescription = () => {
     const domainDescriptions: Record<string, string> = {
       'astronomy': 'Top 100 starred library in astrophysics and cosmology',
-      'finance': 'Top 100 starred library in finance and trading',
-      'biochemistry': 'Top 100 starred library in biochemistry and bioinformatics',
-      'machinelearning': 'Top 100 starred library in machine learning and artificial intelligence',
+      'finance': 'Top 50 starred library in finance and trading',
+      'biochemistry': 'Top 50 starred library in biochemistry and bioinformatics',
+      'machinelearning': 'Top 50 starred library in machine learning and artificial intelligence',
       'computer-science': 'Top libraries in computer science'
     };
     return domainDescriptions[domain] || 'Top libraries';

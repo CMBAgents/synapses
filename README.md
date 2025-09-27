@@ -1,6 +1,6 @@
 # Synapses
 
-A modern platform to explore and rank the top 100 open source libraries by expertise domain.
+A modern platform to explore and rank the top open source libraries by expertise domain (Top 100 for Astronomy, Top 50 for other domains).
 
 [![GitHub license](https://img.shields.io/github/license/CMBAgents/cmbagent-info)](https://github.com/CMBAgents/cmbagent-info/blob/main/LICENSE)
 
