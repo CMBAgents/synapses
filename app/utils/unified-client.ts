@@ -7,6 +7,7 @@ import { writeFileSync, unlinkSync } from 'fs';
 import { join } from 'path';
 import { randomBytes } from 'crypto';
 import { tmpdir } from 'os';
+import { getBestProvider, recordProviderResult, initializeProviderHealth } from './provider-health';
 
 // Provider configuration interface
 interface ProviderConfig {
@@ -133,30 +134,10 @@ export async function createClient(modelId?: string, credentials?: Record<string
   // Parse the model ID to get the provider and model name
   const { provider, modelName } = parseModelId(modelIdToUse);
 
-  // Determine the target provider configuration based on flags and availability
-  let targetProviderKey: keyof typeof PROVIDER_CONFIGS = 'openrouter'; // Default to OpenRouter
-
-  if (provider === 'openai' && config.useDirectOpenAIKey) {
-    targetProviderKey = 'openai';
-  } else if (provider === 'gemini' && config.useDirectGeminiKey) {
-    targetProviderKey = 'gemini';
-  } else if (provider === 'vertexai') {
-    targetProviderKey = 'vertexai';
-  } else if (provider === 'sambanova') {
-    targetProviderKey = 'sambanova';
-  } else if (provider === 'deepseek') {
-    // DeepSeek models should always route through OpenRouter
-    targetProviderKey = 'openrouter';
-  } else if (PROVIDER_CONFIGS[provider]) {
-    // Handle cases where a known provider (like 'openrouter') is explicitly requested
-    // or when direct keys for openai/gemini are disabled/missing.
-    targetProviderKey = provider as keyof typeof PROVIDER_CONFIGS;
-    // If the provider isn't in PROVIDER_CONFIGS, targetProviderKey remains 'openrouter'
-    if (!PROVIDER_CONFIGS[targetProviderKey]) {
-        targetProviderKey = 'openrouter';
-    }
-  }
-  // For unknown providers, targetProviderKey remains 'openrouter'
+  // Use adaptive routing to determine the best provider
+  const targetProviderKey = getBestProvider(provider) as keyof typeof PROVIDER_CONFIGS;
+  
+  console.log(`Adaptive routing: requested=${provider}, selected=${targetProviderKey}`);
 
   const providerConfig = PROVIDER_CONFIGS[targetProviderKey];
   const apiKeyEnvVar = providerConfig.apiKeyEnvVar;
@@ -480,35 +461,52 @@ export async function createChatCompletion(
   options: Record<string, any> = {},
   credentials?: Record<string, Record<string, string>>
 ) {
-  // Create the client for the specified model
-  const { client, modelName, isVertexAI } = await createClient(modelId, credentials);
+  const startTime = Date.now();
+  const { provider } = modelId ? parseModelId(modelId) : { provider: 'unknown' };
+  
+  try {
+    // Create the client for the specified model
+    const { client, modelName, isVertexAI } = await createClient(modelId, credentials);
 
-  // Handle Vertex AI separately
-  if (isVertexAI) {
-    return createVertexAIChatCompletion(modelName, messages, options, credentials, modelId);
+    // Handle Vertex AI separately
+    if (isVertexAI) {
+      const result = await createVertexAIChatCompletion(modelName, messages, options, credentials, modelId);
+      const responseTime = Date.now() - startTime;
+      recordProviderResult(provider, true, responseTime);
+      return result;
+    }
+
+    // Get the model options from the configuration
+    const modelOptions = getModelOptions(modelId);
+
+    // Merge the model options with the provided options
+    const completionOptions: any = {
+      model: modelName,
+      messages,
+      ...modelOptions,
+      ...options
+    };
+
+    // Log the final options for debugging
+    console.log(`Creating chat completion for ${modelName} with options:`, completionOptions);
+
+    // Ensure client exists before using it
+    if (!client) {
+      throw new Error('Client not available for chat completion');
+    }
+
+    // Create the completion
+    const result = await client.chat.completions.create(completionOptions);
+    const responseTime = Date.now() - startTime;
+    recordProviderResult(provider, true, responseTime);
+    return result;
+    
+  } catch (error) {
+    const responseTime = Date.now() - startTime;
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    recordProviderResult(provider, false, responseTime, errorMessage);
+    throw error;
   }
-
-  // Get the model options from the configuration
-  const modelOptions = getModelOptions(modelId);
-
-  // Merge the model options with the provided options
-  const completionOptions: any = {
-    model: modelName,
-    messages,
-    ...modelOptions,
-    ...options
-  };
-
-  // Log the final options for debugging
-  console.log(`Creating chat completion for ${modelName} with options:`, completionOptions);
-
-  // Ensure client exists before using it
-  if (!client) {
-    throw new Error('Client not available for chat completion');
-  }
-
-  // Create the completion
-  return client.chat.completions.create(completionOptions);
 }
 
 /**
@@ -524,39 +522,44 @@ export async function createStreamingChatCompletion(
   options: Record<string, any> = {},
   credentials?: Record<string, Record<string, string>>
 ) {
-  // Create the client for the specified model
-  const { client, modelName, provider, isVertexAI } = await createClient(modelId, credentials);
-
-  // Handle Vertex AI separately (note: Vertex AI streaming is more complex)
-  if (isVertexAI) {
-    // For now, return a non-streaming response wrapped in a stream-like format
-    const response = await createVertexAIChatCompletion(modelName, messages, options, credentials, modelId);
-    return {
-      ...response,
-      // Create a simple stream-like interface
-      [Symbol.asyncIterator]: async function* () {
-        yield response;
-      }
-    };
-  }
-
-  // Get the model options from the configuration
-  const modelOptions = getModelOptions(modelId);
-
-  // Merge the model options with the provided options and ensure streaming is enabled
-  const completionOptions: any = {
-    model: modelName,
-    messages,
-    ...modelOptions,
-    ...options,
-    stream: true
-  };
-
-  // Log the streaming request and options
-  console.log(`Creating streaming completion for ${provider}/${modelName}`);
-  console.log(`Streaming options:`, completionOptions);
-
+  const startTime = Date.now();
+  const { provider } = modelId ? parseModelId(modelId) : { provider: 'unknown' };
+  
   try {
+    // Create the client for the specified model
+    const { client, modelName, isVertexAI } = await createClient(modelId, credentials);
+
+    // Handle Vertex AI separately (note: Vertex AI streaming is more complex)
+    if (isVertexAI) {
+      // For now, return a non-streaming response wrapped in a stream-like format
+      const response = await createVertexAIChatCompletion(modelName, messages, options, credentials, modelId);
+      const responseTime = Date.now() - startTime;
+      recordProviderResult(provider, true, responseTime);
+      return {
+        ...response,
+        // Create a simple stream-like interface
+        [Symbol.asyncIterator]: async function* () {
+          yield response;
+        }
+      };
+    }
+
+    // Get the model options from the configuration
+    const modelOptions = getModelOptions(modelId);
+
+    // Merge the model options with the provided options and ensure streaming is enabled
+    const completionOptions: any = {
+      model: modelName,
+      messages,
+      ...modelOptions,
+      ...options,
+      stream: true
+    };
+
+    // Log the streaming request and options
+    console.log(`Creating streaming completion for ${provider}/${modelName}`);
+    console.log(`Streaming options:`, completionOptions);
+
     // Ensure client exists before using it
     if (!client) {
       throw new Error('Client not available for streaming completion');
@@ -565,8 +568,16 @@ export async function createStreamingChatCompletion(
     // Create the streaming completion
     const stream = await client.chat.completions.create(completionOptions);
     console.log('Stream created successfully');
+    
+    // Record successful stream creation
+    const responseTime = Date.now() - startTime;
+    recordProviderResult(provider, true, responseTime);
+    
     return stream;
   } catch (error) {
+    const responseTime = Date.now() - startTime;
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    recordProviderResult(provider, false, responseTime, errorMessage);
     console.error('Error creating streaming completion:', error);
     throw error;
   }

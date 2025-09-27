@@ -3,9 +3,17 @@ import { loadContext, getSystemPromptWithContext } from '@/app/utils/context';
 import { getProgramById, loadConfig } from '@/app/utils/config';
 import { createChatCompletion, createStreamingChatCompletion, logTokenUsage } from '@/app/utils/unified-client';
 import { credentialRateLimiter, sanitizeLogData } from '@/app/utils/security';
+import { initializeProviderHealth } from '@/app/utils/provider-health';
 
 // This enables Node.js runtime for Google Cloud compatibility
 export const runtime = "nodejs";
+
+// Initialize provider health monitoring on first load
+let healthInitialized = false;
+if (!healthInitialized) {
+  initializeProviderHealth();
+  healthInitialized = true;
+}
 
 export async function POST(request: NextRequest) {
   try {
