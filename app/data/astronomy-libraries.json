@@ -133,8 +133,8 @@
       "github_url": "https://github.com/spacetelescope/poppy",
       "stars": 250,
       "rank": 17,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "spacetelescope-poppy-context.txt"
     },
     {
       "name": "minaskar/zeus",

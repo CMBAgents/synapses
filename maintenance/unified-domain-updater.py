@@ -66,7 +66,7 @@ class DomainConfig:
     keywords: List[str]
     specific_libs: List[str]
     use_ascl: bool
-    max_libraries: int = 100
+    max_libraries: int = 50
     forbidden_libs: List[str] = None  # Librairies à ignorer lors de la génération
 
 class GitHubAPIClient:
@@ -229,7 +229,7 @@ class UnifiedDomainUpdater:
                 keywords=['biochemistry', 'bioinformatics', 'molecular dynamics', 'drug discovery', 'computational biology', 'biopython', 'mdanalysis', 'openmm', 'rdkit', 'gromacs'],
                 specific_libs=[],
                 use_ascl=False,
-                max_libraries=10,
+                max_libraries=50,
                 forbidden_libs=[]
             ),
             'finance': DomainConfig(
@@ -239,7 +239,7 @@ class UnifiedDomainUpdater:
                 keywords=['finance', 'trading', 'portfolio', 'quantitative', 'zipline', 'yfinance', 'pyfolio', 'empyrical', 'alphalens'],
                 specific_libs=[],
                 use_ascl=False,
-                max_libraries=10,
+                max_libraries=50,
                 forbidden_libs=['mlfinlab/mlfinlab', 'ranaroussi/yfinance']
             ),
             'machinelearning': DomainConfig(
@@ -249,7 +249,7 @@ class UnifiedDomainUpdater:
                 keywords=['machine learning', 'deep learning', 'artificial intelligence', 'neural networks', 'data science', 'pytorch', 'tensorflow', 'scikit-learn', 'keras', 'transformers'],
                 specific_libs=[],
                 use_ascl=False,
-                max_libraries=10,
+                max_libraries=50,
                 forbidden_libs=['numpy/numpy', 'scipy/scipy']
             )
         }
@@ -305,7 +305,7 @@ class UnifiedDomainUpdater:
                 keywords={keywords},
                 specific_libs={specific_libs},
                 use_ascl={use_ascl},
-                max_libraries=10
+                max_libraries=50
             ),"""
         
         # Trouver la fin de la section domains et insérer la nouvelle configuration
@@ -395,7 +395,7 @@ class UnifiedDomainUpdater:
             keywords=keywords,
             specific_libs=specific_libs,
             use_ascl=use_ascl,
-            max_libraries=10
+            max_libraries=50
         )
     
     def _generate_domain_routes(self):
