@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         
         console.log(`Running contextmaker for ${packageName} from ${tempDir}`);
         
-        const { stdout, stderr } = await execAsync(`contextmaker ${packageName} --output "${outputPath}" --input-path "${tempDir}" --rough`, {
+        const { stdout, stderr } = await execAsync(`PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH" contextmaker ${packageName} --output "${outputPath}" --input-path "${tempDir}" --rough`, {
           timeout: 300000 // 5 minutes timeout
         });
         

@@ -75,6 +75,10 @@ def generate_missing_contexts():
                 
                 # Générer le contexte avec contextmaker via Python (fonctionne partout)
                 try:
+                    # Configurer l'environnement pour jupytext
+                    import os
+                    os.environ['PATH'] = '/Library/Frameworks/Python.framework/Versions/3.12/bin:' + os.environ.get('PATH', '')
+                    
                     # Utiliser contextmaker via Python (fonctionne en local et Docker)
                     from contextmaker import make
                     
