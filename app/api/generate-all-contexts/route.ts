@@ -59,7 +59,8 @@ export async function POST(request: NextRequest) {
       const libraryName = library.name;
       const packageName = libraryName.split('/').pop();
       const contextFileName = `${packageName}-context.txt`;
-      const outputPath = path.join(contextDir, contextFileName);
+      const finalOutputPath = path.join(contextDir, contextFileName);
+      const tempContextsDir = path.join(process.cwd(), 'temp', 'contexts');
 
       // Skip if context file already exists
       if (existingContextFiles.includes(contextFileName)) {
@@ -86,9 +87,18 @@ export async function POST(request: NextRequest) {
           }
           
           // Run contextmaker using command line with --output
-          console.log(`Running contextmaker for ${packageName} from ${tempDir}`);
+          const tempOutputDir = path.join(tempContextsDir, `${packageName}-temp`);
           
-          const { stdout, stderr } = await execAsync(`PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH" contextmaker ${packageName} --output "${outputPath}" --input-path "${tempDir}" --rough`, {
+          // Ensure the temp contexts directory exists
+          if (!fs.existsSync(tempContextsDir)) {
+            fs.mkdirSync(tempContextsDir, { recursive: true });
+          }
+          
+          console.log(`Running contextmaker for ${packageName} from ${tempDir}`);
+          console.log(`Temporary output dir: ${tempOutputDir}`);
+          console.log(`Final output: ${finalOutputPath}`);
+          
+          const { stdout, stderr } = await execAsync(`PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH" contextmaker ${packageName} --output "${tempOutputDir}" --input-path "${tempDir}" --rough`, {
             timeout: 300000 // 5 minutes timeout
           });
           
@@ -96,9 +106,16 @@ export async function POST(request: NextRequest) {
             console.warn(`contextmaker stderr for ${libraryName}: ${stderr}`);
           }
           
-          // Check if file was created
-          if (fs.existsSync(outputPath)) {
+          // Check if file was created and move it to final location
+          const generatedFile = path.join(tempOutputDir, `${packageName}.txt`);
+          if (fs.existsSync(generatedFile)) {
+            // Move the file to the final location
+            fs.copyFileSync(generatedFile, finalOutputPath);
             console.log(`✅ ${libraryName}: Context file generated successfully`);
+            
+            // Clean up temporary directory
+            fs.rmSync(tempOutputDir, { recursive: true, force: true });
+            
             results.generated++;
             
             // Update the library entry

@@ -17,6 +17,14 @@ def cleanup_temp_repos():
         temp_dir.mkdir(parents=True, exist_ok=True)
         print("✅ Repositories temporaires nettoyés")
 
+def cleanup_temp_contexts():
+    """Nettoie les contextes temporaires"""
+    temp_contexts_dir = Path(__file__).parent.parent.parent / "temp" / "contexts"
+    if temp_contexts_dir.exists():
+        shutil.rmtree(temp_contexts_dir)
+        temp_contexts_dir.mkdir(parents=True, exist_ok=True)
+        print("✅ Contextes temporaires nettoyés")
+
 def cleanup_old_logs():
     """Nettoie les anciens logs (garder seulement 7 jours)"""
     logs_dir = Path(__file__).parent.parent.parent / "logs"
@@ -132,6 +140,9 @@ def main():
     try:
         # Nettoyer les repositories temporaires
         cleanup_temp_repos()
+        
+        # Nettoyer les contextes temporaires
+        cleanup_temp_contexts()
         
         # Nettoyer les logs anciens
         cleanup_old_logs()
