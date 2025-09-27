@@ -1,805 +1,588 @@
 {
   "libraries": [
     {
-      "name": "skyfielders/python-skyfield",
-      "github_url": "https://github.com/skyfielders/python-skyfield",
-      "stars": 1600,
+      "name": "astropy/astropy",
+      "github_url": "https://github.com/astropy/astropy",
+      "stars": 4843,
       "rank": 1,
       "hasContextFile": true,
-      "contextFileName": "skyfielders-python-skyfield-context.txt"
+      "contextFileName": "astropy-astropy-context.txt"
+    },
+    {
+      "name": "fastmonkeys/stellar",
+      "github_url": "https://github.com/fastmonkeys/stellar",
+      "stars": 3858,
+      "rank": 2,
+      "hasContextFile": true,
+      "contextFileName": "fastmonkeys-stellar-context.txt"
+    },
+    {
+      "name": "stellargraph/stellargraph",
+      "github_url": "https://github.com/stellargraph/stellargraph",
+      "stars": 3026,
+      "rank": 3,
+      "hasContextFile": true,
+      "contextFileName": "stellargraph-context.txt"
+    },
+    {
+      "name": "galaxyproject/galaxy",
+      "github_url": "https://github.com/galaxyproject/galaxy",
+      "stars": 1612,
+      "rank": 4,
+      "hasContextFile": true,
+      "contextFileName": "galaxy-context.txt"
+    },
+    {
+      "name": "gogcom/galaxy-integrations-python-api",
+      "github_url": "https://github.com/gogcom/galaxy-integrations-python-api",
+      "stars": 1305,
+      "rank": 5,
+      "hasContextFile": true,
+      "contextFileName": "galaxy-integrations-python-api-context.txt"
+    },
+    {
+      "name": "ansible/galaxy",
+      "github_url": "https://github.com/ansible/galaxy",
+      "stars": 868,
+      "rank": 6,
+      "hasContextFile": true,
+      "contextFileName": "galaxy-context.txt"
     },
     {
       "name": "dstndstn/astrometry.net",
       "github_url": "https://github.com/dstndstn/astrometry.net",
-      "stars": 761,
-      "rank": 2,
+      "stars": 763,
+      "rank": 7,
       "hasContextFile": true,
       "contextFileName": "dstndstn-astrometry-net-context.txt"
     },
     {
       "name": "astropy/astroquery",
       "github_url": "https://github.com/astropy/astroquery",
-      "stars": 746,
-      "rank": 3,
+      "stars": 747,
+      "rank": 8,
       "hasContextFile": true,
       "contextFileName": "astropy-astroquery-context.txt"
     },
     {
       "name": "einsteinpy/einsteinpy",
       "github_url": "https://github.com/einsteinpy/einsteinpy",
-      "stars": 660,
-      "rank": 4,
+      "stars": 662,
+      "rank": 9,
       "hasContextFile": true,
       "contextFileName": "einsteinpy-einsteinpy-context.txt"
+    },
+    {
+      "name": "wx-chevalier/Awesome-Lists-and-CheatSheets",
+      "github_url": "https://github.com/wx-chevalier/Awesome-Lists-and-CheatSheets",
+      "stars": 654,
+      "rank": 10,
+      "hasContextFile": false
+    },
+    {
+      "name": "seuyh/stellaris-dlc-unlocker",
+      "github_url": "https://github.com/seuyh/stellaris-dlc-unlocker",
+      "stars": 606,
+      "rank": 11,
+      "hasContextFile": true,
+      "contextFileName": "stellaris-dlc-unlocker-context.txt"
+    },
+    {
+      "name": "MISP/misp-galaxy",
+      "github_url": "https://github.com/MISP/misp-galaxy",
+      "stars": 583,
+      "rank": 12,
+      "hasContextFile": true,
+      "contextFileName": "misp-galaxy-context.txt"
+    },
+    {
+      "name": "benanne/kaggle-galaxies",
+      "github_url": "https://github.com/benanne/kaggle-galaxies",
+      "stars": 497,
+      "rank": 13,
+      "hasContextFile": true,
+      "contextFileName": "kaggle-galaxies-context.txt"
+    },
+    {
+      "name": "kalanakt/All-Url-Uploader",
+      "github_url": "https://github.com/kalanakt/All-Url-Uploader",
+      "stars": 464,
+      "rank": 14,
+      "hasContextFile": true,
+      "contextFileName": "All-Url-Uploader-context.txt"
     },
     {
       "name": "lightkurve/lightkurve",
       "github_url": "https://github.com/lightkurve/lightkurve",
       "stars": 464,
-      "rank": 5,
+      "rank": 14,
       "hasContextFile": true,
       "contextFileName": "lightkurve-lightkurve-context.txt"
     },
     {
+      "name": "Ryuk-me/Torrent-Api-py",
+      "github_url": "https://github.com/Ryuk-me/Torrent-Api-py",
+      "stars": 380,
+      "rank": 16,
+      "hasContextFile": true,
+      "contextFileName": "Torrent-Api-py-context.txt"
+    },
+    {
       "name": "gwpy/gwpy",
       "github_url": "https://github.com/gwpy/gwpy",
-      "stars": 376,
-      "rank": 6,
+      "stars": 375,
+      "rank": 17,
       "hasContextFile": true,
       "contextFileName": "gwpy-gwpy-context.txt"
     },
     {
-      "name": "gwastro/pycbc",
-      "github_url": "https://github.com/gwastro/pycbc",
-      "stars": 355,
-      "rank": 7,
+      "name": "StellarCN/py-stellar-base",
+      "github_url": "https://github.com/StellarCN/py-stellar-base",
+      "stars": 367,
+      "rank": 18,
       "hasContextFile": true,
-      "contextFileName": "gwastro-pycbc-context.txt"
+      "contextFileName": "py-stellar-base-context.txt"
     },
     {
-      "name": "amrex-astro/castro",
-      "github_url": "https://github.com/amrex-astro/castro",
-      "stars": 320,
-      "rank": 8,
+      "name": "Rall3n/galaxy-integration-amazon",
+      "github_url": "https://github.com/Rall3n/galaxy-integration-amazon",
+      "stars": 340,
+      "rank": 19,
       "hasContextFile": true,
-      "contextFileName": "amrex-astro-castro-context.txt"
+      "contextFileName": "galaxy-integration-amazon-context.txt"
+    },
+    {
+      "name": "kewlfft/ansible-aur",
+      "github_url": "https://github.com/kewlfft/ansible-aur",
+      "stars": 319,
+      "rank": 20,
+      "hasContextFile": true,
+      "contextFileName": "ansible-aur-context.txt"
     },
     {
       "name": "healpy/healpy",
       "github_url": "https://github.com/healpy/healpy",
-      "stars": 287,
-      "rank": 9,
+      "stars": 288,
+      "rank": 21,
       "hasContextFile": true,
       "contextFileName": "healpy-healpy-context.txt"
     },
     {
       "name": "astropy/photutils",
       "github_url": "https://github.com/astropy/photutils",
-      "stars": 283,
-      "rank": 10,
+      "stars": 284,
+      "rank": 22,
       "hasContextFile": true,
       "contextFileName": "astropy-photutils-context.txt"
     },
     {
-      "name": "lesgourg/class_public",
-      "github_url": "https://github.com/lesgourg/class_public",
-      "stars": 276,
-      "rank": 11,
-      "hasContextFile": true,
-      "contextFileName": "lesgourg-class-public-context.txt"
-    },
-    {
-      "name": "spacepy/spacepy",
-      "github_url": "https://github.com/spacepy/spacepy",
-      "stars": 256,
-      "rank": 12,
-      "hasContextFile": true,
-      "contextFileName": "spacepy-spacepy-context.txt"
-    },
-    {
-      "name": "scottransom/presto",
-      "github_url": "https://github.com/scottransom/presto",
-      "stars": 257,
-      "rank": 13,
-      "hasContextFile": true,
-      "contextFileName": "scottransom-presto-context.txt"
-    },
-    {
-      "name": "galsim-developers/galsim",
-      "github_url": "https://github.com/galsim-developers/galsim",
-      "stars": 249,
-      "rank": 14,
-      "hasContextFile": true,
-      "contextFileName": "galsim-developers-galsim-context.txt"
-    },
-    {
-      "name": "jobovy/galpy",
-      "github_url": "https://github.com/jobovy/galpy",
-      "stars": 247,
-      "rank": 15,
-      "hasContextFile": true,
-      "contextFileName": "jobovy-galpy-context.txt"
-    },
-    {
-      "name": "radis/radis",
-      "github_url": "https://github.com/radis/radis",
-      "stars": 248,
-      "rank": 16,
-      "hasContextFile": true,
-      "contextFileName": "radis-radis-context.txt"
-    },
-    {
-      "name": "spacetelescope/poppy",
-      "github_url": "https://github.com/spacetelescope/poppy",
-      "stars": 250,
-      "rank": 17,
-      "hasContextFile": true,
-      "contextFileName": "spacetelescope-poppy-context.txt"
-    },
-    {
-      "name": "minaskar/zeus",
-      "github_url": "https://github.com/minaskar/zeus",
-      "stars": 239,
-      "rank": 18,
-      "hasContextFile": true,
-      "contextFileName": "minaskar-zeus-context.txt"
-    },
-    {
-      "name": "cmbant/camb",
-      "github_url": "https://github.com/cmbant/camb",
-      "stars": 231,
-      "rank": 19,
-      "hasContextFile": true,
-      "contextFileName": "cmbant-camb-context.txt"
-    },
-    {
-      "name": "tardis-sn/tardis",
-      "github_url": "https://github.com/tardis-sn/tardis",
-      "stars": 224,
-      "rank": 20,
-      "hasContextFile": true,
-      "contextFileName": "tardis-sn-tardis-context.txt"
-    },
-    {
-      "name": "astropy/astroplan",
-      "github_url": "https://github.com/astropy/astroplan",
-      "stars": 210,
-      "rank": 21,
-      "hasContextFile": true,
-      "contextFileName": "astropy-astroplan-context.txt"
-    },
-    {
-      "name": "johannesbuchner/pymultinest",
-      "github_url": "https://github.com/johannesbuchner/pymultinest",
-      "stars": 207,
-      "rank": 22,
-      "hasContextFile": true,
-      "contextFileName": "johannesbuchner-pymultinest-context.txt"
-    },
-    {
-      "name": "henrysky/astronn",
-      "github_url": "https://github.com/henrysky/astronn",
-      "stars": 204,
+      "name": "Slashbunny/gog-galaxy-plugin-downloader",
+      "github_url": "https://github.com/Slashbunny/gog-galaxy-plugin-downloader",
+      "stars": 280,
       "rank": 23,
       "hasContextFile": true,
-      "contextFileName": "henrysky-astronn-context.txt"
+      "contextFileName": "gog-galaxy-plugin-downloader-context.txt"
     },
     {
-      "name": "sep-developers/sep",
-      "github_url": "https://github.com/sep-developers/sep",
-      "stars": 201,
-      "rank": 23,
+      "name": "ansible/galaxy_ng",
+      "github_url": "https://github.com/ansible/galaxy_ng",
+      "stars": 266,
+      "rank": 24,
       "hasContextFile": true,
-      "contextFileName": "sep-developers-sep-context.txt"
+      "contextFileName": "galaxy_ng-context.txt"
     },
     {
-      "name": "astro-informatics/s2fft",
-      "github_url": "https://github.com/astro-informatics/s2fft",
-      "stars": 205,
+      "name": "deeptools/HiCExplorer",
+      "github_url": "https://github.com/deeptools/HiCExplorer",
+      "stars": 255,
       "rank": 25,
       "hasContextFile": true,
-      "contextFileName": "astro-informatics-s2fft-context.txt"
+      "contextFileName": "HiCExplorer-context.txt"
     },
     {
-      "name": "stingraysoftware/stingray",
-      "github_url": "https://github.com/stingraysoftware/stingray",
-      "stars": 203,
-      "rank": 25,
+      "name": "GalaxyLearning/GFL",
+      "github_url": "https://github.com/GalaxyLearning/GFL",
+      "stars": 253,
+      "rank": 26,
       "hasContextFile": true,
-      "contextFileName": "stingraysoftware-stingray-context.txt"
+      "contextFileName": "GFL-context.txt"
     },
     {
-      "name": "johannesbuchner/ultranest",
-      "github_url": "https://github.com/johannesbuchner/ultranest",
-      "stars": 189,
+      "name": "Comsecuris/shannonRE",
+      "github_url": "https://github.com/Comsecuris/shannonRE",
+      "stars": 251,
       "rank": 27,
       "hasContextFile": true,
-      "contextFileName": "johannesbuchner-ultranest-context.txt"
+      "contextFileName": "shannonRE-context.txt"
     },
     {
-      "name": "astropy/specutils",
-      "github_url": "https://github.com/astropy/specutils",
-      "stars": 191,
+      "name": "GalSim-developers/GalSim",
+      "github_url": "https://github.com/GalSim-developers/GalSim",
+      "stars": 250,
       "rank": 28,
       "hasContextFile": true,
-      "contextFileName": "astropy-specutils-context.txt"
+      "contextFileName": "GalSim-context.txt"
     },
     {
-      "name": "mperrin/poppy",
-      "github_url": "https://github.com/mperrin/poppy",
-      "stars": 184,
+      "name": "AMD-AGI/Instella",
+      "github_url": "https://github.com/AMD-AGI/Instella",
+      "stars": 247,
       "rank": 29,
       "hasContextFile": true,
-      "contextFileName": "mperrin-poppy-context.txt"
+      "contextFileName": "Instella-context.txt"
     },
     {
-      "name": "pypeit/pypeit",
-      "github_url": "https://github.com/pypeit/pypeit",
-      "stars": 185,
+      "name": "cmbant/CAMB",
+      "github_url": "https://github.com/cmbant/CAMB",
+      "stars": 232,
       "rank": 30,
       "hasContextFile": true,
-      "contextFileName": "pypeit-pypeit-context.txt"
+      "contextFileName": "CAMB-context.txt"
     },
     {
-      "name": "sczesla/pyastronomy",
-      "github_url": "https://github.com/sczesla/pyastronomy",
-      "stars": 167,
+      "name": "tauqua/gog-galaxy-itch.io",
+      "github_url": "https://github.com/tauqua/gog-galaxy-itch.io",
+      "stars": 226,
       "rank": 31,
       "hasContextFile": true,
-      "contextFileName": "sczesla-pyastronomy-context.txt"
+      "contextFileName": "gog-galaxy-itch.io-context.txt"
+    },
+    {
+      "name": "ChartGalaxy/ChartGalaxy",
+      "github_url": "https://github.com/ChartGalaxy/ChartGalaxy",
+      "stars": 220,
+      "rank": 32,
+      "hasContextFile": true,
+      "contextFileName": "ChartGalaxy-context.txt"
+    },
+    {
+      "name": "UncleGoogle/galaxy-integration-humblebundle",
+      "github_url": "https://github.com/UncleGoogle/galaxy-integration-humblebundle",
+      "stars": 192,
+      "rank": 33,
+      "hasContextFile": true,
+      "contextFileName": "galaxy-integration-humblebundle-context.txt"
+    },
+    {
+      "name": "rhnvrm/galaxy-image-classifier-tensorflow",
+      "github_url": "https://github.com/rhnvrm/galaxy-image-classifier-tensorflow",
+      "stars": 185,
+      "rank": 34,
+      "hasContextFile": true,
+      "contextFileName": "galaxy-image-classifier-tensorflow-context.txt"
+    },
+    {
+      "name": "Jammy2211/PyAutoLens",
+      "github_url": "https://github.com/Jammy2211/PyAutoLens",
+      "stars": 176,
+      "rank": 35,
+      "hasContextFile": true,
+      "contextFileName": "PyAutoLens-context.txt"
+    },
+    {
+      "name": "bd-j/prospector",
+      "github_url": "https://github.com/bd-j/prospector",
+      "stars": 172,
+      "rank": 36,
+      "hasContextFile": true,
+      "contextFileName": "prospector-context.txt"
     },
     {
       "name": "cmbant/getdist",
       "github_url": "https://github.com/cmbant/getdist",
       "stars": 166,
-      "rank": 32,
+      "rank": 37,
       "hasContextFile": true,
-      "contextFileName": "cmbant-getdist-context.txt"
+      "contextFileName": "getdist-context.txt"
     },
     {
-      "name": "quatrope/astroalign",
-      "github_url": "https://github.com/quatrope/astroalign",
-      "stars": 153,
-      "rank": 33,
+      "name": "AB1908/GOG-Galaxy-Export-Script",
+      "github_url": "https://github.com/AB1908/GOG-Galaxy-Export-Script",
+      "stars": 164,
+      "rank": 38,
       "hasContextFile": true,
-      "contextFileName": "quatrope-astroalign-context.txt"
+      "contextFileName": "GOG-Galaxy-Export-Script-context.txt"
+    },
+    {
+      "name": "nextcloud/ansible-collection-nextcloud-admin",
+      "github_url": "https://github.com/nextcloud/ansible-collection-nextcloud-admin",
+      "stars": 154,
+      "rank": 39,
+      "hasContextFile": true,
+      "contextFileName": "ansible-collection-nextcloud-admin-context.txt"
+    },
+    {
+      "name": "danderfer/Comp_Sci_Sem_2",
+      "github_url": "https://github.com/danderfer/Comp_Sci_Sem_2",
+      "stars": 154,
+      "rank": 39,
+      "hasContextFile": true,
+      "contextFileName": "Comp_Sci_Sem_2-context.txt"
     },
     {
       "name": "CobayaSampler/cobaya",
       "github_url": "https://github.com/CobayaSampler/cobaya",
-      "stars": 153,
-      "rank": 34,
+      "stars": 152,
+      "rank": 41,
       "hasContextFile": true,
       "contextFileName": "CobayaSampler-cobaya-context.txt"
     },
     {
-      "name": "polymathicai/astroclip",
-      "github_url": "https://github.com/polymathicai/astroclip",
-      "stars": 149,
-      "rank": 35,
-      "hasContextFile": true,
-      "contextFileName": "polymathicai-astroclip-context.txt"
-    },
-    {
-      "name": "adrn/gala",
-      "github_url": "https://github.com/adrn/gala",
-      "stars": 141,
-      "rank": 36,
-      "hasContextFile": true,
-      "contextFileName": "adrn-gala-context.txt"
-    },
-    {
       "name": "CMBAgents/cmbagent",
       "github_url": "https://github.com/CMBAgents/cmbagent",
-      "stars": 147,
-      "rank": 37,
+      "stars": 148,
+      "rank": 42,
       "hasContextFile": true,
       "contextFileName": "CMBAgents-cmbagent-context.txt"
     },
     {
-      "name": "deepsphere/deepsphere-cosmo-tf1",
-      "github_url": "https://github.com/deepsphere/deepsphere-cosmo-tf1",
-      "stars": 133,
-      "rank": 38,
+      "name": "coppolaemilio/Stellar",
+      "github_url": "https://github.com/coppolaemilio/Stellar",
+      "stars": 137,
+      "rank": 43,
       "hasContextFile": true,
-      "contextFileName": "deepsphere-deepsphere-cosmo-tf1-context.txt"
+      "contextFileName": "coppolaemilio-Stellar-context.txt"
     },
     {
-      "name": "skypyproject/skypy",
-      "github_url": "https://github.com/skypyproject/skypy",
-      "stars": 127,
-      "rank": 39,
+      "name": "nyash-qq/galaxy-plugin-twitch",
+      "github_url": "https://github.com/nyash-qq/galaxy-plugin-twitch",
+      "stars": 135,
+      "rank": 44,
       "hasContextFile": true,
-      "contextFileName": "skypyproject-skypy-context.txt"
+      "contextFileName": "galaxy-plugin-twitch-context.txt"
     },
     {
-      "name": "astropy/reproject",
-      "github_url": "https://github.com/astropy/reproject",
-      "stars": 117,
-      "rank": 40,
+      "name": "mirskytech/ansible-role-manager",
+      "github_url": "https://github.com/mirskytech/ansible-role-manager",
+      "stars": 134,
+      "rank": 45,
       "hasContextFile": true,
-      "contextFileName": "astropy-reproject-context.txt"
+      "contextFileName": "ansible-role-manager-context.txt"
+    },
+    {
+      "name": "eliasdoehne/stellaris-dashboard",
+      "github_url": "https://github.com/eliasdoehne/stellaris-dashboard",
+      "stars": 132,
+      "rank": 46,
+      "hasContextFile": true,
+      "contextFileName": "stellaris-dashboard-context.txt"
+    },
+    {
+      "name": "lele-blue/gog-galaxy-itch.io",
+      "github_url": "https://github.com/lele-blue/gog-galaxy-itch.io",
+      "stars": 128,
+      "rank": 47,
+      "hasContextFile": true,
+      "contextFileName": "gog-galaxy-itch.io-context.txt"
+    },
+    {
+      "name": "r0fld4nc3/Stellaris-Exe-Checksum-Patcher",
+      "github_url": "https://github.com/r0fld4nc3/Stellaris-Exe-Checksum-Patcher",
+      "stars": 123,
+      "rank": 48,
+      "hasContextFile": true,
+      "contextFileName": "Stellaris-Exe-Checksum-Patcher-context.txt"
     },
     {
       "name": "astropy/halotools",
       "github_url": "https://github.com/astropy/halotools",
-      "stars": 116,
-      "rank": 41,
+      "stars": 117,
+      "rank": 49,
       "hasContextFile": true,
       "contextFileName": "astropy-halotools-context.txt"
     },
     {
-      "name": "galacticdynamics-oxford/agama",
-      "github_url": "https://github.com/galacticdynamics-oxford/agama",
+      "name": "ansible/mazer",
+      "github_url": "https://github.com/ansible/mazer",
+      "stars": 113,
+      "rank": 50,
+      "hasContextFile": true,
+      "contextFileName": "mazer-context.txt"
+    },
+    {
+      "name": "siat-nlp/GALAXY",
+      "github_url": "https://github.com/siat-nlp/GALAXY",
       "stars": 108,
-      "rank": 42,
-      "hasContextFile": true,
-      "contextFileName": "galacticdynamics-oxford-agama-context.txt"
-    },
-    {
-      "name": "lwang-astro/petar",
-      "github_url": "https://github.com/lwang-astro/petar",
-      "stars": 102,
-      "rank": 43,
-      "hasContextFile": true,
-      "contextFileName": "lwang-astro-petar-context.txt"
-    },
-    {
-      "name": "michellelochner/astronomaly",
-      "github_url": "https://github.com/michellelochner/astronomaly",
-      "stars": 101,
-      "rank": 44,
-      "hasContextFile": true,
-      "contextFileName": "michellelochner-astronomaly-context.txt"
-    },
-    {
-      "name": "radio-astro-tools/spectral-cube",
-      "github_url": "https://github.com/radio-astro-tools/spectral-cube",
-      "stars": 102,
-      "rank": 45,
-      "hasContextFile": true,
-      "contextFileName": "radio-astro-tools-spectral-cube-context.txt"
-    },
-    {
-      "name": "amrex-astro/nyx",
-      "github_url": "https://github.com/amrex-astro/nyx",
-      "stars": 96,
-      "rank": 46,
+      "rank": 51,
       "hasContextFile": false
     },
     {
-      "name": "autostronomy/astrophot",
-      "github_url": "https://github.com/autostronomy/astrophot",
-      "stars": 97,
-      "rank": 47,
-      "hasContextFile": true,
-      "contextFileName": "autostronomy-astrophot-context.txt"
-    },
-    {
-      "name": "radioastronomysoftwaregroup/pyuvdata",
-      "github_url": "https://github.com/radioastronomysoftwaregroup/pyuvdata",
-      "stars": 91,
-      "rank": 48,
-      "hasContextFile": true,
-      "contextFileName": "radioastronomysoftwaregroup-pyuvdata-context.txt"
-    },
-    {
-      "name": "astropy/ccdproc",
-      "github_url": "https://github.com/astropy/ccdproc",
-      "stars": 91,
-      "rank": 49,
-      "hasContextFile": true,
-      "contextFileName": "astropy-ccdproc-context.txt"
-    },
-    {
-      "name": "astroml/gatspy",
-      "github_url": "https://github.com/astroml/gatspy",
-      "stars": 87,
-      "rank": 50,
-      "hasContextFile": true,
-      "contextFileName": "astroml-gatspy-context.txt"
-    },
-    {
-      "name": "astrocv/astrocv",
-      "github_url": "https://github.com/astrocv/astrocv",
-      "stars": 86,
-      "rank": 51,
-      "hasContextFile": true,
-      "contextFileName": "astrocv-astrocv-context.txt"
-    },
-    {
-      "name": "spacetelescope/astronify",
-      "github_url": "https://github.com/spacetelescope/astronify",
-      "stars": 82,
+      "name": "refinery-platform/refinery-platform",
+      "github_url": "https://github.com/refinery-platform/refinery-platform",
+      "stars": 106,
       "rank": 52,
       "hasContextFile": true,
-      "contextFileName": "spacetelescope-astronify-context.txt"
+      "contextFileName": "refinery-platform-context.txt"
     },
     {
-      "name": "astrorama/sourcextractorplusplus",
-      "github_url": "https://github.com/astrorama/sourcextractorplusplus",
-      "stars": 83,
+      "name": "stellar/django-polaris",
+      "github_url": "https://github.com/stellar/django-polaris",
+      "stars": 98,
       "rank": 53,
       "hasContextFile": true,
-      "contextFileName": "astrorama-sourcextractorplusplus-context.txt"
+      "contextFileName": "django-polaris-context.txt"
     },
     {
-      "name": "astropy/pyvo",
-      "github_url": "https://github.com/astropy/pyvo",
-      "stars": 79,
+      "name": "stellar-deprecated/docker-stellar-core",
+      "github_url": "https://github.com/stellar-deprecated/docker-stellar-core",
+      "stars": 93,
       "rank": 54,
       "hasContextFile": true,
-      "contextFileName": "astropy-pyvo-context.txt"
+      "contextFileName": "docker-stellar-core-context.txt"
     },
     {
-      "name": "astropy/astroscrappy",
-      "github_url": "https://github.com/astropy/astroscrappy",
-      "stars": 77,
+      "name": "dfm/python-fsps",
+      "github_url": "https://github.com/dfm/python-fsps",
+      "stars": 71,
       "rank": 55,
       "hasContextFile": true,
-      "contextFileName": "astropy-astroscrappy-context.txt"
+      "contextFileName": "python-fsps-context.txt"
     },
     {
-      "name": "sncosmo/sncosmo",
-      "github_url": "https://github.com/sncosmo/sncosmo",
-      "stars": 79,
-      "rank": 55,
-      "hasContextFile": true,
-      "contextFileName": "sncosmo-sncosmo-context.txt"
-    },
-    {
-      "name": "alessiospuriomancini/cosmopower",
-      "github_url": "https://github.com/alessiospuriomancini/cosmopower",
-      "stars": 75,
-      "rank": 57,
-      "hasContextFile": true,
-      "contextFileName": "alessiospuriomancini-cosmopower-context.txt"
-    },
-    {
-      "name": "astro-informatics/harmonic",
-      "github_url": "https://github.com/astro-informatics/harmonic",
+      "name": "jvines/astroARIADNE",
+      "github_url": "https://github.com/jvines/astroARIADNE",
       "stars": 69,
-      "rank": 58,
+      "rank": 56,
       "hasContextFile": true,
-      "contextFileName": "astro-informatics-harmonic-context.txt"
+      "contextFileName": "astroARIADNE-context.txt"
     },
     {
-      "name": "astropy/spisea",
-      "github_url": "https://github.com/astropy/spisea",
+      "name": "astropy/SPISEA",
+      "github_url": "https://github.com/astropy/SPISEA",
       "stars": 67,
-      "rank": 59,
-      "hasContextFile": true,
-      "contextFileName": "astropy-spisea-context.txt"
-    },
-    {
-      "name": "astroua/turbustat",
-      "github_url": "https://github.com/astroua/turbustat",
-      "stars": 68,
-      "rank": 59,
-      "hasContextFile": true,
-      "contextFileName": "astroua-turbustat-context.txt"
-    },
-    {
-      "name": "pynucastro/pynucastro",
-      "github_url": "https://github.com/pynucastro/pynucastro",
-      "stars": 63,
-      "rank": 61,
-      "hasContextFile": true,
-      "contextFileName": "pynucastro-pynucastro-context.txt"
-    },
-    {
-      "name": "artificialstellarpopulations/artpop",
-      "github_url": "https://github.com/artificialstellarpopulations/artpop",
-      "stars": 62,
-      "rank": 62,
-      "hasContextFile": true,
-      "contextFileName": "artificialstellarpopulations-artpop-context.txt"
-    },
-    {
-      "name": "cmateu/galstreams",
-      "github_url": "https://github.com/cmateu/galstreams",
-      "stars": 58,
-      "rank": 63,
-      "hasContextFile": true,
-      "contextFileName": "cmateu-galstreams-context.txt"
-    },
-    {
-      "name": "smith42/astroddpm",
-      "github_url": "https://github.com/smith42/astroddpm",
-      "stars": 57,
-      "rank": 64,
-      "hasContextFile": true,
-      "contextFileName": "smith42-astroddpm-context.txt"
-    },
-    {
-      "name": "astrosmili/smili",
-      "github_url": "https://github.com/astrosmili/smili",
-      "stars": 52,
-      "rank": 65,
-      "hasContextFile": true,
-      "contextFileName": "astrosmili-smili-context.txt"
-    },
-    {
-      "name": "lofar-astron/pybdsf",
-      "github_url": "https://github.com/lofar-astron/pybdsf",
-      "stars": 53,
-      "rank": 65,
-      "hasContextFile": true,
-      "contextFileName": "lofar-astron-pybdsf-context.txt"
-    },
-    {
-      "name": "stellar-group/octotiger",
-      "github_url": "https://github.com/stellar-group/octotiger",
-      "stars": 53,
-      "rank": 65,
-      "hasContextFile": true,
-      "contextFileName": "stellar-group-octotiger-context.txt"
+      "rank": 57,
+      "hasContextFile": false
     },
     {
       "name": "simonsobs/pixell",
       "github_url": "https://github.com/simonsobs/pixell",
-      "stars": 52,
-      "rank": 68,
+      "stars": 53,
+      "rank": 58,
       "hasContextFile": true,
       "contextFileName": "simonsobs-pixell-context.txt"
     },
     {
-      "name": "quokka-astro/quokka",
-      "github_url": "https://github.com/quokka-astro/quokka",
-      "stars": 57,
-      "rank": 69,
+      "name": "stellarmesh/stellarmesh",
+      "github_url": "https://github.com/stellarmesh/stellarmesh",
+      "stars": 51,
+      "rank": 59,
       "hasContextFile": true,
-      "contextFileName": "quokka-astro-quokka-context.txt"
+      "contextFileName": "stellarmesh-context.txt"
     },
     {
-      "name": "dartoon/galight",
-      "github_url": "https://github.com/dartoon/galight",
-      "stars": 49,
-      "rank": 70,
+      "name": "Gosewinckel/Stellar_Gravity_Simulation",
+      "github_url": "https://github.com/Gosewinckel/Stellar_Gravity_Simulation",
+      "stars": 45,
+      "rank": 60,
       "hasContextFile": true,
-      "contextFileName": "dartoon-galight-context.txt"
+      "contextFileName": "Stellar_Gravity_Simulation-context.txt"
     },
     {
-      "name": "threeml/astromodels",
-      "github_url": "https://github.com/threeml/astromodels",
-      "stars": 49,
-      "rank": 70,
-      "hasContextFile": true,
-      "contextFileName": "threeml-astromodels-context.txt"
-    },
-    {
-      "name": "pmelchior/skymapper",
-      "github_url": "https://github.com/pmelchior/skymapper",
-      "stars": 50,
-      "rank": 72,
-      "hasContextFile": true,
-      "contextFileName": "pmelchior-skymapper-context.txt"
-    },
-    {
-      "name": "astroaccelerateorg/astro-accelerate",
-      "github_url": "https://github.com/astroaccelerateorg/astro-accelerate",
-      "stars": 50,
-      "rank": 73,
-      "hasContextFile": true,
-      "contextFileName": "astroaccelerateorg-astro-accelerate-context.txt"
-    },
-    {
-      "name": "roban/cosmolopy",
-      "github_url": "https://github.com/roban/cosmolopy",
-      "stars": 47,
-      "rank": 74,
-      "hasContextFile": true,
-      "contextFileName": "roban-cosmolopy-context.txt"
-    },
-    {
-      "name": "sncosmo/extinction",
-      "github_url": "https://github.com/sncosmo/extinction",
-      "stars": 46,
-      "rank": 74,
-      "hasContextFile": true,
-      "contextFileName": "sncosmo-extinction-context.txt"
-    },
-    {
-      "name": "cosmostatgw/gwfast",
-      "github_url": "https://github.com/cosmostatgw/gwfast",
-      "stars": 46,
-      "rank": 76,
-      "hasContextFile": true,
-      "contextFileName": "cosmostatgw-gwfast-context.txt"
-    },
-    {
-      "name": "zoglauer/megalib",
-      "github_url": "https://github.com/zoglauer/megalib",
-      "stars": 46,
-      "rank": 76,
-      "hasContextFile": true,
-      "contextFileName": "zoglauer-megalib-context.txt"
-    },
-    {
-      "name": "cosmolattice/cosmolattice",
-      "github_url": "https://github.com/cosmolattice/cosmolattice",
+      "name": "TeamLEGWORK/LEGWORK",
+      "github_url": "https://github.com/TeamLEGWORK/LEGWORK",
       "stars": 44,
-      "rank": 78,
+      "rank": 61,
       "hasContextFile": true,
-      "contextFileName": "cosmolattice-cosmolattice-context.txt"
+      "contextFileName": "LEGWORK-context.txt"
     },
     {
-      "name": "dendrograms/astrodendro",
-      "github_url": "https://github.com/dendrograms/astrodendro",
-      "stars": 46,
-      "rank": 78,
+      "name": "annayqho/TheCannon",
+      "github_url": "https://github.com/annayqho/TheCannon",
+      "stars": 43,
+      "rank": 62,
       "hasContextFile": true,
-      "contextFileName": "dendrograms-astrodendro-context.txt"
+      "contextFileName": "TheCannon-context.txt"
     },
     {
-      "name": "hpc4cmb/toast",
-      "github_url": "https://github.com/hpc4cmb/toast",
-      "stars": 44,
-      "rank": 78,
-      "hasContextFile": true,
-      "contextFileName": "hpc4cmb-toast-context.txt"
-    },
-    {
-      "name": "numcosmo/numcosmo",
-      "github_url": "https://github.com/numcosmo/numcosmo",
-      "stars": 44,
-      "rank": 78,
-      "hasContextFile": true,
-      "contextFileName": "numcosmo-numcosmo-context.txt"
-    },
-    {
-      "name": "amrex-astro/maestroex",
-      "github_url": "https://github.com/amrex-astro/maestroex",
-      "stars": 44,
-      "rank": 82,
-      "hasContextFile": false
-    },
-    {
-      "name": "punzo/slicerastro",
-      "github_url": "https://github.com/punzo/slicerastro",
-      "stars": 42,
-      "rank": 83,
-      "hasContextFile": true,
-      "contextFileName": "punzo-slicerastro-context.txt"
-    },
-    {
-      "name": "astrocatalogs/astrocats",
-      "github_url": "https://github.com/astrocatalogs/astrocats",
-      "stars": 40,
-      "rank": 84,
-      "hasContextFile": true,
-      "contextFileName": "astrocatalogs-astrocats-context.txt"
-    },
-    {
-      "name": "astromatic/swarp",
-      "github_url": "https://github.com/astromatic/swarp",
-      "stars": 40,
-      "rank": 84,
-      "hasContextFile": true,
-      "contextFileName": "astromatic-swarp-context.txt"
-    },
-    {
-      "name": "astromatic/visiomatic",
-      "github_url": "https://github.com/astromatic/visiomatic",
-      "stars": 40,
-      "rank": 84,
-      "hasContextFile": true,
-      "contextFileName": "astromatic-visiomatic-context.txt"
-    },
-    {
-      "name": "elisej/astroabc",
-      "github_url": "https://github.com/elisej/astroabc",
-      "stars": 40,
-      "rank": 84,
-      "hasContextFile": true,
-      "contextFileName": "elisej-astroabc-context.txt"
-    },
-    {
-      "name": "daniel-muthukrishna/astrodash",
-      "github_url": "https://github.com/daniel-muthukrishna/astrodash",
-      "stars": 39,
-      "rank": 88,
-      "hasContextFile": false
-    },
-    {
-      "name": "nuclear-multimessenger-astronomy/nmma",
-      "github_url": "https://github.com/nuclear-multimessenger-astronomy/nmma",
-      "stars": 40,
-      "rank": 89,
-      "hasContextFile": true,
-      "contextFileName": "nuclear-multimessenger-astronomy-nmma-context.txt"
-    },
-    {
-      "name": "clwainwright/cosmotransitions",
-      "github_url": "https://github.com/clwainwright/cosmotransitions",
-      "stars": 36,
-      "rank": 90,
-      "hasContextFile": true,
-      "contextFileName": "clwainwright-cosmotransitions-context.txt"
-    },
-    {
-      "name": "galacticusorg/galacticus",
-      "github_url": "https://github.com/galacticusorg/galacticus",
-      "stars": 37,
-      "rank": 90,
-      "hasContextFile": true,
-      "contextFileName": "galacticusorg-galacticus-context.txt"
-    },
-    {
-      "name": "yuliang419/astronet-triage",
-      "github_url": "https://github.com/yuliang419/astronet-triage",
+      "name": "stellar/stellar-etl-airflow",
+      "github_url": "https://github.com/stellar/stellar-etl-airflow",
       "stars": 38,
-      "rank": 90,
+      "rank": 63,
       "hasContextFile": true,
-      "contextFileName": "yuliang419-astronet-triage-context.txt"
+      "contextFileName": "stellar-etl-airflow-context.txt"
     },
     {
-      "name": "dsavransky/exosims",
-      "github_url": "https://github.com/dsavransky/exosims",
-      "stars": 34,
-      "rank": 93,
-      "hasContextFile": true,
-      "contextFileName": "dsavransky-exosims-context.txt"
-    },
-    {
-      "name": "smith42/astropt",
-      "github_url": "https://github.com/smith42/astropt",
+      "name": "mzechmeister/serval",
+      "github_url": "https://github.com/mzechmeister/serval",
       "stars": 37,
-      "rank": 93,
-      "hasContextFile": false,
-      "contextFileName": null
-    },
-    {
-      "name": "amrex-astro/maestro",
-      "github_url": "https://github.com/amrex-astro/maestro",
-      "stars": 33,
-      "rank": 95,
+      "rank": 64,
       "hasContextFile": true,
-      "contextFileName": "amrex-astro-maestro-context.txt"
+      "contextFileName": "serval-context.txt"
     },
     {
-      "name": "dalya/weirdestgalaxies",
-      "github_url": "https://github.com/dalya/weirdestgalaxies",
+      "name": "Stellarium/stellarium-skycultures",
+      "github_url": "https://github.com/Stellarium/stellarium-skycultures",
       "stars": 32,
-      "rank": 96,
+      "rank": 65,
       "hasContextFile": true,
-      "contextFileName": "dalya-weirdestgalaxies-context.txt"
+      "contextFileName": "stellarium-skycultures-context.txt"
     },
     {
-      "name": "mtazzari/galario",
-      "github_url": "https://github.com/mtazzari/galario",
+      "name": "POSYDON-code/POSYDON",
+      "github_url": "https://github.com/POSYDON-code/POSYDON",
       "stars": 32,
-      "rank": 96,
+      "rank": 65,
       "hasContextFile": true,
-      "contextFileName": "mtazzari-galario-context.txt"
+      "contextFileName": "POSYDON-context.txt"
     },
     {
-      "name": "cosmodesi/pycorr",
-      "github_url": "https://github.com/cosmodesi/pycorr",
-      "stars": 33,
-      "rank": 98,
+      "name": "danxhuber/isoclassify",
+      "github_url": "https://github.com/danxhuber/isoclassify",
+      "stars": 31,
+      "rank": 67,
       "hasContextFile": true,
-      "contextFileName": "cosmodesi-pycorr-context.txt"
+      "contextFileName": "isoclassify-context.txt"
     },
     {
-      "name": "lofar-astron/rmextract",
-      "github_url": "https://github.com/lofar-astron/rmextract",
-      "stars": 32,
-      "rank": 98,
+      "name": "stellarplayer/stellar-watch-tv",
+      "github_url": "https://github.com/stellarplayer/stellar-watch-tv",
+      "stars": 28,
+      "rank": 68,
       "hasContextFile": true,
-      "contextFileName": "lofar-astron-rmextract-context.txt"
+      "contextFileName": "stellar-watch-tv-context.txt"
     },
     {
-      "name": "trasal/frbpoppy",
-      "github_url": "https://github.com/trasal/frbpoppy",
-      "stars": 30,
-      "rank": 100,
+      "name": "beltoforion/stellarium-to-video",
+      "github_url": "https://github.com/beltoforion/stellarium-to-video",
+      "stars": 28,
+      "rank": 68,
       "hasContextFile": true,
-      "contextFileName": "trasal-frbpoppy-context.txt"
+      "contextFileName": "stellarium-to-video-context.txt"
+    },
+    {
+      "name": "BEAST-Fitting/beast",
+      "github_url": "https://github.com/BEAST-Fitting/beast",
+      "stars": 27,
+      "rank": 70,
+      "hasContextFile": true,
+      "contextFileName": "beast-context.txt"
+    },
+    {
+      "name": "kinecosystem/kin-sdk-python",
+      "github_url": "https://github.com/kinecosystem/kin-sdk-python",
+      "stars": 27,
+      "rank": 70,
+      "hasContextFile": true,
+      "contextFileName": "kin-sdk-python-context.txt"
+    },
+    {
+      "name": "KOSASIH/PiOpenHub",
+      "github_url": "https://github.com/KOSASIH/PiOpenHub",
+      "stars": 27,
+      "rank": 70,
+      "hasContextFile": true,
+      "contextFileName": "PiOpenHub-context.txt"
+    },
+    {
+      "name": "simplecelery/stellar-stream",
+      "github_url": "https://github.com/simplecelery/stellar-stream",
+      "stars": 25,
+      "rank": 73,
+      "hasContextFile": false
     }
   ],
   "domain": "astronomy",
-  "description": "Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis. Libraries with the same number of stars get attributed the same rank, so the list may contain more than 100 libraries while maintaining a top 100 ranking system.",
+  "description": "Top astronomy and cosmology libraries for celestial observations, gravitational waves, and cosmic microwave background analysis",
   "keywords": [
     "astronomy",
     "cosmology",
@@ -807,6 +590,19 @@
     "gravitational waves",
     "CMB",
     "healpy",
-    "astropy"
+    "astropy",
+    "pixell",
+    "galaxy",
+    "stellar",
+    "exoplanet",
+    "radio astronomy",
+    "solar",
+    "planetary",
+    "stellar evolution",
+    "black hole",
+    "neutron star",
+    "supernova",
+    "dark matter",
+    "dark energy"
   ]
 }

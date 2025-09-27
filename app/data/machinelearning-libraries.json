@@ -1,68 +1,404 @@
 {
   "libraries": [
     {
-      "name": "pytorch/pytorch",
-      "github_url": "https://github.com/pytorch/pytorch",
-      "stars": 93261,
-      "rank": 1,
-      "hasContextFile": true,
-      "contextFileName": "pytorch-pytorch-context.txt"
-    },
-    {
-      "name": "tensorflow/tensorflow",
-      "github_url": "https://github.com/tensorflow/tensorflow",
-      "stars": 191679,
-      "rank": 2,
-      "hasContextFile": true,
-      "contextFileName": "tensorflow-tensorflow-context.txt"
-    },
-    {
-      "name": "scikit-learn/scikit-learn",
-      "github_url": "https://github.com/scikit-learn/scikit-learn",
-      "stars": 63364,
-      "rank": 3,
-      "hasContextFile": true,
-      "contextFileName": "scikit-learn-scikit-learn-context.txt"
-    },
-    {
-      "name": "keras-team/keras",
-      "github_url": "https://github.com/keras-team/keras",
-      "stars": 63409,
-      "rank": 4,
-      "hasContextFile": true,
-      "contextFileName": "keras-team-keras-context.txt"
-    },
-    {
       "name": "huggingface/transformers",
       "github_url": "https://github.com/huggingface/transformers",
-      "stars": 149947,
-      "rank": 5,
+      "stars": 150353,
+      "rank": 1,
       "hasContextFile": true,
       "contextFileName": "huggingface-transformers-context.txt"
     },
     {
-      "name": "pandas-dev/pandas",
-      "github_url": "https://github.com/pandas-dev/pandas",
-      "stars": 46603,
+      "name": "fighting41love/funNLP",
+      "github_url": "https://github.com/fighting41love/funNLP",
+      "stars": 76272,
+      "rank": 2,
+      "hasContextFile": true,
+      "contextFileName": "funNLP-context.txt"
+    },
+    {
+      "name": "keras-team/keras",
+      "github_url": "https://github.com/keras-team/keras",
+      "stars": 63429,
+      "rank": 3,
+      "hasContextFile": true,
+      "contextFileName": "keras-team-keras-context.txt"
+    },
+    {
+      "name": "labmlai/annotated_deep_learning_paper_implementations",
+      "github_url": "https://github.com/labmlai/annotated_deep_learning_paper_implementations",
+      "stars": 63341,
+      "rank": 4,
+      "hasContextFile": true,
+      "contextFileName": "annotated_deep_learning_paper_implementations-context.txt"
+    },
+    {
+      "name": "hiyouga/LLaMA-Factory",
+      "github_url": "https://github.com/hiyouga/LLaMA-Factory",
+      "stars": 59416,
+      "rank": 5,
+      "hasContextFile": true,
+      "contextFileName": "LLaMA-Factory-context.txt"
+    },
+    {
+      "name": "huggingface/pytorch-image-models",
+      "github_url": "https://github.com/huggingface/pytorch-image-models",
+      "stars": 35363,
       "rank": 6,
       "hasContextFile": true,
-      "contextFileName": "pandas-dev-pandas-context.txt"
+      "contextFileName": "pytorch-image-models-context.txt"
     },
     {
-      "name": "matplotlib/matplotlib",
-      "github_url": "https://github.com/matplotlib/matplotlib",
-      "stars": 21706,
+      "name": "tqdm/tqdm",
+      "github_url": "https://github.com/tqdm/tqdm",
+      "stars": 30464,
       "rank": 7,
       "hasContextFile": true,
-      "contextFileName": "matplotlib-matplotlib-context.txt"
+      "contextFileName": "tqdm-context.txt"
     },
     {
-      "name": "seaborn/seaborn",
-      "github_url": "https://github.com/seaborn/seaborn",
-      "stars": 39,
+      "name": "donnemartin/data-science-ipython-notebooks",
+      "github_url": "https://github.com/donnemartin/data-science-ipython-notebooks",
+      "stars": 28556,
       "rank": 8,
       "hasContextFile": true,
-      "contextFileName": "seaborn-seaborn-context.txt"
+      "contextFileName": "data-science-ipython-notebooks-context.txt"
+    },
+    {
+      "name": "d2l-ai/d2l-en",
+      "github_url": "https://github.com/d2l-ai/d2l-en",
+      "stars": 26974,
+      "rank": 9,
+      "hasContextFile": true,
+      "contextFileName": "d2l-en-context.txt"
+    },
+    {
+      "name": "matterport/Mask_RCNN",
+      "github_url": "https://github.com/matterport/Mask_RCNN",
+      "stars": 25353,
+      "rank": 10,
+      "hasContextFile": true,
+      "contextFileName": "Mask_RCNN-context.txt"
+    },
+    {
+      "name": "lucidrains/vit-pytorch",
+      "github_url": "https://github.com/lucidrains/vit-pytorch",
+      "stars": 24040,
+      "rank": 11,
+      "hasContextFile": true,
+      "contextFileName": "vit-pytorch-context.txt"
+    },
+    {
+      "name": "deepset-ai/haystack",
+      "github_url": "https://github.com/deepset-ai/haystack",
+      "stars": 22794,
+      "rank": 12,
+      "hasContextFile": true,
+      "contextFileName": "haystack-context.txt"
+    },
+    {
+      "name": "karpathy/minGPT",
+      "github_url": "https://github.com/karpathy/minGPT",
+      "stars": 22635,
+      "rank": 13,
+      "hasContextFile": true,
+      "contextFileName": "minGPT-context.txt"
+    },
+    {
+      "name": "huggingface/peft",
+      "github_url": "https://github.com/huggingface/peft",
+      "stars": 19695,
+      "rank": 14,
+      "hasContextFile": true,
+      "contextFileName": "peft-context.txt"
+    },
+    {
+      "name": "onnx/onnx",
+      "github_url": "https://github.com/onnx/onnx",
+      "stars": 19652,
+      "rank": 15,
+      "hasContextFile": true,
+      "contextFileName": "onnx-context.txt"
+    },
+    {
+      "name": "UKPLab/sentence-transformers",
+      "github_url": "https://github.com/UKPLab/sentence-transformers",
+      "stars": 17600,
+      "rank": 16,
+      "hasContextFile": true,
+      "contextFileName": "sentence-transformers-context.txt"
+    },
+    {
+      "name": "sczhou/CodeFormer",
+      "github_url": "https://github.com/sczhou/CodeFormer",
+      "stars": 17515,
+      "rank": 17,
+      "hasContextFile": true,
+      "contextFileName": "CodeFormer-context.txt"
+    },
+    {
+      "name": "huggingface/trl",
+      "github_url": "https://github.com/huggingface/trl",
+      "stars": 15665,
+      "rank": 18,
+      "hasContextFile": true,
+      "contextFileName": "trl-context.txt"
+    },
+    {
+      "name": "microsoft/Swin-Transformer",
+      "github_url": "https://github.com/microsoft/Swin-Transformer",
+      "stars": 15232,
+      "rank": 19,
+      "hasContextFile": true,
+      "contextFileName": "Swin-Transformer-context.txt"
+    },
+    {
+      "name": "stas00/ml-engineering",
+      "github_url": "https://github.com/stas00/ml-engineering",
+      "stars": 15183,
+      "rank": 20,
+      "hasContextFile": true,
+      "contextFileName": "ml-engineering-context.txt"
+    },
+    {
+      "name": "facebookresearch/detr",
+      "github_url": "https://github.com/facebookresearch/detr",
+      "stars": 14725,
+      "rank": 21,
+      "hasContextFile": true,
+      "contextFileName": "detr-context.txt"
+    },
+    {
+      "name": "horovod/horovod",
+      "github_url": "https://github.com/horovod/horovod",
+      "stars": 14598,
+      "rank": 22,
+      "hasContextFile": true,
+      "contextFileName": "horovod-context.txt"
+    },
+    {
+      "name": "BlinkDL/RWKV-LM",
+      "github_url": "https://github.com/BlinkDL/RWKV-LM",
+      "stars": 13992,
+      "rank": 23,
+      "hasContextFile": true,
+      "contextFileName": "RWKV-LM-context.txt"
+    },
+    {
+      "name": "NVIDIA/Megatron-LM",
+      "github_url": "https://github.com/NVIDIA/Megatron-LM",
+      "stars": 13708,
+      "rank": 24,
+      "hasContextFile": true,
+      "contextFileName": "Megatron-LM-context.txt"
+    },
+    {
+      "name": "PaddlePaddle/PaddleNLP",
+      "github_url": "https://github.com/PaddlePaddle/PaddleNLP",
+      "stars": 12779,
+      "rank": 25,
+      "hasContextFile": true,
+      "contextFileName": "PaddleNLP-context.txt"
+    },
+    {
+      "name": "jacobgil/pytorch-grad-cam",
+      "github_url": "https://github.com/jacobgil/pytorch-grad-cam",
+      "stars": 12205,
+      "rank": 26,
+      "hasContextFile": true,
+      "contextFileName": "pytorch-grad-cam-context.txt"
+    },
+    {
+      "name": "neuml/txtai",
+      "github_url": "https://github.com/neuml/txtai",
+      "stars": 11642,
+      "rank": 27,
+      "hasContextFile": true,
+      "contextFileName": "txtai-context.txt"
+    },
+    {
+      "name": "facebookresearch/vggt",
+      "github_url": "https://github.com/facebookresearch/vggt",
+      "stars": 11074,
+      "rank": 28,
+      "hasContextFile": true,
+      "contextFileName": "vggt-context.txt"
+    },
+    {
+      "name": "vipstone/faceai",
+      "github_url": "https://github.com/vipstone/faceai",
+      "stars": 11018,
+      "rank": 29,
+      "hasContextFile": true,
+      "contextFileName": "faceai-context.txt"
+    },
+    {
+      "name": "wandb/wandb",
+      "github_url": "https://github.com/wandb/wandb",
+      "stars": 10365,
+      "rank": 30,
+      "hasContextFile": true,
+      "contextFileName": "wandb-context.txt"
+    },
+    {
+      "name": "keras-team/autokeras",
+      "github_url": "https://github.com/keras-team/autokeras",
+      "stars": 9269,
+      "rank": 31,
+      "hasContextFile": true,
+      "contextFileName": "autokeras-context.txt"
+    },
+    {
+      "name": "eriklindernoren/Keras-GAN",
+      "github_url": "https://github.com/eriklindernoren/Keras-GAN",
+      "stars": 9241,
+      "rank": 32,
+      "hasContextFile": true,
+      "contextFileName": "Keras-GAN-context.txt"
+    },
+    {
+      "name": "arogozhnikov/einops",
+      "github_url": "https://github.com/arogozhnikov/einops",
+      "stars": 9200,
+      "rank": 33,
+      "hasContextFile": true,
+      "contextFileName": "einops-context.txt"
+    },
+    {
+      "name": "nl8590687/ASRT_SpeechRecognition",
+      "github_url": "https://github.com/nl8590687/ASRT_SpeechRecognition",
+      "stars": 8236,
+      "rank": 34,
+      "hasContextFile": true,
+      "contextFileName": "ASRT_SpeechRecognition-context.txt"
+    },
+    {
+      "name": "fchollet/deep-learning-models",
+      "github_url": "https://github.com/fchollet/deep-learning-models",
+      "stars": 7347,
+      "rank": 35,
+      "hasContextFile": true,
+      "contextFileName": "deep-learning-models-context.txt"
+    },
+    {
+      "name": "qqwweee/keras-yolo3",
+      "github_url": "https://github.com/qqwweee/keras-yolo3",
+      "stars": 7134,
+      "rank": 36,
+      "hasContextFile": true,
+      "contextFileName": "keras-yolo3-context.txt"
+    },
+    {
+      "name": "ufoym/deepo",
+      "github_url": "https://github.com/ufoym/deepo",
+      "stars": 6285,
+      "rank": 37,
+      "hasContextFile": true,
+      "contextFileName": "deepo-context.txt"
+    },
+    {
+      "name": "microsoft/MMdnn",
+      "github_url": "https://github.com/microsoft/MMdnn",
+      "stars": 5813,
+      "rank": 38,
+      "hasContextFile": true,
+      "contextFileName": "MMdnn-context.txt"
+    },
+    {
+      "name": "oarriaga/face_classification",
+      "github_url": "https://github.com/oarriaga/face_classification",
+      "stars": 5691,
+      "rank": 39,
+      "hasContextFile": true,
+      "contextFileName": "face_classification-context.txt"
+    },
+    {
+      "name": "keras-rl/keras-rl",
+      "github_url": "https://github.com/keras-rl/keras-rl",
+      "stars": 5555,
+      "rank": 40,
+      "hasContextFile": true,
+      "contextFileName": "keras-rl-context.txt"
+    },
+    {
+      "name": "bojone/bert4keras",
+      "github_url": "https://github.com/bojone/bert4keras",
+      "stars": 5420,
+      "rank": 41,
+      "hasContextFile": true,
+      "contextFileName": "bert4keras-context.txt"
+    },
+    {
+      "name": "ashnkumar/sketch-code",
+      "github_url": "https://github.com/ashnkumar/sketch-code",
+      "stars": 5143,
+      "rank": 42,
+      "hasContextFile": true,
+      "contextFileName": "sketch-code-context.txt"
+    },
+    {
+      "name": "jaungiers/LSTM-Neural-Network-for-Time-Series-Prediction",
+      "github_url": "https://github.com/jaungiers/LSTM-Neural-Network-for-Time-Series-Prediction",
+      "stars": 5090,
+      "rank": 43,
+      "hasContextFile": true,
+      "contextFileName": "LSTM-Neural-Network-for-Time-Series-Prediction-context.txt"
+    },
+    {
+      "name": "minimaxir/textgenrnn",
+      "github_url": "https://github.com/minimaxir/textgenrnn",
+      "stars": 4936,
+      "rank": 44,
+      "hasContextFile": true,
+      "contextFileName": "textgenrnn-context.txt"
+    },
+    {
+      "name": "qubvel/segmentation_models",
+      "github_url": "https://github.com/qubvel/segmentation_models",
+      "stars": 4886,
+      "rank": 45,
+      "hasContextFile": true,
+      "contextFileName": "segmentation_models-context.txt"
+    },
+    {
+      "name": "idealo/image-super-resolution",
+      "github_url": "https://github.com/idealo/image-super-resolution",
+      "stars": 4789,
+      "rank": 46,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "fizyr/keras-retinanet",
+      "github_url": "https://github.com/fizyr/keras-retinanet",
+      "stars": 4391,
+      "rank": 47,
+      "hasContextFile": true,
+      "contextFileName": "keras-retinanet-context.txt"
+    },
+    {
+      "name": "sksq96/pytorch-summary",
+      "github_url": "https://github.com/sksq96/pytorch-summary",
+      "stars": 4059,
+      "rank": 48,
+      "hasContextFile": true,
+      "contextFileName": "pytorch-summary-context.txt"
+    },
+    {
+      "name": "PINTO0309/PINTO_model_zoo",
+      "github_url": "https://github.com/PINTO0309/PINTO_model_zoo",
+      "stars": 3924,
+      "rank": 49,
+      "hasContextFile": true,
+      "contextFileName": "PINTO_model_zoo-context.txt"
+    },
+    {
+      "name": "TarrySingh/Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials",
+      "github_url": "https://github.com/TarrySingh/Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials",
+      "stars": 3910,
+      "rank": 50,
+      "hasContextFile": false,
+      "contextFileName": null
     }
   ],
   "domain": "machinelearning",

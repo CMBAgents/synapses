@@ -1,84 +1,404 @@
 {
   "libraries": [
     {
+      "name": "plotly/dash",
+      "github_url": "https://github.com/plotly/dash",
+      "stars": 24110,
+      "rank": 1,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
       "name": "biopython/biopython",
       "github_url": "https://github.com/biopython/biopython",
-      "stars": 4739,
-      "rank": 1,
+      "stars": 4749,
+      "rank": 2,
       "hasContextFile": true,
       "contextFileName": "biopython-biopython-context.txt"
     },
     {
+      "name": "google/deepvariant",
+      "github_url": "https://github.com/google/deepvariant",
+      "stars": 3508,
+      "rank": 3,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "scverse/scanpy",
+      "github_url": "https://github.com/scverse/scanpy",
+      "stars": 2205,
+      "rank": 4,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "dmis-lab/biobert",
+      "github_url": "https://github.com/dmis-lab/biobert",
+      "stars": 2145,
+      "rank": 5,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "allenai/scispacy",
+      "github_url": "https://github.com/allenai/scispacy",
+      "stars": 1878,
+      "rank": 6,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "deepmodeling/deepmd-kit",
+      "github_url": "https://github.com/deepmodeling/deepmd-kit",
+      "stars": 1757,
+      "rank": 7,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "galaxyproject/galaxy",
+      "github_url": "https://github.com/galaxyproject/galaxy",
+      "stars": 1612,
+      "rank": 8,
+      "hasContextFile": true,
+      "contextFileName": "galaxy-context.txt"
+    },
+    {
+      "name": "MDAnalysis/mdanalysis",
+      "github_url": "https://github.com/MDAnalysis/mdanalysis",
+      "stars": 1465,
+      "rank": 9,
+      "hasContextFile": true,
+      "contextFileName": "MDAnalysis-mdanalysis-context.txt"
+    },
+    {
+      "name": "lightaime/deep_gcns_torch",
+      "github_url": "https://github.com/lightaime/deep_gcns_torch",
+      "stars": 1179,
+      "rank": 10,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "BradyAJohnston/MolecularNodes",
+      "github_url": "https://github.com/BradyAJohnston/MolecularNodes",
+      "stars": 1082,
+      "rank": 11,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "sib-swiss/training-collection",
+      "github_url": "https://github.com/sib-swiss/training-collection",
+      "stars": 1062,
+      "rank": 12,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "kblin/ncbi-genome-download",
+      "github_url": "https://github.com/kblin/ncbi-genome-download",
+      "stars": 1034,
+      "rank": 13,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
+      "name": "hail-is/hail",
+      "github_url": "https://github.com/hail-is/hail",
+      "stars": 1028,
+      "rank": 14,
+      "hasContextFile": false,
+      "contextFileName": null
+    },
+    {
       "name": "scikit-bio/scikit-bio",
       "github_url": "https://github.com/scikit-bio/scikit-bio",
-      "stars": 972,
-      "rank": 2,
+      "stars": 974,
+      "rank": 15,
       "hasContextFile": true,
       "contextFileName": "scikit-bio-scikit-bio-context.txt"
     },
     {
-      "name": "mdanalysis/mdanalysis",
-      "github_url": "https://github.com/mdanalysis/mdanalysis",
-      "stars": 1458,
-      "rank": 3,
-      "hasContextFile": true,
-      "contextFileName": "mdanalysis-mdanalysis-context.txt"
+      "name": "moshi4/pyCirclize",
+      "github_url": "https://github.com/moshi4/pyCirclize",
+      "stars": 962,
+      "rank": 16,
+      "hasContextFile": false,
+      "contextFileName": null
     },
     {
-      "name": "openmm/openmm",
-      "github_url": "https://github.com/openmm/openmm",
-      "stars": 1674,
-      "rank": 4,
+      "name": "biotite-dev/biotite",
+      "github_url": "https://github.com/biotite-dev/biotite",
+      "stars": 863,
+      "rank": 17,
       "hasContextFile": true,
-      "contextFileName": "openmm-openmm-context.txt"
+      "contextFileName": "biotite-context.txt"
     },
     {
-      "name": "choderalab/openmmtools",
-      "github_url": "https://github.com/choderalab/openmmtools",
-      "stars": 290,
-      "rank": 5,
+      "name": "applied-bioinformatics/An-Introduction-To-Applied-Bioinformatics",
+      "github_url": "https://github.com/applied-bioinformatics/An-Introduction-To-Applied-Bioinformatics",
+      "stars": 858,
+      "rank": 18,
       "hasContextFile": true,
-      "contextFileName": "choderalab-openmmtools-context.txt"
+      "contextFileName": "An-Introduction-To-Applied-Bioinformatics-context.txt"
     },
     {
-      "name": "rdkit/rdkit",
-      "github_url": "https://github.com/rdkit/rdkit",
-      "stars": 3070,
-      "rank": 6,
+      "name": "tanghaibao/jcvi",
+      "github_url": "https://github.com/tanghaibao/jcvi",
+      "stars": 854,
+      "rank": 19,
       "hasContextFile": true,
-      "contextFileName": "rdkit-rdkit-context.txt"
+      "contextFileName": "jcvi-context.txt"
     },
     {
-      "name": "schrodinger/pymol-open-source",
-      "github_url": "https://github.com/schrodinger/pymol-open-source",
-      "stars": 1466,
-      "rank": 7,
+      "name": "dib-lab/khmer",
+      "github_url": "https://github.com/dib-lab/khmer",
+      "stars": 778,
+      "rank": 20,
       "hasContextFile": true,
-      "contextFileName": "schrodinger-pymol-open-source-context.txt"
+      "contextFileName": "khmer-context.txt"
     },
     {
-      "name": "openbabel/openbabel",
-      "github_url": "https://github.com/openbabel/openbabel",
-      "stars": 1225,
-      "rank": 8,
+      "name": "awslabs/dgl-lifesci",
+      "github_url": "https://github.com/awslabs/dgl-lifesci",
+      "stars": 772,
+      "rank": 21,
       "hasContextFile": true,
-      "contextFileName": "openbabel-openbabel-context.txt"
+      "contextFileName": "dgl-lifesci-context.txt"
     },
     {
-      "name": "gromacs/gromacs",
-      "github_url": "https://github.com/gromacs/gromacs",
-      "stars": 815,
-      "rank": 9,
+      "name": "BioPandas/biopandas",
+      "github_url": "https://github.com/BioPandas/biopandas",
+      "stars": 739,
+      "rank": 22,
       "hasContextFile": true,
-      "contextFileName": "gromacs-gromacs-context.txt"
+      "contextFileName": "biopandas-context.txt"
     },
     {
-      "name": "rbvi/ChimeraX",
-      "github_url": "https://github.com/rbvi/ChimeraX",
-      "stars": 205,
-      "rank": 10,
+      "name": "deeptools/deepTools",
+      "github_url": "https://github.com/deeptools/deepTools",
+      "stars": 734,
+      "rank": 23,
       "hasContextFile": true,
-      "contextFileName": "rbvi-ChimeraX-context.txt"
+      "contextFileName": "deepTools-context.txt"
+    },
+    {
+      "name": "danforthcenter/plantcv",
+      "github_url": "https://github.com/danforthcenter/plantcv",
+      "stars": 727,
+      "rank": 24,
+      "hasContextFile": true,
+      "contextFileName": "plantcv-context.txt"
+    },
+    {
+      "name": "vsbuffalo/bds-files",
+      "github_url": "https://github.com/vsbuffalo/bds-files",
+      "stars": 690,
+      "rank": 25,
+      "hasContextFile": true,
+      "contextFileName": "bds-files-context.txt"
+    },
+    {
+      "name": "owkin/PyDESeq2",
+      "github_url": "https://github.com/owkin/PyDESeq2",
+      "stars": 679,
+      "rank": 26,
+      "hasContextFile": true,
+      "contextFileName": "PyDESeq2-context.txt"
+    },
+    {
+      "name": "mdtraj/mdtraj",
+      "github_url": "https://github.com/mdtraj/mdtraj",
+      "stars": 666,
+      "rank": 27,
+      "hasContextFile": true,
+      "contextFileName": "mdtraj-context.txt"
+    },
+    {
+      "name": "torchmd/torchmd",
+      "github_url": "https://github.com/torchmd/torchmd",
+      "stars": 661,
+      "rank": 28,
+      "hasContextFile": true,
+      "contextFileName": "torchmd-context.txt"
+    },
+    {
+      "name": "scverse/anndata",
+      "github_url": "https://github.com/scverse/anndata",
+      "stars": 659,
+      "rank": 29,
+      "hasContextFile": true,
+      "contextFileName": "anndata-context.txt"
+    },
+    {
+      "name": "Edinburgh-Genome-Foundry/DnaFeaturesViewer",
+      "github_url": "https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer",
+      "stars": 658,
+      "rank": 30,
+      "hasContextFile": true,
+      "contextFileName": "DnaFeaturesViewer-context.txt"
+    },
+    {
+      "name": "plotly/dash-cytoscape",
+      "github_url": "https://github.com/plotly/dash-cytoscape",
+      "stars": 656,
+      "rank": 31,
+      "hasContextFile": true,
+      "contextFileName": "dash-cytoscape-context.txt"
+    },
+    {
+      "name": "chapmanb/bcbb",
+      "github_url": "https://github.com/chapmanb/bcbb",
+      "stars": 631,
+      "rank": 32,
+      "hasContextFile": true,
+      "contextFileName": "bcbb-context.txt"
+    },
+    {
+      "name": "ysig/GraKeL",
+      "github_url": "https://github.com/ysig/GraKeL",
+      "stars": 627,
+      "rank": 33,
+      "hasContextFile": true,
+      "contextFileName": "GraKeL-context.txt"
+    },
+    {
+      "name": "fritzsedlazeck/Sniffles",
+      "github_url": "https://github.com/fritzsedlazeck/Sniffles",
+      "stars": 617,
+      "rank": 34,
+      "hasContextFile": true,
+      "contextFileName": "Sniffles-context.txt"
+    },
+    {
+      "name": "gamcil/clinker",
+      "github_url": "https://github.com/gamcil/clinker",
+      "stars": 611,
+      "rank": 35,
+      "hasContextFile": true,
+      "contextFileName": "clinker-context.txt"
+    },
+    {
+      "name": "opencobra/cobrapy",
+      "github_url": "https://github.com/opencobra/cobrapy",
+      "stars": 518,
+      "rank": 36,
+      "hasContextFile": true,
+      "contextFileName": "cobrapy-context.txt"
+    },
+    {
+      "name": "MDIL-SNU/SevenNet",
+      "github_url": "https://github.com/MDIL-SNU/SevenNet",
+      "stars": 194,
+      "rank": 37,
+      "hasContextFile": true,
+      "contextFileName": "SevenNet-context.txt"
+    },
+    {
+      "name": "torchmd/mdgrad",
+      "github_url": "https://github.com/torchmd/mdgrad",
+      "stars": 180,
+      "rank": 38,
+      "hasContextFile": true,
+      "contextFileName": "mdgrad-context.txt"
+    },
+    {
+      "name": "bjing2016/mdgen",
+      "github_url": "https://github.com/bjing2016/mdgen",
+      "stars": 170,
+      "rank": 39,
+      "hasContextFile": true,
+      "contextFileName": "mdgen-context.txt"
+    },
+    {
+      "name": "ingcoder/unomd",
+      "github_url": "https://github.com/ingcoder/unomd",
+      "stars": 165,
+      "rank": 40,
+      "hasContextFile": true,
+      "contextFileName": "unomd-context.txt"
+    },
+    {
+      "name": "micom-dev/micom",
+      "github_url": "https://github.com/micom-dev/micom",
+      "stars": 108,
+      "rank": 41,
+      "hasContextFile": true,
+      "contextFileName": "micom-context.txt"
+    },
+    {
+      "name": "MannLabs/alphatims",
+      "github_url": "https://github.com/MannLabs/alphatims",
+      "stars": 90,
+      "rank": 42,
+      "hasContextFile": true,
+      "contextFileName": "alphatims-context.txt"
+    },
+    {
+      "name": "maxscheurer/pycontact",
+      "github_url": "https://github.com/maxscheurer/pycontact",
+      "stars": 63,
+      "rank": 43,
+      "hasContextFile": true,
+      "contextFileName": "pycontact-context.txt"
+    },
+    {
+      "name": "dwhswenson/contact_map",
+      "github_url": "https://github.com/dwhswenson/contact_map",
+      "stars": 46,
+      "rank": 44,
+      "hasContextFile": true,
+      "contextFileName": "contact_map-context.txt"
+    },
+    {
+      "name": "IBM/AutoPeptideML",
+      "github_url": "https://github.com/IBM/AutoPeptideML",
+      "stars": 34,
+      "rank": 45,
+      "hasContextFile": true,
+      "contextFileName": "AutoPeptideML-context.txt"
+    },
+    {
+      "name": "Robaina/BRENDApyrser",
+      "github_url": "https://github.com/Robaina/BRENDApyrser",
+      "stars": 32,
+      "rank": 46,
+      "hasContextFile": true,
+      "contextFileName": "BRENDApyrser-context.txt"
+    },
+    {
+      "name": "jaleezyy/covid-19-signal",
+      "github_url": "https://github.com/jaleezyy/covid-19-signal",
+      "stars": 31,
+      "rank": 47,
+      "hasContextFile": true,
+      "contextFileName": "covid-19-signal-context.txt"
+    },
+    {
+      "name": "resendislab/corda",
+      "github_url": "https://github.com/resendislab/corda",
+      "stars": 25,
+      "rank": 48,
+      "hasContextFile": true,
+      "contextFileName": "corda-context.txt"
+    },
+    {
+      "name": "NoahHenrikKleinschmidt/qpcr",
+      "github_url": "https://github.com/NoahHenrikKleinschmidt/qpcr",
+      "stars": 23,
+      "rank": 49,
+      "hasContextFile": true,
+      "contextFileName": "qpcr-context.txt"
+    },
+    {
+      "name": "BiomedSciAI/fuse-drug",
+      "github_url": "https://github.com/BiomedSciAI/fuse-drug",
+      "stars": 22,
+      "rank": 50,
+      "hasContextFile": true,
+      "contextFileName": "fuse-drug-context.txt"
     }
   ],
   "domain": "biochemistry",
@@ -89,14 +409,10 @@
     "molecular dynamics",
     "drug discovery",
     "computational biology",
-    "molecular visualization",
-    "protein structure",
     "biopython",
     "mdanalysis",
     "openmm",
     "rdkit",
-    "gromacs",
-    "pymol",
-    "chimerax"
+    "gromacs"
   ]
 }
