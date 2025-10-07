@@ -30,7 +30,7 @@
     {
       "id": "astropy-astropy",
       "name": "astropy",
-      "description": "astropy/astropy - astronomy library with 4843 stars",
+      "description": "astropy/astropy - astronomy library with 4865 stars",
       "contextFiles": [
         "astropy-astropy-context.txt"
       ],
@@ -40,7 +40,7 @@
     {
       "id": "fastmonkeys-stellar",
       "name": "stellar",
-      "description": "fastmonkeys/stellar - astronomy library with 3858 stars",
+      "description": "fastmonkeys/stellar - astronomy library with 3856 stars",
       "contextFiles": [
         "fastmonkeys-stellar-context.txt"
       ],
@@ -50,9 +50,9 @@
     {
       "id": "stellargraph-stellargraph",
       "name": "stellargraph",
-      "description": "stellargraph/stellargraph - astronomy library with 3026 stars",
+      "description": "stellargraph/stellargraph - astronomy library with 3028 stars",
       "contextFiles": [
-        "stellargraph-context.txt"
+        "stellargraph-stellargraph-context.txt"
       ],
       "docsUrl": "https://github.com/stellargraph/stellargraph",
       "extraSystemPrompt": null
@@ -60,9 +60,9 @@
     {
       "id": "galaxyproject-galaxy",
       "name": "galaxy",
-      "description": "galaxyproject/galaxy - astronomy library with 1612 stars",
+      "description": "galaxyproject/galaxy - astronomy library with 1618 stars",
       "contextFiles": [
-        "galaxy-context.txt"
+        "galaxyproject-galaxy-context.txt"
       ],
       "docsUrl": "https://github.com/galaxyproject/galaxy",
       "extraSystemPrompt": null
@@ -70,17 +70,27 @@
     {
       "id": "gogcom-galaxy-integrations-python-api",
       "name": "galaxy-integrations-python-api",
-      "description": "gogcom/galaxy-integrations-python-api - astronomy library with 1305 stars",
+      "description": "gogcom/galaxy-integrations-python-api - astronomy library with 1306 stars",
       "contextFiles": [
-        "galaxy-integrations-python-api-context.txt"
+        "gogcom-galaxy-integrations-python-api-context.txt"
       ],
       "docsUrl": "https://github.com/gogcom/galaxy-integrations-python-api",
       "extraSystemPrompt": null
     },
     {
+      "id": "ansible-galaxy",
+      "name": "galaxy",
+      "description": "ansible/galaxy - astronomy library with 868 stars",
+      "contextFiles": [
+        "ansible-galaxy-context.txt"
+      ],
+      "docsUrl": "https://github.com/ansible/galaxy",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "dstndstn-astrometry-net",
       "name": "astrometry.net",
-      "description": "dstndstn/astrometry.net - astronomy library with 763 stars",
+      "description": "dstndstn/astrometry.net - astronomy library with 768 stars",
       "contextFiles": [
         "dstndstn-astrometry-net-context.txt"
       ],
@@ -90,7 +100,7 @@
     {
       "id": "astropy-astroquery",
       "name": "astroquery",
-      "description": "astropy/astroquery - astronomy library with 747 stars",
+      "description": "astropy/astroquery - astronomy library with 749 stars",
       "contextFiles": [
         "astropy-astroquery-context.txt"
       ],
@@ -100,7 +110,7 @@
     {
       "id": "einsteinpy-einsteinpy",
       "name": "einsteinpy",
-      "description": "einsteinpy/einsteinpy - astronomy library with 662 stars",
+      "description": "einsteinpy/einsteinpy - astronomy library with 663 stars",
       "contextFiles": [
         "einsteinpy-einsteinpy-context.txt"
       ],
@@ -110,9 +120,9 @@
     {
       "id": "seuyh-stellaris-dlc-unlocker",
       "name": "stellaris-dlc-unlocker",
-      "description": "seuyh/stellaris-dlc-unlocker - astronomy library with 606 stars",
+      "description": "seuyh/stellaris-dlc-unlocker - astronomy library with 625 stars",
       "contextFiles": [
-        "stellaris-dlc-unlocker-context.txt"
+        "seuyh-stellaris-dlc-unlocker-context.txt"
       ],
       "docsUrl": "https://github.com/seuyh/stellaris-dlc-unlocker",
       "extraSystemPrompt": null
@@ -122,7 +132,7 @@
       "name": "misp-galaxy",
       "description": "MISP/misp-galaxy - astronomy library with 583 stars",
       "contextFiles": [
-        "misp-galaxy-context.txt"
+        "MISP-misp-galaxy-context.txt"
       ],
       "docsUrl": "https://github.com/MISP/misp-galaxy",
       "extraSystemPrompt": null
@@ -132,7 +142,7 @@
       "name": "kaggle-galaxies",
       "description": "benanne/kaggle-galaxies - astronomy library with 497 stars",
       "contextFiles": [
-        "kaggle-galaxies-context.txt"
+        "benanne-kaggle-galaxies-context.txt"
       ],
       "docsUrl": "https://github.com/benanne/kaggle-galaxies",
       "extraSystemPrompt": null
@@ -140,9 +150,9 @@
     {
       "id": "kalanakt-all-url-uploader",
       "name": "All-Url-Uploader",
-      "description": "kalanakt/All-Url-Uploader - astronomy library with 464 stars",
+      "description": "kalanakt/All-Url-Uploader - astronomy library with 463 stars",
       "contextFiles": [
-        "All-Url-Uploader-context.txt"
+        "kalanakt-All-Url-Uploader-context.txt"
       ],
       "docsUrl": "https://github.com/kalanakt/All-Url-Uploader",
       "extraSystemPrompt": null
@@ -150,7 +160,7 @@
     {
       "id": "lightkurve-lightkurve",
       "name": "lightkurve",
-      "description": "lightkurve/lightkurve - astronomy library with 464 stars",
+      "description": "lightkurve/lightkurve - astronomy library with 470 stars",
       "contextFiles": [
         "lightkurve-lightkurve-context.txt"
       ],
@@ -160,9 +170,9 @@
     {
       "id": "ryuk-me-torrent-api-py",
       "name": "Torrent-Api-py",
-      "description": "Ryuk-me/Torrent-Api-py - astronomy library with 380 stars",
+      "description": "Ryuk-me/Torrent-Api-py - astronomy library with 381 stars",
       "contextFiles": [
-        "Torrent-Api-py-context.txt"
+        "Ryuk-me-Torrent-Api-py-context.txt"
       ],
       "docsUrl": "https://github.com/Ryuk-me/Torrent-Api-py",
       "extraSystemPrompt": null
@@ -180,9 +190,9 @@
     {
       "id": "stellarcn-py-stellar-base",
       "name": "py-stellar-base",
-      "description": "StellarCN/py-stellar-base - astronomy library with 367 stars",
+      "description": "StellarCN/py-stellar-base - astronomy library with 366 stars",
       "contextFiles": [
-        "py-stellar-base-context.txt"
+        "StellarCN-py-stellar-base-context.txt"
       ],
       "docsUrl": "https://github.com/StellarCN/py-stellar-base",
       "extraSystemPrompt": null
@@ -190,9 +200,9 @@
     {
       "id": "rall3n-galaxy-integration-amazon",
       "name": "galaxy-integration-amazon",
-      "description": "Rall3n/galaxy-integration-amazon - astronomy library with 340 stars",
+      "description": "Rall3n/galaxy-integration-amazon - astronomy library with 337 stars",
       "contextFiles": [
-        "galaxy-integration-amazon-context.txt"
+        "Rall3n-galaxy-integration-amazon-context.txt"
       ],
       "docsUrl": "https://github.com/Rall3n/galaxy-integration-amazon",
       "extraSystemPrompt": null
@@ -200,9 +210,9 @@
     {
       "id": "kewlfft-ansible-aur",
       "name": "ansible-aur",
-      "description": "kewlfft/ansible-aur - astronomy library with 319 stars",
+      "description": "kewlfft/ansible-aur - astronomy library with 320 stars",
       "contextFiles": [
-        "ansible-aur-context.txt"
+        "kewlfft-ansible-aur-context.txt"
       ],
       "docsUrl": "https://github.com/kewlfft/ansible-aur",
       "extraSystemPrompt": null
@@ -210,7 +220,7 @@
     {
       "id": "healpy-healpy",
       "name": "healpy",
-      "description": "healpy/healpy - astronomy library with 288 stars",
+      "description": "healpy/healpy - astronomy library with 291 stars",
       "contextFiles": [
         "healpy-healpy-context.txt"
       ],
@@ -220,7 +230,7 @@
     {
       "id": "astropy-photutils",
       "name": "photutils",
-      "description": "astropy/photutils - astronomy library with 284 stars",
+      "description": "astropy/photutils - astronomy library with 285 stars",
       "contextFiles": [
         "astropy-photutils-context.txt"
       ],
@@ -232,7 +242,7 @@
       "name": "gog-galaxy-plugin-downloader",
       "description": "Slashbunny/gog-galaxy-plugin-downloader - astronomy library with 280 stars",
       "contextFiles": [
-        "gog-galaxy-plugin-downloader-context.txt"
+        "Slashbunny-gog-galaxy-plugin-downloader-context.txt"
       ],
       "docsUrl": "https://github.com/Slashbunny/gog-galaxy-plugin-downloader",
       "extraSystemPrompt": null
@@ -240,9 +250,9 @@
     {
       "id": "ansible-galaxy-ng",
       "name": "galaxy_ng",
-      "description": "ansible/galaxy_ng - astronomy library with 266 stars",
+      "description": "ansible/galaxy_ng - astronomy library with 268 stars",
       "contextFiles": [
-        "galaxy_ng-context.txt"
+        "ansible-galaxy-ng-context.txt"
       ],
       "docsUrl": "https://github.com/ansible/galaxy_ng",
       "extraSystemPrompt": null
@@ -250,9 +260,9 @@
     {
       "id": "deeptools-hicexplorer",
       "name": "HiCExplorer",
-      "description": "deeptools/HiCExplorer - astronomy library with 255 stars",
+      "description": "deeptools/HiCExplorer - astronomy library with 256 stars",
       "contextFiles": [
-        "HiCExplorer-context.txt"
+        "deeptools-HiCExplorer-context.txt"
       ],
       "docsUrl": "https://github.com/deeptools/HiCExplorer",
       "extraSystemPrompt": null
@@ -262,7 +272,7 @@
       "name": "GFL",
       "description": "GalaxyLearning/GFL - astronomy library with 253 stars",
       "contextFiles": [
-        "GFL-context.txt"
+        "GalaxyLearning-GFL-context.txt"
       ],
       "docsUrl": "https://github.com/GalaxyLearning/GFL",
       "extraSystemPrompt": null
@@ -272,7 +282,7 @@
       "name": "shannonRE",
       "description": "Comsecuris/shannonRE - astronomy library with 251 stars",
       "contextFiles": [
-        "shannonRE-context.txt"
+        "Comsecuris-shannonRE-context.txt"
       ],
       "docsUrl": "https://github.com/Comsecuris/shannonRE",
       "extraSystemPrompt": null
@@ -280,9 +290,9 @@
     {
       "id": "galsim-developers-galsim",
       "name": "GalSim",
-      "description": "GalSim-developers/GalSim - astronomy library with 250 stars",
+      "description": "GalSim-developers/GalSim - astronomy library with 252 stars",
       "contextFiles": [
-        "GalSim-context.txt"
+        "GalSim-developers-GalSim-context.txt"
       ],
       "docsUrl": "https://github.com/GalSim-developers/GalSim",
       "extraSystemPrompt": null
@@ -290,9 +300,9 @@
     {
       "id": "amd-agi-instella",
       "name": "Instella",
-      "description": "AMD-AGI/Instella - astronomy library with 247 stars",
+      "description": "AMD-AGI/Instella - astronomy library with 246 stars",
       "contextFiles": [
-        "Instella-context.txt"
+        "AMD-AGI-Instella-context.txt"
       ],
       "docsUrl": "https://github.com/AMD-AGI/Instella",
       "extraSystemPrompt": null
@@ -302,7 +312,7 @@
       "name": "CAMB",
       "description": "cmbant/CAMB - astronomy library with 232 stars",
       "contextFiles": [
-        "CAMB-context.txt"
+        "cmbant-CAMB-context.txt"
       ],
       "docsUrl": "https://github.com/cmbant/CAMB",
       "extraSystemPrompt": null
@@ -312,7 +322,7 @@
       "name": "gog-galaxy-itch.io",
       "description": "tauqua/gog-galaxy-itch.io - astronomy library with 226 stars",
       "contextFiles": [
-        "gog-galaxy-itch.io-context.txt"
+        "tauqua-gog-galaxy-itch-io-context.txt"
       ],
       "docsUrl": "https://github.com/tauqua/gog-galaxy-itch.io",
       "extraSystemPrompt": null
@@ -322,7 +332,7 @@
       "name": "ChartGalaxy",
       "description": "ChartGalaxy/ChartGalaxy - astronomy library with 220 stars",
       "contextFiles": [
-        "ChartGalaxy-context.txt"
+        "ChartGalaxy-ChartGalaxy-context.txt"
       ],
       "docsUrl": "https://github.com/ChartGalaxy/ChartGalaxy",
       "extraSystemPrompt": null
@@ -330,11 +340,31 @@
     {
       "id": "unclegoogle-galaxy-integration-humblebundle",
       "name": "galaxy-integration-humblebundle",
-      "description": "UncleGoogle/galaxy-integration-humblebundle - astronomy library with 192 stars",
+      "description": "UncleGoogle/galaxy-integration-humblebundle - astronomy library with 190 stars",
       "contextFiles": [
-        "galaxy-integration-humblebundle-context.txt"
+        "UncleGoogle-galaxy-integration-humblebundle-context.txt"
       ],
       "docsUrl": "https://github.com/UncleGoogle/galaxy-integration-humblebundle",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "rhnvrm-galaxy-image-classifier-tensorflow",
+      "name": "galaxy-image-classifier-tensorflow",
+      "description": "rhnvrm/galaxy-image-classifier-tensorflow - astronomy library with 185 stars",
+      "contextFiles": [
+        "galaxy-image-classifier-tensorflow-context.txt"
+      ],
+      "docsUrl": "https://github.com/rhnvrm/galaxy-image-classifier-tensorflow",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "jammy2211-pyautolens",
+      "name": "PyAutoLens",
+      "description": "Jammy2211/PyAutoLens - astronomy library with 176 stars",
+      "contextFiles": [
+        "Jammy2211-PyAutoLens-context.txt"
+      ],
+      "docsUrl": "https://github.com/Jammy2211/PyAutoLens",
       "extraSystemPrompt": null
     },
     {
@@ -342,9 +372,19 @@
       "name": "prospector",
       "description": "bd-j/prospector - astronomy library with 172 stars",
       "contextFiles": [
-        "prospector-context.txt"
+        "bd-j-prospector-context.txt"
       ],
       "docsUrl": "https://github.com/bd-j/prospector",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "cmbant-getdist",
+      "name": "getdist",
+      "description": "cmbant/getdist - astronomy library with 166 stars",
+      "contextFiles": [
+        "cmbant-getdist-context.txt"
+      ],
+      "docsUrl": "https://github.com/cmbant/getdist",
       "extraSystemPrompt": null
     },
     {
@@ -360,9 +400,9 @@
     {
       "id": "nextcloud-ansible-collection-nextcloud-admin",
       "name": "ansible-collection-nextcloud-admin",
-      "description": "nextcloud/ansible-collection-nextcloud-admin - astronomy library with 154 stars",
+      "description": "nextcloud/ansible-collection-nextcloud-admin - astronomy library with 153 stars",
       "contextFiles": [
-        "ansible-collection-nextcloud-admin-context.txt"
+        "nextcloud-ansible-collection-nextcloud-admin-context.txt"
       ],
       "docsUrl": "https://github.com/nextcloud/ansible-collection-nextcloud-admin",
       "extraSystemPrompt": null
@@ -370,9 +410,9 @@
     {
       "id": "danderfer-comp-sci-sem-2",
       "name": "Comp_Sci_Sem_2",
-      "description": "danderfer/Comp_Sci_Sem_2 - astronomy library with 154 stars",
+      "description": "danderfer/Comp_Sci_Sem_2 - astronomy library with 153 stars",
       "contextFiles": [
-        "Comp_Sci_Sem_2-context.txt"
+        "danderfer-Comp-Sci-Sem-2-context.txt"
       ],
       "docsUrl": "https://github.com/danderfer/Comp_Sci_Sem_2",
       "extraSystemPrompt": null
@@ -390,7 +430,7 @@
     {
       "id": "cmbagents-cmbagent",
       "name": "cmbagent",
-      "description": "CMBAgents/cmbagent - astronomy library with 148 stars",
+      "description": "CMBAgents/cmbagent - astronomy library with 149 stars",
       "contextFiles": [
         "CMBAgents-cmbagent-context.txt"
       ],
@@ -412,7 +452,7 @@
       "name": "galaxy-plugin-twitch",
       "description": "nyash-qq/galaxy-plugin-twitch - astronomy library with 135 stars",
       "contextFiles": [
-        "galaxy-plugin-twitch-context.txt"
+        "nyash-qq-galaxy-plugin-twitch-context.txt"
       ],
       "docsUrl": "https://github.com/nyash-qq/galaxy-plugin-twitch",
       "extraSystemPrompt": null
@@ -422,7 +462,7 @@
       "name": "ansible-role-manager",
       "description": "mirskytech/ansible-role-manager - astronomy library with 134 stars",
       "contextFiles": [
-        "ansible-role-manager-context.txt"
+        "mirskytech-ansible-role-manager-context.txt"
       ],
       "docsUrl": "https://github.com/mirskytech/ansible-role-manager",
       "extraSystemPrompt": null
@@ -432,17 +472,27 @@
       "name": "stellaris-dashboard",
       "description": "eliasdoehne/stellaris-dashboard - astronomy library with 132 stars",
       "contextFiles": [
-        "stellaris-dashboard-context.txt"
+        "eliasdoehne-stellaris-dashboard-context.txt"
       ],
       "docsUrl": "https://github.com/eliasdoehne/stellaris-dashboard",
       "extraSystemPrompt": null
     },
     {
+      "id": "lele-blue-gog-galaxy-itch-io",
+      "name": "gog-galaxy-itch.io",
+      "description": "lele-blue/gog-galaxy-itch.io - astronomy library with 128 stars",
+      "contextFiles": [
+        "gog-galaxy-itch.io-context.txt"
+      ],
+      "docsUrl": "https://github.com/lele-blue/gog-galaxy-itch.io",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "r0fld4nc3-stellaris-exe-checksum-patcher",
       "name": "Stellaris-Exe-Checksum-Patcher",
-      "description": "r0fld4nc3/Stellaris-Exe-Checksum-Patcher - astronomy library with 123 stars",
+      "description": "r0fld4nc3/Stellaris-Exe-Checksum-Patcher - astronomy library with 127 stars",
       "contextFiles": [
-        "Stellaris-Exe-Checksum-Patcher-context.txt"
+        "r0fld4nc3-Stellaris-Exe-Checksum-Patcher-context.txt"
       ],
       "docsUrl": "https://github.com/r0fld4nc3/Stellaris-Exe-Checksum-Patcher",
       "extraSystemPrompt": null
@@ -462,17 +512,27 @@
       "name": "mazer",
       "description": "ansible/mazer - astronomy library with 113 stars",
       "contextFiles": [
-        "mazer-context.txt"
+        "ansible-mazer-context.txt"
       ],
       "docsUrl": "https://github.com/ansible/mazer",
       "extraSystemPrompt": null
     },
     {
+      "id": "siat-nlp-galaxy",
+      "name": "GALAXY",
+      "description": "siat-nlp/GALAXY - astronomy library with 108 stars",
+      "contextFiles": [
+        "siat-nlp-GALAXY-context.txt"
+      ],
+      "docsUrl": "https://github.com/siat-nlp/GALAXY",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "refinery-platform-refinery-platform",
       "name": "refinery-platform",
-      "description": "refinery-platform/refinery-platform - astronomy library with 106 stars",
+      "description": "refinery-platform/refinery-platform - astronomy library with 105 stars",
       "contextFiles": [
-        "refinery-platform-context.txt"
+        "refinery-platform-refinery-platform-context.txt"
       ],
       "docsUrl": "https://github.com/refinery-platform/refinery-platform",
       "extraSystemPrompt": null
@@ -482,7 +542,7 @@
       "name": "django-polaris",
       "description": "stellar/django-polaris - astronomy library with 98 stars",
       "contextFiles": [
-        "django-polaris-context.txt"
+        "stellar-django-polaris-context.txt"
       ],
       "docsUrl": "https://github.com/stellar/django-polaris",
       "extraSystemPrompt": null
@@ -492,7 +552,7 @@
       "name": "docker-stellar-core",
       "description": "stellar-deprecated/docker-stellar-core - astronomy library with 93 stars",
       "contextFiles": [
-        "docker-stellar-core-context.txt"
+        "stellar-deprecated-docker-stellar-core-context.txt"
       ],
       "docsUrl": "https://github.com/stellar-deprecated/docker-stellar-core",
       "extraSystemPrompt": null
@@ -502,7 +562,7 @@
       "name": "python-fsps",
       "description": "dfm/python-fsps - astronomy library with 71 stars",
       "contextFiles": [
-        "python-fsps-context.txt"
+        "dfm-python-fsps-context.txt"
       ],
       "docsUrl": "https://github.com/dfm/python-fsps",
       "extraSystemPrompt": null
@@ -512,15 +572,25 @@
       "name": "astroARIADNE",
       "description": "jvines/astroARIADNE - astronomy library with 69 stars",
       "contextFiles": [
-        "astroARIADNE-context.txt"
+        "jvines-astroARIADNE-context.txt"
       ],
       "docsUrl": "https://github.com/jvines/astroARIADNE",
       "extraSystemPrompt": null
     },
     {
+      "id": "astropy-spisea",
+      "name": "SPISEA",
+      "description": "astropy/SPISEA - astronomy library with 67 stars",
+      "contextFiles": [
+        "SPISEA-context.txt"
+      ],
+      "docsUrl": "https://github.com/astropy/SPISEA",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "simonsobs-pixell",
       "name": "pixell",
-      "description": "simonsobs/pixell - astronomy library with 53 stars",
+      "description": "simonsobs/pixell - astronomy library with 54 stars",
       "contextFiles": [
         "simonsobs-pixell-context.txt"
       ],
@@ -532,7 +602,7 @@
       "name": "stellarmesh",
       "description": "stellarmesh/stellarmesh - astronomy library with 51 stars",
       "contextFiles": [
-        "stellarmesh-context.txt"
+        "stellarmesh-stellarmesh-context.txt"
       ],
       "docsUrl": "https://github.com/stellarmesh/stellarmesh",
       "extraSystemPrompt": null
@@ -542,9 +612,19 @@
       "name": "Stellar_Gravity_Simulation",
       "description": "Gosewinckel/Stellar_Gravity_Simulation - astronomy library with 45 stars",
       "contextFiles": [
-        "Stellar_Gravity_Simulation-context.txt"
+        "Gosewinckel-Stellar-Gravity-Simulation-context.txt"
       ],
       "docsUrl": "https://github.com/Gosewinckel/Stellar_Gravity_Simulation",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "teamlegwork-legwork",
+      "name": "LEGWORK",
+      "description": "TeamLEGWORK/LEGWORK - astronomy library with 44 stars",
+      "contextFiles": [
+        "TeamLEGWORK-LEGWORK-context.txt"
+      ],
+      "docsUrl": "https://github.com/TeamLEGWORK/LEGWORK",
       "extraSystemPrompt": null
     },
     {
@@ -552,7 +632,7 @@
       "name": "TheCannon",
       "description": "annayqho/TheCannon - astronomy library with 43 stars",
       "contextFiles": [
-        "TheCannon-context.txt"
+        "annayqho-TheCannon-context.txt"
       ],
       "docsUrl": "https://github.com/annayqho/TheCannon",
       "extraSystemPrompt": null
@@ -562,7 +642,7 @@
       "name": "stellar-etl-airflow",
       "description": "stellar/stellar-etl-airflow - astronomy library with 38 stars",
       "contextFiles": [
-        "stellar-etl-airflow-context.txt"
+        "stellar-stellar-etl-airflow-context.txt"
       ],
       "docsUrl": "https://github.com/stellar/stellar-etl-airflow",
       "extraSystemPrompt": null
@@ -570,9 +650,9 @@
     {
       "id": "mzechmeister-serval",
       "name": "serval",
-      "description": "mzechmeister/serval - astronomy library with 37 stars",
+      "description": "mzechmeister/serval - astronomy library with 38 stars",
       "contextFiles": [
-        "serval-context.txt"
+        "mzechmeister-serval-context.txt"
       ],
       "docsUrl": "https://github.com/mzechmeister/serval",
       "extraSystemPrompt": null
@@ -582,7 +662,7 @@
       "name": "stellarium-skycultures",
       "description": "Stellarium/stellarium-skycultures - astronomy library with 32 stars",
       "contextFiles": [
-        "stellarium-skycultures-context.txt"
+        "Stellarium-stellarium-skycultures-context.txt"
       ],
       "docsUrl": "https://github.com/Stellarium/stellarium-skycultures",
       "extraSystemPrompt": null
@@ -592,7 +672,7 @@
       "name": "POSYDON",
       "description": "POSYDON-code/POSYDON - astronomy library with 32 stars",
       "contextFiles": [
-        "POSYDON-context.txt"
+        "POSYDON-code-POSYDON-context.txt"
       ],
       "docsUrl": "https://github.com/POSYDON-code/POSYDON",
       "extraSystemPrompt": null
@@ -602,7 +682,7 @@
       "name": "isoclassify",
       "description": "danxhuber/isoclassify - astronomy library with 31 stars",
       "contextFiles": [
-        "isoclassify-context.txt"
+        "danxhuber-isoclassify-context.txt"
       ],
       "docsUrl": "https://github.com/danxhuber/isoclassify",
       "extraSystemPrompt": null
@@ -612,7 +692,7 @@
       "name": "stellar-watch-tv",
       "description": "stellarplayer/stellar-watch-tv - astronomy library with 28 stars",
       "contextFiles": [
-        "stellar-watch-tv-context.txt"
+        "stellarplayer-stellar-watch-tv-context.txt"
       ],
       "docsUrl": "https://github.com/stellarplayer/stellar-watch-tv",
       "extraSystemPrompt": null
@@ -622,7 +702,7 @@
       "name": "stellarium-to-video",
       "description": "beltoforion/stellarium-to-video - astronomy library with 28 stars",
       "contextFiles": [
-        "stellarium-to-video-context.txt"
+        "beltoforion-stellarium-to-video-context.txt"
       ],
       "docsUrl": "https://github.com/beltoforion/stellarium-to-video",
       "extraSystemPrompt": null
@@ -632,7 +712,7 @@
       "name": "beast",
       "description": "BEAST-Fitting/beast - astronomy library with 27 stars",
       "contextFiles": [
-        "beast-context.txt"
+        "BEAST-Fitting-beast-context.txt"
       ],
       "docsUrl": "https://github.com/BEAST-Fitting/beast",
       "extraSystemPrompt": null
@@ -642,7 +722,7 @@
       "name": "kin-sdk-python",
       "description": "kinecosystem/kin-sdk-python - astronomy library with 27 stars",
       "contextFiles": [
-        "kin-sdk-python-context.txt"
+        "kinecosystem-kin-sdk-python-context.txt"
       ],
       "docsUrl": "https://github.com/kinecosystem/kin-sdk-python",
       "extraSystemPrompt": null
@@ -652,15 +732,25 @@
       "name": "PiOpenHub",
       "description": "KOSASIH/PiOpenHub - astronomy library with 27 stars",
       "contextFiles": [
-        "PiOpenHub-context.txt"
+        "KOSASIH-PiOpenHub-context.txt"
       ],
       "docsUrl": "https://github.com/KOSASIH/PiOpenHub",
       "extraSystemPrompt": null
     },
     {
+      "id": "plotly-dash",
+      "name": "dash",
+      "description": "plotly/dash - biochemistry library with 24137 stars",
+      "contextFiles": [
+        "plotly-dash-context.txt"
+      ],
+      "docsUrl": "https://github.com/plotly/dash",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "biopython-biopython",
       "name": "biopython",
-      "description": "biopython/biopython - biochemistry library with 4749 stars",
+      "description": "biopython/biopython - biochemistry library with 4758 stars",
       "contextFiles": [
         "biopython-biopython-context.txt"
       ],
@@ -668,11 +758,61 @@
       "extraSystemPrompt": "You are an expert on biopython/biopython. Use the provided documentation to help users with this biochemistry library."
     },
     {
+      "id": "google-deepvariant",
+      "name": "deepvariant",
+      "description": "google/deepvariant - biochemistry library with 3514 stars",
+      "contextFiles": [
+        "google-deepvariant-context.txt"
+      ],
+      "docsUrl": "https://github.com/google/deepvariant",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "scverse-scanpy",
+      "name": "scanpy",
+      "description": "scverse/scanpy - biochemistry library with 2214 stars",
+      "contextFiles": [
+        "scverse-scanpy-context.txt"
+      ],
+      "docsUrl": "https://github.com/scverse/scanpy",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "dmis-lab-biobert",
+      "name": "biobert",
+      "description": "dmis-lab/biobert - biochemistry library with 2147 stars",
+      "contextFiles": [
+        "dmis-lab-biobert-context.txt"
+      ],
+      "docsUrl": "https://github.com/dmis-lab/biobert",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "allenai-scispacy",
+      "name": "scispacy",
+      "description": "allenai/scispacy - biochemistry library with 1883 stars",
+      "contextFiles": [
+        "allenai-scispacy-context.txt"
+      ],
+      "docsUrl": "https://github.com/allenai/scispacy",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "deepmodeling-deepmd-kit",
+      "name": "deepmd-kit",
+      "description": "deepmodeling/deepmd-kit - biochemistry library with 1765 stars",
+      "contextFiles": [
+        "deepmodeling-deepmd-kit-context.txt"
+      ],
+      "docsUrl": "https://github.com/deepmodeling/deepmd-kit",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "galaxyproject-galaxy",
       "name": "galaxy",
-      "description": "galaxyproject/galaxy - biochemistry library with 1612 stars",
+      "description": "galaxyproject/galaxy - biochemistry library with 1618 stars",
       "contextFiles": [
-        "galaxy-context.txt"
+        "galaxyproject-galaxy-context.txt"
       ],
       "docsUrl": "https://github.com/galaxyproject/galaxy",
       "extraSystemPrompt": null
@@ -680,7 +820,7 @@
     {
       "id": "mdanalysis-mdanalysis",
       "name": "mdanalysis",
-      "description": "MDAnalysis/mdanalysis - biochemistry library with 1465 stars",
+      "description": "MDAnalysis/mdanalysis - biochemistry library with 1473 stars",
       "contextFiles": [
         "MDAnalysis-mdanalysis-context.txt"
       ],
@@ -688,9 +828,59 @@
       "extraSystemPrompt": "You are an expert on mdanalysis/mdanalysis. Use the provided documentation to help users with this biochemistry library."
     },
     {
+      "id": "lightaime-deep-gcns-torch",
+      "name": "deep_gcns_torch",
+      "description": "lightaime/deep_gcns_torch - biochemistry library with 1180 stars",
+      "contextFiles": [
+        "lightaime-deep-gcns-torch-context.txt"
+      ],
+      "docsUrl": "https://github.com/lightaime/deep_gcns_torch",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "bradyajohnston-molecularnodes",
+      "name": "MolecularNodes",
+      "description": "BradyAJohnston/MolecularNodes - biochemistry library with 1085 stars",
+      "contextFiles": [
+        "MolecularNodes-context.txt"
+      ],
+      "docsUrl": "https://github.com/BradyAJohnston/MolecularNodes",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "sib-swiss-training-collection",
+      "name": "training-collection",
+      "description": "sib-swiss/training-collection - biochemistry library with 1064 stars",
+      "contextFiles": [
+        "sib-swiss-training-collection-context.txt"
+      ],
+      "docsUrl": "https://github.com/sib-swiss/training-collection",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "kblin-ncbi-genome-download",
+      "name": "ncbi-genome-download",
+      "description": "kblin/ncbi-genome-download - biochemistry library with 1034 stars",
+      "contextFiles": [
+        "kblin-ncbi-genome-download-context.txt"
+      ],
+      "docsUrl": "https://github.com/kblin/ncbi-genome-download",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "hail-is-hail",
+      "name": "hail",
+      "description": "hail-is/hail - biochemistry library with 1029 stars",
+      "contextFiles": [
+        "hail-context.txt"
+      ],
+      "docsUrl": "https://github.com/hail-is/hail",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "scikit-bio-scikit-bio",
       "name": "scikit-bio",
-      "description": "scikit-bio/scikit-bio - biochemistry library with 974 stars",
+      "description": "scikit-bio/scikit-bio - biochemistry library with 976 stars",
       "contextFiles": [
         "scikit-bio-scikit-bio-context.txt"
       ],
@@ -698,11 +888,21 @@
       "extraSystemPrompt": "You are an expert on scikit-bio/scikit-bio. Use the provided documentation to help users with this biochemistry library."
     },
     {
+      "id": "moshi4-pycirclize",
+      "name": "pyCirclize",
+      "description": "moshi4/pyCirclize - biochemistry library with 970 stars",
+      "contextFiles": [
+        "pyCirclize-context.txt"
+      ],
+      "docsUrl": "https://github.com/moshi4/pyCirclize",
+      "extraSystemPrompt": null
+    },
+    {
       "id": "biotite-dev-biotite",
       "name": "biotite",
       "description": "biotite-dev/biotite - biochemistry library with 863 stars",
       "contextFiles": [
-        "biotite-context.txt"
+        "biotite-dev-biotite-context.txt"
       ],
       "docsUrl": "https://github.com/biotite-dev/biotite",
       "extraSystemPrompt": null
@@ -712,7 +912,7 @@
       "name": "An-Introduction-To-Applied-Bioinformatics",
       "description": "applied-bioinformatics/An-Introduction-To-Applied-Bioinformatics - biochemistry library with 858 stars",
       "contextFiles": [
-        "An-Introduction-To-Applied-Bioinformatics-context.txt"
+        "applied-bioinformatics-An-Introduction-To-Applied-Bioinformatics-context.txt"
       ],
       "docsUrl": "https://github.com/applied-bioinformatics/An-Introduction-To-Applied-Bioinformatics",
       "extraSystemPrompt": null
@@ -720,9 +920,9 @@
     {
       "id": "tanghaibao-jcvi",
       "name": "jcvi",
-      "description": "tanghaibao/jcvi - biochemistry library with 854 stars",
+      "description": "tanghaibao/jcvi - biochemistry library with 860 stars",
       "contextFiles": [
-        "jcvi-context.txt"
+        "tanghaibao-jcvi-context.txt"
       ],
       "docsUrl": "https://github.com/tanghaibao/jcvi",
       "extraSystemPrompt": null
@@ -730,9 +930,9 @@
     {
       "id": "dib-lab-khmer",
       "name": "khmer",
-      "description": "dib-lab/khmer - biochemistry library with 778 stars",
+      "description": "dib-lab/khmer - biochemistry library with 779 stars",
       "contextFiles": [
-        "khmer-context.txt"
+        "dib-lab-khmer-context.txt"
       ],
       "docsUrl": "https://github.com/dib-lab/khmer",
       "extraSystemPrompt": null
@@ -740,9 +940,9 @@
     {
       "id": "awslabs-dgl-lifesci",
       "name": "dgl-lifesci",
-      "description": "awslabs/dgl-lifesci - biochemistry library with 772 stars",
+      "description": "awslabs/dgl-lifesci - biochemistry library with 774 stars",
       "contextFiles": [
-        "dgl-lifesci-context.txt"
+        "awslabs-dgl-lifesci-context.txt"
       ],
       "docsUrl": "https://github.com/awslabs/dgl-lifesci",
       "extraSystemPrompt": null
@@ -752,7 +952,7 @@
       "name": "biopandas",
       "description": "BioPandas/biopandas - biochemistry library with 739 stars",
       "contextFiles": [
-        "biopandas-context.txt"
+        "BioPandas-biopandas-context.txt"
       ],
       "docsUrl": "https://github.com/BioPandas/biopandas",
       "extraSystemPrompt": null
@@ -760,9 +960,9 @@
     {
       "id": "deeptools-deeptools",
       "name": "deepTools",
-      "description": "deeptools/deepTools - biochemistry library with 734 stars",
+      "description": "deeptools/deepTools - biochemistry library with 737 stars",
       "contextFiles": [
-        "deepTools-context.txt"
+        "deeptools-deepTools-context.txt"
       ],
       "docsUrl": "https://github.com/deeptools/deepTools",
       "extraSystemPrompt": null
@@ -770,9 +970,9 @@
     {
       "id": "danforthcenter-plantcv",
       "name": "plantcv",
-      "description": "danforthcenter/plantcv - biochemistry library with 727 stars",
+      "description": "danforthcenter/plantcv - biochemistry library with 728 stars",
       "contextFiles": [
-        "plantcv-context.txt"
+        "danforthcenter-plantcv-context.txt"
       ],
       "docsUrl": "https://github.com/danforthcenter/plantcv",
       "extraSystemPrompt": null
@@ -780,9 +980,9 @@
     {
       "id": "vsbuffalo-bds-files",
       "name": "bds-files",
-      "description": "vsbuffalo/bds-files - biochemistry library with 690 stars",
+      "description": "vsbuffalo/bds-files - biochemistry library with 692 stars",
       "contextFiles": [
-        "bds-files-context.txt"
+        "vsbuffalo-bds-files-context.txt"
       ],
       "docsUrl": "https://github.com/vsbuffalo/bds-files",
       "extraSystemPrompt": null
@@ -792,7 +992,7 @@
       "name": "PyDESeq2",
       "description": "owkin/PyDESeq2 - biochemistry library with 679 stars",
       "contextFiles": [
-        "PyDESeq2-context.txt"
+        "owkin-PyDESeq2-context.txt"
       ],
       "docsUrl": "https://github.com/owkin/PyDESeq2",
       "extraSystemPrompt": null
@@ -800,9 +1000,9 @@
     {
       "id": "mdtraj-mdtraj",
       "name": "mdtraj",
-      "description": "mdtraj/mdtraj - biochemistry library with 666 stars",
+      "description": "mdtraj/mdtraj - biochemistry library with 668 stars",
       "contextFiles": [
-        "mdtraj-context.txt"
+        "mdtraj-mdtraj-context.txt"
       ],
       "docsUrl": "https://github.com/mdtraj/mdtraj",
       "extraSystemPrompt": null
@@ -812,7 +1012,7 @@
       "name": "torchmd",
       "description": "torchmd/torchmd - biochemistry library with 661 stars",
       "contextFiles": [
-        "torchmd-context.txt"
+        "torchmd-torchmd-context.txt"
       ],
       "docsUrl": "https://github.com/torchmd/torchmd",
       "extraSystemPrompt": null
@@ -820,9 +1020,9 @@
     {
       "id": "scverse-anndata",
       "name": "anndata",
-      "description": "scverse/anndata - biochemistry library with 659 stars",
+      "description": "scverse/anndata - biochemistry library with 661 stars",
       "contextFiles": [
-        "anndata-context.txt"
+        "scverse-anndata-context.txt"
       ],
       "docsUrl": "https://github.com/scverse/anndata",
       "extraSystemPrompt": null
@@ -830,9 +1030,9 @@
     {
       "id": "edinburgh-genome-foundry-dnafeaturesviewer",
       "name": "DnaFeaturesViewer",
-      "description": "Edinburgh-Genome-Foundry/DnaFeaturesViewer - biochemistry library with 658 stars",
+      "description": "Edinburgh-Genome-Foundry/DnaFeaturesViewer - biochemistry library with 659 stars",
       "contextFiles": [
-        "DnaFeaturesViewer-context.txt"
+        "Edinburgh-Genome-Foundry-DnaFeaturesViewer-context.txt"
       ],
       "docsUrl": "https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer",
       "extraSystemPrompt": null
@@ -842,7 +1042,7 @@
       "name": "dash-cytoscape",
       "description": "plotly/dash-cytoscape - biochemistry library with 656 stars",
       "contextFiles": [
-        "dash-cytoscape-context.txt"
+        "plotly-dash-cytoscape-context.txt"
       ],
       "docsUrl": "https://github.com/plotly/dash-cytoscape",
       "extraSystemPrompt": null
@@ -850,9 +1050,9 @@
     {
       "id": "chapmanb-bcbb",
       "name": "bcbb",
-      "description": "chapmanb/bcbb - biochemistry library with 631 stars",
+      "description": "chapmanb/bcbb - biochemistry library with 633 stars",
       "contextFiles": [
-        "bcbb-context.txt"
+        "chapmanb-bcbb-context.txt"
       ],
       "docsUrl": "https://github.com/chapmanb/bcbb",
       "extraSystemPrompt": null
@@ -860,9 +1060,9 @@
     {
       "id": "ysig-grakel",
       "name": "GraKeL",
-      "description": "ysig/GraKeL - biochemistry library with 627 stars",
+      "description": "ysig/GraKeL - biochemistry library with 628 stars",
       "contextFiles": [
-        "GraKeL-context.txt"
+        "ysig-GraKeL-context.txt"
       ],
       "docsUrl": "https://github.com/ysig/GraKeL",
       "extraSystemPrompt": null
@@ -870,9 +1070,9 @@
     {
       "id": "fritzsedlazeck-sniffles",
       "name": "Sniffles",
-      "description": "fritzsedlazeck/Sniffles - biochemistry library with 617 stars",
+      "description": "fritzsedlazeck/Sniffles - biochemistry library with 619 stars",
       "contextFiles": [
-        "Sniffles-context.txt"
+        "fritzsedlazeck-Sniffles-context.txt"
       ],
       "docsUrl": "https://github.com/fritzsedlazeck/Sniffles",
       "extraSystemPrompt": null
@@ -880,9 +1080,9 @@
     {
       "id": "gamcil-clinker",
       "name": "clinker",
-      "description": "gamcil/clinker - biochemistry library with 611 stars",
+      "description": "gamcil/clinker - biochemistry library with 615 stars",
       "contextFiles": [
-        "clinker-context.txt"
+        "gamcil-clinker-context.txt"
       ],
       "docsUrl": "https://github.com/gamcil/clinker",
       "extraSystemPrompt": null
@@ -890,9 +1090,9 @@
     {
       "id": "opencobra-cobrapy",
       "name": "cobrapy",
-      "description": "opencobra/cobrapy - biochemistry library with 518 stars",
+      "description": "opencobra/cobrapy - biochemistry library with 521 stars",
       "contextFiles": [
-        "cobrapy-context.txt"
+        "opencobra-cobrapy-context.txt"
       ],
       "docsUrl": "https://github.com/opencobra/cobrapy",
       "extraSystemPrompt": null
@@ -900,9 +1100,9 @@
     {
       "id": "mdil-snu-sevennet",
       "name": "SevenNet",
-      "description": "MDIL-SNU/SevenNet - biochemistry library with 194 stars",
+      "description": "MDIL-SNU/SevenNet - biochemistry library with 193 stars",
       "contextFiles": [
-        "SevenNet-context.txt"
+        "MDIL-SNU-SevenNet-context.txt"
       ],
       "docsUrl": "https://github.com/MDIL-SNU/SevenNet",
       "extraSystemPrompt": null
@@ -912,7 +1112,7 @@
       "name": "mdgrad",
       "description": "torchmd/mdgrad - biochemistry library with 180 stars",
       "contextFiles": [
-        "mdgrad-context.txt"
+        "torchmd-mdgrad-context.txt"
       ],
       "docsUrl": "https://github.com/torchmd/mdgrad",
       "extraSystemPrompt": null
@@ -920,9 +1120,9 @@
     {
       "id": "bjing2016-mdgen",
       "name": "mdgen",
-      "description": "bjing2016/mdgen - biochemistry library with 170 stars",
+      "description": "bjing2016/mdgen - biochemistry library with 171 stars",
       "contextFiles": [
-        "mdgen-context.txt"
+        "bjing2016-mdgen-context.txt"
       ],
       "docsUrl": "https://github.com/bjing2016/mdgen",
       "extraSystemPrompt": null
@@ -930,9 +1130,9 @@
     {
       "id": "ingcoder-unomd",
       "name": "unomd",
-      "description": "ingcoder/unomd - biochemistry library with 165 stars",
+      "description": "ingcoder/unomd - biochemistry library with 166 stars",
       "contextFiles": [
-        "unomd-context.txt"
+        "ingcoder-unomd-context.txt"
       ],
       "docsUrl": "https://github.com/ingcoder/unomd",
       "extraSystemPrompt": null
@@ -940,9 +1140,9 @@
     {
       "id": "micom-dev-micom",
       "name": "micom",
-      "description": "micom-dev/micom - biochemistry library with 108 stars",
+      "description": "micom-dev/micom - biochemistry library with 111 stars",
       "contextFiles": [
-        "micom-context.txt"
+        "micom-dev-micom-context.txt"
       ],
       "docsUrl": "https://github.com/micom-dev/micom",
       "extraSystemPrompt": null
@@ -952,7 +1152,7 @@
       "name": "alphatims",
       "description": "MannLabs/alphatims - biochemistry library with 90 stars",
       "contextFiles": [
-        "alphatims-context.txt"
+        "MannLabs-alphatims-context.txt"
       ],
       "docsUrl": "https://github.com/MannLabs/alphatims",
       "extraSystemPrompt": null
@@ -962,7 +1162,7 @@
       "name": "pycontact",
       "description": "maxscheurer/pycontact - biochemistry library with 63 stars",
       "contextFiles": [
-        "pycontact-context.txt"
+        "maxscheurer-pycontact-context.txt"
       ],
       "docsUrl": "https://github.com/maxscheurer/pycontact",
       "extraSystemPrompt": null
@@ -972,7 +1172,7 @@
       "name": "contact_map",
       "description": "dwhswenson/contact_map - biochemistry library with 46 stars",
       "contextFiles": [
-        "contact_map-context.txt"
+        "dwhswenson-contact-map-context.txt"
       ],
       "docsUrl": "https://github.com/dwhswenson/contact_map",
       "extraSystemPrompt": null
@@ -982,7 +1182,7 @@
       "name": "AutoPeptideML",
       "description": "IBM/AutoPeptideML - biochemistry library with 34 stars",
       "contextFiles": [
-        "AutoPeptideML-context.txt"
+        "IBM-AutoPeptideML-context.txt"
       ],
       "docsUrl": "https://github.com/IBM/AutoPeptideML",
       "extraSystemPrompt": null
@@ -992,7 +1192,7 @@
       "name": "BRENDApyrser",
       "description": "Robaina/BRENDApyrser - biochemistry library with 32 stars",
       "contextFiles": [
-        "BRENDApyrser-context.txt"
+        "Robaina-BRENDApyrser-context.txt"
       ],
       "docsUrl": "https://github.com/Robaina/BRENDApyrser",
       "extraSystemPrompt": null
@@ -1002,7 +1202,7 @@
       "name": "covid-19-signal",
       "description": "jaleezyy/covid-19-signal - biochemistry library with 31 stars",
       "contextFiles": [
-        "covid-19-signal-context.txt"
+        "jaleezyy-covid-19-signal-context.txt"
       ],
       "docsUrl": "https://github.com/jaleezyy/covid-19-signal",
       "extraSystemPrompt": null
@@ -1012,7 +1212,7 @@
       "name": "corda",
       "description": "resendislab/corda - biochemistry library with 25 stars",
       "contextFiles": [
-        "corda-context.txt"
+        "resendislab-corda-context.txt"
       ],
       "docsUrl": "https://github.com/resendislab/corda",
       "extraSystemPrompt": null
@@ -1022,7 +1222,7 @@
       "name": "qpcr",
       "description": "NoahHenrikKleinschmidt/qpcr - biochemistry library with 23 stars",
       "contextFiles": [
-        "qpcr-context.txt"
+        "NoahHenrikKleinschmidt-qpcr-context.txt"
       ],
       "docsUrl": "https://github.com/NoahHenrikKleinschmidt/qpcr",
       "extraSystemPrompt": null
@@ -1032,7 +1232,7 @@
       "name": "fuse-drug",
       "description": "BiomedSciAI/fuse-drug - biochemistry library with 22 stars",
       "contextFiles": [
-        "fuse-drug-context.txt"
+        "BiomedSciAI-fuse-drug-context.txt"
       ],
       "docsUrl": "https://github.com/BiomedSciAI/fuse-drug",
       "extraSystemPrompt": null
@@ -1040,9 +1240,9 @@
     {
       "id": "openbb-finance-openbb",
       "name": "OpenBB",
-      "description": "OpenBB-finance/OpenBB - finance library with 52550 stars",
+      "description": "OpenBB-finance/OpenBB - finance library with 52969 stars",
       "contextFiles": [
-        "OpenBB-context.txt"
+        "OpenBB-finance-OpenBB-context.txt"
       ],
       "docsUrl": "https://github.com/OpenBB-finance/OpenBB",
       "extraSystemPrompt": null
@@ -1050,9 +1250,9 @@
     {
       "id": "freqtrade-freqtrade",
       "name": "freqtrade",
-      "description": "freqtrade/freqtrade - finance library with 43133 stars",
+      "description": "freqtrade/freqtrade - finance library with 43380 stars",
       "contextFiles": [
-        "freqtrade-context.txt"
+        "freqtrade-freqtrade-context.txt"
       ],
       "docsUrl": "https://github.com/freqtrade/freqtrade",
       "extraSystemPrompt": null
@@ -1060,9 +1260,9 @@
     {
       "id": "ccxt-ccxt",
       "name": "ccxt",
-      "description": "ccxt/ccxt - finance library with 38941 stars",
+      "description": "ccxt/ccxt - finance library with 39064 stars",
       "contextFiles": [
-        "ccxt-context.txt"
+        "ccxt-ccxt-context.txt"
       ],
       "docsUrl": "https://github.com/ccxt/ccxt",
       "extraSystemPrompt": null
@@ -1070,9 +1270,9 @@
     {
       "id": "vnpy-vnpy",
       "name": "vnpy",
-      "description": "vnpy/vnpy - finance library with 32515 stars",
+      "description": "vnpy/vnpy - finance library with 32654 stars",
       "contextFiles": [
-        "vnpy-context.txt"
+        "vnpy-vnpy-context.txt"
       ],
       "docsUrl": "https://github.com/vnpy/vnpy",
       "extraSystemPrompt": null
@@ -1080,9 +1280,9 @@
     {
       "id": "microsoft-qlib",
       "name": "qlib",
-      "description": "microsoft/qlib - finance library with 31296 stars",
+      "description": "microsoft/qlib - finance library with 31803 stars",
       "contextFiles": [
-        "qlib-context.txt"
+        "microsoft-qlib-context.txt"
       ],
       "docsUrl": "https://github.com/microsoft/qlib",
       "extraSystemPrompt": null
@@ -1090,9 +1290,9 @@
     {
       "id": "plotly-dash",
       "name": "dash",
-      "description": "plotly/dash - finance library with 24110 stars",
+      "description": "plotly/dash - finance library with 24137 stars",
       "contextFiles": [
-        "dash-context.txt"
+        "plotly-dash-context.txt"
       ],
       "docsUrl": "https://github.com/plotly/dash",
       "extraSystemPrompt": null
@@ -1100,9 +1300,9 @@
     {
       "id": "tauricresearch-tradingagents",
       "name": "TradingAgents",
-      "description": "TauricResearch/TradingAgents - finance library with 21335 stars",
+      "description": "TauricResearch/TradingAgents - finance library with 22051 stars",
       "contextFiles": [
-        "TradingAgents-context.txt"
+        "TauricResearch-TradingAgents-context.txt"
       ],
       "docsUrl": "https://github.com/TauricResearch/TradingAgents",
       "extraSystemPrompt": null
@@ -1110,7 +1310,7 @@
     {
       "id": "quantopian-zipline",
       "name": "zipline",
-      "description": "quantopian/zipline - finance library with 18981 stars",
+      "description": "quantopian/zipline - finance library with 19014 stars",
       "contextFiles": [
         "quantopian-zipline-context.txt"
       ],
@@ -1120,9 +1320,9 @@
     {
       "id": "mementum-backtrader",
       "name": "backtrader",
-      "description": "mementum/backtrader - finance library with 18851 stars",
+      "description": "mementum/backtrader - finance library with 18960 stars",
       "contextFiles": [
-        "backtrader-context.txt"
+        "mementum-backtrader-context.txt"
       ],
       "docsUrl": "https://github.com/mementum/backtrader",
       "extraSystemPrompt": null
@@ -1130,9 +1330,9 @@
     {
       "id": "bbfamily-abu",
       "name": "abu",
-      "description": "bbfamily/abu - finance library with 14872 stars",
+      "description": "bbfamily/abu - finance library with 14940 stars",
       "contextFiles": [
-        "abu-context.txt"
+        "bbfamily-abu-context.txt"
       ],
       "docsUrl": "https://github.com/bbfamily/abu",
       "extraSystemPrompt": null
@@ -1140,9 +1340,9 @@
     {
       "id": "hummingbot-hummingbot",
       "name": "hummingbot",
-      "description": "hummingbot/hummingbot - finance library with 14578 stars",
+      "description": "hummingbot/hummingbot - finance library with 14666 stars",
       "contextFiles": [
-        "hummingbot-context.txt"
+        "hummingbot-hummingbot-context.txt"
       ],
       "docsUrl": "https://github.com/hummingbot/hummingbot",
       "extraSystemPrompt": null
@@ -1150,9 +1350,9 @@
     {
       "id": "waditu-tushare",
       "name": "tushare",
-      "description": "waditu/tushare - finance library with 13896 stars",
+      "description": "waditu/tushare - finance library with 13924 stars",
       "contextFiles": [
-        "tushare-context.txt"
+        "waditu-tushare-context.txt"
       ],
       "docsUrl": "https://github.com/waditu/tushare",
       "extraSystemPrompt": null
@@ -1160,9 +1360,9 @@
     {
       "id": "akfamily-akshare",
       "name": "akshare",
-      "description": "akfamily/akshare - finance library with 13610 stars",
+      "description": "akfamily/akshare - finance library with 13740 stars",
       "contextFiles": [
-        "akshare-context.txt"
+        "akfamily-akshare-context.txt"
       ],
       "docsUrl": "https://github.com/akfamily/akshare",
       "extraSystemPrompt": null
@@ -1170,9 +1370,9 @@
     {
       "id": "ccxt-binance-trade-bot",
       "name": "binance-trade-bot",
-      "description": "ccxt/binance-trade-bot - finance library with 8491 stars",
+      "description": "ccxt/binance-trade-bot - finance library with 8500 stars",
       "contextFiles": [
-        "binance-trade-bot-context.txt"
+        "ccxt-binance-trade-bot-context.txt"
       ],
       "docsUrl": "https://github.com/ccxt/binance-trade-bot",
       "extraSystemPrompt": null
@@ -1180,9 +1380,9 @@
     {
       "id": "je-suis-tm-quant-trading",
       "name": "quant-trading",
-      "description": "je-suis-tm/quant-trading - finance library with 8267 stars",
+      "description": "je-suis-tm/quant-trading - finance library with 8313 stars",
       "contextFiles": [
-        "quant-trading-context.txt"
+        "je-suis-tm-quant-trading-context.txt"
       ],
       "docsUrl": "https://github.com/je-suis-tm/quant-trading",
       "extraSystemPrompt": null
@@ -1190,9 +1390,9 @@
     {
       "id": "firmai-financial-machine-learning",
       "name": "financial-machine-learning",
-      "description": "firmai/financial-machine-learning - finance library with 8174 stars",
+      "description": "firmai/financial-machine-learning - finance library with 8194 stars",
       "contextFiles": [
-        "financial-machine-learning-context.txt"
+        "firmai-financial-machine-learning-context.txt"
       ],
       "docsUrl": "https://github.com/firmai/financial-machine-learning",
       "extraSystemPrompt": null
@@ -1200,9 +1400,9 @@
     {
       "id": "kernc-backtesting-py",
       "name": "backtesting.py",
-      "description": "kernc/backtesting.py - finance library with 7214 stars",
+      "description": "kernc/backtesting.py - finance library with 7260 stars",
       "contextFiles": [
-        "backtesting.py-context.txt"
+        "kernc-backtesting-py-context.txt"
       ],
       "docsUrl": "https://github.com/kernc/backtesting.py",
       "extraSystemPrompt": null
@@ -1210,9 +1410,9 @@
     {
       "id": "hsliuping-tradingagents-cn",
       "name": "TradingAgents-CN",
-      "description": "hsliuping/TradingAgents-CN - finance library with 7212 stars",
+      "description": "hsliuping/TradingAgents-CN - finance library with 9481 stars",
       "contextFiles": [
-        "TradingAgents-CN-context.txt"
+        "hsliuping-TradingAgents-CN-context.txt"
       ],
       "docsUrl": "https://github.com/hsliuping/TradingAgents-CN",
       "extraSystemPrompt": null
@@ -1220,9 +1420,9 @@
     {
       "id": "sammchardy-python-binance",
       "name": "python-binance",
-      "description": "sammchardy/python-binance - finance library with 6843 stars",
+      "description": "sammchardy/python-binance - finance library with 6870 stars",
       "contextFiles": [
-        "python-binance-context.txt"
+        "sammchardy-python-binance-context.txt"
       ],
       "docsUrl": "https://github.com/sammchardy/python-binance",
       "extraSystemPrompt": null
@@ -1230,9 +1430,9 @@
     {
       "id": "maxbbraun-trump2cash",
       "name": "trump2cash",
-      "description": "maxbbraun/trump2cash - finance library with 6431 stars",
+      "description": "maxbbraun/trump2cash - finance library with 6429 stars",
       "contextFiles": [
-        "trump2cash-context.txt"
+        "maxbbraun-trump2cash-context.txt"
       ],
       "docsUrl": "https://github.com/maxbbraun/trump2cash",
       "extraSystemPrompt": null
@@ -1240,9 +1440,9 @@
     {
       "id": "ranaroussi-quantstats",
       "name": "quantstats",
-      "description": "ranaroussi/quantstats - finance library with 6234 stars",
+      "description": "ranaroussi/quantstats - finance library with 6276 stars",
       "contextFiles": [
-        "quantstats-context.txt"
+        "ranaroussi-quantstats-context.txt"
       ],
       "docsUrl": "https://github.com/ranaroussi/quantstats",
       "extraSystemPrompt": null
@@ -1250,9 +1450,9 @@
     {
       "id": "paperswithbacktest-awesome-systematic-trading",
       "name": "awesome-systematic-trading",
-      "description": "paperswithbacktest/awesome-systematic-trading - finance library with 5994 stars",
+      "description": "paperswithbacktest/awesome-systematic-trading - finance library with 6054 stars",
       "contextFiles": [
-        "awesome-systematic-trading-context.txt"
+        "paperswithbacktest-awesome-systematic-trading-context.txt"
       ],
       "docsUrl": "https://github.com/paperswithbacktest/awesome-systematic-trading",
       "extraSystemPrompt": null
@@ -1260,9 +1460,9 @@
     {
       "id": "ricequant-rqalpha",
       "name": "rqalpha",
-      "description": "ricequant/rqalpha - finance library with 5893 stars",
+      "description": "ricequant/rqalpha - finance library with 5905 stars",
       "contextFiles": [
-        "rqalpha-context.txt"
+        "ricequant-rqalpha-context.txt"
       ],
       "docsUrl": "https://github.com/ricequant/rqalpha",
       "extraSystemPrompt": null
@@ -1270,9 +1470,9 @@
     {
       "id": "polakowo-vectorbt",
       "name": "vectorbt",
-      "description": "polakowo/vectorbt - finance library with 5831 stars",
+      "description": "polakowo/vectorbt - finance library with 5877 stars",
       "contextFiles": [
-        "vectorbt-context.txt"
+        "polakowo-vectorbt-context.txt"
       ],
       "docsUrl": "https://github.com/polakowo/vectorbt",
       "extraSystemPrompt": null
@@ -1280,9 +1480,9 @@
     {
       "id": "jerbouma-financedatabase",
       "name": "FinanceDatabase",
-      "description": "JerBouma/FinanceDatabase - finance library with 5675 stars",
+      "description": "JerBouma/FinanceDatabase - finance library with 5706 stars",
       "contextFiles": [
-        "FinanceDatabase-context.txt"
+        "JerBouma-FinanceDatabase-context.txt"
       ],
       "docsUrl": "https://github.com/JerBouma/FinanceDatabase",
       "extraSystemPrompt": null
@@ -1290,9 +1490,9 @@
     {
       "id": "tensortrade-org-tensortrade",
       "name": "tensortrade",
-      "description": "tensortrade-org/tensortrade - finance library with 5499 stars",
+      "description": "tensortrade-org/tensortrade - finance library with 5518 stars",
       "contextFiles": [
-        "tensortrade-context.txt"
+        "tensortrade-org-tensortrade-context.txt"
       ],
       "docsUrl": "https://github.com/tensortrade-org/tensortrade",
       "extraSystemPrompt": null
@@ -1300,9 +1500,9 @@
     {
       "id": "cryptosignal-crypto-signal",
       "name": "Crypto-Signal",
-      "description": "CryptoSignal/Crypto-Signal - finance library with 5305 stars",
+      "description": "CryptoSignal/Crypto-Signal - finance library with 5320 stars",
       "contextFiles": [
-        "Crypto-Signal-context.txt"
+        "CryptoSignal-Crypto-Signal-context.txt"
       ],
       "docsUrl": "https://github.com/CryptoSignal/Crypto-Signal",
       "extraSystemPrompt": null
@@ -1310,9 +1510,9 @@
     {
       "id": "google-tf-quant-finance",
       "name": "tf-quant-finance",
-      "description": "google/tf-quant-finance - finance library with 4993 stars",
+      "description": "google/tf-quant-finance - finance library with 5002 stars",
       "contextFiles": [
-        "tf-quant-finance-context.txt"
+        "google-tf-quant-finance-context.txt"
       ],
       "docsUrl": "https://github.com/google/tf-quant-finance",
       "extraSystemPrompt": null
@@ -1320,9 +1520,9 @@
     {
       "id": "drakkar-software-octobot",
       "name": "OctoBot",
-      "description": "Drakkar-Software/OctoBot - finance library with 4766 stars",
+      "description": "Drakkar-Software/OctoBot - finance library with 4801 stars",
       "contextFiles": [
-        "OctoBot-context.txt"
+        "Drakkar-Software-OctoBot-context.txt"
       ],
       "docsUrl": "https://github.com/Drakkar-Software/OctoBot",
       "extraSystemPrompt": null
@@ -1330,9 +1530,9 @@
     {
       "id": "romeltorres-alpha-vantage",
       "name": "alpha_vantage",
-      "description": "RomelTorres/alpha_vantage - finance library with 4614 stars",
+      "description": "RomelTorres/alpha_vantage - finance library with 4620 stars",
       "contextFiles": [
-        "alpha_vantage-context.txt"
+        "RomelTorres-alpha-vantage-context.txt"
       ],
       "docsUrl": "https://github.com/RomelTorres/alpha_vantage",
       "extraSystemPrompt": null
@@ -1340,9 +1540,9 @@
     {
       "id": "gbeced-pyalgotrade",
       "name": "pyalgotrade",
-      "description": "gbeced/pyalgotrade - finance library with 4606 stars",
+      "description": "gbeced/pyalgotrade - finance library with 4608 stars",
       "contextFiles": [
-        "pyalgotrade-context.txt"
+        "gbeced-pyalgotrade-context.txt"
       ],
       "docsUrl": "https://github.com/gbeced/pyalgotrade",
       "extraSystemPrompt": null
@@ -1350,9 +1550,9 @@
     {
       "id": "freqtrade-freqtrade-strategies",
       "name": "freqtrade-strategies",
-      "description": "freqtrade/freqtrade-strategies - finance library with 4481 stars",
+      "description": "freqtrade/freqtrade-strategies - finance library with 4511 stars",
       "contextFiles": [
-        "freqtrade-strategies-context.txt"
+        "freqtrade-freqtrade-strategies-context.txt"
       ],
       "docsUrl": "https://github.com/freqtrade/freqtrade-strategies",
       "extraSystemPrompt": null
@@ -1360,9 +1560,9 @@
     {
       "id": "hudson-and-thames-mlfinlab",
       "name": "mlfinlab",
-      "description": "hudson-and-thames/mlfinlab - finance library with 4373 stars",
+      "description": "hudson-and-thames/mlfinlab - finance library with 4386 stars",
       "contextFiles": [
-        "mlfinlab-context.txt"
+        "hudson-and-thames-mlfinlab-context.txt"
       ],
       "docsUrl": "https://github.com/hudson-and-thames/mlfinlab",
       "extraSystemPrompt": null
@@ -1370,9 +1570,9 @@
     {
       "id": "matplotlib-mplfinance",
       "name": "mplfinance",
-      "description": "matplotlib/mplfinance - finance library with 4176 stars",
+      "description": "matplotlib/mplfinance - finance library with 4192 stars",
       "contextFiles": [
-        "mplfinance-context.txt"
+        "matplotlib-mplfinance-context.txt"
       ],
       "docsUrl": "https://github.com/matplotlib/mplfinance",
       "extraSystemPrompt": null
@@ -1380,9 +1580,9 @@
     {
       "id": "jerbouma-financetoolkit",
       "name": "FinanceToolkit",
-      "description": "JerBouma/FinanceToolkit - finance library with 3936 stars",
+      "description": "JerBouma/FinanceToolkit - finance library with 3965 stars",
       "contextFiles": [
-        "FinanceToolkit-context.txt"
+        "JerBouma-FinanceToolkit-context.txt"
       ],
       "docsUrl": "https://github.com/JerBouma/FinanceToolkit",
       "extraSystemPrompt": null
@@ -1390,9 +1590,9 @@
     {
       "id": "cuemacro-finmarketpy",
       "name": "finmarketpy",
-      "description": "cuemacro/finmarketpy - finance library with 3648 stars",
+      "description": "cuemacro/finmarketpy - finance library with 3655 stars",
       "contextFiles": [
-        "finmarketpy-context.txt"
+        "cuemacro-finmarketpy-context.txt"
       ],
       "docsUrl": "https://github.com/cuemacro/finmarketpy",
       "extraSystemPrompt": null
@@ -1400,9 +1600,9 @@
     {
       "id": "cyberpunkmetalhead-binance-volatility-trading-bot",
       "name": "Binance-volatility-trading-bot",
-      "description": "CyberPunkMetalHead/Binance-volatility-trading-bot - finance library with 3478 stars",
+      "description": "CyberPunkMetalHead/Binance-volatility-trading-bot - finance library with 3482 stars",
       "contextFiles": [
-        "Binance-volatility-trading-bot-context.txt"
+        "CyberPunkMetalHead-Binance-volatility-trading-bot-context.txt"
       ],
       "docsUrl": "https://github.com/CyberPunkMetalHead/Binance-volatility-trading-bot",
       "extraSystemPrompt": null
@@ -1410,9 +1610,9 @@
     {
       "id": "chrisconlan-algorithmic-trading-with-python",
       "name": "algorithmic-trading-with-python",
-      "description": "chrisconlan/algorithmic-trading-with-python - finance library with 3122 stars",
+      "description": "chrisconlan/algorithmic-trading-with-python - finance library with 3128 stars",
       "contextFiles": [
-        "algorithmic-trading-with-python-context.txt"
+        "chrisconlan-algorithmic-trading-with-python-context.txt"
       ],
       "docsUrl": "https://github.com/chrisconlan/algorithmic-trading-with-python",
       "extraSystemPrompt": null
@@ -1420,9 +1620,9 @@
     {
       "id": "erdewit-ib-insync",
       "name": "ib_insync",
-      "description": "erdewit/ib_insync - finance library with 3120 stars",
+      "description": "erdewit/ib_insync - finance library with 3127 stars",
       "contextFiles": [
-        "ib_insync-context.txt"
+        "erdewit-ib-insync-context.txt"
       ],
       "docsUrl": "https://github.com/erdewit/ib_insync",
       "extraSystemPrompt": null
@@ -1430,9 +1630,9 @@
     {
       "id": "pydata-pandas-datareader",
       "name": "pandas-datareader",
-      "description": "pydata/pandas-datareader - finance library with 3102 stars",
+      "description": "pydata/pandas-datareader - finance library with 3103 stars",
       "contextFiles": [
-        "pandas-datareader-context.txt"
+        "pydata-pandas-datareader-context.txt"
       ],
       "docsUrl": "https://github.com/pydata/pandas-datareader",
       "extraSystemPrompt": null
@@ -1440,7 +1640,7 @@
     {
       "id": "shashankvemuri-finance",
       "name": "Finance",
-      "description": "shashankvemuri/Finance - finance library with 3084 stars",
+      "description": "shashankvemuri/Finance - finance library with 3100 stars",
       "contextFiles": [
         "shashankvemuri-Finance-context.txt"
       ],
@@ -1450,9 +1650,9 @@
     {
       "id": "edtechre-pybroker",
       "name": "pybroker",
-      "description": "edtechre/pybroker - finance library with 2801 stars",
+      "description": "edtechre/pybroker - finance library with 2811 stars",
       "contextFiles": [
-        "pybroker-context.txt"
+        "edtechre-pybroker-context.txt"
       ],
       "docsUrl": "https://github.com/edtechre/pybroker",
       "extraSystemPrompt": null
@@ -1460,9 +1660,9 @@
     {
       "id": "micro-sheep-efinance",
       "name": "efinance",
-      "description": "Micro-sheep/efinance - finance library with 2660 stars",
+      "description": "Micro-sheep/efinance - finance library with 2675 stars",
       "contextFiles": [
-        "efinance-context.txt"
+        "Micro-sheep-efinance-context.txt"
       ],
       "docsUrl": "https://github.com/Micro-sheep/efinance",
       "extraSystemPrompt": null
@@ -1470,9 +1670,9 @@
     {
       "id": "refraction-ray-xalpha",
       "name": "xalpha",
-      "description": "refraction-ray/xalpha - finance library with 2276 stars",
+      "description": "refraction-ray/xalpha - finance library with 2279 stars",
       "contextFiles": [
-        "xalpha-context.txt"
+        "refraction-ray-xalpha-context.txt"
       ],
       "docsUrl": "https://github.com/refraction-ray/xalpha",
       "extraSystemPrompt": null
@@ -1480,9 +1680,9 @@
     {
       "id": "achillesrasquinha-bulbea",
       "name": "bulbea",
-      "description": "achillesrasquinha/bulbea - finance library with 2195 stars",
+      "description": "achillesrasquinha/bulbea - finance library with 2197 stars",
       "contextFiles": [
-        "bulbea-context.txt"
+        "achillesrasquinha-bulbea-context.txt"
       ],
       "docsUrl": "https://github.com/achillesrasquinha/bulbea",
       "extraSystemPrompt": null
@@ -1490,9 +1690,9 @@
     {
       "id": "dj-stripe-dj-stripe",
       "name": "dj-stripe",
-      "description": "dj-stripe/dj-stripe - finance library with 1740 stars",
+      "description": "dj-stripe/dj-stripe - finance library with 1741 stars",
       "contextFiles": [
-        "dj-stripe-context.txt"
+        "dj-stripe-dj-stripe-context.txt"
       ],
       "docsUrl": "https://github.com/dj-stripe/dj-stripe",
       "extraSystemPrompt": null
@@ -1500,9 +1700,9 @@
     {
       "id": "ai4finance-foundation-finrl-meta",
       "name": "FinRL-Meta",
-      "description": "AI4Finance-Foundation/FinRL-Meta - finance library with 1668 stars",
+      "description": "AI4Finance-Foundation/FinRL-Meta - finance library with 1671 stars",
       "contextFiles": [
-        "FinRL-Meta-context.txt"
+        "AI4Finance-Foundation-FinRL-Meta-context.txt"
       ],
       "docsUrl": "https://github.com/AI4Finance-Foundation/FinRL-Meta",
       "extraSystemPrompt": null
@@ -1510,9 +1710,9 @@
     {
       "id": "fmilthaler-finquant",
       "name": "FinQuant",
-      "description": "fmilthaler/FinQuant - finance library with 1625 stars",
+      "description": "fmilthaler/FinQuant - finance library with 1631 stars",
       "contextFiles": [
-        "FinQuant-context.txt"
+        "fmilthaler-FinQuant-context.txt"
       ],
       "docsUrl": "https://github.com/fmilthaler/FinQuant",
       "extraSystemPrompt": null
@@ -1520,9 +1720,9 @@
     {
       "id": "mcdallas-wallstreet",
       "name": "wallstreet",
-      "description": "mcdallas/wallstreet - finance library with 1568 stars",
+      "description": "mcdallas/wallstreet - finance library with 1573 stars",
       "contextFiles": [
-        "wallstreet-context.txt"
+        "mcdallas-wallstreet-context.txt"
       ],
       "docsUrl": "https://github.com/mcdallas/wallstreet",
       "extraSystemPrompt": null
@@ -1530,9 +1730,9 @@
     {
       "id": "bashtage-arch",
       "name": "arch",
-      "description": "bashtage/arch - finance library with 1448 stars",
+      "description": "bashtage/arch - finance library with 1447 stars",
       "contextFiles": [
-        "arch-context.txt"
+        "bashtage-arch-context.txt"
       ],
       "docsUrl": "https://github.com/bashtage/arch",
       "extraSystemPrompt": null
@@ -1540,7 +1740,7 @@
     {
       "id": "huggingface-transformers",
       "name": "transformers",
-      "description": "huggingface/transformers - machinelearning library with 150353 stars",
+      "description": "huggingface/transformers - machinelearning library with 150709 stars",
       "contextFiles": [
         "huggingface-transformers-context.txt"
       ],
@@ -1550,9 +1750,9 @@
     {
       "id": "fighting41love-funnlp",
       "name": "funNLP",
-      "description": "fighting41love/funNLP - machinelearning library with 76272 stars",
+      "description": "fighting41love/funNLP - machinelearning library with 76401 stars",
       "contextFiles": [
-        "funNLP-context.txt"
+        "fighting41love-funNLP-context.txt"
       ],
       "docsUrl": "https://github.com/fighting41love/funNLP",
       "extraSystemPrompt": null
@@ -1560,7 +1760,7 @@
     {
       "id": "keras-team-keras",
       "name": "keras",
-      "description": "keras-team/keras - machinelearning library with 63429 stars",
+      "description": "keras-team/keras - machinelearning library with 63457 stars",
       "contextFiles": [
         "keras-team-keras-context.txt"
       ],
@@ -1570,9 +1770,9 @@
     {
       "id": "labmlai-annotated-deep-learning-paper-implementations",
       "name": "annotated_deep_learning_paper_implementations",
-      "description": "labmlai/annotated_deep_learning_paper_implementations - machinelearning library with 63341 stars",
+      "description": "labmlai/annotated_deep_learning_paper_implementations - machinelearning library with 63431 stars",
       "contextFiles": [
-        "annotated_deep_learning_paper_implementations-context.txt"
+        "labmlai-annotated-deep-learning-paper-implementations-context.txt"
       ],
       "docsUrl": "https://github.com/labmlai/annotated_deep_learning_paper_implementations",
       "extraSystemPrompt": null
@@ -1580,9 +1780,9 @@
     {
       "id": "hiyouga-llama-factory",
       "name": "LLaMA-Factory",
-      "description": "hiyouga/LLaMA-Factory - machinelearning library with 59416 stars",
+      "description": "hiyouga/LLaMA-Factory - machinelearning library with 59773 stars",
       "contextFiles": [
-        "LLaMA-Factory-context.txt"
+        "hiyouga-LLaMA-Factory-context.txt"
       ],
       "docsUrl": "https://github.com/hiyouga/LLaMA-Factory",
       "extraSystemPrompt": null
@@ -1590,9 +1790,9 @@
     {
       "id": "huggingface-pytorch-image-models",
       "name": "pytorch-image-models",
-      "description": "huggingface/pytorch-image-models - machinelearning library with 35363 stars",
+      "description": "huggingface/pytorch-image-models - machinelearning library with 35416 stars",
       "contextFiles": [
-        "pytorch-image-models-context.txt"
+        "huggingface-pytorch-image-models-context.txt"
       ],
       "docsUrl": "https://github.com/huggingface/pytorch-image-models",
       "extraSystemPrompt": null
@@ -1600,9 +1800,9 @@
     {
       "id": "tqdm-tqdm",
       "name": "tqdm",
-      "description": "tqdm/tqdm - machinelearning library with 30464 stars",
+      "description": "tqdm/tqdm - machinelearning library with 30502 stars",
       "contextFiles": [
-        "tqdm-context.txt"
+        "tqdm-tqdm-context.txt"
       ],
       "docsUrl": "https://github.com/tqdm/tqdm",
       "extraSystemPrompt": null
@@ -1610,9 +1810,9 @@
     {
       "id": "donnemartin-data-science-ipython-notebooks",
       "name": "data-science-ipython-notebooks",
-      "description": "donnemartin/data-science-ipython-notebooks - machinelearning library with 28556 stars",
+      "description": "donnemartin/data-science-ipython-notebooks - machinelearning library with 28576 stars",
       "contextFiles": [
-        "data-science-ipython-notebooks-context.txt"
+        "donnemartin-data-science-ipython-notebooks-context.txt"
       ],
       "docsUrl": "https://github.com/donnemartin/data-science-ipython-notebooks",
       "extraSystemPrompt": null
@@ -1620,9 +1820,9 @@
     {
       "id": "d2l-ai-d2l-en",
       "name": "d2l-en",
-      "description": "d2l-ai/d2l-en - machinelearning library with 26974 stars",
+      "description": "d2l-ai/d2l-en - machinelearning library with 27050 stars",
       "contextFiles": [
-        "d2l-en-context.txt"
+        "d2l-ai-d2l-en-context.txt"
       ],
       "docsUrl": "https://github.com/d2l-ai/d2l-en",
       "extraSystemPrompt": null
@@ -1630,9 +1830,9 @@
     {
       "id": "matterport-mask-rcnn",
       "name": "Mask_RCNN",
-      "description": "matterport/Mask_RCNN - machinelearning library with 25353 stars",
+      "description": "matterport/Mask_RCNN - machinelearning library with 25367 stars",
       "contextFiles": [
-        "Mask_RCNN-context.txt"
+        "matterport-Mask-RCNN-context.txt"
       ],
       "docsUrl": "https://github.com/matterport/Mask_RCNN",
       "extraSystemPrompt": null
@@ -1640,9 +1840,9 @@
     {
       "id": "lucidrains-vit-pytorch",
       "name": "vit-pytorch",
-      "description": "lucidrains/vit-pytorch - machinelearning library with 24040 stars",
+      "description": "lucidrains/vit-pytorch - machinelearning library with 24094 stars",
       "contextFiles": [
-        "vit-pytorch-context.txt"
+        "lucidrains-vit-pytorch-context.txt"
       ],
       "docsUrl": "https://github.com/lucidrains/vit-pytorch",
       "extraSystemPrompt": null
@@ -1650,9 +1850,9 @@
     {
       "id": "deepset-ai-haystack",
       "name": "haystack",
-      "description": "deepset-ai/haystack - machinelearning library with 22794 stars",
+      "description": "deepset-ai/haystack - machinelearning library with 22871 stars",
       "contextFiles": [
-        "haystack-context.txt"
+        "deepset-ai-haystack-context.txt"
       ],
       "docsUrl": "https://github.com/deepset-ai/haystack",
       "extraSystemPrompt": null
@@ -1660,9 +1860,9 @@
     {
       "id": "karpathy-mingpt",
       "name": "minGPT",
-      "description": "karpathy/minGPT - machinelearning library with 22635 stars",
+      "description": "karpathy/minGPT - machinelearning library with 22667 stars",
       "contextFiles": [
-        "minGPT-context.txt"
+        "karpathy-minGPT-context.txt"
       ],
       "docsUrl": "https://github.com/karpathy/minGPT",
       "extraSystemPrompt": null
@@ -1670,9 +1870,9 @@
     {
       "id": "huggingface-peft",
       "name": "peft",
-      "description": "huggingface/peft - machinelearning library with 19695 stars",
+      "description": "huggingface/peft - machinelearning library with 19754 stars",
       "contextFiles": [
-        "peft-context.txt"
+        "huggingface-peft-context.txt"
       ],
       "docsUrl": "https://github.com/huggingface/peft",
       "extraSystemPrompt": null
@@ -1680,9 +1880,9 @@
     {
       "id": "onnx-onnx",
       "name": "onnx",
-      "description": "onnx/onnx - machinelearning library with 19652 stars",
+      "description": "onnx/onnx - machinelearning library with 19680 stars",
       "contextFiles": [
-        "onnx-context.txt"
+        "onnx-onnx-context.txt"
       ],
       "docsUrl": "https://github.com/onnx/onnx",
       "extraSystemPrompt": null
@@ -1690,9 +1890,9 @@
     {
       "id": "ukplab-sentence-transformers",
       "name": "sentence-transformers",
-      "description": "UKPLab/sentence-transformers - machinelearning library with 17600 stars",
+      "description": "UKPLab/sentence-transformers - machinelearning library with 17642 stars",
       "contextFiles": [
-        "sentence-transformers-context.txt"
+        "UKPLab-sentence-transformers-context.txt"
       ],
       "docsUrl": "https://github.com/UKPLab/sentence-transformers",
       "extraSystemPrompt": null
@@ -1700,9 +1900,9 @@
     {
       "id": "sczhou-codeformer",
       "name": "CodeFormer",
-      "description": "sczhou/CodeFormer - machinelearning library with 17515 stars",
+      "description": "sczhou/CodeFormer - machinelearning library with 17538 stars",
       "contextFiles": [
-        "CodeFormer-context.txt"
+        "sczhou-CodeFormer-context.txt"
       ],
       "docsUrl": "https://github.com/sczhou/CodeFormer",
       "extraSystemPrompt": null
@@ -1710,9 +1910,9 @@
     {
       "id": "huggingface-trl",
       "name": "trl",
-      "description": "huggingface/trl - machinelearning library with 15665 stars",
+      "description": "huggingface/trl - machinelearning library with 15751 stars",
       "contextFiles": [
-        "trl-context.txt"
+        "huggingface-trl-context.txt"
       ],
       "docsUrl": "https://github.com/huggingface/trl",
       "extraSystemPrompt": null
@@ -1720,9 +1920,9 @@
     {
       "id": "microsoft-swin-transformer",
       "name": "Swin-Transformer",
-      "description": "microsoft/Swin-Transformer - machinelearning library with 15232 stars",
+      "description": "microsoft/Swin-Transformer - machinelearning library with 15254 stars",
       "contextFiles": [
-        "Swin-Transformer-context.txt"
+        "microsoft-Swin-Transformer-context.txt"
       ],
       "docsUrl": "https://github.com/microsoft/Swin-Transformer",
       "extraSystemPrompt": null
@@ -1730,9 +1930,9 @@
     {
       "id": "stas00-ml-engineering",
       "name": "ml-engineering",
-      "description": "stas00/ml-engineering - machinelearning library with 15183 stars",
+      "description": "stas00/ml-engineering - machinelearning library with 15398 stars",
       "contextFiles": [
-        "ml-engineering-context.txt"
+        "stas00-ml-engineering-context.txt"
       ],
       "docsUrl": "https://github.com/stas00/ml-engineering",
       "extraSystemPrompt": null
@@ -1740,9 +1940,9 @@
     {
       "id": "facebookresearch-detr",
       "name": "detr",
-      "description": "facebookresearch/detr - machinelearning library with 14725 stars",
+      "description": "facebookresearch/detr - machinelearning library with 14752 stars",
       "contextFiles": [
-        "detr-context.txt"
+        "facebookresearch-detr-context.txt"
       ],
       "docsUrl": "https://github.com/facebookresearch/detr",
       "extraSystemPrompt": null
@@ -1750,9 +1950,9 @@
     {
       "id": "horovod-horovod",
       "name": "horovod",
-      "description": "horovod/horovod - machinelearning library with 14598 stars",
+      "description": "horovod/horovod - machinelearning library with 14602 stars",
       "contextFiles": [
-        "horovod-context.txt"
+        "horovod-horovod-context.txt"
       ],
       "docsUrl": "https://github.com/horovod/horovod",
       "extraSystemPrompt": null
@@ -1760,9 +1960,9 @@
     {
       "id": "blinkdl-rwkv-lm",
       "name": "RWKV-LM",
-      "description": "BlinkDL/RWKV-LM - machinelearning library with 13992 stars",
+      "description": "BlinkDL/RWKV-LM - machinelearning library with 13999 stars",
       "contextFiles": [
-        "RWKV-LM-context.txt"
+        "BlinkDL-RWKV-LM-context.txt"
       ],
       "docsUrl": "https://github.com/BlinkDL/RWKV-LM",
       "extraSystemPrompt": null
@@ -1770,9 +1970,9 @@
     {
       "id": "nvidia-megatron-lm",
       "name": "Megatron-LM",
-      "description": "NVIDIA/Megatron-LM - machinelearning library with 13708 stars",
+      "description": "NVIDIA/Megatron-LM - machinelearning library with 13755 stars",
       "contextFiles": [
-        "Megatron-LM-context.txt"
+        "NVIDIA-Megatron-LM-context.txt"
       ],
       "docsUrl": "https://github.com/NVIDIA/Megatron-LM",
       "extraSystemPrompt": null
@@ -1780,9 +1980,9 @@
     {
       "id": "paddlepaddle-paddlenlp",
       "name": "PaddleNLP",
-      "description": "PaddlePaddle/PaddleNLP - machinelearning library with 12779 stars",
+      "description": "PaddlePaddle/PaddleNLP - machinelearning library with 12791 stars",
       "contextFiles": [
-        "PaddleNLP-context.txt"
+        "PaddlePaddle-PaddleNLP-context.txt"
       ],
       "docsUrl": "https://github.com/PaddlePaddle/PaddleNLP",
       "extraSystemPrompt": null
@@ -1790,9 +1990,9 @@
     {
       "id": "jacobgil-pytorch-grad-cam",
       "name": "pytorch-grad-cam",
-      "description": "jacobgil/pytorch-grad-cam - machinelearning library with 12205 stars",
+      "description": "jacobgil/pytorch-grad-cam - machinelearning library with 12224 stars",
       "contextFiles": [
-        "pytorch-grad-cam-context.txt"
+        "jacobgil-pytorch-grad-cam-context.txt"
       ],
       "docsUrl": "https://github.com/jacobgil/pytorch-grad-cam",
       "extraSystemPrompt": null
@@ -1800,9 +2000,9 @@
     {
       "id": "neuml-txtai",
       "name": "txtai",
-      "description": "neuml/txtai - machinelearning library with 11642 stars",
+      "description": "neuml/txtai - machinelearning library with 11671 stars",
       "contextFiles": [
-        "txtai-context.txt"
+        "neuml-txtai-context.txt"
       ],
       "docsUrl": "https://github.com/neuml/txtai",
       "extraSystemPrompt": null
@@ -1810,9 +2010,9 @@
     {
       "id": "facebookresearch-vggt",
       "name": "vggt",
-      "description": "facebookresearch/vggt - machinelearning library with 11074 stars",
+      "description": "facebookresearch/vggt - machinelearning library with 11164 stars",
       "contextFiles": [
-        "vggt-context.txt"
+        "facebookresearch-vggt-context.txt"
       ],
       "docsUrl": "https://github.com/facebookresearch/vggt",
       "extraSystemPrompt": null
@@ -1820,9 +2020,9 @@
     {
       "id": "vipstone-faceai",
       "name": "faceai",
-      "description": "vipstone/faceai - machinelearning library with 11018 stars",
+      "description": "vipstone/faceai - machinelearning library with 11016 stars",
       "contextFiles": [
-        "faceai-context.txt"
+        "vipstone-faceai-context.txt"
       ],
       "docsUrl": "https://github.com/vipstone/faceai",
       "extraSystemPrompt": null
@@ -1830,9 +2030,9 @@
     {
       "id": "wandb-wandb",
       "name": "wandb",
-      "description": "wandb/wandb - machinelearning library with 10365 stars",
+      "description": "wandb/wandb - machinelearning library with 10383 stars",
       "contextFiles": [
-        "wandb-context.txt"
+        "wandb-wandb-context.txt"
       ],
       "docsUrl": "https://github.com/wandb/wandb",
       "extraSystemPrompt": null
@@ -1840,9 +2040,9 @@
     {
       "id": "keras-team-autokeras",
       "name": "autokeras",
-      "description": "keras-team/autokeras - machinelearning library with 9269 stars",
+      "description": "keras-team/autokeras - machinelearning library with 9271 stars",
       "contextFiles": [
-        "autokeras-context.txt"
+        "keras-team-autokeras-context.txt"
       ],
       "docsUrl": "https://github.com/keras-team/autokeras",
       "extraSystemPrompt": null
@@ -1850,9 +2050,9 @@
     {
       "id": "eriklindernoren-keras-gan",
       "name": "Keras-GAN",
-      "description": "eriklindernoren/Keras-GAN - machinelearning library with 9241 stars",
+      "description": "eriklindernoren/Keras-GAN - machinelearning library with 9238 stars",
       "contextFiles": [
-        "Keras-GAN-context.txt"
+        "eriklindernoren-Keras-GAN-context.txt"
       ],
       "docsUrl": "https://github.com/eriklindernoren/Keras-GAN",
       "extraSystemPrompt": null
@@ -1860,9 +2060,9 @@
     {
       "id": "arogozhnikov-einops",
       "name": "einops",
-      "description": "arogozhnikov/einops - machinelearning library with 9200 stars",
+      "description": "arogozhnikov/einops - machinelearning library with 9209 stars",
       "contextFiles": [
-        "einops-context.txt"
+        "arogozhnikov-einops-context.txt"
       ],
       "docsUrl": "https://github.com/arogozhnikov/einops",
       "extraSystemPrompt": null
@@ -1870,9 +2070,9 @@
     {
       "id": "nl8590687-asrt-speechrecognition",
       "name": "ASRT_SpeechRecognition",
-      "description": "nl8590687/ASRT_SpeechRecognition - machinelearning library with 8236 stars",
+      "description": "nl8590687/ASRT_SpeechRecognition - machinelearning library with 8247 stars",
       "contextFiles": [
-        "ASRT_SpeechRecognition-context.txt"
+        "nl8590687-ASRT-SpeechRecognition-context.txt"
       ],
       "docsUrl": "https://github.com/nl8590687/ASRT_SpeechRecognition",
       "extraSystemPrompt": null
@@ -1880,9 +2080,9 @@
     {
       "id": "fchollet-deep-learning-models",
       "name": "deep-learning-models",
-      "description": "fchollet/deep-learning-models - machinelearning library with 7347 stars",
+      "description": "fchollet/deep-learning-models - machinelearning library with 7348 stars",
       "contextFiles": [
-        "deep-learning-models-context.txt"
+        "fchollet-deep-learning-models-context.txt"
       ],
       "docsUrl": "https://github.com/fchollet/deep-learning-models",
       "extraSystemPrompt": null
@@ -1892,7 +2092,7 @@
       "name": "keras-yolo3",
       "description": "qqwweee/keras-yolo3 - machinelearning library with 7134 stars",
       "contextFiles": [
-        "keras-yolo3-context.txt"
+        "qqwweee-keras-yolo3-context.txt"
       ],
       "docsUrl": "https://github.com/qqwweee/keras-yolo3",
       "extraSystemPrompt": null
@@ -1902,7 +2102,7 @@
       "name": "deepo",
       "description": "ufoym/deepo - machinelearning library with 6285 stars",
       "contextFiles": [
-        "deepo-context.txt"
+        "ufoym-deepo-context.txt"
       ],
       "docsUrl": "https://github.com/ufoym/deepo",
       "extraSystemPrompt": null
@@ -1910,9 +2110,9 @@
     {
       "id": "microsoft-mmdnn",
       "name": "MMdnn",
-      "description": "microsoft/MMdnn - machinelearning library with 5813 stars",
+      "description": "microsoft/MMdnn - machinelearning library with 5815 stars",
       "contextFiles": [
-        "MMdnn-context.txt"
+        "microsoft-MMdnn-context.txt"
       ],
       "docsUrl": "https://github.com/microsoft/MMdnn",
       "extraSystemPrompt": null
@@ -1922,7 +2122,7 @@
       "name": "face_classification",
       "description": "oarriaga/face_classification - machinelearning library with 5691 stars",
       "contextFiles": [
-        "face_classification-context.txt"
+        "oarriaga-face-classification-context.txt"
       ],
       "docsUrl": "https://github.com/oarriaga/face_classification",
       "extraSystemPrompt": null
@@ -1932,7 +2132,7 @@
       "name": "keras-rl",
       "description": "keras-rl/keras-rl - machinelearning library with 5555 stars",
       "contextFiles": [
-        "keras-rl-context.txt"
+        "keras-rl-keras-rl-context.txt"
       ],
       "docsUrl": "https://github.com/keras-rl/keras-rl",
       "extraSystemPrompt": null
@@ -1942,7 +2142,7 @@
       "name": "bert4keras",
       "description": "bojone/bert4keras - machinelearning library with 5420 stars",
       "contextFiles": [
-        "bert4keras-context.txt"
+        "bojone-bert4keras-context.txt"
       ],
       "docsUrl": "https://github.com/bojone/bert4keras",
       "extraSystemPrompt": null
@@ -1950,9 +2150,9 @@
     {
       "id": "ashnkumar-sketch-code",
       "name": "sketch-code",
-      "description": "ashnkumar/sketch-code - machinelearning library with 5143 stars",
+      "description": "ashnkumar/sketch-code - machinelearning library with 5145 stars",
       "contextFiles": [
-        "sketch-code-context.txt"
+        "ashnkumar-sketch-code-context.txt"
       ],
       "docsUrl": "https://github.com/ashnkumar/sketch-code",
       "extraSystemPrompt": null
@@ -1960,9 +2160,9 @@
     {
       "id": "jaungiers-lstm-neural-network-for-time-series-prediction",
       "name": "LSTM-Neural-Network-for-Time-Series-Prediction",
-      "description": "jaungiers/LSTM-Neural-Network-for-Time-Series-Prediction - machinelearning library with 5090 stars",
+      "description": "jaungiers/LSTM-Neural-Network-for-Time-Series-Prediction - machinelearning library with 5096 stars",
       "contextFiles": [
-        "LSTM-Neural-Network-for-Time-Series-Prediction-context.txt"
+        "jaungiers-LSTM-Neural-Network-for-Time-Series-Prediction-context.txt"
       ],
       "docsUrl": "https://github.com/jaungiers/LSTM-Neural-Network-for-Time-Series-Prediction",
       "extraSystemPrompt": null
@@ -1972,7 +2172,7 @@
       "name": "textgenrnn",
       "description": "minimaxir/textgenrnn - machinelearning library with 4936 stars",
       "contextFiles": [
-        "textgenrnn-context.txt"
+        "minimaxir-textgenrnn-context.txt"
       ],
       "docsUrl": "https://github.com/minimaxir/textgenrnn",
       "extraSystemPrompt": null
@@ -1980,9 +2180,9 @@
     {
       "id": "qubvel-segmentation-models",
       "name": "segmentation_models",
-      "description": "qubvel/segmentation_models - machinelearning library with 4886 stars",
+      "description": "qubvel/segmentation_models - machinelearning library with 4888 stars",
       "contextFiles": [
-        "segmentation_models-context.txt"
+        "qubvel-segmentation-models-context.txt"
       ],
       "docsUrl": "https://github.com/qubvel/segmentation_models",
       "extraSystemPrompt": null
@@ -1990,9 +2190,9 @@
     {
       "id": "fizyr-keras-retinanet",
       "name": "keras-retinanet",
-      "description": "fizyr/keras-retinanet - machinelearning library with 4391 stars",
+      "description": "fizyr/keras-retinanet - machinelearning library with 4392 stars",
       "contextFiles": [
-        "keras-retinanet-context.txt"
+        "fizyr-keras-retinanet-context.txt"
       ],
       "docsUrl": "https://github.com/fizyr/keras-retinanet",
       "extraSystemPrompt": null
@@ -2000,9 +2200,9 @@
     {
       "id": "sksq96-pytorch-summary",
       "name": "pytorch-summary",
-      "description": "sksq96/pytorch-summary - machinelearning library with 4059 stars",
+      "description": "sksq96/pytorch-summary - machinelearning library with 4061 stars",
       "contextFiles": [
-        "pytorch-summary-context.txt"
+        "sksq96-pytorch-summary-context.txt"
       ],
       "docsUrl": "https://github.com/sksq96/pytorch-summary",
       "extraSystemPrompt": null
@@ -2010,11 +2210,21 @@
     {
       "id": "pinto0309-pinto-model-zoo",
       "name": "PINTO_model_zoo",
-      "description": "PINTO0309/PINTO_model_zoo - machinelearning library with 3924 stars",
+      "description": "PINTO0309/PINTO_model_zoo - machinelearning library with 3929 stars",
       "contextFiles": [
-        "PINTO_model_zoo-context.txt"
+        "PINTO0309-PINTO-model-zoo-context.txt"
       ],
       "docsUrl": "https://github.com/PINTO0309/PINTO_model_zoo",
+      "extraSystemPrompt": null
+    },
+    {
+      "id": "tarrysingh-artificial-intelligence-deep-learning-machine-learning-tutorials",
+      "name": "Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials",
+      "description": "TarrySingh/Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials - machinelearning library with 3918 stars",
+      "contextFiles": [
+        "TarrySingh-Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials-context.txt"
+      ],
+      "docsUrl": "https://github.com/TarrySingh/Artificial-Intelligence-Deep-Learning-Machine-Learning-Tutorials",
       "extraSystemPrompt": null
     }
   ],

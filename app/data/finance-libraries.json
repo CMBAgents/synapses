@@ -3,63 +3,63 @@
     {
       "name": "OpenBB-finance/OpenBB",
       "github_url": "https://github.com/OpenBB-finance/OpenBB",
-      "stars": 52550,
+      "stars": 52969,
       "rank": 1,
       "hasContextFile": true,
-      "contextFileName": "OpenBB-context.txt"
+      "contextFileName": "OpenBB-finance-OpenBB-context.txt"
     },
     {
       "name": "freqtrade/freqtrade",
       "github_url": "https://github.com/freqtrade/freqtrade",
-      "stars": 43133,
+      "stars": 43380,
       "rank": 2,
       "hasContextFile": true,
-      "contextFileName": "freqtrade-context.txt"
+      "contextFileName": "freqtrade-freqtrade-context.txt"
     },
     {
       "name": "ccxt/ccxt",
       "github_url": "https://github.com/ccxt/ccxt",
-      "stars": 38941,
+      "stars": 39064,
       "rank": 3,
       "hasContextFile": true,
-      "contextFileName": "ccxt-context.txt"
+      "contextFileName": "ccxt-ccxt-context.txt"
     },
     {
       "name": "vnpy/vnpy",
       "github_url": "https://github.com/vnpy/vnpy",
-      "stars": 32515,
+      "stars": 32654,
       "rank": 4,
       "hasContextFile": true,
-      "contextFileName": "vnpy-context.txt"
+      "contextFileName": "vnpy-vnpy-context.txt"
     },
     {
       "name": "microsoft/qlib",
       "github_url": "https://github.com/microsoft/qlib",
-      "stars": 31296,
+      "stars": 31803,
       "rank": 5,
       "hasContextFile": true,
-      "contextFileName": "qlib-context.txt"
+      "contextFileName": "microsoft-qlib-context.txt"
     },
     {
       "name": "plotly/dash",
       "github_url": "https://github.com/plotly/dash",
-      "stars": 24110,
+      "stars": 24137,
       "rank": 6,
       "hasContextFile": true,
-      "contextFileName": "dash-context.txt"
+      "contextFileName": "plotly-dash-context.txt"
     },
     {
       "name": "TauricResearch/TradingAgents",
       "github_url": "https://github.com/TauricResearch/TradingAgents",
-      "stars": 21335,
+      "stars": 22051,
       "rank": 7,
       "hasContextFile": true,
-      "contextFileName": "TradingAgents-context.txt"
+      "contextFileName": "TauricResearch-TradingAgents-context.txt"
     },
     {
       "name": "quantopian/zipline",
       "github_url": "https://github.com/quantopian/zipline",
-      "stars": 18981,
+      "stars": 19014,
       "rank": 8,
       "hasContextFile": true,
       "contextFileName": "quantopian-zipline-context.txt"
@@ -67,263 +67,263 @@
     {
       "name": "mementum/backtrader",
       "github_url": "https://github.com/mementum/backtrader",
-      "stars": 18851,
+      "stars": 18960,
       "rank": 9,
       "hasContextFile": true,
-      "contextFileName": "backtrader-context.txt"
+      "contextFileName": "mementum-backtrader-context.txt"
     },
     {
       "name": "bbfamily/abu",
       "github_url": "https://github.com/bbfamily/abu",
-      "stars": 14872,
+      "stars": 14940,
       "rank": 10,
       "hasContextFile": true,
-      "contextFileName": "abu-context.txt"
+      "contextFileName": "bbfamily-abu-context.txt"
     },
     {
       "name": "hummingbot/hummingbot",
       "github_url": "https://github.com/hummingbot/hummingbot",
-      "stars": 14578,
+      "stars": 14666,
       "rank": 11,
       "hasContextFile": true,
-      "contextFileName": "hummingbot-context.txt"
+      "contextFileName": "hummingbot-hummingbot-context.txt"
     },
     {
       "name": "waditu/tushare",
       "github_url": "https://github.com/waditu/tushare",
-      "stars": 13896,
+      "stars": 13924,
       "rank": 12,
       "hasContextFile": true,
-      "contextFileName": "tushare-context.txt"
+      "contextFileName": "waditu-tushare-context.txt"
     },
     {
       "name": "akfamily/akshare",
       "github_url": "https://github.com/akfamily/akshare",
-      "stars": 13610,
+      "stars": 13740,
       "rank": 13,
       "hasContextFile": true,
-      "contextFileName": "akshare-context.txt"
+      "contextFileName": "akfamily-akshare-context.txt"
     },
     {
       "name": "ccxt/binance-trade-bot",
       "github_url": "https://github.com/ccxt/binance-trade-bot",
-      "stars": 8491,
+      "stars": 8500,
       "rank": 14,
       "hasContextFile": true,
-      "contextFileName": "binance-trade-bot-context.txt"
+      "contextFileName": "ccxt-binance-trade-bot-context.txt"
     },
     {
       "name": "je-suis-tm/quant-trading",
       "github_url": "https://github.com/je-suis-tm/quant-trading",
-      "stars": 8267,
+      "stars": 8313,
       "rank": 15,
       "hasContextFile": true,
-      "contextFileName": "quant-trading-context.txt"
+      "contextFileName": "je-suis-tm-quant-trading-context.txt"
     },
     {
       "name": "firmai/financial-machine-learning",
       "github_url": "https://github.com/firmai/financial-machine-learning",
-      "stars": 8174,
+      "stars": 8194,
       "rank": 16,
       "hasContextFile": true,
-      "contextFileName": "financial-machine-learning-context.txt"
+      "contextFileName": "firmai-financial-machine-learning-context.txt"
     },
     {
       "name": "kernc/backtesting.py",
       "github_url": "https://github.com/kernc/backtesting.py",
-      "stars": 7214,
+      "stars": 7260,
       "rank": 17,
       "hasContextFile": true,
-      "contextFileName": "backtesting.py-context.txt"
+      "contextFileName": "kernc-backtesting-py-context.txt"
     },
     {
       "name": "hsliuping/TradingAgents-CN",
       "github_url": "https://github.com/hsliuping/TradingAgents-CN",
-      "stars": 7212,
+      "stars": 9481,
       "rank": 18,
       "hasContextFile": true,
-      "contextFileName": "TradingAgents-CN-context.txt"
+      "contextFileName": "hsliuping-TradingAgents-CN-context.txt"
     },
     {
       "name": "sammchardy/python-binance",
       "github_url": "https://github.com/sammchardy/python-binance",
-      "stars": 6843,
+      "stars": 6870,
       "rank": 19,
       "hasContextFile": true,
-      "contextFileName": "python-binance-context.txt"
+      "contextFileName": "sammchardy-python-binance-context.txt"
     },
     {
       "name": "maxbbraun/trump2cash",
       "github_url": "https://github.com/maxbbraun/trump2cash",
-      "stars": 6431,
+      "stars": 6429,
       "rank": 20,
       "hasContextFile": true,
-      "contextFileName": "trump2cash-context.txt"
+      "contextFileName": "maxbbraun-trump2cash-context.txt"
     },
     {
       "name": "ranaroussi/quantstats",
       "github_url": "https://github.com/ranaroussi/quantstats",
-      "stars": 6234,
+      "stars": 6276,
       "rank": 21,
       "hasContextFile": true,
-      "contextFileName": "quantstats-context.txt"
+      "contextFileName": "ranaroussi-quantstats-context.txt"
     },
     {
       "name": "paperswithbacktest/awesome-systematic-trading",
       "github_url": "https://github.com/paperswithbacktest/awesome-systematic-trading",
-      "stars": 5994,
+      "stars": 6054,
       "rank": 22,
       "hasContextFile": true,
-      "contextFileName": "awesome-systematic-trading-context.txt"
+      "contextFileName": "paperswithbacktest-awesome-systematic-trading-context.txt"
     },
     {
       "name": "ricequant/rqalpha",
       "github_url": "https://github.com/ricequant/rqalpha",
-      "stars": 5893,
+      "stars": 5905,
       "rank": 23,
       "hasContextFile": true,
-      "contextFileName": "rqalpha-context.txt"
+      "contextFileName": "ricequant-rqalpha-context.txt"
     },
     {
       "name": "polakowo/vectorbt",
       "github_url": "https://github.com/polakowo/vectorbt",
-      "stars": 5831,
+      "stars": 5877,
       "rank": 24,
       "hasContextFile": true,
-      "contextFileName": "vectorbt-context.txt"
+      "contextFileName": "polakowo-vectorbt-context.txt"
     },
     {
       "name": "JerBouma/FinanceDatabase",
       "github_url": "https://github.com/JerBouma/FinanceDatabase",
-      "stars": 5675,
+      "stars": 5706,
       "rank": 25,
       "hasContextFile": true,
-      "contextFileName": "FinanceDatabase-context.txt"
+      "contextFileName": "JerBouma-FinanceDatabase-context.txt"
     },
     {
       "name": "tensortrade-org/tensortrade",
       "github_url": "https://github.com/tensortrade-org/tensortrade",
-      "stars": 5499,
+      "stars": 5518,
       "rank": 26,
       "hasContextFile": true,
-      "contextFileName": "tensortrade-context.txt"
+      "contextFileName": "tensortrade-org-tensortrade-context.txt"
     },
     {
       "name": "CryptoSignal/Crypto-Signal",
       "github_url": "https://github.com/CryptoSignal/Crypto-Signal",
-      "stars": 5305,
+      "stars": 5320,
       "rank": 27,
       "hasContextFile": true,
-      "contextFileName": "Crypto-Signal-context.txt"
+      "contextFileName": "CryptoSignal-Crypto-Signal-context.txt"
     },
     {
       "name": "google/tf-quant-finance",
       "github_url": "https://github.com/google/tf-quant-finance",
-      "stars": 4993,
+      "stars": 5002,
       "rank": 28,
       "hasContextFile": true,
-      "contextFileName": "tf-quant-finance-context.txt"
+      "contextFileName": "google-tf-quant-finance-context.txt"
     },
     {
       "name": "Drakkar-Software/OctoBot",
       "github_url": "https://github.com/Drakkar-Software/OctoBot",
-      "stars": 4766,
+      "stars": 4801,
       "rank": 29,
       "hasContextFile": true,
-      "contextFileName": "OctoBot-context.txt"
+      "contextFileName": "Drakkar-Software-OctoBot-context.txt"
     },
     {
       "name": "RomelTorres/alpha_vantage",
       "github_url": "https://github.com/RomelTorres/alpha_vantage",
-      "stars": 4614,
+      "stars": 4620,
       "rank": 30,
       "hasContextFile": true,
-      "contextFileName": "alpha_vantage-context.txt"
+      "contextFileName": "RomelTorres-alpha-vantage-context.txt"
     },
     {
       "name": "gbeced/pyalgotrade",
       "github_url": "https://github.com/gbeced/pyalgotrade",
-      "stars": 4606,
+      "stars": 4608,
       "rank": 31,
       "hasContextFile": true,
-      "contextFileName": "pyalgotrade-context.txt"
+      "contextFileName": "gbeced-pyalgotrade-context.txt"
     },
     {
       "name": "freqtrade/freqtrade-strategies",
       "github_url": "https://github.com/freqtrade/freqtrade-strategies",
-      "stars": 4481,
+      "stars": 4511,
       "rank": 32,
       "hasContextFile": true,
-      "contextFileName": "freqtrade-strategies-context.txt"
+      "contextFileName": "freqtrade-freqtrade-strategies-context.txt"
     },
     {
       "name": "hudson-and-thames/mlfinlab",
       "github_url": "https://github.com/hudson-and-thames/mlfinlab",
-      "stars": 4373,
+      "stars": 4386,
       "rank": 33,
       "hasContextFile": true,
-      "contextFileName": "mlfinlab-context.txt"
+      "contextFileName": "hudson-and-thames-mlfinlab-context.txt"
     },
     {
       "name": "matplotlib/mplfinance",
       "github_url": "https://github.com/matplotlib/mplfinance",
-      "stars": 4176,
+      "stars": 4192,
       "rank": 34,
       "hasContextFile": true,
-      "contextFileName": "mplfinance-context.txt"
+      "contextFileName": "matplotlib-mplfinance-context.txt"
     },
     {
       "name": "JerBouma/FinanceToolkit",
       "github_url": "https://github.com/JerBouma/FinanceToolkit",
-      "stars": 3936,
+      "stars": 3965,
       "rank": 35,
       "hasContextFile": true,
-      "contextFileName": "FinanceToolkit-context.txt"
+      "contextFileName": "JerBouma-FinanceToolkit-context.txt"
     },
     {
       "name": "cuemacro/finmarketpy",
       "github_url": "https://github.com/cuemacro/finmarketpy",
-      "stars": 3648,
+      "stars": 3655,
       "rank": 36,
       "hasContextFile": true,
-      "contextFileName": "finmarketpy-context.txt"
+      "contextFileName": "cuemacro-finmarketpy-context.txt"
     },
     {
       "name": "CyberPunkMetalHead/Binance-volatility-trading-bot",
       "github_url": "https://github.com/CyberPunkMetalHead/Binance-volatility-trading-bot",
-      "stars": 3478,
+      "stars": 3482,
       "rank": 37,
       "hasContextFile": true,
-      "contextFileName": "Binance-volatility-trading-bot-context.txt"
+      "contextFileName": "CyberPunkMetalHead-Binance-volatility-trading-bot-context.txt"
     },
     {
       "name": "chrisconlan/algorithmic-trading-with-python",
       "github_url": "https://github.com/chrisconlan/algorithmic-trading-with-python",
-      "stars": 3122,
+      "stars": 3128,
       "rank": 38,
       "hasContextFile": true,
-      "contextFileName": "algorithmic-trading-with-python-context.txt"
+      "contextFileName": "chrisconlan-algorithmic-trading-with-python-context.txt"
     },
     {
       "name": "erdewit/ib_insync",
       "github_url": "https://github.com/erdewit/ib_insync",
-      "stars": 3120,
+      "stars": 3127,
       "rank": 39,
       "hasContextFile": true,
-      "contextFileName": "ib_insync-context.txt"
+      "contextFileName": "erdewit-ib-insync-context.txt"
     },
     {
       "name": "pydata/pandas-datareader",
       "github_url": "https://github.com/pydata/pandas-datareader",
-      "stars": 3102,
+      "stars": 3103,
       "rank": 40,
       "hasContextFile": true,
-      "contextFileName": "pandas-datareader-context.txt"
+      "contextFileName": "pydata-pandas-datareader-context.txt"
     },
     {
       "name": "shashankvemuri/Finance",
       "github_url": "https://github.com/shashankvemuri/Finance",
-      "stars": 3084,
+      "stars": 3100,
       "rank": 41,
       "hasContextFile": true,
       "contextFileName": "shashankvemuri-Finance-context.txt"
@@ -331,74 +331,74 @@
     {
       "name": "edtechre/pybroker",
       "github_url": "https://github.com/edtechre/pybroker",
-      "stars": 2801,
+      "stars": 2811,
       "rank": 42,
       "hasContextFile": true,
-      "contextFileName": "pybroker-context.txt"
+      "contextFileName": "edtechre-pybroker-context.txt"
     },
     {
       "name": "Micro-sheep/efinance",
       "github_url": "https://github.com/Micro-sheep/efinance",
-      "stars": 2660,
+      "stars": 2675,
       "rank": 43,
       "hasContextFile": true,
-      "contextFileName": "efinance-context.txt"
+      "contextFileName": "Micro-sheep-efinance-context.txt"
     },
     {
       "name": "refraction-ray/xalpha",
       "github_url": "https://github.com/refraction-ray/xalpha",
-      "stars": 2276,
+      "stars": 2279,
       "rank": 44,
       "hasContextFile": true,
-      "contextFileName": "xalpha-context.txt"
+      "contextFileName": "refraction-ray-xalpha-context.txt"
     },
     {
       "name": "achillesrasquinha/bulbea",
       "github_url": "https://github.com/achillesrasquinha/bulbea",
-      "stars": 2195,
+      "stars": 2197,
       "rank": 45,
       "hasContextFile": true,
-      "contextFileName": "bulbea-context.txt"
+      "contextFileName": "achillesrasquinha-bulbea-context.txt"
     },
     {
       "name": "dj-stripe/dj-stripe",
       "github_url": "https://github.com/dj-stripe/dj-stripe",
-      "stars": 1740,
+      "stars": 1741,
       "rank": 46,
       "hasContextFile": true,
-      "contextFileName": "dj-stripe-context.txt"
+      "contextFileName": "dj-stripe-dj-stripe-context.txt"
     },
     {
       "name": "AI4Finance-Foundation/FinRL-Meta",
       "github_url": "https://github.com/AI4Finance-Foundation/FinRL-Meta",
-      "stars": 1668,
+      "stars": 1671,
       "rank": 47,
       "hasContextFile": true,
-      "contextFileName": "FinRL-Meta-context.txt"
+      "contextFileName": "AI4Finance-Foundation-FinRL-Meta-context.txt"
     },
     {
       "name": "fmilthaler/FinQuant",
       "github_url": "https://github.com/fmilthaler/FinQuant",
-      "stars": 1625,
+      "stars": 1631,
       "rank": 48,
       "hasContextFile": true,
-      "contextFileName": "FinQuant-context.txt"
+      "contextFileName": "fmilthaler-FinQuant-context.txt"
     },
     {
       "name": "mcdallas/wallstreet",
       "github_url": "https://github.com/mcdallas/wallstreet",
-      "stars": 1568,
+      "stars": 1573,
       "rank": 49,
       "hasContextFile": true,
-      "contextFileName": "wallstreet-context.txt"
+      "contextFileName": "mcdallas-wallstreet-context.txt"
     },
     {
       "name": "bashtage/arch",
       "github_url": "https://github.com/bashtage/arch",
-      "stars": 1448,
+      "stars": 1447,
       "rank": 50,
       "hasContextFile": true,
-      "contextFileName": "arch-context.txt"
+      "contextFileName": "bashtage-arch-context.txt"
     }
   ],
   "domain": "finance",

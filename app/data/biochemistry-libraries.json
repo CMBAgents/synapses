@@ -3,15 +3,15 @@
     {
       "name": "plotly/dash",
       "github_url": "https://github.com/plotly/dash",
-      "stars": 24110,
+      "stars": 24137,
       "rank": 1,
       "hasContextFile": true,
-      "contextFileName": "dash-context.txt"
+      "contextFileName": "plotly-dash-context.txt"
     },
     {
       "name": "biopython/biopython",
       "github_url": "https://github.com/biopython/biopython",
-      "stars": 4749,
+      "stars": 4758,
       "rank": 2,
       "hasContextFile": true,
       "contextFileName": "biopython-biopython-context.txt"
@@ -19,55 +19,55 @@
     {
       "name": "google/deepvariant",
       "github_url": "https://github.com/google/deepvariant",
-      "stars": 3508,
+      "stars": 3514,
       "rank": 3,
       "hasContextFile": true,
-      "contextFileName": "deepvariant-context.txt"
+      "contextFileName": "google-deepvariant-context.txt"
     },
     {
       "name": "scverse/scanpy",
       "github_url": "https://github.com/scverse/scanpy",
-      "stars": 2205,
+      "stars": 2214,
       "rank": 4,
       "hasContextFile": true,
-      "contextFileName": "scanpy-context.txt"
+      "contextFileName": "scverse-scanpy-context.txt"
     },
     {
       "name": "dmis-lab/biobert",
       "github_url": "https://github.com/dmis-lab/biobert",
-      "stars": 2145,
+      "stars": 2147,
       "rank": 5,
       "hasContextFile": true,
-      "contextFileName": "biobert-context.txt"
+      "contextFileName": "dmis-lab-biobert-context.txt"
     },
     {
       "name": "allenai/scispacy",
       "github_url": "https://github.com/allenai/scispacy",
-      "stars": 1878,
+      "stars": 1883,
       "rank": 6,
       "hasContextFile": true,
-      "contextFileName": "scispacy-context.txt"
+      "contextFileName": "allenai-scispacy-context.txt"
     },
     {
       "name": "deepmodeling/deepmd-kit",
       "github_url": "https://github.com/deepmodeling/deepmd-kit",
-      "stars": 1757,
+      "stars": 1765,
       "rank": 7,
       "hasContextFile": true,
-      "contextFileName": "deepmd-kit-context.txt"
+      "contextFileName": "deepmodeling-deepmd-kit-context.txt"
     },
     {
       "name": "galaxyproject/galaxy",
       "github_url": "https://github.com/galaxyproject/galaxy",
-      "stars": 1612,
+      "stars": 1618,
       "rank": 8,
       "hasContextFile": true,
-      "contextFileName": "galaxy-context.txt"
+      "contextFileName": "galaxyproject-galaxy-context.txt"
     },
     {
       "name": "MDAnalysis/mdanalysis",
       "github_url": "https://github.com/MDAnalysis/mdanalysis",
-      "stars": 1465,
+      "stars": 1473,
       "rank": 9,
       "hasContextFile": true,
       "contextFileName": "MDAnalysis-mdanalysis-context.txt"
@@ -75,26 +75,26 @@
     {
       "name": "lightaime/deep_gcns_torch",
       "github_url": "https://github.com/lightaime/deep_gcns_torch",
-      "stars": 1179,
+      "stars": 1180,
       "rank": 10,
       "hasContextFile": true,
-      "contextFileName": "deep_gcns_torch-context.txt"
+      "contextFileName": "lightaime-deep-gcns-torch-context.txt"
     },
     {
       "name": "BradyAJohnston/MolecularNodes",
       "github_url": "https://github.com/BradyAJohnston/MolecularNodes",
-      "stars": 1082,
+      "stars": 1085,
       "rank": 11,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "MolecularNodes-context.txt"
     },
     {
       "name": "sib-swiss/training-collection",
       "github_url": "https://github.com/sib-swiss/training-collection",
-      "stars": 1062,
+      "stars": 1064,
       "rank": 12,
       "hasContextFile": true,
-      "contextFileName": "training-collection-context.txt"
+      "contextFileName": "sib-swiss-training-collection-context.txt"
     },
     {
       "name": "kblin/ncbi-genome-download",
@@ -102,20 +102,20 @@
       "stars": 1034,
       "rank": 13,
       "hasContextFile": true,
-      "contextFileName": "ncbi-genome-download-context.txt"
+      "contextFileName": "kblin-ncbi-genome-download-context.txt"
     },
     {
       "name": "hail-is/hail",
       "github_url": "https://github.com/hail-is/hail",
-      "stars": 1028,
+      "stars": 1029,
       "rank": 14,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "hail-context.txt"
     },
     {
       "name": "scikit-bio/scikit-bio",
       "github_url": "https://github.com/scikit-bio/scikit-bio",
-      "stars": 974,
+      "stars": 976,
       "rank": 15,
       "hasContextFile": true,
       "contextFileName": "scikit-bio-scikit-bio-context.txt"
@@ -123,10 +123,10 @@
     {
       "name": "moshi4/pyCirclize",
       "github_url": "https://github.com/moshi4/pyCirclize",
-      "stars": 962,
+      "stars": 970,
       "rank": 16,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "pyCirclize-context.txt"
     },
     {
       "name": "biotite-dev/biotite",
@@ -134,7 +134,7 @@
       "stars": 863,
       "rank": 17,
       "hasContextFile": true,
-      "contextFileName": "biotite-context.txt"
+      "contextFileName": "biotite-dev-biotite-context.txt"
     },
     {
       "name": "applied-bioinformatics/An-Introduction-To-Applied-Bioinformatics",
@@ -142,31 +142,31 @@
       "stars": 858,
       "rank": 18,
       "hasContextFile": true,
-      "contextFileName": "An-Introduction-To-Applied-Bioinformatics-context.txt"
+      "contextFileName": "applied-bioinformatics-An-Introduction-To-Applied-Bioinformatics-context.txt"
     },
     {
       "name": "tanghaibao/jcvi",
       "github_url": "https://github.com/tanghaibao/jcvi",
-      "stars": 854,
+      "stars": 860,
       "rank": 19,
       "hasContextFile": true,
-      "contextFileName": "jcvi-context.txt"
+      "contextFileName": "tanghaibao-jcvi-context.txt"
     },
     {
       "name": "dib-lab/khmer",
       "github_url": "https://github.com/dib-lab/khmer",
-      "stars": 778,
+      "stars": 779,
       "rank": 20,
       "hasContextFile": true,
-      "contextFileName": "khmer-context.txt"
+      "contextFileName": "dib-lab-khmer-context.txt"
     },
     {
       "name": "awslabs/dgl-lifesci",
       "github_url": "https://github.com/awslabs/dgl-lifesci",
-      "stars": 772,
+      "stars": 774,
       "rank": 21,
       "hasContextFile": true,
-      "contextFileName": "dgl-lifesci-context.txt"
+      "contextFileName": "awslabs-dgl-lifesci-context.txt"
     },
     {
       "name": "BioPandas/biopandas",
@@ -174,31 +174,31 @@
       "stars": 739,
       "rank": 22,
       "hasContextFile": true,
-      "contextFileName": "biopandas-context.txt"
+      "contextFileName": "BioPandas-biopandas-context.txt"
     },
     {
       "name": "deeptools/deepTools",
       "github_url": "https://github.com/deeptools/deepTools",
-      "stars": 734,
+      "stars": 737,
       "rank": 23,
       "hasContextFile": true,
-      "contextFileName": "deepTools-context.txt"
+      "contextFileName": "deeptools-deepTools-context.txt"
     },
     {
       "name": "danforthcenter/plantcv",
       "github_url": "https://github.com/danforthcenter/plantcv",
-      "stars": 727,
+      "stars": 728,
       "rank": 24,
       "hasContextFile": true,
-      "contextFileName": "plantcv-context.txt"
+      "contextFileName": "danforthcenter-plantcv-context.txt"
     },
     {
       "name": "vsbuffalo/bds-files",
       "github_url": "https://github.com/vsbuffalo/bds-files",
-      "stars": 690,
+      "stars": 692,
       "rank": 25,
       "hasContextFile": true,
-      "contextFileName": "bds-files-context.txt"
+      "contextFileName": "vsbuffalo-bds-files-context.txt"
     },
     {
       "name": "owkin/PyDESeq2",
@@ -206,15 +206,15 @@
       "stars": 679,
       "rank": 26,
       "hasContextFile": true,
-      "contextFileName": "PyDESeq2-context.txt"
+      "contextFileName": "owkin-PyDESeq2-context.txt"
     },
     {
       "name": "mdtraj/mdtraj",
       "github_url": "https://github.com/mdtraj/mdtraj",
-      "stars": 666,
+      "stars": 668,
       "rank": 27,
       "hasContextFile": true,
-      "contextFileName": "mdtraj-context.txt"
+      "contextFileName": "mdtraj-mdtraj-context.txt"
     },
     {
       "name": "torchmd/torchmd",
@@ -222,23 +222,23 @@
       "stars": 661,
       "rank": 28,
       "hasContextFile": true,
-      "contextFileName": "torchmd-context.txt"
+      "contextFileName": "torchmd-torchmd-context.txt"
     },
     {
       "name": "scverse/anndata",
       "github_url": "https://github.com/scverse/anndata",
-      "stars": 659,
+      "stars": 661,
       "rank": 29,
       "hasContextFile": true,
-      "contextFileName": "anndata-context.txt"
+      "contextFileName": "scverse-anndata-context.txt"
     },
     {
       "name": "Edinburgh-Genome-Foundry/DnaFeaturesViewer",
       "github_url": "https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer",
-      "stars": 658,
+      "stars": 659,
       "rank": 30,
       "hasContextFile": true,
-      "contextFileName": "DnaFeaturesViewer-context.txt"
+      "contextFileName": "Edinburgh-Genome-Foundry-DnaFeaturesViewer-context.txt"
     },
     {
       "name": "plotly/dash-cytoscape",
@@ -246,55 +246,55 @@
       "stars": 656,
       "rank": 31,
       "hasContextFile": true,
-      "contextFileName": "dash-cytoscape-context.txt"
+      "contextFileName": "plotly-dash-cytoscape-context.txt"
     },
     {
       "name": "chapmanb/bcbb",
       "github_url": "https://github.com/chapmanb/bcbb",
-      "stars": 631,
+      "stars": 633,
       "rank": 32,
       "hasContextFile": true,
-      "contextFileName": "bcbb-context.txt"
+      "contextFileName": "chapmanb-bcbb-context.txt"
     },
     {
       "name": "ysig/GraKeL",
       "github_url": "https://github.com/ysig/GraKeL",
-      "stars": 627,
+      "stars": 628,
       "rank": 33,
       "hasContextFile": true,
-      "contextFileName": "GraKeL-context.txt"
+      "contextFileName": "ysig-GraKeL-context.txt"
     },
     {
       "name": "fritzsedlazeck/Sniffles",
       "github_url": "https://github.com/fritzsedlazeck/Sniffles",
-      "stars": 617,
+      "stars": 619,
       "rank": 34,
       "hasContextFile": true,
-      "contextFileName": "Sniffles-context.txt"
+      "contextFileName": "fritzsedlazeck-Sniffles-context.txt"
     },
     {
       "name": "gamcil/clinker",
       "github_url": "https://github.com/gamcil/clinker",
-      "stars": 611,
+      "stars": 615,
       "rank": 35,
       "hasContextFile": true,
-      "contextFileName": "clinker-context.txt"
+      "contextFileName": "gamcil-clinker-context.txt"
     },
     {
       "name": "opencobra/cobrapy",
       "github_url": "https://github.com/opencobra/cobrapy",
-      "stars": 518,
+      "stars": 521,
       "rank": 36,
       "hasContextFile": true,
-      "contextFileName": "cobrapy-context.txt"
+      "contextFileName": "opencobra-cobrapy-context.txt"
     },
     {
       "name": "MDIL-SNU/SevenNet",
       "github_url": "https://github.com/MDIL-SNU/SevenNet",
-      "stars": 194,
+      "stars": 193,
       "rank": 37,
       "hasContextFile": true,
-      "contextFileName": "SevenNet-context.txt"
+      "contextFileName": "MDIL-SNU-SevenNet-context.txt"
     },
     {
       "name": "torchmd/mdgrad",
@@ -302,31 +302,31 @@
       "stars": 180,
       "rank": 38,
       "hasContextFile": true,
-      "contextFileName": "mdgrad-context.txt"
+      "contextFileName": "torchmd-mdgrad-context.txt"
     },
     {
       "name": "bjing2016/mdgen",
       "github_url": "https://github.com/bjing2016/mdgen",
-      "stars": 170,
+      "stars": 171,
       "rank": 39,
       "hasContextFile": true,
-      "contextFileName": "mdgen-context.txt"
+      "contextFileName": "bjing2016-mdgen-context.txt"
     },
     {
       "name": "ingcoder/unomd",
       "github_url": "https://github.com/ingcoder/unomd",
-      "stars": 165,
+      "stars": 166,
       "rank": 40,
       "hasContextFile": true,
-      "contextFileName": "unomd-context.txt"
+      "contextFileName": "ingcoder-unomd-context.txt"
     },
     {
       "name": "micom-dev/micom",
       "github_url": "https://github.com/micom-dev/micom",
-      "stars": 108,
+      "stars": 111,
       "rank": 41,
       "hasContextFile": true,
-      "contextFileName": "micom-context.txt"
+      "contextFileName": "micom-dev-micom-context.txt"
     },
     {
       "name": "MannLabs/alphatims",
@@ -334,7 +334,7 @@
       "stars": 90,
       "rank": 42,
       "hasContextFile": true,
-      "contextFileName": "alphatims-context.txt"
+      "contextFileName": "MannLabs-alphatims-context.txt"
     },
     {
       "name": "maxscheurer/pycontact",
@@ -342,7 +342,7 @@
       "stars": 63,
       "rank": 43,
       "hasContextFile": true,
-      "contextFileName": "pycontact-context.txt"
+      "contextFileName": "maxscheurer-pycontact-context.txt"
     },
     {
       "name": "dwhswenson/contact_map",
@@ -350,7 +350,7 @@
       "stars": 46,
       "rank": 44,
       "hasContextFile": true,
-      "contextFileName": "contact_map-context.txt"
+      "contextFileName": "dwhswenson-contact-map-context.txt"
     },
     {
       "name": "IBM/AutoPeptideML",
@@ -358,7 +358,7 @@
       "stars": 34,
       "rank": 45,
       "hasContextFile": true,
-      "contextFileName": "AutoPeptideML-context.txt"
+      "contextFileName": "IBM-AutoPeptideML-context.txt"
     },
     {
       "name": "Robaina/BRENDApyrser",
@@ -366,7 +366,7 @@
       "stars": 32,
       "rank": 46,
       "hasContextFile": true,
-      "contextFileName": "BRENDApyrser-context.txt"
+      "contextFileName": "Robaina-BRENDApyrser-context.txt"
     },
     {
       "name": "jaleezyy/covid-19-signal",
@@ -374,7 +374,7 @@
       "stars": 31,
       "rank": 47,
       "hasContextFile": true,
-      "contextFileName": "covid-19-signal-context.txt"
+      "contextFileName": "jaleezyy-covid-19-signal-context.txt"
     },
     {
       "name": "resendislab/corda",
@@ -382,7 +382,7 @@
       "stars": 25,
       "rank": 48,
       "hasContextFile": true,
-      "contextFileName": "corda-context.txt"
+      "contextFileName": "resendislab-corda-context.txt"
     },
     {
       "name": "NoahHenrikKleinschmidt/qpcr",
@@ -390,7 +390,7 @@
       "stars": 23,
       "rank": 49,
       "hasContextFile": true,
-      "contextFileName": "qpcr-context.txt"
+      "contextFileName": "NoahHenrikKleinschmidt-qpcr-context.txt"
     },
     {
       "name": "BiomedSciAI/fuse-drug",
@@ -398,7 +398,7 @@
       "stars": 22,
       "rank": 50,
       "hasContextFile": true,
-      "contextFileName": "fuse-drug-context.txt"
+      "contextFileName": "BiomedSciAI-fuse-drug-context.txt"
     }
   ],
   "domain": "biochemistry",
