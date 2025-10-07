@@ -5,8 +5,8 @@
       "github_url": "https://github.com/plotly/dash",
       "stars": 24110,
       "rank": 1,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "dash-context.txt"
     },
     {
       "name": "biopython/biopython",
@@ -21,40 +21,40 @@
       "github_url": "https://github.com/google/deepvariant",
       "stars": 3508,
       "rank": 3,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "deepvariant-context.txt"
     },
     {
       "name": "scverse/scanpy",
       "github_url": "https://github.com/scverse/scanpy",
       "stars": 2205,
       "rank": 4,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "scanpy-context.txt"
     },
     {
       "name": "dmis-lab/biobert",
       "github_url": "https://github.com/dmis-lab/biobert",
       "stars": 2145,
       "rank": 5,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "biobert-context.txt"
     },
     {
       "name": "allenai/scispacy",
       "github_url": "https://github.com/allenai/scispacy",
       "stars": 1878,
       "rank": 6,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "scispacy-context.txt"
     },
     {
       "name": "deepmodeling/deepmd-kit",
       "github_url": "https://github.com/deepmodeling/deepmd-kit",
       "stars": 1757,
       "rank": 7,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "deepmd-kit-context.txt"
     },
     {
       "name": "galaxyproject/galaxy",
@@ -77,8 +77,8 @@
       "github_url": "https://github.com/lightaime/deep_gcns_torch",
       "stars": 1179,
       "rank": 10,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "deep_gcns_torch-context.txt"
     },
     {
       "name": "BradyAJohnston/MolecularNodes",
@@ -93,16 +93,16 @@
       "github_url": "https://github.com/sib-swiss/training-collection",
       "stars": 1062,
       "rank": 12,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "training-collection-context.txt"
     },
     {
       "name": "kblin/ncbi-genome-download",
       "github_url": "https://github.com/kblin/ncbi-genome-download",
       "stars": 1034,
       "rank": 13,
-      "hasContextFile": false,
-      "contextFileName": null
+      "hasContextFile": true,
+      "contextFileName": "ncbi-genome-download-context.txt"
     },
     {
       "name": "hail-is/hail",
