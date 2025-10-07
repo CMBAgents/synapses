@@ -34,6 +34,11 @@ const PROVIDER_CONFIGS: Record<string, ProviderConfig> = {
     defaultModel: 'gemini-2.5-flash',
     isVertexAI: true
   },
+  deepseek: {
+    baseURL: 'https://api.deepseek.com/v1',
+    apiKeyEnvVar: 'DEEPSEEK_API_KEY',
+    defaultModel: 'deepseek-chat'
+  },
   // We'll keep SambaNova support but not add it to the default config due to context limitations
   sambanova: {
     baseURL: 'https://api.sambanova.ai/v1/',
@@ -134,12 +139,41 @@ export async function createClient(modelId?: string, credentials?: Record<string
   // Parse the model ID to get the provider and model name
   const { provider, modelName } = parseModelId(modelIdToUse);
 
-  // Use adaptive routing to determine the best provider
-  const targetProviderKey = getBestProvider(provider) as keyof typeof PROVIDER_CONFIGS;
-  
-  console.log(`Adaptive routing: requested=${provider}, selected=${targetProviderKey}`);
+  // Find the model configuration to get the credentialType
+  const modelConfig = config.availableModels.find(m => m.id === modelIdToUse);
+  const credentialType = modelConfig?.credentialType;
 
-  const providerConfig = PROVIDER_CONFIGS[targetProviderKey];
+  // Determine target provider based on credentialType (takes precedence) or routing strategy
+  // The credentialType in config.json explicitly tells us which provider to use
+  let targetProviderKey: string;
+  
+  if (credentialType) {
+    // If credentialType is specified in config.json, use it to determine the provider
+    // This ensures models like "deepseek/deepseek-chat-v3-0324" with credentialType="openrouter"
+    // will use OpenRouter and OPEN_ROUTER_KEY, not the direct DeepSeek API
+    targetProviderKey = credentialType;
+    console.log(`Using provider from credentialType: ${credentialType} for model ${modelIdToUse}`);
+  } else if (provider === 'openrouter') {
+    // For OpenRouter models without explicit credentialType, use adaptive routing
+    targetProviderKey = getBestProvider(provider);
+    console.log(`Adaptive routing for ${provider}: selected=${targetProviderKey}`);
+  } else {
+    // For specific providers (vertexai, openai, gemini, etc.), use the requested provider directly
+    // Check if the provider exists in our config
+    if (PROVIDER_CONFIGS[provider]) {
+      targetProviderKey = provider;
+      console.log(`Using requested provider: ${provider}`);
+    } else {
+      // Unknown provider, fallback to openrouter
+      console.warn(`Unknown provider: ${provider}, falling back to openrouter`);
+      targetProviderKey = 'openrouter';
+    }
+  }
+
+  const providerConfig = PROVIDER_CONFIGS[targetProviderKey as keyof typeof PROVIDER_CONFIGS];
+  if (!providerConfig) {
+    throw new Error(`Provider configuration not found for: ${targetProviderKey}`);
+  }
   const apiKeyEnvVar = providerConfig.apiKeyEnvVar;
   
   // Process credentials securely
@@ -202,15 +236,23 @@ export async function createClient(modelId?: string, credentials?: Record<string
 
   // Determine actual provider and model name for the API call
   const actualProvider = targetProviderKey;
-  // Use the original modelId for OpenRouter, otherwise just the modelName
-  const actualModelName = (targetProviderKey === 'openrouter') ? modelIdToUse : modelName;
+  
+  // Determine the model name to use based on the target provider
+  let actualModelName: string;
+  if (targetProviderKey === 'openrouter') {
+    // OpenRouter needs the full modelId (e.g., "deepseek/deepseek-chat-v3-0324")
+    actualModelName = modelIdToUse;
+  } else if (targetProviderKey === provider) {
+    // Using the requested provider directly, use just the model name
+    actualModelName = modelName;
+  } else {
+    // Provider switched (e.g., from deepseek to openrouter), use the full modelId
+    // This handles fallback cases where we route to a different provider
+    actualModelName = modelIdToUse;
+  }
 
   // Log the decision (without sensitive data)
-  if (targetProviderKey !== 'openrouter' && (provider === targetProviderKey)) {
-      console.log(`Attempting to use direct ${targetProviderKey} key for model: ${actualModelName}`);
-  } else {
-      console.log(`Using OpenRouter for model: ${actualModelName}`);
-  }
+  console.log(`Provider routing: requested=${provider}, target=${targetProviderKey}, model=${actualModelName}`);
 
   // Check API key
   if (!apiKey) {

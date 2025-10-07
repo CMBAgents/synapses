@@ -41,6 +41,7 @@
     "@types/react-dom": "19",
     "autoprefixer": "10.4.21",
     "cross-env": "^7.0.3",
+    "dotenv": "^17.2.3",
     "eslint": "9.24.0",
     "eslint-config-next": "15.3.0",
     "husky": "^9.1.7",

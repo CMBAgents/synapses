@@ -25,6 +25,27 @@ const providerHealth: Record<string, ProviderHealth> = {};
 // Performance metrics for each provider
 const providerMetrics: Record<string, ProviderMetrics> = {};
 
+// Initialize default metrics for all providers
+const initializeProviderMetrics = (provider: string) => {
+  if (!providerMetrics[provider]) {
+    providerMetrics[provider] = {
+      totalRequests: 0,
+      successfulRequests: 0,
+      totalResponseTime: 0,
+      errors: []
+    };
+  }
+  if (!providerHealth[provider]) {
+    providerHealth[provider] = {
+      isAvailable: true,
+      averageResponseTime: 0,
+      successRate: 1.0,
+      lastChecked: 0,
+      consecutiveFailures: 0
+    };
+  }
+};
+
 // Health check configuration
 const HEALTH_CHECK_INTERVAL = 5 * 60 * 1000; // 5 minutes
 const MAX_CONSECUTIVE_FAILURES = 3;
@@ -35,7 +56,7 @@ const HEALTH_CHECK_TIMEOUT = 10000; // 10 seconds
  */
 export function initializeProviderHealth() {
   // Initialize health status for all providers
-  const providers = ['openai', 'gemini', 'openrouter', 'vertexai', 'sambanova'];
+  const providers = ['openai', 'gemini', 'openrouter', 'vertexai', 'sambanova', 'deepseek'];
   
   providers.forEach(provider => {
     providerHealth[provider] = {
@@ -106,6 +127,9 @@ async function checkProviderHealth(provider: string): Promise<void> {
       case 'sambanova':
         healthCheckPromise = checkSambaNovaHealth();
         break;
+      case 'deepseek':
+        healthCheckPromise = checkDeepSeekHealth();
+        break;
       default:
         throw new Error(`Unknown provider: ${provider}`);
     }
@@ -167,6 +191,13 @@ async function checkSambaNovaHealth(): Promise<void> {
   }
 }
 
+async function checkDeepSeekHealth(): Promise<void> {
+  // Check if DeepSeek API key is available
+  if (!process.env.DEEPSEEK_API_KEY) {
+    throw new Error('DeepSeek API key not configured');
+  }
+}
+
 /**
  * Update provider health status
  */
@@ -176,28 +207,35 @@ function updateProviderHealth(
   responseTime: number, 
   error?: string
 ) {
+  // Ensure provider metrics are initialized
+  initializeProviderMetrics(provider);
+  
   const health = providerHealth[provider];
   const metrics = providerMetrics[provider];
   
-  // Update metrics
-  metrics.totalRequests++;
-  if (isHealthy) {
-    metrics.successfulRequests++;
-    metrics.totalResponseTime += responseTime;
-    health.consecutiveFailures = 0;
-  } else {
-    health.consecutiveFailures++;
-    if (error) {
-      metrics.errors.push(error);
-      health.lastError = error;
+  // Update metrics (with safety checks)
+  if (metrics && health) {
+    metrics.totalRequests++;
+    if (isHealthy) {
+      metrics.successfulRequests++;
+      metrics.totalResponseTime += responseTime;
+      health.consecutiveFailures = 0;
+    } else {
+      health.consecutiveFailures++;
+      if (error) {
+        metrics.errors.push(error);
+        health.lastError = error;
+      }
     }
   }
   
-  // Update health status
-  health.isAvailable = health.consecutiveFailures < MAX_CONSECUTIVE_FAILURES;
-  health.averageResponseTime = metrics.totalResponseTime / metrics.successfulRequests || 0;
-  health.successRate = metrics.successfulRequests / metrics.totalRequests;
-  health.lastChecked = Date.now();
+  // Update health status (with safety checks)
+  if (health && metrics) {
+    health.isAvailable = health.consecutiveFailures < MAX_CONSECUTIVE_FAILURES;
+    health.averageResponseTime = metrics.successfulRequests > 0 ? metrics.totalResponseTime / metrics.successfulRequests : 0;
+    health.successRate = metrics.totalRequests > 0 ? metrics.successfulRequests / metrics.totalRequests : 0;
+    health.lastChecked = Date.now();
+  }
   
   console.log(`Provider ${provider} health updated:`, {
     available: health.isAvailable,
