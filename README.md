@@ -86,6 +86,8 @@ See [AUTHORS.md](AUTHORS.md) for more details.
 
 </div>
 
+</div>
+
 ---
 
 ## Quick Start
