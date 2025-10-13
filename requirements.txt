@@ -12,5 +12,9 @@ typing-extensions>=4.4.0
 # User's custom package (without jupyter dependencies for now)
 contextmaker>=1.0.0
 
-# Daily maintenance dependencies
-schedule>=1.2.0 
+# RAG dependencies (100% Free & Local)
+sentence-transformers>=2.2.2
+chromadb>=0.4.22
+langchain>=0.1.0
+langchain-community>=0.0.20
+tiktoken>=0.5.2 

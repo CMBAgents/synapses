@@ -16,14 +16,15 @@ class FixedModularMaintenance:
             "step2": "step2_update_stars_and_detect_changes.py",  # Mise à jour étoiles + détection
             "step3": "step3_fix_context_names.py",
             "step4": "step4_generate_contexts.py",          # Génération SEULEMENT
+            "step7": "step7_reindex_rag.py",                # Réindexation RAG après génération
             "step5": "step5_update_configuration.py",       # Configuration SEULEMENT
             "step6": "step6_cleanup.py"
         }
         
         # Deux modes de maintenance
         self.modes = {
-            "quick": ["step0", "step2", "step3", "step4", "step5", "step6"],  # Mise à jour étoiles + génération contextes
-            "full": ["step0", "step1", "step3", "step4", "step5", "step6"]  # Découverte + étoiles + génération contextes
+            "quick": ["step0", "step2", "step3", "step4", "step7", "step5", "step6"],  # Mise à jour étoiles + génération contextes + RAG
+            "full": ["step0", "step1", "step3", "step4", "step7", "step5", "step6"]  # Découverte + étoiles + génération contextes + RAG
         }
     
     def cleanup_old_logs(self):

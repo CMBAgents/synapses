@@ -177,6 +177,9 @@ temp/
 gcp_configs/cmbagent-info-a978301b2160.json
 gcp_credentials.json
 
+# ChromaDB - Vector database (generated locally, too large for git)
+chroma_db/
+
 # Maintenance and state files
 *.state.json
 *_state.json
