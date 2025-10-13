@@ -2,6 +2,12 @@
   "name": "synapses",
   "version": "0.1.0",
   "private": true,
+  "author": "Chadi Ait Ekioui <chadi.ait_ekioui@telecom-sudparis.eu>",
+  "contributors": [
+    "Boris Bolliet",
+    "Nolan Koblischke",
+    "Antony Lewis"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

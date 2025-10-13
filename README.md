@@ -36,6 +36,15 @@ Synapses allows you to discover, compare, and interact with the most popular lib
 - **Documentation** : Automatic generation with contextmaker
 - **Deployment** : Docker and Google Cloud Platform
 
+## Authors & Contributors
+
+- **Chadi Ait Ekioui** - Developer
+- **Boris Bolliet** - Research Advisor
+- **Nolan Koblischke** - Code contributions and technical guidance
+- **Antony Lewis** - Code contributions and conceptual guidance
+
+See [AUTHORS.md](AUTHORS.md) for more details.
+
 ## Contributing
 
 Contributions are welcome! Check open issues or propose new features.
