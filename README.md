@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🧠 Synapses
+# Synapses
 
 ### **Discover, Compare & Chat with Top Open Source Libraries**
 
@@ -14,21 +14,13 @@
 
 ---
 
-### 🚀 **A modern platform to explore and rank the top open source libraries by expertise domain**
-
-**Top 100** for Astronomy • **Top 50** for Biochemistry, Finance & Machine Learning
-
-</div>
-
----
-
-## 📖 Overview
+## Overview
 
 **Synapses** allows you to **discover**, **compare**, and **interact** with the most popular libraries across different domains. Each library is ranked according to its GitHub popularity and comes with **detailed contexts automatically generated** from existing documentation, docstrings, notebooks, and even code.
 
 <div align="center">
 
-### 🎯 **Key Domains**
+### **Key Domains**
 
 | 🔭 **Astronomy** | 🧬 **Biochemistry** | 💰 **Finance** | 🤖 **Machine Learning** |
 |:---:|:---:|:---:|:---:|
@@ -38,11 +30,10 @@
 
 ---
 
-## 📸 Screenshots
+## 🏆 Leaderboard
 
 <div align="center">
 
-### 🏆 Leaderboard
 ![Synapses Main Interface](public/github1.png)
 
 ### 💬 Chat Interface
@@ -52,24 +43,7 @@
 
 ---
 
-## ✨ Features
-
-<div align="center">
-
-| Feature | Description |
-|:---|:---|
-| 📊 **Smart Rankings** | Ranking system based on GitHub stars with intelligent tie-breaking management |
-| 🤖 **AI-Powered Chat** | Interactive chat with streaming responses powered by advanced LLMs |
-| 📚 **Automatic Contexts** | Automatic generation of contextual documentation from docs, docstrings, notebooks & code |
-| 🎨 **Modern Interface** | Responsive design with smooth animations and intuitive navigation |
-| 🌍 **Multi-Domain** | Specialized focus on Astronomy, Biochemistry, Finance & Machine Learning |
-| 🔄 **Real-time Streaming** | Progressive response rendering for better UX |
-
-</div>
-
----
-
-## 🛠️ Technology Stack
+## Technology Stack
 
 <div align="center">
 
@@ -97,16 +71,16 @@
 
 ---
 
-## 🤝 Authors & Contributors
+## Authors & Contributors
 
 <div align="center">
 
 | Role | Name |
 |:---:|:---|
-| 👨‍💻 **Developer** | **Chadi Ait Ekioui** |
-| 🔬 **Research Advisor** | **Boris Bolliet** |
-| 💡 **Technical Guidance** | **Nolan Koblischke** |
-| 🎓 **Conceptual Guidance** | **Antony Lewis** |
+| **Developer** | **Chadi Ait Ekioui** |
+| **Research Advisor** | **Boris Bolliet** |
+| **Technical Guidance** | **Nolan Koblischke** |
+| **Conceptual Guidance** | **Antony Lewis** |
 
 See [AUTHORS.md](AUTHORS.md) for more details.
 
@@ -114,7 +88,7 @@ See [AUTHORS.md](AUTHORS.md) for more details.
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### **Prerequisites**
 
@@ -150,7 +124,7 @@ docker run -p 3000:3000 cmbagent-info:latest
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 **Contributions are welcome!** 🎉
 
@@ -175,8 +149,5 @@ See the [LICENSE](LICENSE) file for details.
 [![MIT License](https://img.shields.io/badge/License-MIT-00C853?style=for-the-badge&logo=github)](LICENSE)
 
 ---
-
-**Made with ❤️ by the Synapses Team**
-
 </div>
 
