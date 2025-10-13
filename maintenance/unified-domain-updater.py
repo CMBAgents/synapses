@@ -220,7 +220,9 @@ class UnifiedDomainUpdater:
                 ],
                 use_ascl=False,
                 max_libraries=100,
-                forbidden_libs=[]
+                forbidden_libs=[
+                    # Aucune bibliothèque astronomy avec contexte trop lourd identifié
+                ]
             ),
             'biochemistry': DomainConfig(
                 name='biochemistry',
@@ -230,7 +232,10 @@ class UnifiedDomainUpdater:
                 specific_libs=[],
                 use_ascl=False,
                 max_libraries=50,
-                forbidden_libs=[]
+                forbidden_libs=[
+                    # Aucune bibliothèque biochemistry avec contexte > 2MB identifié
+                    # plotly/dash a seulement 195K de contexte - OK à garder
+                ]
             ),
             'finance': DomainConfig(
                 name='finance',
@@ -240,7 +245,14 @@ class UnifiedDomainUpdater:
                 specific_libs=[],
                 use_ascl=False,
                 max_libraries=50,
-                forbidden_libs=['mlfinlab/mlfinlab', 'ranaroussi/yfinance']
+                forbidden_libs=[
+                    # Bibliothèques avec contexte > 2MB (trop lourd pour LLM)
+                    'hummingbot/hummingbot',  # 12M de contexte
+                    'freqtrade/freqtrade',  # 4.3M de contexte
+                    'OpenBB-finance/OpenBB',  # 4.1M de contexte
+                    'bbfamily/abu',  # 3.0M de contexte
+                    # Note: vnpy (672K), qlib (73K), ccxt (90K), zipline (206K) sont OK
+                ]
             ),
             'machinelearning': DomainConfig(
                 name='machinelearning',
@@ -250,7 +262,29 @@ class UnifiedDomainUpdater:
                 specific_libs=[],
                 use_ascl=False,
                 max_libraries=50,
-                forbidden_libs=['numpy/numpy', 'scipy/scipy']
+                forbidden_libs=[
+                    # Bibliothèques Python fondamentales (trop génériques/connues)
+                    'numpy/numpy',
+                    'scipy/scipy',
+                    'pandas-dev/pandas',
+                    'matplotlib/matplotlib',
+                    'pytorch/pytorch',
+                    'tensorflow/tensorflow',
+                    'scikit-learn/scikit-learn',
+                    
+                    # Bibliothèques avec contexte > 2MB (trop lourd pour LLM)
+                    'huggingface/transformers',  # 69M de contexte - ÉNORME !
+                    'PaddlePaddle/PaddleNLP',  # 12M de contexte
+                    'keras-team/keras',  # 7.2M de contexte
+                    'huggingface/pytorch-image-models',  # 4.1M de contexte
+                    'deepset-ai/haystack',  # 4.1M de contexte
+                    'huggingface/peft',  # 3.1M de contexte
+                    'huggingface/trl',  # 2.5M de contexte
+                    'UKPLab/sentence-transformers',  # 2.3M de contexte
+                    
+                    # Note: onnx (1.2M), LLaMA-Factory (1.1M), wandb (728K), tqdm (306K) sont moyens mais OK
+                    # funNLP (404B), Swin-Transformer (261K), horovod (17K) sont petits - OK
+                ]
             )
         }
     
@@ -595,9 +629,15 @@ class UnifiedDomainUpdater:
                 logger.warning(f"⚠️ Erreur lors du chargement des données existantes: {e}")
         
         # Fusionner les nouvelles données avec les données existantes
+        # ET filtrer les bibliothèques devenues interdites
         merged_libraries = []
         for lib in libraries:
             lib_name = lib['name']
+            
+            # Vérifier si la bibliothèque est dans la liste interdite
+            if lib_name in (domain_config.forbidden_libs or []):
+                logger.info(f"🚫 Bibliothèque interdite supprimée du JSON: {lib_name}")
+                continue
             
             # Normaliser le nom pour la comparaison (insensible à la casse)
             lib_name_normalized = lib_name.lower()
@@ -640,6 +680,11 @@ class UnifiedDomainUpdater:
                 logger.info(f"🆕 Nouvelle: {lib_name} - {lib['stars']} ⭐ (rang {lib['rank']})")
             
             merged_libraries.append(merged_lib)
+        
+        # Vérifier et supprimer les bibliothèques existantes devenues interdites
+        for existing_name, existing_lib in existing_libraries.items():
+            if existing_name in (domain_config.forbidden_libs or []):
+                logger.info(f"🗑️ Bibliothèque existante supprimée (devenue interdite): {existing_name}")
         
         # Créer les données finales
         domain_data = {
