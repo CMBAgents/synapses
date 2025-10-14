@@ -3,7 +3,7 @@
     {
       "name": "astropy/astropy",
       "github_url": "https://github.com/astropy/astropy",
-      "stars": 4867,
+      "stars": 4872,
       "rank": 1,
       "hasContextFile": true,
       "contextFileName": "astropy-astropy-context.txt"
@@ -19,7 +19,7 @@
     {
       "name": "astroML/astroML",
       "github_url": "https://github.com/astroML/astroML",
-      "stars": 1127,
+      "stars": 1129,
       "rank": 3,
       "hasContextFile": true,
       "contextFileName": "astroML-context.txt"
@@ -27,7 +27,7 @@
     {
       "name": "sunpy/sunpy",
       "github_url": "https://github.com/sunpy/sunpy",
-      "stars": 970,
+      "stars": 971,
       "rank": 4,
       "hasContextFile": true,
       "contextFileName": "sunpy-context.txt"
@@ -75,7 +75,7 @@
     {
       "name": "spacetelescope/jwst",
       "github_url": "https://github.com/spacetelescope/jwst",
-      "stars": 613,
+      "stars": 614,
       "rank": 10,
       "hasContextFile": true,
       "contextFileName": "jwst-context.txt"
@@ -107,7 +107,7 @@
     {
       "name": "lightkurve/lightkurve",
       "github_url": "https://github.com/lightkurve/lightkurve",
-      "stars": 471,
+      "stars": 472,
       "rank": 14,
       "hasContextFile": true,
       "contextFileName": "lightkurve-lightkurve-context.txt"
@@ -131,7 +131,7 @@
     {
       "name": "aaronwmorris/indi-allsky",
       "github_url": "https://github.com/aaronwmorris/indi-allsky",
-      "stars": 338,
+      "stars": 340,
       "rank": 17,
       "hasContextFile": true,
       "contextFileName": "indi-allsky-context.txt"
@@ -203,7 +203,7 @@
     {
       "name": "jobovy/galpy",
       "github_url": "https://github.com/jobovy/galpy",
-      "stars": 248,
+      "stars": 249,
       "rank": 26,
       "hasContextFile": true,
       "contextFileName": "galpy-context.txt"
@@ -363,7 +363,7 @@
     {
       "name": "hlning/cmbok",
       "github_url": "https://github.com/hlning/cmbok",
-      "stars": 144,
+      "stars": 154,
       "rank": 46,
       "hasContextFile": true,
       "contextFileName": "cmbok-context.txt"

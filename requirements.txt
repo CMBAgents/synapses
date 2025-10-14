@@ -4,6 +4,8 @@ boto3>=1.26.0
 google-cloud-storage>=2.8.0
 tqdm>=4.64.0
 schedule>=1.2.0
+PyGithub>=2.1.1
+python-dotenv>=1.0.0
 
 # Development dependencies
 pathlib2>=2.3.7
