@@ -104,3 +104,7 @@ __tests__/
 
 ancienne version/
 version la plus recente/
+
+# ChromaDB - Base vectorielle (trop grosse pour Docker, reste en local)
+chroma_db/
+chroma_db_test/

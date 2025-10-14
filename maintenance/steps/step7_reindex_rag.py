@@ -36,6 +36,17 @@ print("=" * 80)
 print(f"Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 print()
 
+# Vérifier si on est sur GCP (Cloud Run)
+is_cloud_run = os.getenv('K_SERVICE') is not None
+if is_cloud_run:
+    print(" Execution sur Cloud Run detectee")
+    print(" ChromaDB non disponible sur GCP - Skip de l'indexation")
+    print(" (ChromaDB fonctionne uniquement en local)")
+    print()
+    print(" Indexation RAG skippee (environment Cloud Run)")
+    print("=" * 80)
+    sys.exit(0)
+
 # Vérifier les dépendances RAG
 try:
     import chromadb
