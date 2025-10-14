@@ -109,42 +109,35 @@ export async function POST(request: NextRequest) {
     const lastUserMessage = messages.filter((msg: any) => msg.role === 'user').pop();
     const userQuery = lastUserMessage?.content || '';
 
-     // Try to load RAG context first, fall back to full context if unavailable
-     let context = '';
-     let usingRAG = false;
-     
-     // Check if we're on Cloud Run (production) - disable RAG there
-     const isCloudRun = process.env.K_SERVICE !== undefined;
-     
-     if (!isCloudRun && userQuery) {
-       // RAG available only in local development
-       try {
-         console.log('Attempting RAG context retrieval (LOCAL):', {
-           programId,
-           queryLength: userQuery.length,
-           queryPreview: userQuery.substring(0, 100)
-         });
-         
-         context = await getRAGContext(programId, userQuery, 5, 8000);
-         usingRAG = true;
-         
-         console.log('RAG context loaded successfully:', {
-           contextLength: context.length,
-           estimatedTokens: Math.floor(context.length / 4)
-         });
-       } catch (error) {
-         console.warn('RAG unavailable, falling back to full context:', error);
-         // Fall back to full context
-         context = await loadContext([], programId);
-         usingRAG = false;
-       }
-     } else {
-       // On Cloud Run or no query: load full context
-       if (isCloudRun) {
-         console.log('Cloud Run environment detected - using full context (ChromaDB not available)');
-       }
-       context = await loadContext([], programId);
-     }
+    // Try to load RAG context first, fall back to full context if unavailable
+    let context = '';
+    let usingRAG = false;
+    
+    if (userQuery) {
+      try {
+        console.log('Attempting RAG context retrieval for:', {
+          programId,
+          queryLength: userQuery.length,
+          queryPreview: userQuery.substring(0, 100)
+        });
+        
+        context = await getRAGContext(programId, userQuery, 5, 8000);
+        usingRAG = true;
+        
+        console.log('RAG context loaded successfully:', {
+          contextLength: context.length,
+          estimatedTokens: Math.floor(context.length / 4)
+        });
+      } catch (error) {
+        console.warn('RAG unavailable, falling back to full context:', error);
+        // Fall back to full context
+        context = await loadContext([], programId);
+        usingRAG = false;
+      }
+    } else {
+      // No user query, load full context
+      context = await loadContext([], programId);
+    }
 
     // Create system message with context
     const systemMessage = {
