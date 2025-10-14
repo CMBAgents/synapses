@@ -13,6 +13,7 @@ typing-extensions>=4.4.0
 contextmaker>=1.0.0
 
 # RAG dependencies (100% Free & Local)
+torch>=2.0.0
 sentence-transformers>=2.2.2
 chromadb>=0.4.22
 langchain>=0.1.0

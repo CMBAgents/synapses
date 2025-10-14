@@ -1,11 +1,19 @@
 # Dockerfile for GCP Cloud Run - Optimized for memory
-FROM node:18-alpine
+FROM node:18-slim
 
 # Set working directory
 WORKDIR /app
 
 # Install system dependencies
-RUN apk add --no-cache python3 py3-pip git gcc musl-dev linux-headers python3-dev
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    python3-dev \
+    git \
+    gcc \
+    g++ \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy package files
 COPY package*.json ./
@@ -15,7 +23,7 @@ COPY requirements.txt ./
 RUN npm ci --ignore-scripts
 
 # Install Python dependencies
-RUN pip3 install --break-system-packages -r requirements.txt
+RUN pip3 install --break-system-packages --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY . .
@@ -27,15 +35,11 @@ RUN mkdir -p temp/repos temp/contexts public/context
 RUN find maintenance -name "*.py" -exec chmod +x {} \; && \
     find maintenance -name "*.sh" -exec chmod +x {} \;
 
-# Install curl for health check
-RUN apk add --no-cache curl
-
 # Build the application
 RUN npm run build
 
 # Clean up build dependencies to save space
-RUN npm prune --production && \
-    apk del gcc musl-dev linux-headers python3-dev
+RUN npm prune --production
 
 # Set memory optimization environment variables
 ENV NODE_OPTIONS="--max-old-space-size=400"
