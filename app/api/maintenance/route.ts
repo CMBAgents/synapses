@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Chemin vers le script de maintenance modulaire
-    const scriptPath = path.join(process.cwd(), 'scripts', 'maintenance', 'maintenance_modular.py');
+    const scriptPath = path.join(process.cwd(), 'maintenance', 'maintenance_modular.py');
     
     // Exécuter la maintenance en arrière-plan
     const command = `python3 "${scriptPath}" --mode ${type}`;
