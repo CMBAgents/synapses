@@ -4,6 +4,8 @@ import { getProgramById, loadConfig } from '@/app/utils/config';
 import { createChatCompletion, createStreamingChatCompletion, logTokenUsage } from '@/app/utils/unified-client';
 import { credentialRateLimiter, sanitizeLogData } from '@/app/utils/security';
 import { initializeProviderHealth } from '@/app/utils/provider-health';
+import { spawn } from 'child_process';
+import path from 'path';
 
 // This enables Node.js runtime for Google Cloud compatibility
 export const runtime = "nodejs";
@@ -13,6 +15,55 @@ let healthInitialized = false;
 if (!healthInitialized) {
   initializeProviderHealth();
   healthInitialized = true;
+}
+
+/**
+ * Get RAG context using Python script
+ * Falls back to full context if RAG unavailable
+ */
+async function getRAGContext(
+  programId: string,
+  userQuery: string,
+  topK: number = 5,
+  maxTokens: number = 8000
+): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const scriptPath = path.join(process.cwd(), 'chunking', 'rag_retriever.py');
+    
+    const python = spawn('python3', [
+      scriptPath,
+      '--library', programId,
+      '--query', userQuery,
+      '--top-k', topK.toString(),
+      '--max-tokens', maxTokens.toString()
+    ]);
+
+    let stdout = '';
+    let stderr = '';
+
+    python.stdout.on('data', (data) => {
+      stdout += data.toString();
+    });
+
+    python.stderr.on('data', (data) => {
+      stderr += data.toString();
+    });
+
+    python.on('close', (code) => {
+      if (code !== 0) {
+        console.warn(`RAG script failed (code ${code}), falling back to full context`);
+        console.warn(`Error: ${stderr}`);
+        reject(new Error('RAG_UNAVAILABLE'));
+      } else {
+        resolve(stdout.trim());
+      }
+    });
+
+    python.on('error', (error) => {
+      console.warn(`RAG script error, falling back to full context:`, error.message);
+      reject(new Error('RAG_UNAVAILABLE'));
+    });
+  });
 }
 
 export async function POST(request: NextRequest) {
@@ -54,9 +105,39 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Load context for the program directly using the programId
-    // This will handle URL-based context files automatically
-    const context = await loadContext([], programId);
+    // Extract user query from the last message for RAG
+    const lastUserMessage = messages.filter((msg: any) => msg.role === 'user').pop();
+    const userQuery = lastUserMessage?.content || '';
+
+    // Try to load RAG context first, fall back to full context if unavailable
+    let context = '';
+    let usingRAG = false;
+    
+    if (userQuery) {
+      try {
+        console.log('Attempting RAG context retrieval for:', {
+          programId,
+          queryLength: userQuery.length,
+          queryPreview: userQuery.substring(0, 100)
+        });
+        
+        context = await getRAGContext(programId, userQuery, 5, 8000);
+        usingRAG = true;
+        
+        console.log('RAG context loaded successfully:', {
+          contextLength: context.length,
+          estimatedTokens: Math.floor(context.length / 4)
+        });
+      } catch (error) {
+        console.warn('RAG unavailable, falling back to full context:', error);
+        // Fall back to full context
+        context = await loadContext([], programId);
+        usingRAG = false;
+      }
+    } else {
+      // No user query, load full context
+      context = await loadContext([], programId);
+    }
 
     // Create system message with context
     const systemMessage = {
@@ -82,7 +163,9 @@ export async function POST(request: NextRequest) {
       streaming: stream,
       hasCredentials: !!credentials,
       credentialKeys: Object.keys(sanitizedCredentials),
-      clientIP: sanitizeLogData(clientIP)
+      clientIP: sanitizeLogData(clientIP),
+      usingRAG: usingRAG,
+      contextSource: usingRAG ? 'RAG (ChromaDB)' : 'Full Context'
     });
 
     // Load config to check for fallback model
