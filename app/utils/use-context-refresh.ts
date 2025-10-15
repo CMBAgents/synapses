@@ -27,10 +27,11 @@ export function useContextRefresh(domain: string) {
     }
   };
 
-  // Auto-update when component mounts
-  useEffect(() => {
-    updateContextStatus();
-  }, [domain]);
+  // Auto-update DISABLED to prevent rate limiting issues
+  // This was causing too many API calls on page load
+  // useEffect(() => {
+  //   updateContextStatus();
+  // }, [domain]);
 
   return {
     isUpdating,
