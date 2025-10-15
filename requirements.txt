@@ -1,21 +1,21 @@
 # Core dependencies
 requests>=2.28.0
-boto3>=1.26.0
-google-cloud-storage>=2.8.0
 tqdm>=4.64.0
-schedule>=1.2.0
-PyGithub>=2.1.1
 python-dotenv>=1.0.0
-
-# Development dependencies
-pathlib2>=2.3.7
 typing-extensions>=4.4.0
+PyGithub>=2.1.1
+
+# Dépendances inutiles retirées (commentées pour référence):
+# boto3>=1.26.0  # Jamais utilisé
+# google-cloud-storage>=2.8.0  # Pas nécessaire sur GCP Cloud Run
+# schedule>=1.2.0  # Jamais utilisé
+# pathlib2>=2.3.7  # Redondant sur Python 3.11+
 
 # User's custom package (without jupyter dependencies for now)
 contextmaker>=1.0.0
 
 # RAG dependencies (100% Free & Local)
-torch>=2.0.0
+# torch est installé séparément en version CPU-only dans le Dockerfile
 sentence-transformers>=2.2.2
 chromadb>=0.4.22
 langchain>=0.1.0

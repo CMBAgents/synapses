@@ -19,11 +19,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY package*.json ./
 COPY requirements.txt ./
 
-# Install Node.js dependencies (including dev dependencies for build)
-RUN npm ci --ignore-scripts
-
-# Install Python dependencies
-RUN pip3 install --break-system-packages --no-cache-dir -r requirements.txt
+# Install Python dependencies (PyTorch CPU-only pour économiser ~2.5 GB)
+RUN pip3 install --break-system-packages --no-cache-dir \
+    torch --index-url https://download.pytorch.org/whl/cpu && \
+    pip3 install --break-system-packages --no-cache-dir -r requirements.txt && \
+    find /usr/local -type d -name '__pycache__' -exec rm -rf {} + 2>/dev/null || true
 
 # Copy application code
 COPY . .
@@ -35,11 +35,11 @@ RUN mkdir -p temp/repos temp/contexts public/context
 RUN find maintenance -name "*.py" -exec chmod +x {} \; && \
     find maintenance -name "*.sh" -exec chmod +x {} \;
 
-# Build the application
-RUN npm run build
-
-# Clean up build dependencies to save space
-RUN npm prune --production
+# Install Node deps, build, et nettoyer DANS LA MÊME COUCHE pour économiser ~500 MB
+RUN npm ci --ignore-scripts && \
+    npm run build && \
+    npm prune --production && \
+    rm -rf .next/cache
 
 # Set memory optimization environment variables
 ENV NODE_OPTIONS="--max-old-space-size=400"
