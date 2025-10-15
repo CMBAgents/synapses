@@ -1,0 +1,89 @@
+# ============================================
+# Stage 1: Builder - Installation des dépendances
+# ============================================
+FROM python:3.11-slim as python-builder
+
+WORKDIR /build
+
+# Installer les outils de build nécessaires
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copier requirements
+COPY requirements.txt .
+
+# Installer PyTorch CPU-only (beaucoup plus léger que la version complète)
+# Au lieu de ~3.5 GB, on aura ~800 MB
+RUN pip install --no-cache-dir --user \
+    torch --index-url https://download.pytorch.org/whl/cpu
+
+# Installer les autres dépendances Python
+RUN pip install --no-cache-dir --user -r requirements.txt
+
+# ============================================
+# Stage 2: Runtime - Image finale optimisée
+# ============================================
+FROM node:18-slim
+
+WORKDIR /app
+
+# Installer uniquement les dépendances runtime (pas de gcc, g++, etc.)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copier les packages Python depuis le builder (déjà compilés)
+COPY --from=python-builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
+
+# Copier les fichiers de config Node.js
+COPY package*.json ./
+
+# Installer les dépendances Node.js (dev dependencies nécessaires pour le build)
+RUN npm ci --ignore-scripts
+
+# Copier le code source
+COPY app ./app
+COPY public ./public
+COPY chunking ./chunking
+COPY maintenance ./maintenance
+COPY chroma_db ./chroma_db
+COPY config.json ./config.json
+COPY next.config.mjs ./
+COPY tsconfig.json ./
+COPY tailwind.config.ts ./
+COPY postcss.config.js ./
+COPY next-env.d.ts ./
+
+# Créer les répertoires nécessaires
+RUN mkdir -p temp/repos temp/contexts public/context logs
+
+# Permissions pour les scripts Python
+RUN find maintenance -name "*.py" -exec chmod +x {} \; 2>/dev/null || true
+
+# Build Next.js
+RUN npm run build
+
+# Supprimer les dev dependencies après le build pour économiser de l'espace
+RUN npm prune --production
+
+# Nettoyer le cache de build
+RUN rm -rf .next/cache
+
+# Variables d'environnement optimisées pour 1 GB RAM
+ENV NODE_OPTIONS="--max-old-space-size=768"
+ENV NEXT_PUBLIC_BASE_URL="https://cmbagent-info-602105671882.europe-west1.run.app"
+ENV PORT=8080
+
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD curl -f http://localhost:8080/api/health || exit 1
+
+# Démarrer l'application
+CMD ["sh", "-c", "npm start -- -H 0.0.0.0 -p ${PORT}"]
+
