@@ -97,13 +97,14 @@ export async function POST(request: NextRequest) {
     const sanitizedCredentials = sanitizeLogData(credentials);
 
     // Get program configuration
-    const program = getProgramById(programId);
-    if (!program) {
+    const programResult = getProgramById(programId);
+    if (!programResult || typeof programResult !== 'object' || 'id' in programResult === false) {
       return new Response(
         JSON.stringify({ error: `Program ${programId} not found` }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
+    const program = programResult as any;
 
     // Extract user query from the last message for RAG
     const lastUserMessage = messages.filter((msg: any) => msg.role === 'user').pop();
@@ -120,7 +121,7 @@ export async function POST(request: NextRequest) {
         // e.g., "python-skyfield-context.txt" -> "python-skyfield"
         let libraryName = programId; // fallback
         
-        if (program.contextFiles && program.contextFiles.length > 0) {
+        if (program.contextFiles && Array.isArray(program.contextFiles) && program.contextFiles.length > 0) {
           const contextFileName = program.contextFiles[0];
           // Remove "-context.txt" or ".txt" suffix
           libraryName = contextFileName
@@ -130,7 +131,7 @@ export async function POST(request: NextRequest) {
         
         console.log('Attempting RAG context retrieval for:', {
           programId,
-          contextFile: program.contextFiles?.[0],
+          contextFile: (program.contextFiles && Array.isArray(program.contextFiles)) ? program.contextFiles[0] : 'none',
           libraryName,
           queryLength: userQuery.length,
           queryPreview: userQuery.substring(0, 100)
