@@ -55,10 +55,7 @@ class RAGRetriever:
         # Construire les filtres
         where_filter = {}
         if library:
-            # Support pour format "owner-repo" (ex: "jobovy-galpy") ou juste "repo" (ex: "galpy")
-            # Essayer d'abord avec le nom complet, sinon extraire le dernier segment
-            library_name = library.split('-')[-1] if '-' in library else library
-            where_filter["library"] = library_name
+            where_filter["library"] = library
         if domain:
             where_filter["domain"] = domain
         

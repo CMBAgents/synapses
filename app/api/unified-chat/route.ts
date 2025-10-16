@@ -115,13 +115,28 @@ export async function POST(request: NextRequest) {
     
     if (userQuery) {
       try {
+        // Extract library name from contextFiles (matches ChromaDB indexing)
+        // ChromaDB indexes libraries by their filename without "-context.txt"
+        // e.g., "python-skyfield-context.txt" -> "python-skyfield"
+        let libraryName = programId; // fallback
+        
+        if (program.contextFiles && program.contextFiles.length > 0) {
+          const contextFileName = program.contextFiles[0];
+          // Remove "-context.txt" or ".txt" suffix
+          libraryName = contextFileName
+            .replace('-context.txt', '')
+            .replace('.txt', '');
+        }
+        
         console.log('Attempting RAG context retrieval for:', {
           programId,
+          contextFile: program.contextFiles?.[0],
+          libraryName,
           queryLength: userQuery.length,
           queryPreview: userQuery.substring(0, 100)
         });
         
-        context = await getRAGContext(programId, userQuery, 5, 8000);
+        context = await getRAGContext(libraryName, userQuery, 5, 8000);
         usingRAG = true;
         
         console.log('RAG context loaded successfully:', {
